@@ -1,0 +1,94 @@
+
+<!-- Top bar -->
+<app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event"  (addPatientEvent)="eventObj = $event"></app-billing-dashboard-navbar>
+<main>
+    <!-- side bar -->
+    <app-side-nav-bar [sideNavStatus]="sideNavStatus"  class="shadow-sm" [eventObj]="eventObj"
+    [ngClass]="{'side-nav-open': sideNavStatus}"
+    (sideNavPatient)="eventObj = $event"
+    ></app-side-nav-bar>
+
+    <!-- Main Display Area -->
+    <div class="display-area" [ngClass]="{'display-area-shrink': sideNavStatus}">
+            <div *ngIf="eventObj.navHome" class="Billing-Dashboard-Content">
+               <app-home-page
+               (sideNavHome)="eventObj = $event"></app-home-page>
+            </div>
+    
+            <div *ngIf="eventObj.navDashboard" class="Billing-Dashboard-Content">
+               <div class="row m-4">
+             
+                  <!-- order-card start -->
+                  <div class="col-md-6 col-xl-3">
+                     <div class="card  order-card">
+                         <div class="card-block">
+                             <h5 class="m-b-20">Orders Received</h5>
+                             <h2 class="text-right"><span>486</span></h2>
+                             <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-xl-3">
+                     <div class="card  order-card">
+                         <div class="card-block">
+                             <h5 class="m-b-20">Total Sales</h5>
+                             <h2 class="text-right"><span>1641</span></h2>
+                             <p class="m-b-0">This Month<span class="f-right">213</span></p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-xl-3">
+                     <div class="card  order-card">
+                         <div class="card-block">
+                             <h5 class="m-b-20">Revenue</h5>
+                             <h2 class="text-right"><span>$42,562</span></h2>
+                             <p class="m-b-0">This Month<span class="f-right">$5,032</span></p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-xl-3">
+                     <div class="card  order-card">
+                         <div class="card-block">
+                             <h5 class="m-b-20">Total Profit</h5>
+                             <h2 class="text-right"><span>$9,562</span></h2>
+                             <p class="m-b-0">This Month<span class="f-right">$542</span></p>
+                         </div>
+                     </div>
+                 </div>
+                  <!-- order-card end -->
+                  <!-- statustic and process start -->
+                    <div class="col-md-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 style="font-size: 16px; color: #3f51b5;">Monthly Patients Chart</h5>
+                            </div>
+                            <div class="card-block">
+                                <canvas baseChart type="bar" [data]="barChartData"></canvas>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+    
+            <div *ngIf="eventObj.navPatient" class="Billing-Dashboard-Content  mt-2">
+                <app-pateint-page></app-pateint-page>
+            </div>
+            
+            <div *ngIf="eventObj.navMaster" class="Billing-Dashboard-Content">
+                <app-master></app-master>
+            </div>
+
+            <div *ngIf="eventObj.navSetting" class="Billing-Dashboard-Content">
+               <app-setting></app-setting>
+            </div>
+    
+            <div *ngIf="eventObj.navAbout" class="Billing-Dashboard-Content">
+               About
+            </div>
+    
+            <div *ngIf="eventObj.navContact" class="Billing-Dashboard-Content">
+                Contact
+            </div>  
+    </div>
+</main>
+

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import 'ngx-toastr/toastr';
+body{
+    /* font-family: 'Fredoka',sans-serif; */
+    font-family: Roboto;
+    background-color: rgb(238, 241, 248);
+}
+.bg_background{
+    background-image: url(./assets/bg-img.jpg);
+    background-size: 100%; 
+    background-repeat: no-repeat;
+}

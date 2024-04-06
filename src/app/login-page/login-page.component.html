@@ -1,0 +1,250 @@
+<app-navbar></app-navbar>
+<div class="login-page">
+    <div class="row Login-Box ">
+        <div class="container">
+                <div class="main float-end">
+                    <div class="panel" >
+                        <h2 class="text-dark"
+                        >Login</h2>
+                        <hr>
+                        <p >Please Enter your Email and Password</p>
+                         
+                        <span style="color: red; font-weight: bold; margin-top: 5px;">
+                        {{incorrect}}
+                        </span>
+                    </div>
+                    <form #f="ngForm" (ngSubmit)="onLogin(f)">
+                         <div class="form-group px-4  justify-content-center">
+
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Enter Username" aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
+                                
+
+                            <div class="input-group flex-nowrap mt-4 d-flex p2">
+                                <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="Enter Password" aria-label="Password" aria-describedby="addon-wrapping">
+                              </div>
+    
+                           <!-- <div class="capcha1">
+                                <ngx-recaptcha2 class="capcha" #captchaElem="ngModel" 
+                                     ngModel name="Capcha" [siteKey]="siteKey" required >
+                                </ngx-recaptcha2>
+                           </div> -->
+                
+                            <!-- <p style="color:red;" *ngIf="password.touched && !password.valid">Please Enter Password</p> -->
+                            <div class="d-grid gap-2 ">
+                                <button [disabled]="!f.valid" class="btn btn-success  my-4" >Login</button>
+                            </div>
+                            <div class="panel">
+                                <a data-bs-toggle="modal" href="#exampleModalToggle" > Forgotten Password ?</a>
+                            </div>
+                            <hr>
+                            <div class="d-grid gap-2 mb-2">
+                                <button class="btn btn-primary my-2" routerLink="/registration" >Registration</button>
+                            </div>
+                        </div>
+                        <button class="btn" routerLink="/billing-dashboard" >Dahsboard</button>
+                    </form>
+                </div>  
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel">Search User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clickOnCancel()"></button>
+        </div>
+        <div class="modal-body px-4">
+            
+            <div class="form-group  justify-content-center">
+                <label for="">Please enter your Username to search for your account.</label>
+                <div class="input-group flex-nowrap mt-2">
+                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter Username" name="userName" [(ngModel)]="userName">
+                    <button type="button" class="btn btn-outline-primary" (click)="onSearch()" >Search</button>
+                </div>
+             </div>  
+        
+             <span style="color: red;  margin-top: 5px;">
+                {{incorrectUser}}
+            </span>
+            <br>
+            <div *ngIf="showUserInfo">
+
+                <div class="input-group flex-nowrap mt-2">
+                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                    <div class="form-control">
+                        <p>Name   : {{userFirstName}} {{userLastName}}</p>
+                        <p>Mobile : +91{{mobileNumber}}</p>
+                        <p>Email  : {{mailId}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" [disabled]="ProccedToVerification" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Procced To Verification</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Account Verification</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clickOnCancel()"></button>
+        </div>
+        <div class="modal-body">
+         
+            <div class="form-group " >
+                <label for="">Mobile No </label>
+                <div class="input-group ">
+                    <span class="input-group-text" id="addon-wrapping">+91</span>
+                    <input type="text" class="form-control" [disabled]="true"
+                 placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber" required>
+                 <button type="button" (click)="onMobileOTPSend()" class="btn btn-outline-primary">Send OTP</button>
+                </div>
+             </div>
+             <span style="color: blue; font-weight: bold; margin-top: 5px;">
+                {{mobileOTPSent}}
+           </span>
+            <div class="form-group mt-2" >
+                <div class="input-group flex-nowrap">
+                    <input type="number" class="form-control"  name="mobileOTP" #tmobileOTP [readonly]="mobileOTPInputField" [(ngModel)]="mobileOTP"
+                     placeholder="Enter OTP">
+                     <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-outline-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
+                </div> 
+           </div>
+           <span style="color: red; font-weight: bold; margin-top: 5px;">
+                 {{mOTPincorrect}}
+            </span>
+            <span style="color: green; font-weight: bold; margin-top: 5px;">
+                {{mOTPcorrect}}
+           </span>
+        
+            <div class="form-group mt-4">
+                <label for="">Email </label>
+                <div class="input-group">
+                <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
+                <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" [disabled]="true" 
+                placeholder="Enter the Email" required>
+                <button type="button" (click)="onEmailOTPSend()" class="btn btn-outline-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
+                </div>
+             </div>
+             <span style="color: blue; font-weight: bold; margin-top: 5px;">
+                {{emailOTPSent}}
+           </span>
+            <div class="form-group mt-2" >
+                <div class="input-group flex-nowrap"> 
+                    <input type="number" class="form-control"  name="mailOTP" #tmailOTP [readonly]="emailOTPInputField" [(ngModel)]="emailOTP"
+                     placeholder="Enter OTP">  
+                     <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-outline-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
+                </div> 
+           </div>
+           <span style="color: red; font-weight: bold; margin-top: 5px;">
+                {{eOTPincorrect}}
+            </span>
+            <span style="color: green; font-weight: bold; margin-top: 5px;">
+                {{eOTPcorrect}}
+            </span>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" >Back</button>
+          <button class="btn btn-primary" [disabled]="disabledProceedButon" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Procced</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Set New Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clickOnCancel()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card p-2">
+            <h6>Password must include the following:</h6>
+            <h6>1. At least one lowercase alphabet</h6>
+            <h6>2. At least one uppercase alphabet</h6>
+            <h6>3. At least one Numeric digit</h6>
+            <h6>4. At least one special character</h6>
+            <h6>5. The total length must be in the range [8-15]</h6>
+            
+          </div>
+          <div class="form-group mt-2 " >
+            <label for="">New Password </label>
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+            <input type="password" class="form-control" name="userPassword" [(ngModel)]="userPassword" minlength="8"
+                    #newPassword (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)"
+            placeholder="Enter the Password" >
+            </div>
+        </div>
+        <span style="color: red;  margin-top: 5px;">
+          {{weakPassword}}
+        </span>
+        <span style="color: green;  margin-top: 5px;">
+          {{goodPassword}}
+        </span>
+        <br>
+        <div class="form-group mt-2" >
+          <label for="">Confirm Password </label>
+          <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+          <input [type]="confirmPasswordshow" class="form-control" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
+          #confPassword (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)"
+          placeholder="Enter the Password" >
+          <button type="button" (click)="showPassword()" class="btn btn-secondary">{{passwordShowButton}}</button>
+          </div>
+        </div>
+        <span style="color: red; margin-top: 5px;">
+          {{confirmPasswordNoMatch}}
+        </span>
+        <span style="color: green; margin-top: 5px;">
+          {{confirmPasswordMatch}}
+        </span>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" >Back</button>
+          <button class="btn btn-primary" [disabled]="passwordSubmit" (click)="onPasswordChange()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#registerModal">Open Modal</button>
+  <!-- Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clickOnCancel()"></button>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="clickOnCancel()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

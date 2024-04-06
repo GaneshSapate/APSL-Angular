@@ -1,0 +1,295 @@
+<div >
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top shadow p-2" style="background-color: #3f51b5;">
+      <div class="container-fluid" >
+      
+        <button class="navbar-toggler" type="button" (click)="onClickToggled()">
+          <span class="fa-solid fa-bars"></span>
+        </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-brand me-3 text-dark ">
+          <a class="navbar-brand" href="#"><i class="fa-solid fa-microscope navbar-brand"></i> APLS</a>
+          <span class="ms-4" (click)="onClickToggled()" style="color: #ffffff; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
+        </div>
+        <ul class="navbar-nav ms-4 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
+              <i class="fa-solid fa-plus"></i> Add Patient</a>
+          </li>
+          <!-- <div class="input-group shadow-sm d-flex justify-content-center" style="outline: none; text-decoration: none;">
+            <input type="text" class="form-control-sm" style="border-width:0px; border:none;" placeholder="Enter Name">
+            <button class="btn btn-dark btn-sm" type="button" id="button-addon2" >Search</button>
+          </div> -->
+        </ul>
+        
+      </div>
+          
+    
+
+        <div class="d-flex" >
+          <div class="btn-group mx-3">
+            <span style="color: #ffffff; cursor: pointer;" >
+                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 20px"><i class="fa-solid fa-expand"></i></span>
+                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 20px"><i class="fa-solid fa-compress"></i></span>
+            </span>
+        </div>
+        <div class="btn-group">
+          <span class="" style="font-size: 20px; color: white; cursor: pointer;" data-bs-toggle="dropdown" 
+          data-bs-auto-close="outside" aria-expanded="true" >
+            <i class="fa-regular fa-bell px-2"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 12px;">
+              {{countOfNotification}}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </span>
+          <ul class="dropdown-menu dropdown-menu-end notification-dropdown" style="appearance: none; text-decoration: none;" aria-labelledby="dropdownMenuClickable">
+            
+            <li class="dropdown-item" *ngIf = "noNotification">
+              No New Notification
+            </li>
+            <li *ngIf = "!noNotification">
+              <div class="toast show text-dark border-0  shadow-none ms-4 p-0 ">
+                <div class="d-flex p-0">
+                  <div class="toast-body text-secondary">
+                   <span style="font-weight: bold; font-size: 18px;"> All Notification</span>
+                 </div>
+                 <button type="button" class="btn btn-secondary btn-sm  me-2 m-auto" (click)="clearAllNotification()">clear all</button>
+                </div>
+              </div>
+            </li>
+            <li class="mx-4 my-2" *ngFor="let obj of notification index as i">
+              <div class="toast show shadow-sm text-dark">
+                <div class="d-flex">
+                  <div class="toast-body">
+                    <span style="max-width: 300px;">{{obj.message}}</span>
+                  
+                 </div>
+                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+
+
+      <div class="btn-group mx-3">
+          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px; color: white; cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i> Profile</span>
+        
+          <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile">
+              <li class="dropdown-item"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
+              <li class="dropdown-item"><i class="fa-solid fa-gear me-2"></i> Setting</li>
+              <li class="dropdown-item"><i class="fa-solid fa-shield me-2"></i> Security</li>
+              <li class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+          </ul>
+      </div>
+    </div>
+
+    </div>
+    </nav>
+  </div>
+
+
+
+<!-- Add new patient modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;">Add New Patient </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-sm">
+                <div class="row my-2 justify-content-center">
+                    <div class="col-3">
+                        <h6 class="modal-title" id="exampleModalLabel">Search Existing Patient </h6>
+                    </div>
+                    <div class="col-5">
+                      <div class="form-group input-group input-group-sm">
+                          <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
+                          <button class="btn btn-primary btn-sm">Add</button>
+                          <datalist id="datalistOptions">
+                            <option value="San Francisco">
+                            <option value="New York">
+                            <option value="Seattle">
+                            <option value="Los Angeles">
+                            <option value="Chicago">
+                          </datalist>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row my-2 ">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Title </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select</option>
+                                <option class="form-control"  value="MR.">MR.</option>
+                                <option class="form-control"  value="MRS.">MRS.</option>
+                                <option class="form-control"  value="MS.">MS.</option>
+                                <option class="form-control"  value="DR.">DR.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class=" form-group input-group-sm" >
+                            <label for="">First Name</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="text" class="form-control"   minlength="3"
+                                 placeholder="Enter First Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Last Name </label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Last Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Gender </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select gender</option>
+                                <option class="form-control"  value="M">Male</option>
+                                <option class="form-control"  value="F">Female</option>
+                                <option class="form-control"  value="T">Transgender</option>
+                            </select>
+                        </div>
+                    </div>
+               </div>
+               <div class="row my-2">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                        <label for="">Age </label>
+                        <input type="number" class="form-control" name="userAge"
+                        placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Mobile No </label>
+                            <input type="number" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Email ID</label>
+                            <input type="email" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Address</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Address" required>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               
+               <div class="row my-2">
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">City/Village</label>
+                        <div class="input-group flex-nowrap input-group-sm">
+                        <input type="text" class="form-control"   minlength="3"
+                        placeholder="Enter City/Village" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Ref By </label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">Myself</option>
+                            <option class="form-control"  value="Dr. Agrawal">Dr. Agrawal</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">Remark </label>
+                        <input type="text" class="form-control" name="userAge"
+                        placeholder="Enter Remark" required>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            </div>
+        
+        <div class="container-sm">
+            <div class="row my-2">
+                <div class="col-4">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Add Reports</label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">CBC</option>
+                            <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm">add</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <table class="table table-hover table-sm table-bordered">
+                <thead style="color: blue;">
+                  <tr style="color: blue;">
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody style="background-color: cadetblue;">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  

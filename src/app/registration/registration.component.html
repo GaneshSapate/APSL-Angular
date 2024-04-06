@@ -1,0 +1,249 @@
+
+
+<app-navbar></app-navbar>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<div class="main container-sm p-4" >
+    <div  class="row ">
+        <h3 class=" my-2" >Registration For New User</h3>
+    </div>
+    <hr>
+   <div class="row m-2">
+        <div class="col-6">
+            <div class=" form-group" >
+                <label for="">First Name</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="userFirstName" [(ngModel)]="userFirstName"  minlength="3" ngModel
+                     placeholder="Enter First Name" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group "  >
+                <label for="">Last Name </label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="userLastName" [(ngModel)]="userLastName"  minlength="3" ngModel
+                placeholder="Enter Last Name" required>
+                </div>
+            </div>
+        </div>
+   </div>
+   <div class="row m-2">
+        <div class="col-6">
+            <div class="form-group " >
+                <label for="">Gender </label>
+            </div>
+            <div class="form-group input-group">
+                <select class="form-control" name="userGender" [(ngModel)]="userGender" ngModel required>
+                    <option class="form-control"  value="">Select gender</option>
+                    <option class="form-control"  value="M">Male</option>
+                    <option class="form-control"  value="F">Female</option>
+                    <option class="form-control"  value="T">Transgender</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group "  >
+                <label for="">Age </label>
+                <input type="number" class="form-control" name="userAge" ngModel
+                placeholder="Enter Age" required>
+            </div>
+        </div>
+   </div>
+   <div class="row m-2">
+        <div class="col-6">
+            <div class="form-group " >
+                <label for="">Mobile No </label>
+                <div class="input-group ">
+                    <span class="input-group-text" id="addon-wrapping">+91</span>
+                    <input type="number" class="form-control"  (keyup)="mobileExist()" ngModel
+                 placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber"  minlength="10" maxlength="10" required>
+                </div>
+                <span style="color: red;  margin-top: 5px;">
+                    {{mobileNumberError}}
+                  </span>
+                  <span style="color: green;  margin-top: 5px;">
+                    {{mobileNumberOk}}
+                  </span>
+             </div>
+        </div>
+        <div class="col-6">
+                <div class="form-group ">
+                    <label for="">Email </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
+                        <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" (blur)="userEmailValidation()" ngModel
+                        placeholder="Enter the Email" required email>
+                    </div>
+                    <span style="color: red;  margin-top: 5px;">
+                        {{emailError}}
+                      </span>
+                </div>
+        </div>
+    </div>
+
+   <div class="row m-2">
+        <div class="col-6"> 
+            <div class="form-group mt-2" >
+                <label for="">Username </label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="userName" minlength="5" [(ngModel)]="userName" ngModel
+                    placeholder="Enter the Username" (blur)="userExist()" required>
+                </div>
+                <span style="color: red;  margin-top: 5px;">
+                    {{userNameError}}
+                  </span>
+            </div>
+        </div>
+        <div class="col-6">
+            
+        </div>
+   </div>
+   <div class="row m-2">
+        <div class="col-6">
+            <div class="form-group mt-2 " >
+                <label for="">Password </label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name="userPassword" [(ngModel)]="userPassword" minlength="8"
+                placeholder="Enter the Password" #newPassword (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)"  ngModel
+                required>
+                </div>
+                <span style="color: red;  margin-top: 5px;">
+                    {{weakPassword}}
+                  </span>
+                  <span style="color: green;  margin-top: 5px;">
+                    {{goodPassword}}
+                  </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-2" >
+                <label for="">Confirm Password </label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                <input [type]="confirmPasswordshow" class="form-control" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
+                placeholder="Enter the Password"  #confPassword (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)" ngModel
+                 required>
+                <button type="button" (click)="showPassword()" class="btn btn-secondary">{{passwordShowButton}}</button>
+                </div>
+                <span style="color: red; margin-top: 5px;">
+                    {{confirmPasswordNoMatch}}
+                  </span>
+                  <span style="color: green; margin-top: 5px;">
+                    {{confirmPasswordMatch}}
+                  </span>
+            </div>
+        </div>
+   </div>
+   <div class="row m-2">
+        <div class="col-6">
+            <button type="button" class=" btn btn-primary mt-4">Clear</button>
+            <button type="submit" [disabled]="!f.valid"  class=" btn btn-success mt-4 mx-4"
+            data-bs-toggle="modal" data-bs-target="#verificationModal">Next</button>
+        </div>
+   </div>
+ 
+</div>
+
+</form>
+
+<button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#registerModal">Open Modal</button>
+  <!-- Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <button id="openModalVerificationButton" [hidden]="false" data-bs-toggle="modal" data-bs-target="#verificationModal">Open Modal</button> -->
+  <!-- Modal -->
+  <div class="modal fade" id="verificationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true" keyboard = "false">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="verificationModalLabel">For Complete Registration please verify mobile Number and Email</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+
+           
+               
+                    <div class="form-group " >
+                        <label for="">Mobile No </label>
+                        <div class="input-group ">
+                            <span class="input-group-text" id="addon-wrapping">+91</span>
+                            <input type="text" class="form-control" [disabled]="true"
+                         placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber" required>
+                         <button type="button" (click)="onMobileOTPSend()" class="btn btn-primary">Send OTP</button>
+                        </div>
+                     </div>
+                     <span style="color: blue; font-weight: bold; margin-top: 5px;">
+                        {{mobileOTPSent}}
+                   </span>
+                    <div class="form-group mt-2" >
+                        <div class="input-group flex-nowrap">
+                            <input type="number" class="form-control"  name="mobileOTP" #tmobileOTP [readonly]="mobileOTPInputField" [(ngModel)]="mobileOTP"
+                             placeholder="Enter OTP">
+                             <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
+                        </div> 
+                   </div>
+                   <span style="color: red; font-weight: bold; margin-top: 5px;">
+                         {{mOTPincorrect}}
+                    </span>
+                    <span style="color: green; font-weight: bold; margin-top: 5px;">
+                        {{mOTPcorrect}}
+                   </span>
+                
+                    <div class="form-group mt-4">
+                        <label for="">Email </label>
+                        <div class="input-group">
+                        <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
+                        <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" [disabled]="true" 
+                        placeholder="Enter the Email" required>
+                        <button type="button" (click)="onEmailOTPSend()" class="btn btn-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
+                        </div>
+                     </div>
+                     <span style="color: blue; font-weight: bold; margin-top: 5px;">
+                        {{emailOTPSent}}
+                   </span>
+                    <div class="form-group mt-2" >
+                        <div class="input-group flex-nowrap"> 
+                            <input type="number" class="form-control"  name="mailOTP" #tmailOTP [readonly]="emailOTPInputField" [(ngModel)]="emailOTP"
+                             placeholder="Enter OTP">  
+                             <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
+                        </div> 
+                   </div>
+                   <span style="color: red; font-weight: bold; margin-top: 5px;">
+                        {{eOTPincorrect}}
+                    </span>
+                    <span style="color: green; font-weight: bold; margin-top: 5px;">
+                        {{eOTPcorrect}}
+                    </span>
+              
+           
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clickOnCancel()">Cancel</button>
+          <button type="button" class="btn btn-success"  (click)="onClickProceed()" [disabled] = "disabledProceedButon">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

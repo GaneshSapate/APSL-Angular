@@ -1,0 +1,514 @@
+<!-- Main Patient Page -->
+<div *ngIf="patientPage">
+    <div class="main ">
+        <div class="row mainHeader row mx-4 p-4 mt-4 shadow-sm " style="background-color: white;">
+            <div class="row pb-2">
+                <h5 style="font-weight: bold; color: rgb(83, 83, 83);">Patient Management</h5>
+                <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-sm-6">
+                    <button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-plus"></i> Add New Patient</button>
+                    <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
+                </div>
+                <div class="col-md-3 col-sm-6 mt-4 mt-md-0">
+                        <div class="form-group input-group-sm" >
+                            <div class="input-group  input-group-sm">
+                                <input type="text" class="form-control"   minlength="3"
+                                 placeholder="Enter Patient Name" required>
+                                 <button type="button" class="btn btn-primary btn-sm">Search</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row mx-4 mt-4">
+            <div class="px-0 ">
+                <div class="patientTableDiv pt-2 shadow-sm">
+                    <div class="row mx-2 py-2">
+                        <h6 style="font-weight: bold;">Recently Added Patient List</h6>
+                    </div>
+                    <div class="PatientTable">
+                        <table class="table table-hover table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Patient Name</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Mobile NO</th>
+                                    <th scope="col">Added Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
+                                    <th scope="row">{{patient.patientId}}</th>
+                                    <td class="patientName" (click)="onClickPateint(patient)">{{patient.patientName}}</td>
+                                    <td>{{patient.gender}}</td>
+                                    <td>{{patient.mobileNo}}</td>
+                                    <td>{{patient.addedDate}}</td>
+                                    <td><a class="tableLink"><i class="fa-regular fa-pen-to-square"></i> Fill Reports</a> |
+                                        <a class="tableLink"><i class="fa-solid fa-print"></i> Print</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+
+<!-- Add new patient Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;">Add New Patient </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-sm">
+                <div class="row my-2 justify-content-center">
+                    <div class="col-3">
+                        <h6 class="modal-title" id="exampleModalLabel">Search Existing Patient </h6>
+                    </div>
+                    <div class="col-5">
+                      <div class="form-group input-group input-group-sm">
+                          <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
+                          <button class="btn btn-primary btn-sm">Add</button>
+                          <datalist id="datalistOptions">
+                            <option value="San Francisco">
+                            <option value="New York">
+                            <option value="Seattle">
+                            <option value="Los Angeles">
+                            <option value="Chicago">
+                          </datalist>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row my-2 ">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Title </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select</option>
+                                <option class="form-control"  value="MR.">MR.</option>
+                                <option class="form-control"  value="MRS.">MRS.</option>
+                                <option class="form-control"  value="MS.">MS.</option>
+                                <option class="form-control"  value="DR.">DR.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class=" form-group input-group-sm" >
+                            <label for="">First Name</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="text" class="form-control"   minlength="3"
+                                 placeholder="Enter First Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Last Name </label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Last Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Gender </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select gender</option>
+                                <option class="form-control"  value="M">Male</option>
+                                <option class="form-control"  value="F">Female</option>
+                                <option class="form-control"  value="T">Transgender</option>
+                            </select>
+                        </div>
+                    </div>
+               </div>
+               <div class="row my-2">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                        <label for="">Age </label>
+                        <input type="number" class="form-control" name="userAge"
+                        placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Mobile No </label>
+                            <input type="number" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Email ID</label>
+                            <input type="email" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Address</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Address" required>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               
+               <div class="row my-2">
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">City/Village</label>
+                        <div class="input-group flex-nowrap input-group-sm">
+                        <input type="text" class="form-control"   minlength="3"
+                        placeholder="Enter City/Village" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Ref By </label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">Myself</option>
+                            <option class="form-control"  value="Dr. Agrawal">Dr. Agrawal</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">Remark </label>
+                        <input type="text" class="form-control" name="userAge"
+                        placeholder="Enter Remark" required>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            </div>
+        
+        <div class="container-sm">
+            <div class="row my-2">
+                <div class="col-4">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Add Reports</label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">CBC</option>
+                            <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm">add</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <table class="table table-hover table-sm table-bordered">
+                <thead style="color: blue;">
+                  <tr style="color: blue;">
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody style="background-color: cadetblue;">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Patient Detail Page -->
+<div *ngIf="!patientPage">
+    <div class="row mx-4  " style="border-radius: 7px;">
+        <div class="card mt-2 py-2  shadow-sm" style="border: none;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bold; color: rgb(87, 87, 87);">{{patientObj.patientName}} </h5>
+              <p class="card-text" style="font-size: 14px; ">
+                <span class="ms-0" style="font-weight: bold;">Refer By : </span>{{patientObj.mobileNo}},  
+                <span class="ms-2" style="font-weight: bold;">Gender : </span>{{patientObj.gender}}, 
+                <span class="ms-2" style="font-weight: bold;">Mobile No : </span>{{patientObj.mobileNo}}, 
+                <span class="ms-2" style="font-weight: bold;">Added date : </span>{{patientObj.addedDate}} 
+                </p>
+              <a  class="btn btn-secondary btn-sm shadow-sm" (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
+              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#editPatientModal">
+                <i class="fa-regular fa-pen-to-square"></i> Edit Pateint </a>
+              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-print"></i> Print Report </a>
+              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-print"></i> Print Bill </a>
+              <a  class="btn btn-danger btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-trash-can"></i> Trash </a>
+            </div>
+          </div>
+    </div>
+    <div class="row mx-4 mt-4">
+        <div class="patientTableDiv pt-2 shadow-sm">
+            <div class="row mx-2 py-2 mt-2">
+                <div class="col-6">
+                    <h6 style="font-weight: bold;">Reports List</h6>
+                </div>
+                <div class="col-6 ">
+                    <div class="form-group " >
+                        <div class="input-group justify-content-md-end">
+                            <input type="text" class="form-control-sm"  placeholder="Enter Reports Name" >
+                            <button class="btn btn-secondary btn-sm" type="button" > Search</button>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div class="PatientTable">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Reoprt Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 7, currentPage: p }; index as i">
+                            <th scope="row">{{patient.patientId}}</th>
+                            <td class="patientName">{{patient.patientName}}</td>
+                            <td>{{patient.gender}}</td>
+                            <td>{{patient.mobileNo}}</td>
+                            <td><a style="color: green;"><i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | <a style="color: red;"><i class="fa-solid fa-trash-can"></i> Remove</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Edit Patient Details Modal -->
+<div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;">Add New Patient </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-sm">
+                <div class="row my-2 ">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Title </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select</option>
+                                <option class="form-control"  value="MR.">MR.</option>
+                                <option class="form-control"  value="MRS.">MRS.</option>
+                                <option class="form-control"  value="MS.">MS.</option>
+                                <option class="form-control"  value="DR.">DR.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class=" form-group input-group-sm" >
+                            <label for="">First Name</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="text" class="form-control"   minlength="3"
+                                 placeholder="Enter First Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Last Name </label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Last Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm" >
+                            <label for="">Gender </label>
+                        </div>
+                        <div class="form-group input-group input-group-sm">
+                            <select class="form-control" >
+                                <option class="form-control"  value="">Select gender</option>
+                                <option class="form-control"  value="M">Male</option>
+                                <option class="form-control"  value="F">Female</option>
+                                <option class="form-control"  value="T">Transgender</option>
+                            </select>
+                        </div>
+                    </div>
+               </div>
+               <div class="row my-2">
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                        <label for="">Age </label>
+                        <input type="number" class="form-control" name="userAge"
+                        placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Mobile No </label>
+                            <input type="number" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Email ID</label>
+                            <input type="email" class="form-control" name="userAge"
+                            placeholder="Enter Age" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group input-group-sm"  >
+                            <label for="">Address</label>
+                            <div class="input-group flex-nowrap input-group-sm">
+                            <input type="text" class="form-control"   minlength="3"
+                            placeholder="Enter Address" required>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               
+               <div class="row my-2">
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">City/Village</label>
+                        <div class="input-group flex-nowrap input-group-sm">
+                        <input type="text" class="form-control"   minlength="3"
+                        placeholder="Enter City/Village" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Ref By </label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">Myself</option>
+                            <option class="form-control"  value="Dr. Agrawal">Dr. Agrawal</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                <div class="col-3">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">Remark </label>
+                        <input type="text" class="form-control" name="userAge"
+                        placeholder="Enter Remark" required>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            </div>
+        
+        <div class="container-sm">
+            <div class="row my-2">
+                <div class="col-4">
+                    <div class="form-group input-group-sm" >
+                        <label for="">Add Reports</label>
+                    </div>
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="Myself">CBC</option>
+                            <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm">add</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <table class="table table-hover table-sm table-bordered">
+                <thead style="color: blue;">
+                  <tr style="color: blue;">
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody style="background-color: cadetblue;">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
