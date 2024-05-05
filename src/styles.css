@@ -5,7 +5,7 @@
 body{
     /* font-family: 'Fredoka',sans-serif; */
     font-family: Roboto;
-    background-color: rgb(238, 241, 248);
+    background-color: #f4f4f4;
 }
 .bg_background{
     background-image: url(./assets/bg-img.jpg);
