@@ -87,11 +87,12 @@
             <div class="notification-item" *ngFor= "let obj of notification index as i">
               <div class="d-flex">
                 <div>
-                    <div class="title">New Notification</div>
+                    <div class="title d-flex"><span class="me-auto">New Notification</span>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
+                    </div>
                     <div class="message">{{obj.message}}</div>
                     <div class="time">5 minutes ago</div>
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
               </div>
               
             </div>

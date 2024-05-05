@@ -1,55 +1,75 @@
-<app-navbar></app-navbar>
-<div class="login-page">
-    <div class="row Login-Box ">
-        <div class="container">
-                <div class="main float-end">
-                    <div class="panel" >
-                        <h2 class="text-dark"
-                        >Login</h2>
-                        <hr>
-                        <p >Please Enter your Email and Password</p>
-                         
-                        <span style="color: red; font-weight: bold; margin-top: 5px;">
-                        {{incorrect}}
-                        </span>
-                    </div>
-                    <form #f="ngForm" (ngSubmit)="onLogin(f)">
-                         <div class="form-group px-4  justify-content-center">
-
-                            <div class="input-group flex-nowrap">
-                                <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Enter Username" aria-label="Username" aria-describedby="addon-wrapping">
-                            </div>
-                                
-
-                            <div class="input-group flex-nowrap mt-4 d-flex p2">
-                                <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="Enter Password" aria-label="Password" aria-describedby="addon-wrapping">
-                              </div>
-    
-                           <!-- <div class="capcha1">
-                                <ngx-recaptcha2 class="capcha" #captchaElem="ngModel" 
-                                     ngModel name="Capcha" [siteKey]="siteKey" required >
-                                </ngx-recaptcha2>
-                           </div> -->
-                
-                            <!-- <p style="color:red;" *ngIf="password.touched && !password.valid">Please Enter Password</p> -->
-                            <div class="d-grid gap-2 ">
-                                <button [disabled]="!f.valid" class="btn btn-success  my-4" >Login</button>
-                            </div>
-                            <div class="panel">
-                                <a data-bs-toggle="modal" href="#exampleModalToggle" > Forgotten Password ?</a>
-                            </div>
-                            <hr>
-                            <div class="d-grid gap-2 mb-2">
-                                <button class="btn btn-primary my-2" routerLink="/registration" >Registration</button>
-                            </div>
-                        </div>
-                        <button class="btn" routerLink="/billing-dashboard" >Dahsboard</button>
-                    </form>
-                </div>  
+<div class="row login-page justify-content-center">
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fa-solid fa-microscope mx-4"></i> APLS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" >Home</a>
+          <a class="nav-link active" >Pricing</a>
+          <a class="nav-link active" routerLink="/registration" >Registation</a>
+          <a class="nav-link active" >About Us</a>
+          <a class="nav-link active" >Contact Us</a>
         </div>
+      </div>
     </div>
+  </nav>
+  <!-- <div class="brand-name mx-4 mt-4 d-flex">
+    <i class="fa-solid fa-microscope mx-4" style="font-size: 25px; color: #7fbbff;"></i>
+    <h6 style="font-size: 25px; color: #7fbbff; font-weight: bold; font-family: Arial, sans-serif; ">APLS</h6>
+    <h6>Home</h6>
+    <h6>Buy</h6>
+    <h6>About Us</h6>
+  </div> -->
+  <div class="row justify-content-center">
+    <div class="card" style="width: 24rem; margin-top: 90px;">
+      <div class="panel mt-4" >
+          <h4 style="color:   #525252; font-weight: bold ;">Login</h4>
+          <hr>
+          <p>Please Enter your Username and Password</p>  
+          <span style="color: red; margin-top: 5px;">
+          {{incorrect}}
+          </span>
+      </div>
+      <form #f="ngForm" (ngSubmit)="onLogin(f)">
+           <div class="form-group px-4  justify-content-center">
+
+              <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter Username" aria-label="Username" aria-describedby="addon-wrapping">
+              </div>
+                  
+
+              <div class="input-group flex-nowrap mt-4 d-flex p2">
+                  <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="Enter Password" aria-label="Password" aria-describedby="addon-wrapping">
+                </div>
+
+             <!-- <div class="capcha1">
+                  <ngx-recaptcha2 class="capcha" #captchaElem="ngModel" 
+                       ngModel name="Capcha" [siteKey]="siteKey" required >
+                  </ngx-recaptcha2>
+             </div> -->
+  
+              <!-- <p style="color:red;" *ngIf="password.touched && !password.valid">Please Enter Password</p> -->
+              <div class="d-grid gap-2 ">
+                  <button [disabled]="!f.valid" class="btn btn-success  my-4" >Login</button>
+              </div>
+              <div class="panel">
+                  <a data-bs-toggle="modal" href="#exampleModalToggle" > Forgotten Password ?</a>
+              </div>
+              <hr>
+              <div class="d-grid gap-2 mb-2">
+                  <button class="btn btn-primary my-2" routerLink="/registration" >Registration</button>
+              </div>
+          </div>
+          <button class="btn" routerLink="/billing-dashboard" >Dahsboard</button>
+      </form>
+    </div> 
+  </div>
+                 
 </div>
 
 

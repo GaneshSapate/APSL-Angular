@@ -1,155 +1,173 @@
-
-
-<app-navbar></app-navbar>
-
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-<div class="main container-sm p-4" >
-    <div  class="row ">
-        <h3 class=" my-2" >Registration For New User</h3>
+<div class="row justify-content-center" style="background: linear-gradient(to bottom, #525252 50%,#f4f4f4 50%);">
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fa-solid fa-microscope mx-4"></i> APLS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" >Home</a>
+          <a class="nav-link active" >Pricing</a>
+          <a class="nav-link active" >About Us</a>
+          <a class="nav-link active" >Contact Us</a>
+        </div>
+      </div>
+      <div class="d-flex">
+        <a class="nav-link active  me-2" routerLink="/login" style="color: white; font-size: 18px;">Login Page</a>
+      </div>
     </div>
-    <hr>
-   <div class="row m-2">
-        <div class="col-6">
-            <div class=" form-group" >
-                <label for="">First Name</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="userFirstName" [(ngModel)]="userFirstName"  minlength="3" ngModel
-                     placeholder="Enter First Name" required>
-                </div>
-            </div>
+  </nav>
+    <form #f="ngForm" (ngSubmit)= "onSubmit(f)">
+      <div class="card container-sm p-2 mt-4 mt-4" style="max-width: 50rem;">
+          <div  class="row ">
+              <h5 class=" my-2" style="font-weight: bold; color: #525252;" >Registration For New User</h5>
+          </div>
+          <hr>
+        <div class="row m-2">
+              <div class="col-md-6">
+                  <div class=" form-group" >
+                      <label for="">First Name</label>
+                      <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                          <input type="text" class="form-control form-control-sm" name="userFirstName" [(ngModel)]="userFirstName"  minlength="3" ngModel
+                          placeholder="Enter First Name" required>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group "  >
+                      <label for="">Last Name </label>
+                      <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                      <input type="text" class="form-control form-control-sm" name="userLastName" [(ngModel)]="userLastName"  minlength="3" ngModel
+                      placeholder="Enter Last Name" required>
+                      </div>
+                  </div>
+              </div>
         </div>
-        <div class="col-6">
-            <div class="form-group "  >
-                <label for="">Last Name </label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" name="userLastName" [(ngModel)]="userLastName"  minlength="3" ngModel
-                placeholder="Enter Last Name" required>
-                </div>
-            </div>
+        <div class="row m-2">
+              <div class="col-md-6">
+                  <div class="form-group " >
+                      <label for="">Gender </label>
+                  </div>
+                  <div class="form-group input-group">
+                      <select class="form-control form-control-sm" name="userGender" [(ngModel)]="userGender" ngModel required>
+                          <option class="form-control"  value="">Select gender</option>
+                          <option class="form-control"  value="M">Male</option>
+                          <option class="form-control"  value="F">Female</option>
+                          <option class="form-control"  value="T">Transgender</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group "  >
+                      <label for="">Age </label>
+                      <input type="number" class="form-control form-control-sm" name="userAge" ngModel
+                      placeholder="Enter Age" required>
+                  </div>
+              </div>
         </div>
-   </div>
-   <div class="row m-2">
-        <div class="col-6">
-            <div class="form-group " >
-                <label for="">Gender </label>
-            </div>
-            <div class="form-group input-group">
-                <select class="form-control" name="userGender" [(ngModel)]="userGender" ngModel required>
-                    <option class="form-control"  value="">Select gender</option>
-                    <option class="form-control"  value="M">Male</option>
-                    <option class="form-control"  value="F">Female</option>
-                    <option class="form-control"  value="T">Transgender</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group "  >
-                <label for="">Age </label>
-                <input type="number" class="form-control" name="userAge" ngModel
-                placeholder="Enter Age" required>
-            </div>
-        </div>
-   </div>
-   <div class="row m-2">
-        <div class="col-6">
-            <div class="form-group " >
-                <label for="">Mobile No </label>
-                <div class="input-group ">
-                    <span class="input-group-text" id="addon-wrapping">+91</span>
-                    <input type="number" class="form-control"  (keyup)="mobileExist()" ngModel
-                 placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber"  minlength="10" maxlength="10" required>
-                </div>
-                <span style="color: red;  margin-top: 5px;">
-                    {{mobileNumberError}}
-                  </span>
-                  <span style="color: green;  margin-top: 5px;">
-                    {{mobileNumberOk}}
-                  </span>
-             </div>
-        </div>
-        <div class="col-6">
-                <div class="form-group ">
-                    <label for="">Email </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
-                        <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" (blur)="userEmailValidation()" ngModel
-                        placeholder="Enter the Email" required email>
-                    </div>
-                    <span style="color: red;  margin-top: 5px;">
-                        {{emailError}}
-                      </span>
-                </div>
-        </div>
-    </div>
+        <div class="row m-2">
+              <div class="col-md-6">
+                  <div class="form-group" >
+                      <label for="">Mobile No </label>
+                      <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">+91</span>
+                          <input type="number" class="form-control form-control-sm"  (keyup)="mobileExist()" ngModel
+                      placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber"  minlength="10" maxlength="10" required>
+                      </div>
+                      <span style="color: red;  margin-top: 5px;">
+                          {{mobileNumberError}}
+                        </span>
+                        <span style="color: green;  margin-top: 5px;">
+                          {{mobileNumberOk}}
+                        </span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                      <div class="form-group ">
+                          <label for="">Email </label>
+                          <div class="input-group">
+                              <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
+                              <input type="email" class="form-control form-control-sm" name="userEmail" [(ngModel)]="mailId" (blur)="userEmailValidation()" ngModel
+                              placeholder="Enter the Email" required email>
+                          </div>
+                          <span style="color: red;  margin-top: 5px;">
+                              {{emailError}}
+                            </span>
+                      </div>
+              </div>
+          </div>
 
-   <div class="row m-2">
-        <div class="col-6"> 
-            <div class="form-group mt-2" >
-                <label for="">Username </label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="userName" minlength="5" [(ngModel)]="userName" ngModel
-                    placeholder="Enter the Username" (blur)="userExist()" required>
-                </div>
-                <span style="color: red;  margin-top: 5px;">
-                    {{userNameError}}
-                  </span>
-            </div>
+        <div class="row m-2">
+              <div class="col-md-6"> 
+                  <div class="form-group mt-2" >
+                      <label for="">Username </label>
+                      <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
+                          <input type="text" class="form-control form-control-sm" name="userName" minlength="5" [(ngModel)]="userName" ngModel
+                          placeholder="Enter the Username" (blur)="userExist()" required>
+                      </div>
+                      <span style="color: red;  margin-top: 5px;">
+                          {{userNameError}}
+                        </span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  
+              </div>
         </div>
-        <div class="col-6">
-            
+        <div class="row m-2">
+              <div class="col-md-6">
+                  <div class="form-group mt-2 " >
+                      <label for="">Password </label>
+                      <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                      <input type="password" class="form-control form-control-sm" name="userPassword" [(ngModel)]="userPassword" minlength="8"
+                      placeholder="Enter the Password" #newPassword (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)"  ngModel
+                      required>
+                      </div>
+                      <span style="color: red;  margin-top: 5px;">
+                          {{weakPassword}}
+                        </span>
+                        <span style="color: green;  margin-top: 5px;">
+                          {{goodPassword}}
+                        </span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group mt-2" >
+                      <label for="">Confirm Password </label>
+                      <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
+                      <input [type]="confirmPasswordshow" class="form-control form-control-sm" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
+                      placeholder="Enter the Password"  #confPassword (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)" ngModel
+                      required>
+                      <button type="button" (click)="showPassword()" class="btn btn-secondary btn-sm">{{passwordShowButton}}</button>
+                      </div>
+                      <span style="color: red; margin-top: 5px;">
+                          {{confirmPasswordNoMatch}}
+                        </span>
+                        <span style="color: green; margin-top: 5px;">
+                          {{confirmPasswordMatch}}
+                        </span>
+                  </div>
+              </div>
         </div>
-   </div>
-   <div class="row m-2">
-        <div class="col-6">
-            <div class="form-group mt-2 " >
-                <label for="">Password </label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" name="userPassword" [(ngModel)]="userPassword" minlength="8"
-                placeholder="Enter the Password" #newPassword (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)"  ngModel
-                required>
-                </div>
-                <span style="color: red;  margin-top: 5px;">
-                    {{weakPassword}}
-                  </span>
-                  <span style="color: green;  margin-top: 5px;">
-                    {{goodPassword}}
-                  </span>
-            </div>
+        <div class="row m-2">
+              <div class="col-md-6">
+                  <button type="button" class=" btn btn-sm btn-primary mt-4 px-4">Clear</button>
+                  <button type="submit" [disabled]="!f.valid"  class=" btn btn-sm btn-success mt-4 mx-4 px-4"
+                  data-bs-toggle="modal" data-bs-target="#verificationModal">Next</button>
+              </div>
         </div>
-        <div class="col-6">
-            <div class="form-group mt-2" >
-                <label for="">Confirm Password </label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
-                <input [type]="confirmPasswordshow" class="form-control" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
-                placeholder="Enter the Password"  #confPassword (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)" ngModel
-                 required>
-                <button type="button" (click)="showPassword()" class="btn btn-secondary">{{passwordShowButton}}</button>
-                </div>
-                <span style="color: red; margin-top: 5px;">
-                    {{confirmPasswordNoMatch}}
-                  </span>
-                  <span style="color: green; margin-top: 5px;">
-                    {{confirmPasswordMatch}}
-                  </span>
-            </div>
-        </div>
-   </div>
-   <div class="row m-2">
-        <div class="col-6">
-            <button type="button" class=" btn btn-primary mt-4">Clear</button>
-            <button type="submit" [disabled]="!f.valid"  class=" btn btn-success mt-4 mx-4"
-            data-bs-toggle="modal" data-bs-target="#verificationModal">Next</button>
-        </div>
-   </div>
- 
+      
+      </div>
+
+    </form>
 </div>
 
-</form>
 
 <button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#registerModal">Open Modal</button>
   <!-- Modal -->

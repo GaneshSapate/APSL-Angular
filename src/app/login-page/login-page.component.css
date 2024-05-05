@@ -1,10 +1,13 @@
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
 .login-page{
-    position: fixed;
-    height: 100%;
-    width: 100%;
+
+    background: linear-gradient(to bottom, #525252 50%,#f4f4f4 50%);
 }
 .Login-Box{
-    margin-top: 140px;
+    margin-top: 120px;
 }
 
 
@@ -13,7 +16,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0px 1px 10px rgb(168, 168, 168);
+    /* box-shadow: 0px 1px 10px rgb(168, 168, 168); */
     width: 400px;
     margin-right: 80px;
 }
@@ -25,19 +28,16 @@
     font-size: 16px;
     padding: 5px 5px;
     color: green;
-    font-weight: bold;
 }
 h6{
     font-size: 13px;
     color: blue;
 }
+a{
+    text-decoration: none;
+}
 @media screen and (max-width:370px) {
-    .login-page{
-        position: static;
-        height: 100%;
-        text-align: center;
-    
-    }
+   
     .main {
         background-color: white;
         border-radius: 10px;
@@ -60,32 +60,32 @@ h6{
     }
 }
 @media screen and (max-width:700px) {
-    .login-page{
+    /* .login-page{
         position: static;
         text-align: center;
         margin-top: 60px;
-    }
+    } */
     .main{
         margin-right: 0px;
     }
 }
 @media screen and (max-height:700px) {
-    .login-page{
+    /* .login-page{
         position: static;
         text-align: center;
         margin-top: 60px;
-    }
+    } */
     .main{
         margin-right: 0px;
     }
 }
 
 @media screen and (max-height:700px) {
-    .login-page{
+    /* .login-page{
         position: static;
         text-align: center;
         margin-top: 60px;
-    }
+    } */
     .main{
         margin-right: 40px;
     }
