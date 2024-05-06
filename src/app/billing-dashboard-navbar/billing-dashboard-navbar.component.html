@@ -36,7 +36,7 @@
           <span class="" style="font-size: 20px; color: #414141; cursor: pointer;" data-bs-toggle="dropdown" 
           data-bs-auto-close="outside" aria-expanded="true" >
             <i class="fas fa-bell px-2"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 12px;">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 11px;">
               {{countOfNotification}}
               <span class="visually-hidden">unread messages</span>
             </span>
@@ -75,7 +75,7 @@
           <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container" id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
             <div class="all-notification-item d-flex" >
               <div class="title">All Notification</div>
-              <button type="button" class="btn btn-secondary btn-sm  me-2 m-auto" (click)="clearAllNotification()">clear all</button>
+              <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)="clearAllNotification()">clear all</button>
             </div>
             
             <div *ngIf = "noNotification">
@@ -87,12 +87,11 @@
             <div class="notification-item" *ngFor= "let obj of notification index as i">
               <div class="d-flex">
                 <div>
-                    <div class="title d-flex"><span class="me-auto">New Notification</span>
-                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
-                    </div>
+                    <div class="title d-flex">New Notification</div>
                     <div class="message">{{obj.message}}</div>
                     <div class="time">5 minutes ago</div>
                 </div>
+                <button type="button" class="btn-close me-0 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
               </div>
               
             </div>

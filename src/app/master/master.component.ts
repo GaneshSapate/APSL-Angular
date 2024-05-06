@@ -3,8 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import { viewClassName } from '@angular/compiler';
 import autoTable from 'jspdf-autotable';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
