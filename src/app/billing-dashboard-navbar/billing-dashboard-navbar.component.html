@@ -1,5 +1,5 @@
 <div >
-    <nav class="navbar navbar-expand-md fixed-top p-2" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
+    <nav class="navbar navbar-expand-sm fixed-top p-2" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid" >
       
         <button class="navbar-toggler" type="button" (click)="onClickToggled()">
@@ -121,19 +121,19 @@
 
 <!-- Add new patient modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;">Add New Patient </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="container-sm">
-                <div class="row my-2 justify-content-center">
-                    <div class="col-3">
+            <div class="container-md">
+                <div class="row my-lg-2 justify-content-center">
+                    <div class="col-12 col-md-5 col-lg-5 col-xl-3">
                         <h6 class="modal-title" id="exampleModalLabel">Search Existing Patient </h6>
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-5">
                       <div class="form-group input-group input-group-sm">
                           <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
                           <button class="btn btn-primary btn-sm">Add</button>
@@ -148,8 +148,8 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row my-2 ">
-                    <div class="col-3">
+                <div class="row my-lg-2 ">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm" >
                             <label for="">Title </label>
                         </div>
@@ -163,7 +163,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class=" form-group input-group-sm" >
                             <label for="">First Name</label>
                             <div class="input-group flex-nowrap input-group-sm">
@@ -172,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm"  >
                             <label for="">Last Name </label>
                             <div class="input-group flex-nowrap input-group-sm">
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm" >
                             <label for="">Gender </label>
                         </div>
@@ -196,28 +196,28 @@
                     </div>
                </div>
                <div class="row my-2">
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm"  >
                         <label for="">Age </label>
                         <input type="number" class="form-control" name="userAge"
                         placeholder="Enter Age" required>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm"  >
                             <label for="">Mobile No </label>
                             <input type="number" class="form-control" name="userAge"
                             placeholder="Enter Age" required>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm"  >
                             <label for="">Email ID</label>
                             <input type="email" class="form-control" name="userAge"
                             placeholder="Enter Age" required>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="form-group input-group-sm"  >
                             <label for="">Address</label>
                             <div class="input-group flex-nowrap input-group-sm">
@@ -229,7 +229,7 @@
                </div>
                
                <div class="row my-2">
-                <div class="col-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="form-group input-group-sm"  >
                         <label for="">City/Village</label>
                         <div class="input-group flex-nowrap input-group-sm">
@@ -238,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="form-group input-group-sm" >
                         <label for="">Ref By </label>
                     </div>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
                     
-                <div class="col-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="form-group input-group-sm"  >
                         <label for="">Remark </label>
                         <input type="text" class="form-control" name="userAge"
@@ -264,7 +264,7 @@
         
         <div class="container-sm">
             <div class="row my-2">
-                <div class="col-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="form-group input-group-sm" >
                         <label for="">Add Reports</label>
                     </div>

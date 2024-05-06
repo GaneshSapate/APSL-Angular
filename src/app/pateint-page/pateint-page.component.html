@@ -1,18 +1,18 @@
 <!-- Main Patient Page -->
 <div *ngIf="patientPage">
     <div class="main ">
-        <div class="row mainHeader row mx-4 p-4 mt-4 shadow-sm " style="background-color: white;">
+        <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-4 shadow-sm " style="background-color: white;">
             <div class="row pb-2">
                 <h5 style="font-weight: bold; color: rgb(83, 83, 83);">Patient Management</h5>
                 <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
             </div>
             <div class="row">
-                <div class="col-md-9 col-sm-6">
+                <div class="col-12 col-md-9">
                     <button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa-solid fa-plus"></i> Add New Patient</button>
-                    <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
+                    <a  class="btn btn-primary btn-sm ms-sm-4 shadow-sm"  ><i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
                 </div>
-                <div class="col-md-3 col-sm-6 mt-4 mt-md-0">
+                <div class="col-12 col-md-3 mt-4 mt-md-0">
                         <div class="form-group input-group-sm" >
                             <div class="input-group  input-group-sm">
                                 <input type="text" class="form-control"   minlength="3"
@@ -24,7 +24,7 @@
             </div>
         </div>
     
-        <div class="row mx-4 mt-4">
+        <div class="row mx-2 mx-md-4 mt-4">
             <div class="px-0 ">
                 <div class="patientTableDiv pt-2 shadow-sm">
                     <div class="row mx-2 py-2">
@@ -269,9 +269,9 @@
 
 <!-- Patient Detail Page -->
 <div *ngIf="!patientPage">
-    <div class="row mx-4  " style="border-radius: 7px;">
+    <div class="row mx-2 mx-md-4  " style="border-radius: 7px;">
         <div class="card mt-2 py-2  shadow-sm" style="border: none;">
-            <div class="card-body">
+            <div class="card-body p-1 p-md-2">
               <h5 class="card-title" style="font-weight: bold; color: rgb(87, 87, 87);">{{patientObj.patientName}} </h5>
               <p class="card-text" style="font-size: 14px; ">
                 <span class="ms-0" style="font-weight: bold;">Refer By : </span>{{patientObj.mobileNo}},  
@@ -288,13 +288,13 @@
             </div>
           </div>
     </div>
-    <div class="row mx-4 mt-4">
+    <div class="row mx-2 mx-md-4 mt-4">
         <div class="patientTableDiv pt-2 shadow-sm">
             <div class="row mx-2 py-2 mt-2">
                 <div class="col-6">
                     <h6 style="font-weight: bold;">Reports List</h6>
                 </div>
-                <div class="col-6 ">
+                <div class="col-12 col-md-6">
                     <div class="form-group " >
                         <div class="input-group justify-content-md-end">
                             <input type="text" class="form-control-sm"  placeholder="Enter Reports Name" >

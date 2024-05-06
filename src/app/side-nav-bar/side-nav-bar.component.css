@@ -34,3 +34,11 @@
     color: white;
 }
 
+@keyframes myanimation {
+    0% {color: rgb(59, 125, 247);}
+    25%{color:yellow;}
+    50%{color:rgb(6, 193, 6);}
+    75%{color:rgb(248, 69, 221);}
+    100% {color: red;}
+  }
+
