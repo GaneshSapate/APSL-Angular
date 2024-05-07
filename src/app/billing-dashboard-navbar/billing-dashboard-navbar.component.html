@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-sm fixed-top p-2" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid" >
       
-        <button class="navbar-toggler" type="button" (click)="onClickToggled()">
+        <button class="navbar-toggler" type="button" (click)= "onClickToggled()">
           <span class="fa-solid fa-bars"></span>
         </button>
     
@@ -104,10 +104,10 @@
           <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px; color: #414141; cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i> Profile</span>
         
           <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile">
-              <li class="dropdown-item"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
-              <li class="dropdown-item"><i class="fa-solid fa-gear me-2"></i> Setting</li>
-              <li class="dropdown-item"><i class="fa-solid fa-shield me-2"></i> Security</li>
-              <li class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+              <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
+              <li class="dropdown-item" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
+              <li class="dropdown-item" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
+              <li class="dropdown-item" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
           </ul>
       </div>
     </div>
@@ -311,7 +311,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm" (click)="addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
         </div>
       </div>
     </div>

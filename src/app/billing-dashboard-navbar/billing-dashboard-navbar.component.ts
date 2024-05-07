@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -7,6 +8,7 @@ import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
   styleUrls: ['./billing-dashboard-navbar.component.css']
 })
 export class BillingDashboardNavbarComponent implements OnInit {
+
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus:boolean=false;
 
@@ -66,7 +68,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
 
  noNotification:boolean=false;
 
-  constructor( @Inject(DOCUMENT) private document: any) { }
+  constructor( @Inject(DOCUMENT) private document: any,
+                  private router: Router) { }
 
   ngOnInit(): void {
     this.getCountOfNotification();
@@ -151,6 +154,41 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.addPatientEvent.emit(this.eventObj);
 
   }
-  
+
+// Profile button all method start
+    onLogoutClick() {
+      this.router.navigate(['/login'])
+    }
+    onSecurityClick() {
+      this.eventObj.navDashboard=false;
+      this.eventObj.navHome=false;
+      this.eventObj.navPatient=false;
+      this.eventObj.navMaster=false;
+      this.eventObj.navSetting=true;
+      this.eventObj.navAbout=false;
+      this.eventObj.navContact=false;
+      this.addPatientEvent.emit(this.eventObj);
+    }
+    onSettingClick() {
+      this.eventObj.navDashboard=false;
+      this.eventObj.navHome=false;
+      this.eventObj.navPatient=false;
+      this.eventObj.navMaster=false;
+      this.eventObj.navSetting=true;
+      this.eventObj.navAbout=false;
+      this.eventObj.navContact=false;
+      this.addPatientEvent.emit(this.eventObj);
+    }
+    onProfileClick() {
+      this.eventObj.navDashboard=false;
+      this.eventObj.navHome=false;
+      this.eventObj.navPatient=false;
+      this.eventObj.navMaster=false;
+      this.eventObj.navSetting=true;
+      this.eventObj.navAbout=false;
+      this.eventObj.navContact=false;
+      this.addPatientEvent.emit(this.eventObj);
+    }
+  // Profile button all method end
 
 }

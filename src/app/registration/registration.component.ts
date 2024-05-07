@@ -129,6 +129,8 @@ export class RegistrationComponent implements OnInit {
         if(this.matchResponse.match == 'Y'){
           this.userNameError = "User Name is taken";
           this.nextButtonValidation();
+        }else{
+          this.userNameError="";
         }
       });
     }else{
