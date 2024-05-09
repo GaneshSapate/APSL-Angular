@@ -57,13 +57,13 @@
                  </div>
                   <!-- order-card end -->
                   <!-- statustic and process start -->
-                    <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                    <div class="col-md-12 col-lg-12 col-xl-6" >
+                        <div class="card" style="min-height: 30rem;">
                             <div class="card-header">
                                 <h5 style="font-size: 16px; color: #3f51b5;">Monthly Patients Chart</h5>
                             </div>
-                            <div class="card-block">
-                                <canvas baseChart type="bar" [data]="barChartData"></canvas>
+                            <div class="card-block" style="position: relative; min-height: 25rem;">
+                                <canvas baseChart type="bar" [data]="barChartData" [options]="chartOptions" ></canvas>
                             </div>
                         </div>
                     </div>

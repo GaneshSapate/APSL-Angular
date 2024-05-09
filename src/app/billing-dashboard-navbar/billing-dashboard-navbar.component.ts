@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -69,7 +70,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
  noNotification:boolean=false;
 
   constructor( @Inject(DOCUMENT) private document: any,
-                  private router: Router) { }
+                  private router: Router,
+                  private toaster : ToastrService) { }
 
   ngOnInit(): void {
     this.getCountOfNotification();
@@ -157,6 +159,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
 
 // Profile button all method start
     onLogoutClick() {
+      this.toaster.success("Logout Successfully");
       this.router.navigate(['/login'])
     }
     onSecurityClick() {

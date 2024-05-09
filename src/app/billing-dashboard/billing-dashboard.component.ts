@@ -18,6 +18,10 @@ export class BillingDashboardComponent implements OnInit {
     navAbout:false,
     navContact:false
   }
+  chartOptions= {
+    responsive: true,
+    maintainAspectRatio: false,
+  };
 
   barChartData={
     labels : ["Jan","Feb","March","April","May","Jun","July","Aug","Sept","Oct","Nov","Dec"],
