@@ -74,26 +74,27 @@
 
           <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container" id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
             <div class="all-notification-item d-flex" >
-              <div class="title">All Notification</div>
-              <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)="clearAllNotification()">clear all</button>
+              <div class="title"> Notifications</div>
+              <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)= "clearAllNotification()">clear all</button>
             </div>
-            
-            <div *ngIf = "noNotification">
-              <div class="notification-item" >
-                <div class="message">No New Notification.</div>
-              </div>
-            </div>
-
-            <div class="notification-item" *ngFor= "let obj of notification index as i">
-              <div class="d-flex">
-                <div>
-                    <div class="title d-flex">New Notification</div>
-                    <div class="message">{{obj.message}}</div>
-                    <div class="time">5 minutes ago</div>
+            <div style="max-height: 500px; overflow-y: auto;">
+              <div *ngIf = "noNotification">
+                <div class="notification-item" >
+                  <div class="message">No New Notification.</div>
                 </div>
-                <button type="button" class="btn-close me-0 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
               </div>
-              
+  
+              <div class="notification-item" *ngFor= "let obj of notification index as i">
+                <div class="d-flex">
+                  <div>
+                      <div class="title d-flex">New Notification</div>
+                      <div class="message">{{obj.message}}</div>
+                      <div class="time">5 minutes ago</div>
+                  </div>
+                  <span class="closeNotificationbtn me-0 mx-auto"  (click)= "closeNotification(i)"><i class="fa-solid fa-xmark" ></i></span>
+                  <!-- <button type="button" class="btn-close me-0 m-auto" data-bs-dismiss="toast" aria-label="Close"  (click)= "closeNotification(i)"></button> -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
