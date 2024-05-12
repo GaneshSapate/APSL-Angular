@@ -24,6 +24,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:2,
@@ -31,6 +32,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:3,
@@ -38,6 +40,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:4,
@@ -45,6 +48,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:5,
@@ -52,6 +56,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:6,
@@ -59,6 +64,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:7,
@@ -66,6 +72,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:8,
@@ -73,6 +80,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:9,
@@ -80,6 +88,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:10,
@@ -87,6 +96,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:11,
@@ -94,6 +104,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:12,
@@ -101,6 +112,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     },
     {
       patientId:13,
@@ -108,6 +120,7 @@ export class PateintPageComponent implements OnInit {
       gender:"M",
       mobileNo:"9096916759",
       addedDate:new Date().toLocaleString(),
+      status:"pending"
     }
   ];
 

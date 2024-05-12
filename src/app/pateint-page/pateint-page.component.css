@@ -61,8 +61,20 @@ thead {
 
  .tableLink{
  color:  rgb(0, 110, 255);
- text-decoration: none;
  cursor: pointer;
+ background-color: rgb(196, 219, 249);
+ padding: 2px;
+ border-radius: 2px;
+ margin-bottom: 0px;
+ }
+
+ .patientStatus{
+    color:  rgb(229, 145, 0);
+    text-decoration: none;
+    padding: 2px;
+    background-color: rgb(255, 225, 172);
+    border-radius: 2px;
+    margin-bottom: 0px;
  }
 
  label{
