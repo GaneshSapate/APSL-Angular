@@ -149,7 +149,10 @@ export class MasterComponent implements OnInit {
   p:number=1;
 
   constructor( private toaster : ToastrService,
-                  private sanitizer: DomSanitizer) { }
+                  private sanitizer: DomSanitizer) { 
+
+                    this.pdfurl=sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
+                  }
 
   ngOnInit(): void {
   }

@@ -29,6 +29,29 @@ app-side-nav-bar{
     left: 56px;
 }
 
+@media screen and (max-width:575px){
+  app-side-nav-bar{
+    padding-top:5px;
+    position: fixed;
+    height: 100vh;
+    width: 0px;
+    z-index: 11;
+    overflow: auto;
+    /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
+    background-color: #333;
+    transition: width 150ms ease-in;
+ 
+  }
+  .display-area{
+    margin-top: 3.5rem;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    transition: width 250ms ease-in,left 250ms ease-in;
+  }
+}
+
 
  
 .text-right {

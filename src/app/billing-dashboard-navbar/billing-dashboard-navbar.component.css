@@ -33,6 +33,15 @@
   left: 56px;
 }
 
+@media screen and (max-width:575px){
+  .navbar{
+    width: 100% ;
+      left:0px;
+      right: 0px;
+      transition: width 250ms ease-in,left 250ms ease-in;
+  }
+}
+
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -66,11 +75,11 @@
     background-color: #f4f3f3;
   }
 
-  .notification-container {
+  /* .notification-container {
     position: relative;
     display: inline-block;
     color: #000000;
-  }
+  } */
 
   .notification-dropdown {
     font-family: Arial, sans-serif;
@@ -121,7 +130,17 @@
     color: #999;
   }
 
-  
+  @media screen and (max-width:575px){
+   
+    .notification-dropdown.show{
+      
+      position: absolute;
+      top: 35px;
+      z-index: 1100;
+     min-width: 300px;
+      
+    }
+  }
 
   
 

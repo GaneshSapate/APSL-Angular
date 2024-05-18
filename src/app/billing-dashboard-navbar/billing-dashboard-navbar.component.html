@@ -1,15 +1,13 @@
 <div >
-    <nav class="navbar navbar-expand-sm fixed-top p-2" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
-      <div class="container-fluid" >
-      
-        <button class="navbar-toggler" type="button" (click)= "onClickToggled()">
-          <span class="fa-solid fa-bars"></span>
-        </button>
-    
+    <nav class="navbar navbar-expand-sm fixed-top p-2 p-xs-0" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
+      <div class="container-fluid px-0 mx-0" >
+        <div class="navbar-brand text-dark ">
+          <span class="ms-2" (click)= "onClickToggled()" style="color: #414141; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
+        </div>    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-brand me-3 text-dark ">
-          <span class="ms-2" (click)="onClickToggled()" style="color: #414141; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
-        </div>
+        <!-- <div class="navbar-brand me-3 text-dark ">
+          <span class="ms-2" (click)= "onClickToggled()" style="color: #414141; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
+        </div> -->
         <ul class="navbar-nav ms-4 mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
@@ -101,8 +99,8 @@
 
 
 
-      <div class="btn-group mx-3">
-          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px; color: #414141; cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i> Profile</span>
+      <div class="btn-group mx-3 mx-xs-1 me-xs-1">
+          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px; color: #414141; cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
         
           <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile">
               <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
