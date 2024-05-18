@@ -34,7 +34,7 @@ label{
 }
 @media screen and (max-height:720px){
     .PatientTable{
-        height: 300px;
+        max-height: 350px;
     }
 }
 

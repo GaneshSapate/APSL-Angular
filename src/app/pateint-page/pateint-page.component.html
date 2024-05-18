@@ -30,8 +30,8 @@
                     <div class="row mx-2 py-2">
                         <h6 style="font-weight: bold;">Recently Added Patient List</h6>
                     </div>
-                    <div class="PatientTable">
-                        <table class="table table-hover table-sm table-bordered">
+                    <div class="PatientTable" style="overflow-y: auto;">
+                        <table class="table table-hover table-sm table-bordered" >
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -56,7 +56,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-grid gap-2 d-flex justify-content-end">
                         <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                      </div>
                 </div>
             </div>
-            <div class="PatientTable">
+            <div class="PatientTable" style="overflow-y: auto;">
                 <table class="table table-hover ">
                     <thead>
                         <tr>
@@ -325,7 +325,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="d-grid gap-2 d-flex justify-content-end">
                 <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
             </div>
         </div>
