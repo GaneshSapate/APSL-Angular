@@ -23,14 +23,14 @@
 }
 
 .navbar{
-  width: (100% - 180px);
-    left: 180px;
+  /* width: (100% - 180px);
+    left: 180px; */
     right: 0px;
-    transition: width 250ms ease-in,left 250ms ease-in;
+    /* transition: width 250ms ease-in,left 250ms ease-in; */
 }
 .side-nav-open{
-  width: (100% - 50px);
-  left: 56px;
+  /* width: (100% - 50px);
+  left: 56px; */
 }
 
 @media screen and (max-width:575px){

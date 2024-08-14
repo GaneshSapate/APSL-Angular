@@ -1,9 +1,11 @@
 .main{
     width: 100%;
     border-radius: 10px;
+    
 }
 .mainHeader{
     border-radius: 7px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
 }
 table{
     font-size: small;
@@ -16,6 +18,7 @@ table{
 .patientTableDiv{
     background-color:  rgb(255, 255, 255);
     border-radius: 7px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
 }
 label{
     font-size: 14px;

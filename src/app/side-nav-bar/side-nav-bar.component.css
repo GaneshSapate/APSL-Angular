@@ -6,14 +6,16 @@
     display: flex;
     height: 45px;
     font-size: 12px;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
+    color: black;
    
 }
 .nav-list-item i{
     margin-right: 21px;
     font-size: 16px;
     width: 25px;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
+    color: black;
 }
 .nav-list-item h6{
     width: 60px;
@@ -26,12 +28,17 @@
     
 }
 .select{
-    background: linear-gradient(45deg, #757575, #aeaeae);
-    color: rgb(255, 255, 255);
+    background: linear-gradient(45deg, #ffffff, #ffffff);
+    background: linear-gradient(to left, #ebebeb 96%, blue 4%);
+    color: black;
     cursor: pointer;
+    /* border: solid;
+    border-color: blue;
+    border-width: 0px;
+    border-left-width: 10px; */
 }
 .select i{
-    color: white;
+    color: black;
 }
 
 @keyframes myanimation {

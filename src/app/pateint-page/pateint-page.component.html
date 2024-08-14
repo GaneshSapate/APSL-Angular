@@ -1,7 +1,7 @@
 <!-- Main Patient Page -->
 <div *ngIf="patientPage">
     <div class="main ">
-        <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-4 shadow-sm " style="background-color: white;">
+        <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-4 " style="background-color: white;">
             <div class="row pb-2">
                 <h5 style="font-weight: bold; color: rgb(83, 83, 83);">Patient Management</h5>
                 <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
@@ -27,7 +27,7 @@
     
         <div class="row mx-2 mx-md-4 mt-4">
             <div class="px-0 ">
-                <div class="patientTableDiv pt-2 shadow-sm">
+                <div class="patientTableDiv pt-2 ">
                     <div class="row mx-2 py-2">
                         <h6 style="font-weight: bold;">Recently Added Patient List</h6>
                     </div>
@@ -270,8 +270,8 @@
 
 <!-- Patient Detail Page -->
 <div *ngIf="!patientPage">
-    <div class="row mx-2 mx-md-4  " style="border-radius: 7px;">
-        <div class="card mt-2 py-2  shadow-sm" style="border: none;">
+    <div class="row mx-2 mx-md-4 mt-3 " style="border-radius: 7px;">
+        <div class="card mt-2 py-3 ps-4" style="border: none; box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);">
             <div class="card-body p-1 p-md-2">
               <h5 class="card-title" style="font-weight: bold; color: rgb(87, 87, 87);">{{patientObj.patientName}} </h5>
               <p class="card-text" style="font-size: 14px; ">
@@ -290,7 +290,7 @@
           </div>
     </div>
     <div class="row mx-2 mx-md-4 mt-4">
-        <div class="patientTableDiv pt-2 shadow-sm">
+        <div class="patientTableDiv pt-2">
             <div class="row mx-2 py-2 mt-2">
                 <div class="col-6">
                     <h6 style="font-weight: bold;">Reports List</h6>

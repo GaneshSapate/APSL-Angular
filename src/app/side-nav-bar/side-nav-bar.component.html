@@ -3,12 +3,14 @@
  <div class="side-nav" [ngClass]= "{'side-nav-open': sideNavStatus}" >
     <div>
 
-        <a  style="text-decoration:none" class="Home">
+        <!-- <a  style="text-decoration:none" class="Home">
             <div class="nav-list-item"  style="text-decoration:none; margin-bottom: 10px;">
                 <i class="fa-solid fa-microscope navbar-brand" style="font-size: 20px; animation: myanimation 10s infinite;"></i>
+                <i class="fa-solid fa-microscope navbar-brand" style="font-size: 20px;"></i>
                 <h6 style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif; animation: myanimation 10s infinite;">APLS</h6>
+                <h6 style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">APLS</h6>
             </div>
-        </a>
+        </a> -->
 
         <a  (click)="clickOnHome()" style="text-decoration:none" class="Home">
             <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navHome}">
