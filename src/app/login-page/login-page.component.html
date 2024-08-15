@@ -1,5 +1,5 @@
 <div class="row login-page justify-content-center">
-  <nav class="navbar navbar-expand-md navbar-dark">
+  <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><i class="fa-solid fa-microscope mx-4"></i> APLS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
                 <div class="input-group flex-nowrap mt-2">
                     <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
                     <input type="text" class="form-control" placeholder="Enter Username" name="userName" [(ngModel)]="userName">
-                    <button type="button" class="btn btn-outline-primary" (click)="onSearch()" >Search</button>
+                    <button type="button" class="btn btn-primary" (click)="onSearch()" >Search</button>
                 </div>
              </div>  
         
@@ -134,7 +134,7 @@
                     <span class="input-group-text" id="addon-wrapping">+91</span>
                     <input type="text" class="form-control" [disabled]="true"
                  placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber" required>
-                 <button type="button" (click)="onMobileOTPSend()" class="btn btn-outline-primary">Send OTP</button>
+                 <button type="button" (click)="onMobileOTPSend()" class="btn btn-primary">Send OTP</button>
                 </div>
              </div>
              <span style="color: blue; font-weight: bold; margin-top: 5px;">
@@ -144,7 +144,7 @@
                 <div class="input-group flex-nowrap">
                     <input type="number" class="form-control"  name="mobileOTP" #tmobileOTP [readonly]="mobileOTPInputField" [(ngModel)]="mobileOTP"
                      placeholder="Enter OTP">
-                     <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-outline-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
+                     <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
                 </div> 
            </div>
            <span style="color: red; font-weight: bold; margin-top: 5px;">
@@ -160,7 +160,7 @@
                 <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
                 <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" [disabled]="true" 
                 placeholder="Enter the Email" required>
-                <button type="button" (click)="onEmailOTPSend()" class="btn btn-outline-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
+                <button type="button" (click)="onEmailOTPSend()" class="btn btn-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
                 </div>
              </div>
              <span style="color: blue; font-weight: bold; margin-top: 5px;">
@@ -170,7 +170,7 @@
                 <div class="input-group flex-nowrap"> 
                     <input type="number" class="form-control"  name="mailOTP" #tmailOTP [readonly]="emailOTPInputField" [(ngModel)]="emailOTP"
                      placeholder="Enter OTP">  
-                     <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-outline-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
+                     <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
                 </div> 
            </div>
            <span style="color: red; font-weight: bold; margin-top: 5px;">

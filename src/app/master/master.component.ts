@@ -598,6 +598,10 @@ export class MasterComponent implements OnInit {
             this.testContentList[i].field_name=this.title_field;
           }
         }
+        var sub_fiels_list = this.testContentList[this.indexForModify].sub_fiels_list;
+        for(var j=0; j<sub_fiels_list.length;j++){
+          sub_fiels_list[j].field_name = this.title_field;
+        }
         this.title_field_list[this.title_field_list.indexOf(existingTitle)]=this.title_field;
         this.toaster.success("Row Modified successfully");
         this.resetContentField();

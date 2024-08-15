@@ -1,40 +1,36 @@
 <div >
-    <nav class="navbar navbar-expand-sm fixed-top p-2 p-xs-0" style="background-color: #f4f4f4;  border-bottom: 1px solid #ddd;" [ngClass]="{'side-nav-open': menuStatus}">
-      <div class="container-fluid px-0 mx-0" >
-        <div class="navbar-brand text-dark ">
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top pb-1 px-2 p-xs-0 " style="background-color: #f4f4f4; border-bottom: 1px solid #d7dde4;" [ngClass]="{'side-nav-open': menuStatus}">
+      <div class="container-fluid px-0 mx-0 " >
+        <div class="navbar-brand  ">
           <span style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;"> <i class="fa-solid fa-microscope mx-3" style="font-size: 20px;"></i> APLS</span>
         </div>
-        <div class="navbar-brand text-dark ">
-          <span class="ms-4" (click)= "onClickToggled()" style="color: #414141; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
+        <div class="navbar-brand  ">
+          <span class="ms-4" (click)= "onClickToggled()" style=" cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
         </div>    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- <div class="navbar-brand me-3 text-dark ">
-          <span class="ms-2" (click)= "onClickToggled()" style="color: #414141; cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
-        </div> -->
-        <ul class="navbar-nav ms-4 mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
-              <i class="fa-solid fa-plus"></i> Add Patient</a>
+
+        <ul class="navbar-nav ms-4 mb-2 mb-lg-0 ">
+          <li class="nav-item  ">
+            <a class="nav-link active " aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
+              <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
           </li>
-          <!-- <div class="input-group shadow-sm d-flex justify-content-center" style="outline: none; text-decoration: none;">
-            <input type="text" class="form-control-sm" style="border-width:0px; border:none;" placeholder="Enter Name">
-            <button class="btn btn-dark btn-sm" type="button" id="button-addon2" >Search</button>
-          </div> -->
+          <li>
+            <a  class="nav-link active" data-bs-toggle="modal" data-bs-target="#editPatientModal" style="cursor: pointer;">
+              <i class="fa-solid fa-plus"></i> Add New Patient</a>
+          </li>
         </ul>
         
       </div>
-          
     
-
         <div class="d-flex" >
           <div class="btn-group mx-3">
-            <span style="color: #414141; cursor: pointer;" >
+            <span style=" cursor: pointer;" >
                 <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 20px"><i class="fa-solid fa-expand"></i></span>
                 <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 20px"><i class="fa-solid fa-compress"></i></span>
             </span>
         </div>
         <div class="btn-group">
-          <span class="" style="font-size: 20px; color: #414141; cursor: pointer;" data-bs-toggle="dropdown" 
+          <span class="" style="font-size: 20px; cursor: pointer;" data-bs-toggle="dropdown" 
           data-bs-auto-close="outside" aria-expanded="true" >
             <i class="fas fa-bell px-2"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 11px;">
@@ -42,37 +38,7 @@
               <span class="visually-hidden">unread messages</span>
             </span>
           </span>
-          <!-- <ul class="dropdown-menu dropdown-menu-end notification-dropdown" style="appearance: none; text-decoration: none;" aria-labelledby="dropdownMenuClickable">
-            
-            <li class="dropdown-item" *ngIf = "noNotification">
-              No New Notification
-            </li>
-            <li *ngIf = "!noNotification">
-              <div class="toast show text-dark border-0  shadow-none ms-4 p-0 ">
-                <div class="d-flex p-0">
-                  <div class="toast-body text-secondary">
-                   <span style="font-weight: bold; font-size: 18px;"> All Notification</span>
-                 </div>
-                 <button type="button" class="btn btn-secondary btn-sm  me-2 m-auto" (click)="clearAllNotification()">clear all</button>
-                </div>
-              </div>
-            </li>
-            <hr>
-            <li class="mx-4 my-2" *ngFor="let obj of notification index as i">
-              <div class="toast show shadow-sm text-dark">
-                <div class="d-flex">
-                  <div class="toast-body">
-                    <span style="max-width: 300px;">{{obj.message}}</span>
-                  
-                 </div>
-                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="closeNotification(i)"></button>
-                </div>
-              </div>
-            </li>
-          </ul> -->
-
-
-
+          
           <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container shadow " id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
             <div class="all-notification-item d-flex" >
               <div class="title"> Notifications</div>
@@ -103,9 +69,9 @@
 
 
       <div class="btn-group mx-3 mx-xs-1 me-xs-1">
-          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px; color: #414141; cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
+          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px;cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
         
-          <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile">
+          <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile text-secondary "  >
               <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
               <li class="dropdown-item" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
               <li class="dropdown-item" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
@@ -123,18 +89,18 @@
 <!-- Add new patient modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;">Add New Patient </h5>
+      <div class="modal-content ">
+        <div class="modal-header d-flex py-2" style=" background: linear-gradient(to left, #f4f4f4 100%, blue 0%);">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: 600;"> Create New Entry </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="container-md">
+            <div class="container-xl">
                 <div class="row my-lg-2 justify-content-center">
-                    <div class="col-12 col-md-5 col-lg-5 col-xl-3">
-                        <h6 class="modal-title" id="exampleModalLabel">Search Existing Patient </h6>
+                    <div class="col-12 col-md-3 col-lg-4 col-xl-3">
+                        <h6>Search Patient </h6>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-6 col-xl-5">
+                    <div class="col-12 col-md-4 col-lg-5 col-xl-5">
                       <div class="form-group input-group input-group-sm">
                           <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
                           <button class="btn btn-primary btn-sm">Add</button>
@@ -147,6 +113,10 @@
                           </datalist>
                         </div>
                     </div>
+                    <div class="col-12 col-md-3 col-lg-3">
+                      <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#editPatientModal">
+                        <i class="fa-solid fa-plus"></i> Add New Patient</a>
+                  </div>
                 </div>
                 <hr>
                 <div class="row my-lg-2 ">
@@ -311,13 +281,145 @@
               </table>
         </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer py-1">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
         </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Edit Patient Details Modal -->
+<div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header py-2" style=" background: linear-gradient(to left, #f4f4f4 100%, blue 0%);">
+        <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;"> Add New Patient </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="container-sm">
+              <div class="row my-2 ">
+                  <div class="col-3">
+                      <div class="form-group input-group-sm" >
+                          <label for="">Title </label>
+                      </div>
+                      <div class="form-group input-group input-group-sm">
+                          <select class="form-control" >
+                              <option class="form-control"  value="">Select</option>
+                              <option class="form-control"  value="MR.">MR.</option>
+                              <option class="form-control"  value="MRS.">MRS.</option>
+                              <option class="form-control"  value="MS.">MS.</option>
+                              <option class="form-control"  value="DR.">DR.</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class=" form-group input-group-sm" >
+                          <label for="">First Name</label>
+                          <div class="input-group flex-nowrap input-group-sm">
+                              <input type="text" class="form-control"   minlength="3"
+                               placeholder="Enter First Name" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group input-group-sm"  >
+                          <label for="">Last Name </label>
+                          <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter Last Name" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group input-group-sm" >
+                          <label for="">Gender </label>
+                      </div>
+                      <div class="form-group input-group input-group-sm">
+                          <select class="form-control" >
+                              <option class="form-control"  value="">Select gender</option>
+                              <option class="form-control"  value="M">Male</option>
+                              <option class="form-control"  value="F">Female</option>
+                              <option class="form-control"  value="T">Transgender</option>
+                          </select>
+                      </div>
+                  </div>
+             </div>
+             <div class="row my-2">
+                  <div class="col-3">
+                      <div class="form-group input-group-sm"  >
+                      <label for="">Age </label>
+                      <input type="number" class="form-control" name="userAge"
+                      placeholder="Enter Age" required>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group input-group-sm"  >
+                          <label for="">Mobile No </label>
+                          <input type="number" class="form-control" name="userAge"
+                          placeholder="Enter Age" required>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group input-group-sm"  >
+                          <label for="">Email ID</label>
+                          <input type="email" class="form-control" name="userAge"
+                          placeholder="Enter Age" required>
+                      </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group input-group-sm"  >
+                          <label for="">Address</label>
+                          <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter Address" required>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+             
+             <div class="row my-2">
+              <div class="col-3">
+                  <div class="form-group input-group-sm"  >
+                      <label for="">City/Village</label>
+                      <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter City/Village" required>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-3">
+                  <div class="form-group input-group-sm" >
+                      <label for="">Ref By </label>
+                  </div>
+                  <div class="form-group input-group input-group-sm">
+                      <select class="form-control" >
+                          <option class="form-control"  value="">Select</option>
+                          <option class="form-control"  value="Myself">Myself</option>
+                          <option class="form-control"  value="Dr. Agrawal">Dr. Agrawal</option>
+                      </select>
+                  </div>
+              </div>
+                  
+              <div class="col-3">
+                  <div class="form-group input-group-sm"  >
+                      <label for="">Remark </label>
+                      <input type="text" class="form-control" name="userAge"
+                      placeholder="Enter Remark" required>
+                  </div>
+              </div>
+          </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
