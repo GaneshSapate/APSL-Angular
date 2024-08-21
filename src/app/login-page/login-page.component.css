@@ -160,3 +160,7 @@ a{
 
 
 }
+
+.modal-footer{
+    border-bottom: 4px solid #2b6cb0;
+  }

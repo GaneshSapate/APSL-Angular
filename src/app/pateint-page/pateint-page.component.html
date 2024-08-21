@@ -524,15 +524,15 @@
 
   <!-- Report in PDF Model -->
 <div class="modal fade" id="viewPatientsPdf" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="viewPatientsPdfLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-fullscreen-sm-down py-0 my-0">
+    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
       <div class="modal-content">
-        <div class="modal-header py-2">
+        <div class="modal-header">
           <h5 class="modal-title" id="viewPatientsPdfLabel">View Report</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-0" style="height: 86vh;">
+        <div class="modal-body p-0">
             <div class="row justify-content-center">
-                <embed [src]= "safepdfUrl" style="height: 86vh; width: 150vh;"/>
+                <embed [src]= "safepdfUrl" style="height: 70vh; width: 150vh;"/>
             </div>   
             <!-- <iframe frameborder="0" id="pdfHeaderContent" class="" style="width: 570px;" #pdfHeaderContent >
                 <div class="row">
@@ -548,7 +548,7 @@
                 </div>
             </iframe> -->
         </div>
-        <div class="modal-footer py-2">
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" >Back</button>
           <button type="button" class="btn btn-primary btn-sm" (click)="printReport()">Print Report</button>
         </div>

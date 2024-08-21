@@ -1,8 +1,8 @@
 <div >
-    <nav class="navbar navbar-light navbar-expand-sm fixed-top pb-1 px-2 p-xs-0 " style="background-color: #f4f4f4; border-bottom: 1px solid #d7dde4;" [ngClass]="{'side-nav-open': menuStatus}">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top pb-1 px-2 p-xs-0 " style="background-color: #3f51b5 ;box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16)" [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid px-0 mx-0 " >
         <div class="navbar-brand  ">
-          <span style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;"> <i class="fa-solid fa-microscope mx-3" style="font-size: 20px;"></i> APLS</span>
+          <span style="font-size: 16px; font-family: Arial, sans-serif;"> <i class="fa-solid fa-microscope mx-3" style="font-size: 20px;"></i> APLS</span>
         </div>
         <div class="navbar-brand  ">
           <span class="ms-4" (click)= "onClickToggled()" style=" cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
@@ -11,18 +11,18 @@
 
         <ul class="navbar-nav ms-4 mb-2 mb-lg-0 ">
           <li class="nav-item  ">
-            <a class="nav-link active " aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
+            <a class="nav-link active " aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 14px;cursor: pointer;">
               <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
           </li>
           <li>
-            <a  class="nav-link active" data-bs-toggle="modal" data-bs-target="#editPatientModal" style="cursor: pointer;">
+            <a  class="nav-link active" data-bs-toggle="modal" data-bs-target="#editPatientModal" style="font-size: 14px;cursor: pointer;">
               <i class="fa-solid fa-plus"></i> Add New Patient</a>
           </li>
         </ul>
         
       </div>
     
-        <div class="d-flex" >
+        <div class="d-flex text-light" >
           <div class="btn-group mx-3">
             <span style=" cursor: pointer;" >
                 <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 20px"><i class="fa-solid fa-expand"></i></span>
@@ -90,8 +90,8 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
       <div class="modal-content ">
-        <div class="modal-header d-flex py-2" style=" background: linear-gradient(to left, #f4f4f4 100%, blue 0%);">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(82, 82, 82); font-weight: 600;"> Create New Entry </h5>
+        <div class="modal-header d-flex">
+          <h5 class="modal-title" id="exampleModalLabel"> Create New Entry </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -297,7 +297,7 @@
               </table>
         </div>
         </div>
-        <div class="modal-footer py-1">
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
         </div>
@@ -310,7 +310,7 @@
 <div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header py-2" style=" background: linear-gradient(to left, #f4f4f4 100%, blue 0%);">
+      <div class="modal-header ">
         <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;"> Add New Patient </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

@@ -29,7 +29,7 @@
 }
 .select{
     background: linear-gradient(45deg, #ffffff, #ffffff);
-    background: linear-gradient(to left, #f4f4f4 96%, #4299e1 4%);
+    background: linear-gradient(to left, #f4f4f4 96%, #3f51b5 4%);
     color: black;
     cursor: pointer;
     /* border: solid;

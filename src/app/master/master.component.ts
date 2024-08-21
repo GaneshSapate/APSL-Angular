@@ -883,4 +883,8 @@ export class MasterComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
      }
 
+     saveTest(){
+      alert("chsakhjkasc askcnsajkc");
+     }
+
 }

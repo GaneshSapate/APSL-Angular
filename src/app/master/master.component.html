@@ -105,7 +105,7 @@
 <div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addDocterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="modal-header py-2">
+        <div class="modal-header">
           <h5 class="modal-title ms-2" id="addDocterModalLabel" >Add New Doctor</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -300,7 +300,7 @@
 <div class="modal fade" id="addTestModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addTestModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-fullscreen-lg-down py-1 my-1">
       <div class="modal-content">
-        <div class="modal-header py-2">
+        <div class="modal-header ">
           <h5 class="modal-title ms-md-2" id="addTestModalLabel">Add New Test</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -389,9 +389,9 @@
                         </div>
                     </div>
                </div>
-               <hr>
+             
                <!-- Reports details start -->
-               <div class="row mt-2 justify-content-center">
+               <div class="row mt-4 justify-content-center">
                     <div class="col-4 report-data-field">
                         <div class="col-12">
                             <div class="form-group input-group-sm" >
@@ -727,16 +727,39 @@
                </div>
         </div>
         </div>
-        <div class="modal-footer py-2">
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary btn-sm">Reset Report</button>
           <button type="button" class="btn btn-primary btn-sm" data-bs-target="#viewReportPdf" data-bs-toggle="modal" data-bs-dismiss="modal"
             (click)=" makePdf()" >View Report</button>
-          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+          <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#saveModal" >Save changes</button>
+
         </div>
       </div>
     </div>
 </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title" id="saveModalLabel">Save Changes</h5>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#addTestModal"></button>
+        </div>
+        <div class="modal-body">
+         Do you want to save the all changes
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#addTestModal">back</button>
+          <button type="button" class="btn btn-sm btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
 <div class="modal fade modal-dialog-scrollable" id="addOptionModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addOptionModalLabel" aria-hidden="true">
@@ -761,15 +784,15 @@
 
 <!-- Report in PDF Model -->
 <div class="modal fade" id="viewReportPdf" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="viewReportPdfLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-fullscreen-sm-down py-0 my-0">
+    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
       <div class="modal-content">
-        <div class="modal-header py-2">
+        <div class="modal-header">
           <h5 class="modal-title" id="viewReportPdfLabel">View Report</h5>
           <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#addTestModal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-0" style="height: 86vh;">
+        <div class="modal-body p-0" style="height: 70vh;">
             <div class="row justify-content-center">
-                <embed [src]="pdfurl" style="height: 86vh; width: 150vh;"/>
+                <embed [src]="pdfurl" style="height: 70vh; width: 150vh;"/>
             </div>   
             <!-- <iframe frameborder="0" id="pdfHeaderContent" class="" style="width: 570px;" #pdfHeaderContent >
                 <div class="row">
@@ -785,7 +808,7 @@
                 </div>
             </iframe> -->
         </div>
-        <div class="modal-footer py-2">
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addTestModal">Back</button>
           <button type="button" class="btn btn-primary btn-sm" (click)="makePdf()">Print Report</button>
         </div>
