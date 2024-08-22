@@ -41,10 +41,10 @@
           
           <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container shadow " id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
             <div class="all-notification-item d-flex" >
-              <div class="title"> Notifications</div>
+              <div> Notifications</div>
               <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)= "clearAllNotification()">clear all</button>
             </div>
-            <div style="max-height: 500px; overflow-y: auto;">
+            <div style="max-height: 450px; overflow-y: auto;">
               <div *ngIf = "noNotification">
                 <div class="notification-item" >
                   <div class="message">No New Notification.</div>
@@ -54,7 +54,7 @@
               <div class="notification-item" *ngFor= "let obj of notification index as i">
                 <div class="d-flex">
                   <div>
-                      <div class="title d-flex">New Notification</div>
+                      <div class="notification-title d-flex">New Notification</div>
                       <div class="message">{{obj.message}}</div>
                       <div class="time">5 minutes ago</div>
                   </div>
@@ -71,10 +71,13 @@
       <div class="btn-group mx-3 mx-xs-1 me-xs-1">
           <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px;cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
         
-          <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end profile text-secondary "  >
+          <ul class="dropdown-menu dropdown-menu-light shadow dropdown-menu-end profile py-2"  >
+              <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>
+              <li><hr class="dropdown-divider"></li>
               <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
               <li class="dropdown-item" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
               <li class="dropdown-item" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
+              <li><hr class="dropdown-divider"></li>
               <li class="dropdown-item" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
           </ul>
       </div>
@@ -88,7 +91,7 @@
 
 <!-- Add new patient modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
       <div class="modal-content ">
         <div class="modal-header d-flex">
           <h5 class="modal-title" id="exampleModalLabel"> Create New Entry </h5>
@@ -308,7 +311,7 @@
 
   <!-- Edit Patient Details Modal -->
 <div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header ">
         <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;"> Add New Patient </h5>
