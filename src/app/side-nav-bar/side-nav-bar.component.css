@@ -12,14 +12,19 @@
 }
 .nav-list-item i{
     margin-right: 21px;
-    font-size: 16px;
+    font-size: 18px;
     width: 25px;
     /* color: rgb(255, 255, 255); */
-    color: black;
+    color: rgb(68, 66, 66);
 }
+/* .nav-list-item h6{
+    padding: 4px;
+    
+} */
 .nav-list-item h6{
     width: 60px;
     font-size: 14px;
+    font-weight: 400;
 }
 .nav-list-item:hover{
 

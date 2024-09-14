@@ -29,6 +29,14 @@ export class SideNavBarComponent implements OnInit {
     navContact:false
   }
 
+  homeIcon:string = '../../assets/redshotIcon/home.svg';
+  dashboardIcon:string = '../../assets/redshotIcon/dashboard.svg';
+  patientIcon:string = '../../assets/redshotIcon/user.svg';
+  masterIcon:string = '../../assets/redshotIcon/master.svg';
+  settingIcon:string = '../../assets/redshotIcon/setting.svg';
+  contactIcon:string = '../../assets/redshotIcon/contact.svg';
+  infoIcon:string = '../../assets/redshotIcon/info.svg';
+
   constructor() { }
 
   ngOnInit(): void {

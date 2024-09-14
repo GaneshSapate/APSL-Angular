@@ -3,16 +3,16 @@
     <div class="main ">
         <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-4 " style="background-color: white;">
             <div class="row pb-2">
-                <h5 style="font-weight: bold; color: rgb(83, 83, 83);">Patient Management</h5>
+                <h5 style="font-weight: bold; color: rgb(83, 83, 83);"><i class="fa-solid fa-user me-2" ></i> Patient Management</h5>
                 <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
             </div>
             <div class="row">
                 <div class="col-12 col-md-9">
-                    <button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa-solid fa-plus"></i> New Entry</button>
-                    <button type="button" class="btn btn-primary btn-sm shadow-sm ms-sm-4" data-bs-toggle="modal" data-bs-target="#editPatientModal">
+                    <button type="button" class="btn btn-primary btn-sm  ms-sm-4" data-bs-toggle="modal" data-bs-target="#editPatientModal">
                         <i class="fa-solid fa-plus"></i> Add New Patient</button>
-                    <a  class="btn btn-primary btn-sm ms-sm-4 shadow-sm" (click)= "makePdf()" data-bs-target="#viewPatientsPdf" data-bs-toggle="modal" data-bs-dismiss="modal" >
+                    <a  class="btn btn-primary btn-sm ms-sm-4 " (click)= "makePdf()" data-bs-target="#viewPatientsPdf" data-bs-toggle="modal" data-bs-dismiss="modal" >
                         <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
                 </div>
                 <div class="col-12 col-md-3 mt-4 mt-md-0">
@@ -20,7 +20,7 @@
                             <div class="input-group  input-group-sm">
                                 <input type="text" class="form-control"   minlength="3"
                                  placeholder="Enter Patient Name" required>
-                                 <button type="button" class="btn btn-primary btn-sm">Search</button>
+                                 <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
                 </div>
@@ -286,12 +286,12 @@
                 <span class="ms-2" style="font-weight: bold;">Mobile No : </span>{{patientObj.mobileNo}}, 
                 <span class="ms-2" style="font-weight: bold;">Added date : </span>{{patientObj.addedDate}} 
                 </p>
-              <a  class="btn btn-secondary btn-sm shadow-sm" (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#editPatientModal">
+              <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
+              <a  class="btn btn-primary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#editPatientModal">
                 <i class="fa-regular fa-pen-to-square"></i> Edit Pateint </a>
-              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-print"></i> Print Report </a>
-              <a  class="btn btn-primary btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-print"></i> Print Bill </a>
-              <a  class="btn btn-danger btn-sm ms-md-4 shadow-sm"  ><i class="fa-solid fa-trash-can"></i> Trash </a>
+              <a  class="btn btn-primary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Report </a>
+              <a  class="btn btn-primary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Bill </a>
+              <a  class="btn btn-danger btn-sm ms-md-4 "  ><i class="fa-solid fa-trash-can"></i> Trash </a>
             </div>
           </div>
     </div>

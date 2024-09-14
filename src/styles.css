@@ -4,10 +4,127 @@
 @import 'ngx-toastr/toastr';
 body{
     /* font-family: 'Fredoka',sans-serif; */
-    font-family: Roboto;
+    font-family: Roboto,sans-serif;
     background-color: white;
 }
 .bg_background{
     background-size: 100%; 
     background-repeat: no-repeat;
 }
+
+
+/* .btn-primary{
+    
+    display: inline-block;
+    outline: none;
+    border-width: 0px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-weight: 500;
+    max-width: 100%;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 12px;
+    vertical-align: middle;
+    width: auto;
+    font-size: 14px;
+    color: rgb(0, 82, 204);
+
+}
+
+.btn-success{
+    
+  display: inline-block;
+  outline: none;
+  border-width: 0px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-weight: 500;
+  max-width: 100%;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
+  cursor: pointer;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 12px;
+  vertical-align: middle;
+  width: auto;
+  font-size: 14px;
+
+}
+
+
+.btn-secondary{
+
+    display: inline-block;
+    outline: none;
+    border-width: 0px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-weight: 500;
+    max-width: 100%;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    background: #ffffff;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 12px;
+    vertical-align: middle;
+    width: auto;
+    font-size: 14px;
+    color: #545454;
+
+
+}
+
+.btn-danger{
+
+    display: inline-block;
+    outline: none;
+    border-width: 0px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-weight: 500;
+    max-width: 100%;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    background: #ffffff;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 12px;
+    vertical-align: middle;
+    width: auto;
+    font-size: 14px;
+    color: #c20000;
+
+
+} */
+
+
+.modal-header{
+    border: none;
+    /* background: linear-gradient(to left, #f4f4f4 100%, blue 0%); */
+  }
+  .modal-footer{
+    border: none;
+    border-bottom: 4px solid #2b6cb0;
+  }
+  .modal-title{
+    color: rgb(82, 82, 82); 
+    font-size: 16px;
+    font-weight: bold;
+  }
