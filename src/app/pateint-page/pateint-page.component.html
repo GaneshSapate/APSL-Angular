@@ -1,7 +1,7 @@
 <!-- Main Patient Page -->
 <div *ngIf="patientPage">
     <div class="main ">
-        <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-4 " style="background-color: white;">
+        <div class="row mainHeader row mx-2 mx-md-4 p-1 py-2 p-md-4 mt-2 " style="background-color: white;">
             <div class="row pb-2">
                 <h5 style="font-weight: bold; color: rgb(83, 83, 83);"><i class="fa-solid fa-user me-2" ></i> Patient Management</h5>
                 <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
@@ -10,7 +10,7 @@
                 <div class="col-12 col-md-9">
                     <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa-solid fa-plus"></i> New Entry</button>
-                    <button type="button" class="btn btn-primary btn-sm  ms-sm-4" data-bs-toggle="modal" data-bs-target="#editPatientModal">
+                    <button type="button" class="btn btn-primary btn-sm  ms-sm-4" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
                         <i class="fa-solid fa-plus"></i> Add New Patient</button>
                     <a  class="btn btn-primary btn-sm ms-sm-4 " (click)= "makePdf()" data-bs-target="#viewPatientsPdf" data-bs-toggle="modal" data-bs-dismiss="modal" >
                         <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
@@ -274,10 +274,262 @@
     </div>
   </div>
 
+
+
+   <!-- Edit Patient Details Modal -->
+<div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;"> Modify Patient Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-sm">
+              <div class="row my-2 px-2">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <label for="">Title </label> 
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+      
+                    <div class="form-group input-group input-group-sm">
+                        <select class="form-control" >
+                            <option class="form-control"  value="">Select</option>
+                            <option class="form-control"  value="MR.">MR.</option>
+                            <option class="form-control"  value="MRS.">MRS.</option>
+                            <option class="form-control"  value="MS.">MS.</option>
+                            <option class="form-control"  value="DR.">DR.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class=" form-group input-group-sm ms-lg-4" >
+                        <label for="">First Name</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="form-group input-group-sm"  >
+                        <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter First Name" required>
+                        </div>
+                    </div>
+                </div>
+          </div>
+  
+          <div class="row my-2 px-2">
+            
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class=" form-group input-group-sm " >
+                    <label for="">Middle Name</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-group input-group-sm"  >
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter Middle Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">Last Name </label> 
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control"   minlength="3"
+                placeholder="Enter Last Name" required>
+                </div>
+            </div>
+          </div>
+  
+          <div class="row my-2 px-2">
+            
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="form-group input-group-sm" >
+                <label for="">Gender </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="form-group input-group input-group-sm">
+              <select class="form-control" >
+                  <option class="form-control"  value="">Select gender</option>
+                  <option class="form-control"  value="M">Male</option>
+                  <option class="form-control"  value="F">Female</option>
+                  <option class="form-control"  value="O">Other</option>
+              </select>
+          </div>
+          </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">Age </label>
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              
+           
+                <div class="row">
+                  <div class="col-6">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="number" class="form-control"   minlength="3"
+                      placeholder="Enter Age" required>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group input-group input-group-sm">
+                      <select class="form-control" >
+                          <option class="form-control"  value="Y">Year</option>
+                          <option class="form-control"  value="M">Month</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+             
+            </div>
+          </div>
+  
+          <div class="row my-2 mt-4">
+            <label for="">Address And Communication</label>
+          </div>
+  
+          
+          <div class="row my-2 px-2">
+            
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class=" form-group input-group-sm " >
+                    <label for="">Country</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-group input-group-sm"  >
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter Middle Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">State </label> 
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control"   minlength="3"
+                placeholder="Enter Last Name" required>
+                </div>
+            </div>
+          </div>
+  
+          
+          <div class="row my-2 px-2">
+            
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class=" form-group input-group-sm " >
+                    <label for="">District</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-group input-group-sm"  >
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter Middle Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">City / Village </label> 
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control"   minlength="3"
+                placeholder="Enter City / village name" required>
+                </div>
+            </div>
+          </div>
+  
+          
+          <div class="row my-2 px-2">
+            
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class=" form-group input-group-sm " >
+                    <label for="">Address Line</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-group input-group-sm"  >
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter Address line" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">Pincode </label> 
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="number" class="form-control"   minlength="3"
+                placeholder="Enter Pincode" required>
+                </div>
+            </div>
+          </div>
+  
+          <div class="row my-2 px-2">
+            
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class=" form-group input-group-sm " >
+                    <label for="">Mobile No</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-group input-group-sm"  >
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="number" class="form-control"   minlength="3"
+                      placeholder="Enter Mobile No" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 ">
+              <div class=" form-group input-group-sm ms-lg-4 " >
+                <label for="">Email ID </label> 
+              </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="email" class="form-control"   minlength="3"
+                placeholder="Enter Email Address " required>
+                </div>
+            </div>
+          </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success btn-sm">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
 <!-- Patient Detail Page -->
 <div *ngIf="!patientPage">
-    <div class="row mx-2 mx-md-4 mt-3 " style="border-radius: 7px;">
-        <div class="card mt-2 py-3 ps-4">
+    <div class="row mx-2 mx-md-4 mt-2 " style="border-radius: 7px;">
+        <div class="card mt-2 py-3 ps-4" style="border: none;">
             <div class="card-body p-1 p-md-2">
               <h5 class="card-title" style="font-weight: bold; color: rgb(87, 87, 87);">{{patientObj.patientName}} </h5>
               <p class="card-text" style="font-size: 14px; ">

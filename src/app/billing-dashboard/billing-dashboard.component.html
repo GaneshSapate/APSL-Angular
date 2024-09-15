@@ -3,7 +3,7 @@
 <app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event"  (addPatientEvent)="eventObj = $event"></app-billing-dashboard-navbar>
 <main>
     <!-- side bar -->
-    <app-side-nav-bar [sideNavStatus]="sideNavStatus"  class="shadow-sm" [eventObj]="eventObj"
+    <app-side-nav-bar [sideNavStatus]="sideNavStatus"  [eventObj]="eventObj"
     [ngClass]="{'side-nav-open': sideNavStatus}"
     (sideNavPatient)="eventObj = $event"
     ></app-side-nav-bar>
@@ -103,7 +103,8 @@
             </div>
     
             <div *ngIf="eventObj.navContact" class="Billing-Dashboard-Content">
-                Contact
+               
+
             </div>  
     </div>
 </main>

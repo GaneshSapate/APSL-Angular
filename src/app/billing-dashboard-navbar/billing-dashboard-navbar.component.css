@@ -169,6 +169,33 @@
   font-size: 17px;
   font-weight: 500;
 }
+
+label{
+  font-size: 14px;
+}
+
+#tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  border-color: transparent transparent #f3f3f3;
+  border-bottom: 3px solid !important;
+  background-color: #eee;
+}
+.nav .nav-link{
+  padding-top: 5px;
+  padding-bottom: 4px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+.nav .nav-link:hover {
+  border-color: #fff;
+}
+
+
+
+ngx-toastr {
+  background-color: #ffffff;
+}
+
+
   
 
 

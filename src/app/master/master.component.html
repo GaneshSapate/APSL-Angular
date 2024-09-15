@@ -42,7 +42,7 @@
 <!-- Docter Management -->
 <div *ngIf = "docterManagement">
     <div class="row mx-4  ">
-        <div class="card mt-4 py-2  ">
+        <div class="card mt-2 py-2  " style="border: none;">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold; color:rgb(80, 80, 80);">Docters Management </h5>
               <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
@@ -103,7 +103,7 @@
 
 <!-- Add New Doctor Modal -->
 <div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addDocterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title ms-2" id="addDocterModalLabel" >Add New Doctor</h5>
@@ -112,10 +112,12 @@
         <div class="modal-body">
             <div class="container-sm">
                 <div class="row my-2 ">
-                    <div class="col-3">
+                    <div class="col-12 col-md-4">
                         <div class="form-group input-group-sm" >
                             <label for="">Title </label>
                         </div>
+                    </div>
+                    <div  class="col-12 col-md-8">
                         <div class="form-group input-group input-group-sm">
                             <select class="form-control" >
                                 <option class="form-control"  value="">Select</option>
@@ -123,96 +125,215 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class=" form-group input-group-sm" >
-                            <label for="">First Name</label>
-                            <div class="input-group flex-nowrap input-group-sm">
-                                <input type="text" class="form-control"   minlength="3"
-                                 placeholder="Enter First Name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">Last Name </label>
-                            <div class="input-group flex-nowrap input-group-sm">
+                    
+               </div>
+               <div class="row my-2">
+                <div class="col-12 col-md-4">
+                    <label for="">First Name</label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class=" form-group input-group-sm" >
+                        
+                        <div class="input-group flex-nowrap input-group-sm">
                             <input type="text" class="form-control"   minlength="3"
-                            placeholder="Enter Last Name" required>
-                            </div>
+                             placeholder="Enter First Name" required>
                         </div>
                     </div>
-                    <div class="col-3">
+                </div>
+               </div>
+               <div class="row my-2 ">
+                <div class="col-12 col-md-4">
+                    <div class="form-group input-group-sm"  >
+                        <label for="">Last Name </label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-sm">
+                        <input type="text" class="form-control"   minlength="3"
+                        placeholder="Enter Last Name" required>
+                        </div>
+                </div>
+                
+               </div>
+               <div class="row my-2 ">
+                    <div class="col-12 col-md-4">
                         <div class="form-group input-group-sm" >
                             <label for="">Gender </label>
                         </div>
+                       
+                    </div>
+                    <div class="col-12 col-md-8">
                         <div class="form-group input-group input-group-sm">
                             <select class="form-control" >
-                                <option class="form-control"  value="">Select gender</option>
+                                <option class="form-control"  value="">Select Gender</option>
                                 <option class="form-control"  value="M">Male</option>
                                 <option class="form-control"  value="F">Female</option>
-                                <option class="form-control"  value="T">Transgender</option>
+                                <option class="form-control"  value="O">Other</option>
                             </select>
                         </div>
                     </div>
                </div>
-               <div class="row my-4">
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                        <label for="">Age </label>
-                        <input type="number" class="form-control" name="userAge"
-                        placeholder="Enter Age" required>
+
+               <div class="row my-2">
+                      
+                <div class="col-12 col-md-4 ">
+                    <div class=" form-group input-group-sm " >
+                        <label for="">Country</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 ">
+                    <div class="form-group input-group-sm"  >
+                        <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter Country" required>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">Mobile No </label>
-                            <input type="number" class="form-control" name="userAge"
-                            placeholder="Enter Age" required>
+                </div>
+                
+              </div>
+              <div class="row my-2">
+                <div class="col-12 col-md-4  ">
+                    <div class=" form-group input-group-sm  " >
+                      <label for="">State </label> 
+                    </div>
+                    
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter State" required>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row my-2">
+                      
+                <div class="col-12 col-md-4 ">
+                    <div class=" form-group input-group-sm " >
+                        <label for="">District</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group input-group-sm"  >
+                        <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter District" required>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">Email ID</label>
-                            <input type="email" class="form-control" name="userAge"
-                            placeholder="Enter Age" required>
+                </div>
+                
+              </div>
+              <div class="row my-2">
+                <div class="col-12 col-md-4 ">
+                    <div class=" form-group input-group-sm" >
+                      <label for="">City / Village </label> 
+                    </div>
+                    
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control"   minlength="3"
+                      placeholder="Enter City / village name" required>
+                      </div>
+                  </div>
+              </div>
+
+              
+              <div class="row my-2">
+                
+                <div class="col-12 col-md-4 ">
+                    <div class=" form-group input-group-sm " >
+                        <label for="">Address Line</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group input-group-sm"  >
+                        <div class="input-group flex-nowrap input-group-sm">
+                          <input type="text" class="form-control"   minlength="3"
+                          placeholder="Enter Address line" required>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">Address</label>
-                            <div class="input-group flex-nowrap input-group-sm">
-                            <input type="text" class="form-control"   minlength="3"
-                            placeholder="Enter Address" required>
-                            </div>
+                </div>
+                
+              </div>
+              <div class="row my-2">
+                <div class="col-12 col-md-4  ">
+                    <div class=" form-group input-group-sm  " >
+                      <label for="">Pincode </label> 
+                    </div>
+                    
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="number" class="form-control"   minlength="3"
+                      placeholder="Enter Pincode" required>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row my-2">
+                
+                <div class="col-12 col-md-4 ">
+                    <div class=" form-group input-group-sm " >
+                        <label for="">Mobile No</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group input-group-sm"  >
+                        <div class="input-group flex-nowrap input-group-sm">
+                          <input type="number" class="form-control"   minlength="3"
+                          placeholder="Enter Mobile No" required>
                         </div>
                     </div>
-               </div>
+                </div>
+                
+              </div>
+              <div class="row my-2">
+                <div class="col-12 col-md-4  ">
+                    <div class=" form-group input-group-sm  " >
+                      <label for="">Email ID </label> 
+                    </div>
+                    
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="email" class="form-control"   minlength="3"
+                      placeholder="Enter Email Address " required>
+                      </div>
+                  </div>
+              </div>
+
+             
                
                <div class="row my-2">
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">City/Village</label>
-                            <div class="input-group flex-nowrap input-group-sm">
-                            <input type="text" class="form-control"   minlength="3"
-                            placeholder="Enter City/Village" required>
-                            </div>
-                        </div>
+                    
+                    <div class="col-4">
+                        <label for="">Hospital Name </label>
+                        
                     </div>
-                    <div class="col-3">
+                    <div class="col-8">
                         <div class="form-group input-group-sm"  >
-                            <label for="">Hospital Name </label>
+                           
                             <input type="text" class="form-control" name="userAge"
                             placeholder="Enter Remark" required>
                         </div>
                     </div>
                         
-                    <div class="col-3">
-                        <div class="form-group input-group-sm"  >
-                            <label for="">Remark </label>
-                            <input type="text" class="form-control" name="userAge"
-                            placeholder="Enter Remark" required>
-                        </div>
+                    
+               </div>
+
+               <div class="row my-2">
+                <div class="col-4">
+                    <label for="">Remark </label>
+                    
+                </div>
+                <div class="col-8">
+                    <div class="form-group input-group-sm"  >
+                       
+                        <input type="text" class="form-control" name="userAge"
+                        placeholder="Enter Remark" required>
                     </div>
+                </div>
                </div>
         </div>
         </div>
@@ -232,7 +353,7 @@
 <div *ngIf = "reportManagement">
 
     <div class="row mx-4  ">
-        <div class="card mt-4 py-2" >
+        <div class="card mt-2 py-2" style="border: none;">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold; color: rgb(82, 82, 82);">Reports Management </h5>
               <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Reports Details </p>
@@ -821,7 +942,7 @@
 <div *ngIf = "labManagement">
 
     <div class="row mx-4  ">
-        <div class="card mt-4 py-2 ">
+        <div class="card mt-2 py-2 " style="border: none;">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold; color: rgb(78, 78, 78);">Lab Details Management </h5>
               <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Lab name, address etc details</p>

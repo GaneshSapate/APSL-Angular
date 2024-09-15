@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastPackage } from 'ngx-toastr';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -194,4 +194,40 @@ export class BillingDashboardNavbarComponent implements OnInit {
     }
   // Profile button all method end
 
+    showtoast(){
+      this.toaster.info("<br><button type='button' class='btn clear'>Yes</button>","Delete all?", {
+        timeOut: 3000,
+        progressBar: true,
+        positionClass: 'toast-top-center',
+        closeButton:true,
+        enableHtml:true,
+        tapToDismiss:false,
+        toastClass:'ngx-toastr',
+        
+      })
+
+    //   this.toaster.success("Delete all?","<br /><br /><button type='button' class='btn clear'>Yes</button>",{
+    //     closeButton: false,
+    //     onClick: function(){
+    //         var nodeData = scope.$modelValue;
+    //                     if(nodeData.nodes.length > 0){
+    //                         toastr.error('Cant delete Sub levels available :', 'Warning', {
+    //                             closeButton: true
+    //                         });
+    //                     }else{
+    //                         mainMenuService.deleteData(nodeData).success(function(data) {
+    //                             scope.remove();
+    //                             toastr.success(data.message, 'Message', {
+    //                                 closeButton: true
+    //                             });
+    //                         }).error(function(err) {
+    //                             toastr.error(err, 'Warning', {
+    //                                 closeButton: true
+    //                             });
+    //                         });
+    //                     }
+    //     }
+    // })
+       
+    }
 }

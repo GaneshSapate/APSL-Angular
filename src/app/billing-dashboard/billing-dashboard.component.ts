@@ -1,11 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgChartsConfiguration } from 'ng2-charts';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-billing-dashboard',
   templateUrl: './billing-dashboard.component.html',
   styleUrls: ['./billing-dashboard.component.css']
 })
 export class BillingDashboardComponent implements OnInit {
+
+
+
   sideNavStatus:boolean=false;
 
   // side nav action 
@@ -41,6 +46,10 @@ export class BillingDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+
+   
  
 }
 
