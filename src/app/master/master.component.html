@@ -8,33 +8,33 @@
           </div>
     </div>
     <div class="row m-4 ">
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
-            <div class="card  p-4 Masters-Card header-card" >
+      
+            <div class="card  option-card" >
                 <div class="card-body">
                   <h6 class="card-title"> <i class="fa-solid fa-user-doctor me-2"></i> Docters Management</h6>
                   <p class="card-text">Here you can manage Docters and Hospital details</p>
                   <a  class="btn btn-sm  btn-primary " (click) = "goToDocter()">Go To Docters Management</a>
                 </div>
               </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
-            <div class="card  p-4 Masters-Card header-card" >
+        
+       
+            <div class="card option-card " >
                 <div class="card-body ">
                   <h6 class="card-title"> <i class="fa-regular fa-pen-to-square me-2"></i> Reports Management</h6>
-                  <p class="card-text">Here you can manage Reports and Cost details</p>
+                  <p class="card-text">Here you can manage lab Reports and Cost details</p>
                   <a  class="btn btn-sm btn-primary" (click) = "goToReport()">Go To Reports Management</a>
                 </div>
               </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
-            <div class="card  p-4 Masters-Card header-card" >
+       
+       
+            <div class="card option-card " >
                 <div class="card-body">
                   <h6 class="card-title"><i class="fa-solid fa-microscope navbar-brand me-2"></i> Lab Management</h6>
                   <p class="card-text">Here you can manage Lab name, address etc details</p>
                   <a  class="btn btn-sm  btn-primary" (click) = "goToLab()">Go To Lab Management</a>
                 </div>
               </div>
-        </div>
+        
     </div>
     
 </div>
@@ -47,9 +47,9 @@
               <h5 class="card-title" style="font-weight: bold; color:rgb(80, 80, 80);">Docters Management </h5>
               <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
               <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-              <a  class="btn btn-primary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal">
-                <i class="fa-solid fa-right-to-bracket"></i> Add Doctor </a>
-              <a  class="btn btn-primary btn-sm ms-md-4 "  ><i class="fa-regular fa-share-from-square"></i> Export in PDF </a>
+              <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal">
+                <i class="fa-solid fa-plus"></i> Add Doctor </a>
+              <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-regular fa-share-from-square"></i> Export in PDF </a>
             </div>
           </div>
     </div>
@@ -339,7 +339,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+          <button type="button" class="btn btn-success btn-sm">Save changes</button>
         </div>
       </div>
     </div>
@@ -358,8 +358,8 @@
               <h5 class="card-title" style="font-weight: bold; color: rgb(82, 82, 82);">Reports Management </h5>
               <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Reports Details </p>
               <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" ><i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-              <a  class="btn btn-primary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#addTestModal"><i class="fa-solid fa-plus"></i> Add New Report</a>
-              <a  class="btn btn-primary btn-sm ms-md-4" ><i class="fa-regular fa-file-pdf"></i> Export As PDF</a>
+              <a  class="btn btn-secondary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#addTestModal"><i class="fa-solid fa-plus"></i> Add New Report</a>
+              <a  class="btn btn-secondary btn-sm ms-md-4" ><i class="fa-regular fa-file-pdf"></i> Export As PDF</a>
             </div>
           </div>
     </div>
@@ -736,7 +736,7 @@
                                                 <option class="form-control"  value="">select</option>
                                                 <option class="form-control" *ngFor="let item of field_name_list"  value="{{item}}">{{item}}</option>
                                             </select>
-                                            <button class="btn btn-primary btn-sm" (click)="addFieldInFormula(selectedField.value)">Add</button>
+                                            <button class="btn btn-secondary btn-sm" (click)="addFieldInFormula(selectedField.value)">Add</button>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -748,8 +748,8 @@
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row px-2" >
-                                        <a *ngIf="!modifyRow"  class="btn btn-primary btn-sm" (click)="addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
-                                        <a *ngIf="modifyRow"  class="btn btn-primary btn-sm" (click)="modifyRowInTestTable()">Modify</a>
+                                        <a *ngIf="!modifyRow"  class="btn btn-success btn-sm" (click)="addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
+                                        <a *ngIf="modifyRow"  class="btn btn-success btn-sm" (click)="modifyRowInTestTable()">Modify</a>
                                     </div>
                                 </div>
                         </div>
@@ -765,8 +765,8 @@
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="row px-2" >
-                                    <a *ngIf="!modifyRow"  class="btn btn-primary btn-sm" (click)= "addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
-                                    <a *ngIf="modifyRow"  class="btn btn-primary btn-sm" (click)= "modifyRowInTestTable()" >Modify</a>
+                                    <a *ngIf="!modifyRow"  class="btn btn-success btn-sm" (click)= "addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
+                                    <a *ngIf="modifyRow"  class="btn btn-success btn-sm" (click)= "modifyRowInTestTable()" >Modify</a>
                                 </div>
                             </div>
                         </div>
@@ -850,10 +850,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm">Reset Report</button>
-          <button type="button" class="btn btn-primary btn-sm" data-bs-target="#viewReportPdf" data-bs-toggle="modal" data-bs-dismiss="modal"
+          <button type="button" class="btn btn-secondary btn-sm">Reset Report</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#viewReportPdf" data-bs-toggle="modal" data-bs-dismiss="modal"
             (click)=" makePdf()" >View Report</button>
-          <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#saveModal" >Save changes</button>
+          <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#saveModal" >Save changes</button>
 
         </div>
       </div>

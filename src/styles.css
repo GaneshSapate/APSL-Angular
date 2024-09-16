@@ -14,106 +14,45 @@ body{
     background-repeat: no-repeat;
 }
 
-
 .btn-primary{
-    
-    display: inline-block;
-    outline: none;
-    border-width: 0px;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: inherit;
-    font-weight: 500;
-    max-width: 100%;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
-    background: rgb(255, 255, 255);
-    cursor: pointer;
-    height: 32px;
-    line-height: 32px;
-    padding: 0px 12px;
-    vertical-align: middle;
-    width: auto;
-    font-size: 14px;
-    color: rgb(0, 82, 204);
-
+  border: none;
+  
 }
 
 .btn-success{
     
-  display: inline-block;
   outline: none;
+  border-width: 0px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
+
+}
+
+.btn-secondary{
+  border-width: 0px;
+  box-sizing: border-box;
+  /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356); */
+  background: rgb(237, 237, 237);
+  color: rgb(0, 0, 0);
+
+}
+.btn-secondary:hover{
+  background-color: rgb(219, 219, 219);
+  color: rgb(0, 0, 0);
+}
+
+
+.btn-danger{
   border-width: 0px;
   border-radius: 3px;
   box-sizing: border-box;
-  font-size: inherit;
-  font-weight: 500;
-  max-width: 100%;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
-  cursor: pointer;
-  height: 32px;
-  line-height: 32px;
-  padding: 0px 12px;
-  vertical-align: middle;
-  width: auto;
-  font-size: 14px;
-
+  /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356); */
+  background: rgb(237, 237, 237);
+  color: #c20000;
 }
-
-
-.btn-secondary{
-
-    display: inline-block;
-    outline: none;
-    border-width: 0px;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: inherit;
-    font-weight: 500;
-    max-width: 100%;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-    background: #ffffff;
-    cursor: pointer;
-    height: 32px;
-    line-height: 32px;
-    padding: 0px 12px;
-    vertical-align: middle;
-    width: auto;
-    font-size: 14px;
-    color: #545454;
-
-
-}
-
-.btn-danger{
-
-    display: inline-block;
-    outline: none;
-    border-width: 0px;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: inherit;
-    font-weight: 500;
-    max-width: 100%;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-    background: #ffffff;
-    cursor: pointer;
-    height: 32px;
-    line-height: 32px;
-    padding: 0px 12px;
-    vertical-align: middle;
-    width: auto;
-    font-size: 14px;
-    color: #c20000;
-
-
+.btn-danger:hover{
+  background-color: rgb(219, 219, 219);
+  color: #c20000;
 }
 
 
@@ -136,23 +75,27 @@ body{
    padding: 10px;
 }
 
-/* .toast-container .ngx-toastr  {
-  position: relative;
-  overflow: hidden;
-  margin: 0 0 6px;
-  padding: 15px 15px 15px 50px;
-  width: 400px;
-  border-radius: 3px 3px 3px 3px;
-  background-position: 15px center;
-  background-repeat: no-repeat;
-  background-size: 50px;
-  box-shadow: 0 0 12px #999999;
-  color: #666666;
-} */
-/* .toast-info .ngx-toastr{
-  background-color: #ffffff;
-  
-} */
+.option-card{
+  display: block;
+  width: 22rem;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: #f2f1f1;
+  border: none;
+}
+
+.option-card:hover {
+ background-color: #eaeaea;
+}
+
+.option-card .card-title{
+  color: rgb(82, 82, 82);
+}
+
+.option-card .card-text{
+  font-size: 14px;
+  color: black;
+}
 
 .toast-container .ngx-toastr {
   box-shadow: none;

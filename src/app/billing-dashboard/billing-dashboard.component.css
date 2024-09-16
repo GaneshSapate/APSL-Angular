@@ -9,12 +9,13 @@ app-side-nav-bar{
     /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
     /* background-color: #525252; */
     transition: width 150ms ease-in;
-    border: solid;
+    /* border: solid;
     border-width: 1px;
-    border-color: #e8e8e8;
+    border-color: #e8e8e8; */
+    background-color: #f6f6f6;
 }
 .side-nav-open{
-    width: 56px;
+    width: 54px;
     overflow-x: hidden;
     white-space: nowrap;
 }
@@ -41,7 +42,7 @@ app-side-nav-bar{
     z-index: 11;
     overflow: auto;
     /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
-    background-color: #525252;
+    background-color: #f6f6f6;
     transition: width 150ms ease-in;
  
   }
@@ -220,55 +221,3 @@ app-side-nav-bar{
     .card-block.tree-view ul li {
       display: inherit;
       float: none; }
-
-      .btn-success{
-        
-
-        display: inline-block;
-        outline: none;
-        border-width: 0px;
-        border-radius: 3px;
-        box-sizing: border-box;
-        font-size: inherit;
-        font-weight: 500;
-        max-width: 100%;
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
-        background: #157347;
-        cursor: pointer;
-        height: 32px;
-        line-height: 32px;
-        padding: 0px 12px;
-        vertical-align: middle;
-        width: auto;
-        font-size: 14px;
-        color: rgb(255, 255, 255);
-    
-    
-    
-    }
-  
-      .btn-danger{
-        display: inline-block;
-        outline: none;
-        border-width: 0px;
-        border-radius: 3px;
-        box-sizing: border-box;
-        font-size: inherit;
-        font-weight: 500;
-        max-width: 100%;
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
-        background: #c20000;
-        cursor: pointer;
-        height: 32px;
-        line-height: 32px;
-        padding: 0px 12px;
-        vertical-align: middle;
-        width: auto;
-        font-size: 14px;
-        color: rgb(255, 255, 255);
-    
-      }

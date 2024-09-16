@@ -1,9 +1,9 @@
 <div >
-    <nav class="navbar navbar-light navbar-expand-sm fixed-top pb-1 px-2 p-xs-0 " style="background-color: white; border-bottom: 1px solid ; border-color: rgb(223, 223, 223); " [ngClass]="{'side-nav-open': menuStatus}">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top px-2 p-xs-0 py-1 " style="background-color: #0d4eaf; " [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid px-0 mx-0 " >
         <div class="navbar-brand  ">
           <span style="font-size: 16px; font-family: Arial, sans-serif;"> 
-            <i class="fa-solid fa-microscope mx-3 p-1" style="font-size: 18px; background-color: blue; border-radius: 4px; color: white;"></i> 
+            <i class="fa-solid fa-microscope mx-3 p-1" style="font-size: 18px; background-color: #1161d8; border-radius: 4px; color: white;"></i> 
             APLS</span>
         </div>
         <div class="navbar-brand  ">
@@ -24,7 +24,7 @@
         
       </div>
     
-        <div class="d-flex" >
+        <div class="d-flex text-light " >
           <div class="btn-group mx-3">
             <span style=" cursor: pointer;" >
                 <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 20px"><i class="fa-solid fa-expand"></i></span>
@@ -41,7 +41,7 @@
             </span>
           </span>
           
-          <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container shadow " id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
+          <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container " id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
             <div class="all-notification-item d-flex" >
               <div> Notifications</div>
               <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)= "clearAllNotification()">clear all</button>
@@ -70,10 +70,10 @@
 
 
 
-      <div class="btn-group mx-3 mx-xs-1 me-xs-1">
-          <span class="mt-1" data-bs-toggle="dropdown" style="font-size: 16px;cursor: pointer;"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
+      <div class="btn-group mt-1 mx-3 mx-xs-1 me-xs-1">
+          <span  data-bs-toggle="dropdown" ><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
         
-          <ul class="dropdown-menu dropdown-menu-light shadow dropdown-menu-end profile py-2"  >
+          <ul class="dropdown-menu dropdown-menu-end py-2" >
               <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>
               <li><hr class="dropdown-divider"></li>
               <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
@@ -117,11 +117,11 @@
                             <option value="Los Angeles">
                             <option value="Chicago">
                           </datalist>
-                          <button class="btn btn-outline-secondary btn-sm">Add</button>
+                          <button class="btn btn-secondary btn-sm">Add</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-lg-3">
-                      <a  class="btn btn-primary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
+                      <a  class="btn btn-secondary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
                         <i class="fa-solid fa-plus"></i> New Patient</a>
                   </div>
                 </div>
@@ -408,7 +408,7 @@
                               <option class="form-control"  value="Myself">CBC</option>
                               <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
                           </select>
-                          <button class="btn btn-outline-secondary btn-sm">add</button>
+                          <button class="btn btn-secondary btn-sm">add</button>
                       </div>
                       </div>
                     </div>
