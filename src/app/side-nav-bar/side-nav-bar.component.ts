@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -37,11 +38,12 @@ export class SideNavBarComponent implements OnInit {
   contactIcon:string = '../../assets/redshotIcon/contact.svg';
   infoIcon:string = '../../assets/redshotIcon/info.svg';
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
   clickOnHome(){
+    // this.router.navigate(['login-board',{outlets :{ childRout: ['home']}}])
     if(this.eventObj.navHome==false){
      this.eventObj.navDashboard=false;
      this.eventObj.navHome=true;

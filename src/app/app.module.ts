@@ -7,8 +7,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BillingDashboardComponent } from './billing-dashboard/billing-dashboard.component';
-import { BillingDashboardNavbarComponent } from './billing-dashboard-navbar/billing-dashboard-navbar.component';
+
 import { HttpClientModule } from "@angular/common/http";
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 import { PateintPageComponent } from './pateint-page/pateint-page.component';
@@ -23,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SafePipe } from './safe.pipe';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,13 +30,6 @@ import { SafePipe } from './safe.pipe';
     LoginPageComponent,
     RegistrationComponent,
     NavbarComponent,
-    BillingDashboardComponent,
-    BillingDashboardNavbarComponent,
-    SideNavBarComponent,
-    PateintPageComponent,
-    HomePageComponent,
-    MasterComponent,
-    SettingComponent,
     SafePipe,
   ],
   imports: [

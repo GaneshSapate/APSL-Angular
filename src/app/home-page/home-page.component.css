@@ -37,16 +37,6 @@
     box-shadow: 0px 2px 10px rgb(193, 193, 193);
 }
 
-.card-title{
-  color: rgb(82, 82, 82);
-}
-
-.card-text{
-  font-size: 14px;
-  color: black;
-}
-
-
 
   .bg-btn-c-pink{
     background: linear-gradient(45deg, #ff98a9, #ffb1be); 

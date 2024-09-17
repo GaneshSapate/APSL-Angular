@@ -7,7 +7,7 @@
             APLS</span>
         </div>
         <div class="navbar-brand  ">
-          <span class="ms-4" (click)= "onClickToggled()" style=" cursor: pointer;"><i class="fa-solid fa-bars"></i></span>
+          <span class="ms-4" (click)= "onClickToggled()" style=" cursor: pointer; font-size: 16px; "><i class="fa-solid fa-bars"></i></span>
         </div>    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -27,12 +27,12 @@
         <div class="d-flex text-light " >
           <div class="btn-group mx-3">
             <span style=" cursor: pointer;" >
-                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 20px"><i class="fa-solid fa-expand"></i></span>
-                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 20px"><i class="fa-solid fa-compress"></i></span>
+                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i class="fa-solid fa-expand"></i></span>
+                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px"><i class="fa-solid fa-compress"></i></span>
             </span>
         </div>
         <div class="btn-group">
-          <span class="" style="font-size: 20px; cursor: pointer;" data-bs-toggle="dropdown" 
+          <span class="" style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" 
           data-bs-auto-close="outside" aria-expanded="true" >
             <i class="fas fa-bell px-2"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 11px;">
@@ -70,8 +70,8 @@
 
 
 
-      <div class="btn-group mt-1 mx-3 mx-xs-1 me-xs-1">
-          <span  data-bs-toggle="dropdown" ><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px;"></i></span>
+      <div class="btn-group mx-3 mx-xs-1 me-xs-1 " >
+          <span  data-bs-toggle="dropdown" ><i class="fa-solid fa-user-doctor me-2" style="font-size: 18px;cursor: pointer;"></i></span>
         
           <ul class="dropdown-menu dropdown-menu-end py-2" >
               <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>

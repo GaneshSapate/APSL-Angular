@@ -78,7 +78,7 @@ body{
 .option-card{
   display: block;
   width: 22rem;
-  margin-right: 20px;
+  margin-left: 20px;
   margin-top: 20px;
   background-color: #f2f1f1;
   border: none;
@@ -86,6 +86,7 @@ body{
 
 .option-card:hover {
  background-color: #eaeaea;
+ cursor: pointer;
 }
 
 .option-card .card-title{
@@ -96,6 +97,10 @@ body{
   font-size: 14px;
   color: black;
 }
+/* .option-card .btn-primary{
+  background-color: #eaeaea;
+  color: black;
+} */
 
 .toast-container .ngx-toastr {
   box-shadow: none;

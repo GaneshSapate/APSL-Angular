@@ -10,6 +10,9 @@
 
     <!-- Main Display Area -->
     <div class="display-area" [ngClass]="{'display-area-shrink': sideNavStatus}">
+
+        
+
             <div *ngIf="eventObj.navHome" class="Billing-Dashboard-Content">
                <app-home-page
                (sideNavHome)="eventObj = $event"></app-home-page>
@@ -106,6 +109,8 @@
                
 
             </div>  
+
+            
     </div>
 </main>
 
