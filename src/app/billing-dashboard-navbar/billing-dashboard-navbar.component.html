@@ -1,9 +1,9 @@
 <div >
-    <nav class="navbar navbar-dark navbar-expand-sm fixed-top px-2 p-xs-0 py-1 " style="background-color: #0d4eaf; " [ngClass]="{'side-nav-open': menuStatus}">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top px-2 p-xs-0 py-1" style="background-color: #0d4eaf; " [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid px-0 mx-0 " >
-        <div class="navbar-brand  ">
+        <div class="navbar-brand m-0 p-0 me-4 ">
           <span style="font-size: 16px; font-family: Arial, sans-serif;"> 
-            <i class="fa-solid fa-microscope mx-3 p-1" style="font-size: 18px; background-color: #1161d8; border-radius: 4px; color: white;"></i> 
+            <i class="fa-solid fa-microscope mx-3 p-2 shadow " style="font-size: 16px; background-color: #1369ea; border-radius: 4px; color: white;"></i> 
             APLS</span>
         </div>
         <div class="navbar-brand  ">
@@ -24,7 +24,7 @@
         
       </div>
     
-        <div class="d-flex text-light " >
+        <div class="d-flex text-light me-0 pe-0" >
           <div class="btn-group mx-3">
             <span style=" cursor: pointer;" >
                 <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i class="fa-solid fa-expand"></i></span>
@@ -34,8 +34,8 @@
         <div class="btn-group">
           <span class="" style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" 
           data-bs-auto-close="outside" aria-expanded="true" >
-            <i class="fas fa-bell px-2"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 11px;">
+            <i class="fas fa-bell px-sm-2"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf = "!noNotification" style="font-size: 10px;">
               {{countOfNotification}}
               <span class="visually-hidden">unread messages</span>
             </span>
@@ -67,24 +67,21 @@
             </div>
           </div>
         </div>
-
-
-
-      <div class="btn-group mx-3 mx-xs-1 me-xs-1 " >
-          <span  data-bs-toggle="dropdown" ><i class="fa-solid fa-user-doctor me-2" style="font-size: 18px;cursor: pointer;"></i></span>
-        
-          <ul class="dropdown-menu dropdown-menu-end py-2" >
-              <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
-              <li class="dropdown-item" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
-              <li class="dropdown-item" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="dropdown-item" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
-          </ul>
-      </div>
     </div>
-
+    <div class="btn-group mx-sm-2 " >
+      <span class="p-1 shadow "  data-bs-toggle="dropdown" style="background-color: #1972f7; border-radius: 50%; cursor: pointer;">
+        <i class="fa-solid fa-user-doctor mx-1" style="font-size: 16px;color: white;"></i></span>
+    
+      <ul class="dropdown-menu dropdown-menu-end py-2" >
+          <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="dropdown-item" (click)= "onProfileClick()"><i class="fa-solid fa-user-doctor me-2"></i> Your Profile</li>
+          <li class="dropdown-item" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
+          <li class="dropdown-item" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="dropdown-item" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+      </ul>
+  </div>
     </div>
     </nav>
   </div>
