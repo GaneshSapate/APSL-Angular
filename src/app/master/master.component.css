@@ -26,20 +26,14 @@ table{
     cursor: pointer;
 }
 
-.modal-body label{
-  font-size: 14px;
-}
-/* .modal-header{
-  background: linear-gradient(to left, #f4f4f4 100%, blue 0%);
-} */
 
 .reports-modalbody {
   height: 82vh;
   overflow-y: auto;
 }
-.modal-footer{
+/* .modal-footer{
   border-bottom: 4px solid #2b6cb0;
-}
+} */
 
 /* .report-data-field{
   height: 54vh;

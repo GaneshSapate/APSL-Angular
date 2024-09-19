@@ -103,7 +103,7 @@ app-side-nav-bar{
   .card {
     border-radius: 5px;
     -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-            box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            box-shadow: 0 0.5px 1.5px 0.06px rgba(4, 26, 55, 0.322);
     border: none;
     margin-bottom: 30px;
     overflow: hidden;
@@ -210,9 +210,9 @@ app-side-nav-bar{
       padding: 35px 35px; }
     .card .card-block-small {
       padding: 15px 15px; }
-    .card:hover {
+    /* .card:hover {
       -webkit-box-shadow: 0 0 25px -5px #9e9c9e;
-              box-shadow: 0 0 25px -5px #9e9c9e; }
+              box-shadow: 0 0 25px -5px #9e9c9e; } */
 
   
  

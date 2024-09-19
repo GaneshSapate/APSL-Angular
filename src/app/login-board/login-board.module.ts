@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SideNavBarComponent } from '../side-nav-bar/side-nav-bar.component';
 import { PateintPageComponent } from '../pateint-page/pateint-page.component';
+import { MasterLabManagementComponent } from '../master-lab-management/master-lab-management.component';
+import { MasterDocterManagementComponent } from '../master-docter-management/master-docter-management.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { PateintPageComponent } from '../pateint-page/pateint-page.component';
     MasterComponent,
     SettingComponent,
     SideNavBarComponent,
-    PateintPageComponent
+    PateintPageComponent,
+    MasterLabManagementComponent,
+    MasterDocterManagementComponent,
   ],
   imports: [
     CommonModule,

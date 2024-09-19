@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   userurl:"http://localhost:8080/user",
+  masterDataUrl:"http://localhost:8080/masterdata"
 };
 /*
  * For easier debugging in development mode, you can import the following file

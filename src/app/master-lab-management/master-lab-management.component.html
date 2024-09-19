@@ -1,0 +1,178 @@
+
+<div class="row mx-2  ">
+    <div class="card mt-2 py-2 " style="border: none;">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold; color: rgb(78, 78, 78);">Lab Details Management </h5>
+          <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Lab name, address etc details</p>
+          <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" ><i class="fa-regular fa-square-caret-left"></i> Go Back</a>
+        </div>
+      </div>
+</div>
+
+<div class="row m-4 main-content p-md-4">
+
+    <div class="row my-2 px-2">
+        <div class="col-4 col-lg-2">
+            <label for="">Laborotory Name</label>
+        </div>
+        <div class="col-8 col-lg-4">
+            <div class=" form-group input-group-sm" >
+                
+                <div class="input-group flex-nowrap input-group-sm">
+                    <input type="text" class="form-control"   minlength="3"
+                     placeholder="Enter Name" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-2 mt-4 px-2">
+            <div class=" col-12 col-md-6">
+                
+                    <div class=" form-group input-group-sm " >
+                        <label for="">Lab Logo </label>
+                    </div>
+                <div class="input-group my-2 input-group-sm">  
+                    <input type="file" class="form-control" (change)= "picked($event)">
+                    <label class="input-group-text" (click)= "addPictures()" for="inputGroupFile02">Upload</label>
+                </div>
+            </div>
+            <div class=" col-12 col-md-6 justify-content-center">
+                <img class="labLogo" src= "{{ labLogoString}}" alt="">
+            </div>
+    </div>
+
+    <div class="row my-2 mt-4 px-2">
+        <label for="">Address And Communication : </label>
+      </div>
+
+    <div class="row my-2 px-2">
+
+        <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm " >
+                <label for="">Country</label>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group input-group input-group-sm">
+              <select class="form-select" required >
+                  <option  value="" selected >Select Country</option>
+                  <option  value="IN">India</option>
+              </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2 ">
+          <div class=" form-group input-group-sm ms-lg-4 " >
+            <label for="">State </label> 
+          </div>
+          
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="form-group input-group input-group-sm">
+            <select class="form-select" [(ngModel)]= "state" (ngModelChange)= "onSelectState()" required >
+                <option  value="" selected >Select State</option>
+                <option *ngFor= "let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
+                
+            </select>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="row my-2 px-2">
+        
+        <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm " >
+                <label for="">District</label>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group input-group input-group-sm">
+              <select class="form-select" [(ngModel)]= "district" required>
+                  <option  value="" selected >Select District</option>
+                  <option *ngFor= "let dist of districtList" value="dist.discription">{{ dist.discription }}</option>
+                  
+              </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2 ">
+          <div class=" form-group input-group-sm ms-lg-4 " >
+            <label for="">City / Village </label> 
+          </div>
+          
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="input-group flex-nowrap input-group-sm">
+            <input type="text" class="form-control"   minlength="3"
+            placeholder="Enter City / village name" required>
+            </div>
+        </div>
+      </div>
+
+      
+      <div class="row my-2 px-2">
+        
+        <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm " >
+                <label for="">Address Line</label>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group input-group-sm"  >
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="text" class="form-control"   minlength="3"
+                  placeholder="Enter Address line" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2 ">
+          <div class=" form-group input-group-sm ms-lg-4 " >
+            <label for="">Pincode </label> 
+          </div>
+          
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="input-group flex-nowrap input-group-sm">
+            <input type="number" class="form-control"   minlength="3"
+            placeholder="Enter Pincode" required>
+            </div>
+        </div>
+      </div>
+
+      <div class="row my-2 px-2">
+        
+        <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm " >
+                <label for="">Mobile No</label>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group input-group-sm"  >
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="number" class="form-control"   minlength="3"
+                  placeholder="Enter Mobile No" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2 ">
+          <div class=" form-group input-group-sm ms-lg-4 " >
+            <label for="">Email ID </label> 
+          </div>
+          
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="input-group flex-nowrap input-group-sm">
+            <input type="email" class="form-control"   minlength="3"
+            placeholder="Enter Email Address " required>
+            </div>
+        </div>
+      </div>
+
+      <div class="row px-2 my-2 mb-2">
+        <div class=" d-md-block justify-content-md-end">
+            <button type="button" class="btn btn-secondary btn-sm"> Reset </button>
+            <button type="button ms-4" class="btn btn-primary btn-sm" > Save </button>
+        </div>
+      </div>
+
+</div>

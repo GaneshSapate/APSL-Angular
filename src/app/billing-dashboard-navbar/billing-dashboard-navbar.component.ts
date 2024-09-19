@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService, ToastPackage } from 'ngx-toastr';
+import { MasterDataService } from '../master-data.service';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -9,6 +10,7 @@ import { ToastrService, ToastPackage } from 'ngx-toastr';
   styleUrls: ['./billing-dashboard-navbar.component.css']
 })
 export class BillingDashboardNavbarComponent implements OnInit {
+
 
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus:boolean=false;
@@ -36,46 +38,44 @@ export class BillingDashboardNavbarComponent implements OnInit {
     {
       nId:1,
       message:"1 Hello, world! This is a toast message."
-    },
-    {
-      nId:2,
-      message:"2 Hello, world! This is a toast message."
-    },
-    {
-      nId:3,
-      message:"3 Hello, world! This is a toast message. sdfvsdjfvasdf sdknvjsdkcvsd sdknvjksdv ksjvnjksdv lksdnnvjsd "
-    },
-    {
-      nId:4,
-      message:"4 Hello, world! This is a toast message."
-    },{
-      nId:4,
-      message:"4 Hello, world! This is a toast message."
-    },
-    {
-      nId:4,
-      message:"4 Hello, world! This is a toast message."
-    },
-    {
-      nId:4,
-      message:"4 Hello, world! This is a toast message."
-    },
-    {
-      nId:4,
-      message:"4 Hello, world! This is a toast message."
     }
   ]
  countOfNotification:number=0;
 
  noNotification:boolean=false;
 
+ stateList=[
+  {
+    id: 0,
+    code: "",
+    discription: ""
+  }
+ ];
+ districtList=[
+  {
+    id: 0,
+    stateCode: "",
+    discription: ""
+  }
+ ];
+
+ state:string="";
+ district:string="";
+
+
   constructor( @Inject(DOCUMENT) private document: any,
                   private router: Router,
-                  private toaster : ToastrService) { }
+                  private toaster : ToastrService,
+                  private masterService: MasterDataService) { }
 
   ngOnInit(): void {
     this.getCountOfNotification();
     this.elem = document.documentElement;
+    this.masterService.getAllState().subscribe( (r) => {
+        this.stateList = <any> r;
+      }, error =>{
+        this.toaster.error(error, "Error");
+      });
   }
 
   onClickToggled(){
@@ -204,30 +204,18 @@ export class BillingDashboardNavbarComponent implements OnInit {
         tapToDismiss:false,
         toastClass:'ngx-toastr',
         
-      })
-
-    //   this.toaster.success("Delete all?","<br /><br /><button type='button' class='btn clear'>Yes</button>",{
-    //     closeButton: false,
-    //     onClick: function(){
-    //         var nodeData = scope.$modelValue;
-    //                     if(nodeData.nodes.length > 0){
-    //                         toastr.error('Cant delete Sub levels available :', 'Warning', {
-    //                             closeButton: true
-    //                         });
-    //                     }else{
-    //                         mainMenuService.deleteData(nodeData).success(function(data) {
-    //                             scope.remove();
-    //                             toastr.success(data.message, 'Message', {
-    //                                 closeButton: true
-    //                             });
-    //                         }).error(function(err) {
-    //                             toastr.error(err, 'Warning', {
-    //                                 closeButton: true
-    //                             });
-    //                         });
-    //                     }
-    //     }
-    // })
-       
+      }) ;
     }
+    onSelectState() {
+        if(this.state ){
+          this.masterService.getDistrictByStateCode(this.state).subscribe(
+            (result)=>{
+              this.districtList = <any> result;
+          },
+            (error)=>{
+              this.toaster.error(error,"Error");
+            })
+        }
+        
+      }
 }

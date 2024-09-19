@@ -22,12 +22,13 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class MasterComponent implements OnInit {
 
   // Master Page Routing Variables
-  masterPageShow:boolean=true;
-  docterManagement:boolean=false;
-  reportManagement:boolean=false;
-  labManagement:boolean=false;
   // End Of Masters Routing Variables
-
+  masterPageObj:any={
+    masterPageShow:true,
+    docterManagement:false,
+    reportManagement:false,
+    labManagement:false
+  }
 
   // Report Managment Variables
 
@@ -148,6 +149,7 @@ export class MasterComponent implements OnInit {
 
   p:number=1;
 
+
   constructor( private toaster : ToastrService,
                   private sanitizer: DomSanitizer) { 
 
@@ -158,31 +160,31 @@ export class MasterComponent implements OnInit {
   }
 
   goToDocter(){
-    this.masterPageShow =false;
-    this.docterManagement = true;
-    this.labManagement = false;
-    this.reportManagement = false;
+    this.masterPageObj.masterPageShow =false;
+    this.masterPageObj.docterManagement = true;
+    this.masterPageObj.labManagement = false;
+    this.masterPageObj.reportManagement = false;
   }
 
   goToReport(){
-    this.masterPageShow =false;
-    this.reportManagement = true;
-    this.labManagement = false;
-    this.docterManagement = false;
+    this.masterPageObj.masterPageShow =false;
+    this.masterPageObj.reportManagement = true;
+    this.masterPageObj.labManagement = false;
+    this.masterPageObj.docterManagement = false;
   }
 
   goToLab(){
-    this.masterPageShow =false;
-    this.labManagement = true;
-    this.reportManagement = false;
-    this.docterManagement = false;
+    this.masterPageObj.masterPageShow =false;
+    this.masterPageObj.labManagement = true;
+    this.masterPageObj.reportManagement = false;
+    this.masterPageObj.docterManagement = false;
   }
 
   clickonBack(){
-    this.masterPageShow =true;
-    this.docterManagement = false;
-    this.reportManagement = false;
-    this.labManagement = false;
+    this.masterPageObj.masterPageShow =true;
+    this.masterPageObj.docterManagement = false;
+    this.masterPageObj.reportManagement = false;
+    this.masterPageObj.labManagement = false;
   }
 
 
@@ -744,6 +746,10 @@ export class MasterComponent implements OnInit {
     //   margin :22
       
     // })
+
+    //topBar
+    //image
+    
 
     //Box
     pdf.setFontSize(10.5);

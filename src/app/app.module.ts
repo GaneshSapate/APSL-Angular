@@ -9,12 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { HttpClientModule } from "@angular/common/http";
-import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
-import { PateintPageComponent } from './pateint-page/pateint-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HomePageComponent } from './home-page/home-page.component';
-import { MasterComponent } from './master/master.component';
-import { SettingComponent } from './setting/setting.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SafePipe } from './safe.pipe';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
