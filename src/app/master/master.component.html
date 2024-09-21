@@ -1,5 +1,5 @@
 <div *ngIf = "masterPageObj.masterPageShow">
-    <div class="row mx-2  " >
+    <div class="row mx-1 mx-md-4   " >
         <div class="card mt-2 py-2 header-card" style="border: none;">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold; color: rgb(80, 80, 80);"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Masters Maintenance  </h5>
@@ -7,7 +7,7 @@
             </div>
           </div>
     </div>
-    <div class="row mt-2 m-2 ">
+    <div class="row mt-2 mx-1 mx-md-4  ">
       
             <div class="card  option-card" >
                 <div class="card-body" (click) = "goToDocter()">
@@ -47,7 +47,7 @@
 <!-- Reports Management -->
 <div *ngIf = "masterPageObj.reportManagement">
 
-    <div class="row mx-2  ">
+    <div class="row mx-1 mx-md-4   ">
         <div class="card mt-2 py-2" style="border: none;">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: bold; color: rgb(82, 82, 82);">Reports Management </h5>
@@ -59,7 +59,7 @@
           </div>
     </div>
 
-    <div class="row mx-4 mt-4">
+    <div class="row mx-1 mx-md-4  mt-4">
         <div class="patientTableDiv pt-2 shadow-sm">
             <div class="row mx-2 py-2">
                 <div class="col-6">
@@ -566,10 +566,10 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header py-2">
-          <h5 class="modal-title" id="saveModalLabel">Save Changes</h5>
+          <h5 class="modal-title" id="saveModalLabel"> Alert </h5>
           <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#addTestModal"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ms-4">
          Do you want to save the all changes
         </div>
         <div class="modal-footer py-2">

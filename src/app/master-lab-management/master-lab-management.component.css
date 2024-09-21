@@ -1,13 +1,36 @@
-.labLogo{
+.labLogoBox{
     height: 25vh;
     width: 25vh;
-    background-color: rgb(217, 217, 217);
     border-radius: 4px;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+}
+.labLogo{
+    max-height: 25vh;
+    width: auto; 
 
 }
 .main-content{
     max-width: 40rem;
     border-radius: 6px;
     box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+}
+.form-group label{
+    font-size: 14px;
+}
+
+.labCard{
+    border: none;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+
+    h5{
+        font-size: 15px;
+    }
+    p{
+        font-size: 12px;
+    }
+}
+.labCard:hover{
+    cursor: pointer;
+    h5{
+        color: blue;
+    }
 }

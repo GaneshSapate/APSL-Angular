@@ -46,6 +46,11 @@ app-side-nav-bar{
     transition: width 150ms ease-in;
  
   }
+  .side-nav-open{
+    width: 54px;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
   .display-area{
     margin-top: 3.5rem;
     position: absolute;
@@ -53,6 +58,7 @@ app-side-nav-bar{
     left: 0px;
     right: 0px;
     transition: width 250ms ease-in,left 250ms ease-in;
+    padding: 0px;
   }
 }
 
