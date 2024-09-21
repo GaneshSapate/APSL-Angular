@@ -1,211 +1,218 @@
-
-<div class="row mx-2  ">
-    <div class="card mt-2 py-2 " style="border: none;">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold; color: rgb(78, 78, 78);">Lab Details Management </h5>
-          <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Lab name, address etc details</p>
-          <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" ><i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-          <a  class="btn btn-primary btn-sm ms-md-4 active" data-bs-toggle="modal" data-bs-target="#addLabModal">
-            <i class="fa-solid fa-plus"></i> Add Lab </a>
-        </div>
-      </div>
+<div class="row mx-2 mx-md-4 ">
+  <div class="card mt-2 py-2 " style="border: none;">
+    <div class="card-body">
+      <h5 class="card-title" style="font-weight: bold; color: rgb(78, 78, 78);">Lab Details Management </h5>
+      <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Lab name, address etc details</p>
+      <a class="btn btn-secondary btn-sm " (click)="clickonBack()"><i class="fa-regular fa-square-caret-left"></i> Go
+        Back</a>
+      <a class="btn btn-primary btn-sm ms-md-4 active" (click)="addlabModal()" data-bs-toggle="modal"
+        data-bs-target="#addLabModal">
+        <i class="fa-solid fa-plus"></i> Add Lab </a>
+    </div>
+  </div>
 </div>
 
 <div class="row m-2 m-md-4 ">
- 
-    <div class="card labCard" style="width: 18rem;" data-bs-toggle="modal" data-bs-target="#addLabModal">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
+
+  <div class="card labCard me-2 me-md-4" style="width: 16rem;">
+    <img src="../../assets/icon/APLS Logo.png" class="card-img-top p-2" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <a class="btn btn-secondary btn-sm " (click)="modifyLabModal()" data-bs-toggle="modal"
+        data-bs-target="#addLabModal"> Modify </a>
     </div>
-    
+  </div>
+
 </div>
 
 
 <!-- Add Lab Modal -->
-<div class="modal fade" id="addLabModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addLabModalLabel" aria-hidden="true">
+<div class="modal fade" id="addLabModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="addLabModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title ms-2" id="addLabModalLabel" >Add New Doctor</h5>
+        <h5 class="modal-title ms-2" id="addLabModalLabel">{{modalTitle}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <div class="container-sm">
-            <div class="row my-2 px-2">
-              <div class="form-group col-12 col-md-4">
-                  <label for="">Laboratory Name</label>
+        <div class="container-sm">
+          <form #f="ngForm" (ngSubmit)="submit(f)">
+          <div class="row my-2 px-2">
+            <div class="form-group col-12 col-md-4">
+              <label for="">Laboratory Name</label>
+            </div>
+            <div class="col-12 col-md-8">
+              <div class=" form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="text" class="form-control" minlength="3" [(ngModel)]="labObj.labName" name="labName" #labName="ngModel"
+                    placeholder="Enter Name" required>
+                </div>
               </div>
-              <div class="col-12 col-md-8">
-                  <div class=" form-group input-group-sm" >
-                      <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                           placeholder="Enter Name" required>
-                      </div>
-                  </div>
-              </div>
+            </div>
           </div>
-        
+
           <div class="row my-2 mt-4 px-2">
-                  <div class=" col-12 col-md-4">
-                      <div class=" form-group input-group-sm " >
-                        <label for="">Lab Logo </label>
-                      </div>
-                  </div>
-                  <div  class="col-12 col-md-8">
-                    <div class="input-group input-group-sm">  
-                      <input type="file" class="form-control" (change)= "picked($event)">
-                      <label class="input-group-text" (click)= "addPictures()" for="inputGroupFile02">Upload</label>
-                  </div>
-                  </div>
-                  
+            <div class=" col-12 col-md-4">
+              <div class=" form-group input-group-sm ">
+                <label for="">Lab Logo </label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="input-group input-group-sm">
+                <input type="file" class="form-control" (change)="picked($event)">
+                <label class="input-group-text" (click)="addPictures()" for="inputGroupFile02">Upload</label>
+              </div>
+            </div>
+
           </div>
           <div class="row my-2 mt-4 px-2 d-flex justify-content-center">
             <div class="labLogoBox d-flex justify-content-center">
-              <img class="labLogo p-1" src= "{{ labLogoString}}" alt="">
-            </div> 
+              <img class="labLogo p-1" src="{{ labLogoString}}" alt="">
+            </div>
           </div>
-        
+
           <div class="row my-4 mt-4 px-2">
-              <label for="">Address And Communication : </label>
-            </div>
-        
-            <div class="row my-2 px-2">
-        
-              <div class="col-12 col-md-4 ">
-                  <div class=" form-group input-group-sm " >
-                      <label for="">Country</label>
-                  </div>
-              </div>
-              <div class="col-12 col-md-8 ">
-                  <div class="form-group input-group input-group-sm">
-                    <select class="form-select" required >
-                        <option  value="" selected >Select Country</option>
-                        <option  value="IN">India</option>
-                    </select>
-                  </div>
-              </div>
-            </div>
-            <div class="row my-2 px-2">
-        
-              <div class="col-12 col-md-4 ">
-                <div class=" form-group input-group-sm " >
-                  <label for="">State </label> 
-                </div>
-              </div>
-              <div class="col-12 col-md-8 ">
-                <div class="form-group input-group input-group-sm">
-                  <select class="form-select" [(ngModel)]= "state" (ngModelChange)= "onSelectState()" required >
-                      <option  value="" selected >Select State</option>
-                      <option *ngFor= "let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
-                      
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row my-2 px-2">
-              
-              <div class="col-12 col-md-4 ">
-                  <div class=" form-group input-group-sm " >
-                      <label for="">District</label>
-                  </div>
-              </div>
-              <div class="col-12 col-md-8 ">
-                  <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]= "district" required>
-                        <option  value="" selected >Select District</option>
-                        <option *ngFor= "let dist of districtList" value="dist.discription">{{ dist.discription }}</option>
-                        
-                    </select>
-                  </div>
-              </div>
-            </div>
-            <div class="row my-2 px-2">
-              <div class="col-12 col-md-4  ">
-                <div class=" form-group input-group-sm " >
-                  <label for="">City / Village </label> 
-                </div>
-                
-              </div>
-              <div class="col-12 col-md-8 ">
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="text" class="form-control"   minlength="3"
-                  placeholder="Enter City / village name" required>
-                  </div>
-              </div>
-            </div>
-        
-            
-            <div class="row my-2 px-2">
-              
-              <div class="col-12 col-md-4 ">
-                  <div class=" form-group input-group-sm " >
-                      <label for="">Address Line</label>
-                  </div>
-              </div>
-              <div class="col-12 col-md-8 ">
-                  <div class="form-group input-group-sm"  >
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="text" class="form-control"   minlength="3"
-                        placeholder="Enter Address line" required>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            <div class="row my-2 px-2">
-              <div class="col-12 col-md-4 ">
-                <div class=" form-group input-group-sm " >
-                  <label for="">Pincode </label> 
-                </div>
-                
-              </div>
-              <div class="col-12 col-md-8">
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="number" class="form-control"   minlength="3"
-                  placeholder="Enter Pincode" required>
-                  </div>
-              </div>
-            </div>
-        
-            <div class="row my-2 px-2">
-              
-              <div class="col-12 col-md-4">
-                  <div class=" form-group input-group-sm " >
-                      <label for="">Mobile No</label>
-                  </div>
-              </div>
-              <div class="col-12 col-md-8">
-                  <div class="form-group input-group-sm"  >
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="number" class="form-control"   minlength="3"
-                        placeholder="Enter Mobile No" required>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            <div class="row my-2 px-2">
-              <div class="col-12 col-md-4  ">
-                <div class=" form-group input-group-sm " >
-                  <label for="">Email ID </label> 
-                </div>
-                
-              </div>
-              <div class="col-12 col-md-8">
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="email" class="form-control"   minlength="3"
-                  placeholder="Enter Email Address " required>
-                  </div>
-              </div>
-            </div>
-            
+            <label for="">Address And Communication : </label>
           </div>
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">Country</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="form-group input-group input-group-sm">
+                <select class="form-select" [(ngModel)]="labObj.country" required>
+                  <option value="" selected>Select Country</option>
+                  <option value="IN">India</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">State </label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="form-group input-group input-group-sm">
+                <select class="form-select" [(ngModel)]="labObj.state" (ngModelChange)="onSelectState()" required>
+                  <option value="" selected>Select State</option>
+                  <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">District</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="form-group input-group input-group-sm">
+                <select class="form-select" [(ngModel)]="labObj.district" required>
+                  <option value="" selected>Select District</option>
+                  <option *ngFor="let dist of districtList" value="dist.discription">{{ dist.discription }}</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2 px-2">
+            <div class="col-12 col-md-4  ">
+              <div class=" form-group input-group-sm ">
+                <label for="">City / Village </label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="3" [(ngModel)]="labObj.city_village"
+                  placeholder="Enter City / village name" required>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">Address Line</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="text" class="form-control" minlength="3" [(ngModel)]="labObj.addLine"
+                    placeholder="Enter Address line" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2 px-2">
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">Pincode </label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="number" class="form-control" minlength="3" [(ngModel)]="labObj.pincode"
+                  placeholder="Enter Pincode" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4">
+              <div class=" form-group input-group-sm ">
+                <label for="">Mobile No</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="number" class="form-control" minlength="3" [(ngModel)]="labObj.mobileNumber"
+                    placeholder="Enter Mobile No" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2 px-2">
+            <div class="col-12 col-md-4  ">
+              <div class=" form-group input-group-sm ">
+                <label for="">Email ID </label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="email" class="form-control" minlength="3" [(ngModel)]="labObj.emailId"
+                  placeholder="Enter Email Address " required>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success btn-sm">Save changes</button>
+        <button *ngIf="!modalModify" type="submit" class="btn btn-success btn-sm"  [disabled]="!f.valid" >Save changes</button>
+        <button *ngIf="modalModify" type="submit" class="btn btn-success btn-sm" [disabled]="!f.valid" > Modify </button>
       </div>
     </div>
   </div>

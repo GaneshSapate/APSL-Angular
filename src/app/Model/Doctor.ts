@@ -1,0 +1,23 @@
+export interface Doctor{
+    doctorId:number;
+    userId:number;
+    labId:number;
+    title:string;
+    firstName:string;
+    lastName:string;
+    gender:string;
+    country:string;
+    state:string;
+    district:string;
+    city_village:string;
+    addLine:string;
+    pincode:number;
+    mobile:number;
+    emailId:string;
+    hosptitalName:string;
+    remark:string;
+    addedBy:Number;
+    addedDate:Date;
+    modifiedDate:Date;
+    modifiedBy:number;
+}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MasterDataService } from '../master-data.service';
+import { LabObj } from '../Model/LabObj';
 
 @Component({
   selector: 'app-master-lab-management',
@@ -46,6 +47,11 @@ export class MasterLabManagementComponent implements OnInit {
   
    state:string="";
    district:string="";
+
+   modalTitle:String = "";
+   modalModify:boolean = false;
+
+   labObj=<LabObj>{};
 
   constructor(  private toaster : ToastrService,
                 private masterService: MasterDataService) { }
@@ -93,4 +99,19 @@ export class MasterLabManagementComponent implements OnInit {
     }
     
   }
+  addlabModal(){
+    this.modalTitle = "Add New Laboratory";
+    this.modalModify = false;
+  }
+  modifyLabModal(){
+    this.modalTitle = "Modify Laboratory";
+    this.modalModify = true;
+  }
+
+  submit(form:any){
+    if(!this.modalModify){
+      console.log("new Lab :"+form);
+    }
+  }
+
 }

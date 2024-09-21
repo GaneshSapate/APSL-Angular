@@ -29,7 +29,7 @@
     }
 }
 .labCard:hover{
-    cursor: pointer;
+    
     h5{
         color: blue;
     }
