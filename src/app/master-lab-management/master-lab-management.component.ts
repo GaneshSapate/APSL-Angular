@@ -107,6 +107,20 @@ export class MasterLabManagementComponent implements OnInit {
     this.modalTitle = "Modify Laboratory";
     this.modalModify = true;
   }
+  pincodeValidation(){
+    var num:string = ""+this.labObj.pincode;
+    if(num.length>6){
+      num=num.substring(0,6);
+      this.labObj.pincode = num;
+    }
+  }
+  mobileNumberValidation(){
+    var num:string = ""+this.labObj.mobileNumber;
+    if(num.length>10){
+      num=num.substring(0,10);
+      this.labObj.mobileNumber = num;
+    }
+  }
 
   submit(form:any){
     if(!this.modalModify){

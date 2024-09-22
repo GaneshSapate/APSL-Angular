@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UserServiceService } from '../user-service.service';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm,NgModel,ReactiveFormsModule } from '@angular/forms';
+import { LoginUserOBJ } from '../Model/LoginUserOBJ';
+import { LoginUserResp } from '../Model/LoginUserRes';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +14,7 @@ import { FormGroup, NgForm } from '@angular/forms';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  
+  loginUserOBJ=<LoginUserOBJ>{};
   incorrect:string = '';
   incorrectUser:string="";
   userName:string="";
@@ -79,7 +84,9 @@ export class LoginPageComponent implements OnInit {
   message:string="";
   
   constructor(private title:Title,
-                private service:UserServiceService) { }
+                private service:UserServiceService,
+                private toster:ToastrService,
+                private router:Router) { }
   
   ngOnDestroy(): void {
     document.body.className='';
@@ -90,7 +97,23 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin(f:NgForm){
-    
+    this.service.getUserLogin(this.loginUserOBJ).subscribe(
+      (r)=>{
+        var UserResp = <LoginUserResp>{};
+        UserResp = (<any>r);
+        console.log(UserResp);
+        sessionStorage.setItem("token",UserResp.token);
+        sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
+        sessionStorage.setItem("labId",UserResp.labId.toString());
+        sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
+        sessionStorage.setItem("userRole",UserResp.userRole);
+        this.router.navigate(["/login-board"]); 
+
+      },
+      (error)=>{
+        this.toster.error(error.message,"Error");
+      }
+    )
   }
 
   clickOnCancel(){

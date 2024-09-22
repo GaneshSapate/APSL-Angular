@@ -7,8 +7,8 @@ export interface LabObj{
     district:string;
     city_village:string;
     addLine:string;
-    pincode:number;
-    mobileNumber:number;
+    pincode:string;
+    mobileNumber:string;
     emailId:string;
     labLogo:string;
     addedDate:Date;

@@ -16,7 +16,7 @@ export class UserServiceService {
   }
 
   getUserLogin(obj:any){
-    return (this.userhttp.get(`${this.userurl}`+`/userLogin`,obj));
+    return (this.userhttp.post(`${this.userurl}`+`/userLogin`,obj));
   }
 
   sentEmailOTP(obj:any){
