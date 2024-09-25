@@ -14,16 +14,25 @@
 
 <div class="row m-2 m-md-4 ">
 
-  <div class="card labCard me-2 me-md-4" style="width: 16rem;">
-    <img src="../../assets/icon/APLS Logo.png" class="card-img-top p-2" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a class="btn btn-secondary btn-sm " (click)="modifyLabModal()" data-bs-toggle="modal"
-        data-bs-target="#addLabModal"> Modify </a>
+    <div class="card labCard me-2 me-md-4 my-2 px-1" style="width: 16rem;" *ngFor= "let lab of labList" >
+      <img src="{{lab.labLogoString}}" class="card-img-top px-4 pt-2" [ngClass]= "{'desable-css-image':!lab.labStatus}">
+      <div class="card-body" [ngClass]= "{'desable-css':!lab.labStatus}">
+        <h5 class="card-title my-2">{{lab.labName}}</h5>
+        <p class="card-text p-0 m-0">{{lab.addLine}}, {{lab.city_village}}, {{lab.district}}, {{lab.state}}, {{lab.pincode}}</p>
+        <p class="card-text p-0 m-0">Mob No : {{lab.mobileNumber}} </p>
+        <p class="card-text p-0 m-0">Email : {{lab.emailId}} </p>
+      </div>
+      <div class="card-footer px-0" style="border: none;">
+        <div class="d-grid gap-1 d-md-flex justify-content-md-end mx-0 px-0">
+          <button class="btn btn-danger btn-sm " ><i class="fa-solid fa-trash-can"></i></button>
+          <button class="btn btn-secondary btn-sm " (click)= "updateStatusModal(lab)" data-bs-toggle="modal"
+          data-bs-target="#statusModal" >Change Status</button>
+          <button class="btn btn-secondary btn-sm " (click)= "modifyLabModal(lab)" data-bs-toggle="modal"
+            data-bs-target="#addLabModal">Modify</button>
+        </div>
+      </div>
     </div>
-  </div>
+
 
 </div>
 
@@ -35,11 +44,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title ms-2" id="addLabModalLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" #closeLabModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="container-sm">
-          <form #f="ngForm" (ngSubmit)="submit(f)" class="row g-3 needs-validation" novalidate>
+          <form #f="ngForm" (ngSubmit)="submit(f)">
           <div class="row my-2 px-2">
             <div class="form-group col-12 col-md-4">
               <label for="">Laboratory Name *</label>
@@ -69,7 +78,7 @@
           </div>
           <div class="row my-2 mt-4 px-2 d-flex justify-content-center">
             <div class="labLogoBox d-flex justify-content-center">
-              <img class="labLogo p-1" src="{{ labLogoString}}" alt="">
+              <img class="labLogo p-1" src="{{ labLogoString}}" >
             </div>
           </div>
 
@@ -125,7 +134,7 @@
                 <select class="form-select" [(ngModel)]="labObj.district" name="district" #district="ngModel"
                 [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }" required>
                   <option value="" selected>Select District</option>
-                  <option *ngFor="let dist of districtList" value="dist.discription">{{ dist.discription }}</option>
+                  <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}</option>
 
                 </select>
               </div>
@@ -218,8 +227,55 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button *ngIf="!modalModify" type="submit" class="btn btn-success btn-sm" [disabled]="!f.valid"   >Save changes</button>
-        <button *ngIf="modalModify" type="submit" class="btn btn-success btn-sm" [disabled]="!f.valid" > Modify </button>
+        <button *ngIf="!modalModify" type="submit" class="btn btn-success btn-sm" (click)= "addLab()" [disabled]="!f.valid"   >Save changes</button>
+        <button *ngIf="modalModify" type="submit" class="btn btn-success btn-sm" (click)= "modifyLab()" [disabled]="!f.valid" > Modify </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Lab status modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="statusModalLabel"> Change Status </h5>
+        <button type="button" #closeStatusModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <div class="row my-2 px-2">
+              <div class="col-12 col-md-4 ">
+                <p>Laboratory Name </p>
+              </div>
+              <div class="col-12 col-md-8 ">
+                <p>{{labObj.labName}}</p>
+              </div>
+            </div>
+
+          
+          <form #statusForm="ngForm" >
+          <div class="row my-2 px-2">
+            <div class="col-12 col-md-4 ">
+              <div class=" form-group input-group-sm ">
+                <label for="">Lab Status *</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 ">
+              <div class="form-group input-group input-group-sm">
+                <select class="form-select" [(ngModel)]="labObj.labStatus" name="labStatus"  required>
+                  <option value="" selected>Select status</option>
+                  <option  value="{{!booleanValue}}"> Active </option>
+                  <option  value="{{booleanValue}}"> Inactive </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer py-2">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" [disabled]= "!statusForm.valid" (click)= "changeStatus()">Save changes</button>
       </div>
     </div>
   </div>

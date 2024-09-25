@@ -34,3 +34,9 @@
         color: blue;
     }
 }
+.desable-css{
+    color: rgb(144, 144, 144);
+}
+.desable-css-image{
+    opacity: 0.5;
+}

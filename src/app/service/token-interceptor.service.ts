@@ -12,10 +12,10 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     let t = sessionStorage.getItem("token");
-    console.log(t);
     let jwttoken = req.clone({
       setHeaders:{
-        Authorization : "Bearer "+t
+        Authorization : "Bearer "+t,
+        "Access-Control-Allow-Origin" : 'http://localhost:4200/'
       }
     })
     return next.handle(jwttoken);

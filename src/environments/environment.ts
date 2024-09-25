@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   userurl:"http://localhost:8080/user",
+  laburl:"http://localhost:8080/lab",
   masterDataUrl:"http://localhost:8080/masterdata"
 };
 /*

@@ -3,6 +3,7 @@ import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService, ToastPackage } from 'ngx-toastr';
 import { MasterDataService } from '../master-data.service';
+import { ErrorObj } from '../Model/ErrorObj';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -62,7 +63,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
  state:string="";
  district:string="";
 
-
+ error=<ErrorObj>{};
   constructor( @Inject(DOCUMENT) private document: any,
                   private router: Router,
                   private toaster : ToastrService,
@@ -73,8 +74,9 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.elem = document.documentElement;
     this.masterService.getAllState().subscribe( (r) => {
         this.stateList = <any> r;
-      }, error =>{
-        this.toaster.error(error, "Error");
+      }, (e) =>{
+        this.error=e;
+        this.toaster.error(this.error.message, "Error");
       });
   }
 
@@ -212,8 +214,9 @@ export class BillingDashboardNavbarComponent implements OnInit {
             (result)=>{
               this.districtList = <any> result;
           },
-            (error)=>{
-              this.toaster.error(error,"Error");
+            (e)=>{
+              this.error=e;
+              this.toaster.error(this.error.message,"Error");
             })
         }
         

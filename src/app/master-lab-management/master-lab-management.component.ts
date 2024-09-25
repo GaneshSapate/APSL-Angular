@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MasterDataService } from '../master-data.service';
 import { LabObj } from '../Model/LabObj';
+import { LabServiceService } from '../service/lab-service.service';
+import { ErrorObj} from '../Model/ErrorObj'
 
 @Component({
   selector: 'app-master-lab-management',
@@ -51,12 +53,23 @@ export class MasterLabManagementComponent implements OnInit {
    modalTitle:String = "";
    modalModify:boolean = false;
 
+   @ViewChild('closeLabModal') closeLabModal:any;
+
    labObj=<LabObj>{};
+   errorObj=<ErrorObj>{};
+   labList=[<LabObj>{}];
+
+   //change status variable
+   booleanValue:boolean=false;
+   @ViewChild('closeStatusModal') closeStatusModal:any;
 
   constructor(  private toaster : ToastrService,
-                private masterService: MasterDataService) { }
+                private masterService: MasterDataService,
+                private labService: LabServiceService) { }
 
   ngOnInit(): void {
+    this.getAllLabs();
+    this.fetchStateList();
   }
 
   
@@ -67,7 +80,17 @@ export class MasterLabManagementComponent implements OnInit {
     this.masterPageObj.labManagement = false;
     this.masterPageObjEmmitter.emit(this.masterPageObj);
   }
-
+  getAllLabs(){
+    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.labService.getLabsByUserId(userId).subscribe(
+      (r)=>{
+        this.labList=<any>r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
 
   public picked(evt:any){
     var files = evt.target.files;
@@ -87,25 +110,54 @@ export class MasterLabManagementComponent implements OnInit {
     this.labLogoString  =atob(this.Base64Url);
   }
 
+  fetchStateList(){
+    this.masterService.getAllState().subscribe(
+      (r)=>{
+        this.stateList = <any>r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+
   onSelectState() {
-    if(this.state ){
-      this.masterService.getDistrictByStateCode(this.state).subscribe(
+    if(this.labObj.state ){
+      this.masterService.getDistrictByStateCode(this.labObj.state).subscribe(
         (result)=>{
           this.districtList = <any> result;
       },
-        (error)=>{
-          this.toaster.error(error,"Error");
+        (e)=>{
+          this.errorObj=<any>e;
+          this.toaster.error(this.errorObj.message,"Error");
         })
     }
     
   }
   addlabModal(){
+    this.labObj=<LabObj>{};
     this.modalTitle = "Add New Laboratory";
     this.modalModify = false;
+    this.Base64Url="";
+    this.labLogoString="";
   }
-  modifyLabModal(){
+  modifyLabModal(lab:any){
+    this.Base64Url="";
+    this.labLogoString="";
     this.modalTitle = "Modify Laboratory";
     this.modalModify = true;
+
+    this.labService.getLabsById(lab.labId).subscribe(
+      (r)=>{
+        this.labObj=<any>r;
+        this.onSelectState();
+        this.labLogoString=this.labObj.labLogoString;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+
   }
   pincodeValidation(){
     var num:string = ""+this.labObj.pincode;
@@ -122,10 +174,76 @@ export class MasterLabManagementComponent implements OnInit {
     }
   }
 
-  submit(form:any){
-    if(!this.modalModify){
-      console.log("new Lab :"+form);
+  submit(form:any){}
+
+  addLab(){
+    
+    this.labObj.userId= <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.labObj.mobileNumber=this.labObj.mobileNumber.toString();
+    this.labObj.pincode=this.labObj.pincode.toString();
+    this.labObj.labLogoString=this.labLogoString;
+    this.labObj.labStatus=true;
+    console.log(this.labObj);
+    this.labService.addLab(this.labObj).subscribe(
+      (r)=>{
+        let labId = <any>r;
+        this.toaster.success("Laboratory Added Successfully, LabId : "+labId);
+        this.closeLabModal.nativeElement.click();
+        this.getAllLabs();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    );
+  }
+
+  updateStatusModal(lab:any){
+    this.labService.getLabsById(lab.labId).subscribe(
+      (r)=>{
+        this.labObj=<any>r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+  changeStatus(){
+    this.labService.changeStatus(this.labObj.labId,this.labObj.labStatus).subscribe(
+      (r)=>{
+        this.errorObj=<any>r;
+        this.toaster.success(this.errorObj.message,"Success");
+        this.closeStatusModal.nativeElement.click();
+        this.getAllLabs();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+
+  modifyLab(){
+
+    //this.labObj.userId= <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.labObj.mobileNumber=this.labObj.mobileNumber.toString();
+    this.labObj.pincode=this.labObj.pincode.toString();
+    if(this.Base64Url!=""){
+      this.labObj.labLogoString=this.labLogoString;
     }
+    console.log(this.labObj);
+    this.labService.updateLab(this.labObj.labId,this.labObj).subscribe(
+      (r)=>{
+        let lab = <LabObj>{};
+        lab = <any>r;
+        this.toaster.success("Laboratory Updated Successfully, LabId : "+lab.labId);
+        this.closeLabModal.nativeElement.click();
+        this.getAllLabs();
+        this.labObj=<LabObj>{};
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    );
+
   }
 
 }

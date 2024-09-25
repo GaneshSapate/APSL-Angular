@@ -10,8 +10,9 @@ export interface LabObj{
     pincode:string;
     mobileNumber:string;
     emailId:string;
-    labLogo:string;
+    labLogoString:string;
     addedDate:Date;
     modifiedDate:Date;
-    modifiedBy:number;
+    modifiedUserID:number;
+    labStatus:boolean
 }
