@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgChartsConfiguration } from 'ng2-charts';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-billing-dashboard',
