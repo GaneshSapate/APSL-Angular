@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TestMasterObj } from '../../Model/TestMasterObj';
 import { TestTableData } from 'src/app/Model/TestTableData';
 import { SubFieldData } from 'src/app/Model/SubFieldData';
+import { TestService } from 'src/app/service/test.service';
+import { ErrorObj } from 'src/app/Model/ErrorObj';
 
 @Component({
   selector: 'app-test-master',
@@ -33,16 +35,16 @@ export class TestMasterComponent implements OnInit {
   testTableData= <TestTableData>{};
   subFieldData=<SubFieldData>{};
   
-  //test details variabls
-  department:string="";
-  test_name:string="";
-  test_gender:string="";
-  test_code:string="";
-  test_cost:string="";
-  sample_type:string="";
-  test_remark:string="";
-  test_type:string="";
 
+  //Test Modal name variables
+  modalTitle="";
+  ModalButtonName="";
+  addmodal:boolean=false;
+  modifyModal:boolean=false;
+
+  //proceedModalPopup
+  proceedModalMessage:string="";
+  proceedModalButton:string="";
   //text editor variable
   textContent:string="";
 
@@ -53,11 +55,11 @@ export class TestMasterComponent implements OnInit {
   field_name:string="";
   data_type:string="numeric";
   unit:string="";
-  range:string="";
+  range_from:string="";
   range_to:string="";
   opertaion:string="";
   operation_value:string="";
-  apply_formula:string="N";
+  apply_formula:boolean=false;
   formula:string="";
 
   selected_options:any=[];
@@ -75,21 +77,8 @@ export class TestMasterComponent implements OnInit {
 
   subfieldTableFlag:boolean=false;
   subFieldTitleIdex:number=-1
-  sub_fiels_list:any=[];
+  subFieldDataList:any=[];
   subFieldSelected:number=-1;
-
-  testObj:any={
-    department:"",
-    test_name:"",
-    test_gender:"",
-    test_code:"",
-    test_cost:"",
-    sample_type:"",
-    test_type:"",
-    test_remark:""
-  }
-
-  testContentList:any=[];
 
   @ViewChild('pdfContent',{static:false}) el!:ElementRef;
 
@@ -130,33 +119,41 @@ export class TestMasterComponent implements OnInit {
     ]
 };
 
- // End Of Report Managment Variables
-
-
-
-
  //  Patient Management Variables
- patientList=[
-  {
-    patientId:1,
-    patientName:"Ganesh Sapate",
-    gender:"M",
-    mobileNo:"9096916759",
-    addedDate:new Date().toLocaleString(),
-  }
-];
+testMasterList=[<TestMasterObj>{}];
 
 number1:number = 5420;
 number2:number = 5.56;
 
 p:number=1;
 
+errorObj=<ErrorObj>{};
+
+@ViewChild('saveModal') saveModal:any;
+
+//delete test variables
+deleteTestId:number=0;
+@ViewChild('OptionModal') OptionModal:any;
+
   constructor(private toaster : ToastrService,
-    private sanitizer: DomSanitizer) { 
+              private sanitizer: DomSanitizer,
+              private testService:TestService) { 
       this.pdfurl=sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
     }
 
   ngOnInit(): void {
+    this.loadAlltest();
+  }
+  loadAlltest(){
+    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.testService.getTestListById(userId).subscribe(
+      (r)=>{
+        this.testMasterList=<any>r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
   }
 
   clickonBack(){
@@ -167,6 +164,37 @@ p:number=1;
     this.masterPageObjEmmitter.emit(this.masterPageObj);
   }
 
+  addNewTestModal(){
+    this.addmodal=true;
+    this.modifyModal=false;
+    this.modalTitle="Add New Test"
+    this.ModalButtonName="Proceed";
+    this.testMaster=<TestMasterObj>{};
+    this.testMaster.department="";
+    this.testMaster.testType="";
+    this.testMaster.testGender="";
+    this.testMaster.testGender="";
+    this.testMaster.sampleType="";
+    this.testMaster.testTableDataDTOList=[];
+    this.resetContentField();
+    this.subfieldTableFlag=false;
+    this.subFieldTitleIdex=-1
+    this.subFieldDataList=[];
+    this.subFieldSelected=-1;
+    this.selected_options=[];
+    this.title_field_list=[];
+    this.field_name_list=[];
+    this.allTestList=[];
+  }
+
+  onProceedClick(){
+    if(this.addmodal){
+      this.proceedModalMessage="Do you want to add a New Test";
+    }
+    if(this.modifyModal){
+      this.proceedModalMessage="Do you want to save the all changes";
+    }
+  }
 
   
   // Add new reports methods start
@@ -188,34 +216,18 @@ p:number=1;
 
   addRowInTestTable(){
 
-    let testContentObj={
-      test_code:"",
-      sr_no:0,
-      field_type:"",
-      field_name:"",
-      sub_field:"",
-      data_type:"",
-      unit:"",
-      range:"",
-      range_to:"",
-      opertaion:"",
-      operation_value:"",
-      selected_options:[],
-      apply_formula:"",
-      formula:"",
-      sub_fiels_list:[]
-    }
+    let testContentObj=<TestTableData>{}
     if(this.field_type == 'Single Field'){
 
-      if(this.field_name!="" && this.data_type!="" ){
+      if(this.field_name && this.data_type ){
         var b=false;
         testContentObj.field_name=this.field_name;
-        this.testContentList.forEach(function (value:any) {
+        this.testMaster.testTableDataDTOList.forEach(function (value:any) {
             if(value.field_name == testContentObj.field_name || value.sub_field == testContentObj.field_name){
               b=true;
             }
-            if(value.data_type==""){
-              value.sub_fiels_list.forEach(function (subVanlue:any){
+            if(!value.data_type){
+              value.subFieldDataList.forEach(function (subVanlue:any){
                 if( subVanlue.field_name == testContentObj.field_name || subVanlue.sub_field == testContentObj.field_name){
                   b=true;
                 }
@@ -227,13 +239,12 @@ p:number=1;
             this.toaster.warning("Field Name should not be same with other Field name or Sub-field name!");
           }
           else{
-            testContentObj.test_code=this.test_code;
             testContentObj.field_type=this.field_type;
             testContentObj.data_type=this.data_type;
     
             if(this.data_type == 'numeric'){
               testContentObj.unit=this.unit;
-              testContentObj.range=this.range;
+              testContentObj.range_from=this.range_from;
               testContentObj.range_to=this.range_to;
             }
             if(this.data_type == 'numeric unbound'){
@@ -245,17 +256,17 @@ p:number=1;
               testContentObj.unit=this.unit;
               testContentObj.selected_options=this.selected_options;
               testContentObj.unit=this.unit;
-              testContentObj.range=this.range;
+              testContentObj.range_from=this.range_from;
             }
             if(this.data_type == 'text' || this.data_type =="multiple ranges"){
               testContentObj.unit=this.unit;
-              testContentObj.range=this.range;
+              testContentObj.range_from=this.range_from;
             }
     
             testContentObj.apply_formula=this.apply_formula;
             testContentObj.formula=this.formula;
             
-            this.testContentList.push(testContentObj);
+            this.testMaster.testTableDataDTOList.push(testContentObj);
             if(this.data_type == 'numeric'){
               this.field_name_list.push(this.field_name);
             }
@@ -273,18 +284,18 @@ p:number=1;
 
     if(this.field_type == 'Title Field'){
 
-      if(this.title_field!="" ){
+      if(this.title_field ){
         var b=false;
-        testContentObj.test_code=this.test_code;
         testContentObj.field_type=this.field_type;
         testContentObj.field_name=this.title_field;
+        testContentObj.subFieldDataList=[];
 
-        this.testContentList.forEach(function (value:any) {
+        this.testMaster.testTableDataDTOList.forEach(function (value:any) {
           if( value.field_name == testContentObj.field_name || value.sub_field == testContentObj.field_name){
             b=true;
           }
-          if(value.data_type==""){
-            value.sub_fiels_list.forEach(function (subVanlue:any){
+          if(!value.data_type){
+            value.subFieldDataList.forEach(function (subVanlue:any){
               if( subVanlue.field_name == testContentObj.field_name || subVanlue.sub_field == testContentObj.field_name){
                 b=true;
               }
@@ -295,7 +306,7 @@ p:number=1;
         if(b){
           this.toaster.warning("Title Name should not be same with other Field name or Sub-field name!");
         }else{
-          this.testContentList.push(testContentObj);
+          this.testMaster.testTableDataDTOList.push(testContentObj);
           this.title_field_list.push(this.title_field);
           this.toaster.success("Title Added Successfully");
           this.resetContentField();
@@ -308,17 +319,17 @@ p:number=1;
 
     if(this.field_type == 'Sub Field'){
 
-      if(this.field_name!="" && this.data_type!="" && this.title_field_of_subfield != ""){
+      if(this.field_name && this.data_type && this.title_field_of_subfield){
 
         var b=false;
         testContentObj.field_name=this.title_field_of_subfield;
         testContentObj.sub_field=this.field_name;
-        this.testContentList.forEach(function (value:any) {
+        this.testMaster.testTableDataDTOList.forEach(function (value:any) {
             if( value.field_name == testContentObj.sub_field || value.sub_field == testContentObj.sub_field){
               b=true;
             }
-            if(value.data_type==""){
-              value.sub_fiels_list.forEach(function (subVanlue:any){
+            if(!value.data_type){
+              value.subFieldDataList.forEach(function (subVanlue:any){
                 if( subVanlue.sub_field == testContentObj.field_name){
                   b=true;
                 }
@@ -329,14 +340,12 @@ p:number=1;
           if(b){
             this.toaster.warning("Sub-Field Name should not be same with other Field name or Sub-field name!");
           }else{
- 
-              testContentObj.test_code=this.test_code;
               testContentObj.field_type=this.field_type;
               testContentObj.data_type=this.data_type;
       
               if(this.data_type == 'numeric'){
                 testContentObj.unit=this.unit;
-                testContentObj.range=this.range;
+                testContentObj.range_from=this.range_from;
                 testContentObj.range_to=this.range_to;
               }
               if(this.data_type == 'numeric unbound'){
@@ -348,23 +357,23 @@ p:number=1;
                 testContentObj.unit=this.unit;
                 testContentObj.selected_options=this.selected_options;
                 testContentObj.unit=this.unit;
-                testContentObj.range=this.range;
+                testContentObj.range_from=this.range_from;
               }
               if(this.data_type == 'text' || this.data_type =="multiple ranges"){
                 testContentObj.unit=this.unit;
-                testContentObj.range=this.range;
+                testContentObj.range_from=this.range_from;
               }
       
               testContentObj.apply_formula=this.apply_formula;
               testContentObj.formula=this.formula;
               
-              for(var i=0; i<this.testContentList.length;i++){
-                if(this.testContentList[i].field_name == this.title_field_of_subfield){
-                  this.testContentList[i].sub_fiels_list.push(testContentObj);
+              for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+                if(this.testMaster.testTableDataDTOList[i].field_name == this.title_field_of_subfield){
+                  this.testMaster.testTableDataDTOList[i].subFieldDataList.push(testContentObj);
                 }
               }
 
-              // this.testContentList.push(testContentObj);
+              // this.testMaster.testTableDataDTOList.push(testContentObj);
               if(this.data_type == 'numeric'){
                 this.field_name_list.push(this.field_name);
               }
@@ -386,11 +395,11 @@ p:number=1;
     this.field_name="";
     this.data_type="numeric";
     this.unit="";
-    this.range="";
+    this.range_from="";
     this.range_to="";
     this.opertaion="";
     this.operation_value="";
-    this.apply_formula="N";
+    this.apply_formula=false;
     this.formula="";
 
     this.modifyRow=false;
@@ -401,20 +410,20 @@ p:number=1;
 
   removeFormtestContentList(i:number,item:any){
     var b=false;
-    if(item.field_name != "" && item.data_type==""){
+    if(item.field_name  && !item.data_type){
        
-        if(this.testContentList[i].sub_fiels_list.length >0){
+        if(this.testMaster.testTableDataDTOList[i].subFieldDataList.length >0){
           this.toaster.warning("Title Field is assign to below the another field!");
         }else{
-          const index=this.title_field_list.indexOf(item.field_name,0);
+          const index=this.subFieldDataList.indexOf(item.field_name,0);
           if(index >-1){
-            this.title_field_list.splice(index,1);
+            this.subFieldDataList.splice(index,1);
           }
           const index1=this.field_name_list.indexOf(item.field_name,0);
           if(index1 >-1){
             this.field_name_list.splice(index1,1);
           }
-          this.testContentList.splice(i,1);
+          this.testMaster.testTableDataDTOList.splice(i,1);
 
           if(this.indexForModify == i){
             this.resetContentField();
@@ -430,7 +439,7 @@ p:number=1;
           if(index1 >-1){
             this.field_name_list.splice(index1,1);
           }
-      this.testContentList.splice(i,1);
+      this.testMaster.testTableDataDTOList.splice(i,1);
 
       if(this.indexForModify == i){
         this.resetContentField();
@@ -445,7 +454,7 @@ p:number=1;
           if(index1 >-1){
             this.field_name_list.splice(index1,1);
           }
-          this.testContentList[this.subFieldTitleIdex].sub_fiels_list.splice(i,1);
+          this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList.splice(i,1);
           this.toaster.success("Row remove successfully");
   }
 
@@ -458,29 +467,12 @@ p:number=1;
     }else{
       this.modifyRow=true;
       this.indexForModify=i;
-      let testContentObj={
-        test_code:"",
-        sr_no:0,
-        field_type:"",
-        field_name:"",
-        sub_field:"",
-        data_type:"",
-        unit:"",
-        range:"",
-        range_to:"",
-        opertaion:"",
-        operation_value:"",
-        selected_options:[],
-        apply_formula:"",
-        formula:"",
-        sub_fiels_list:[]
-      }
+      let testContentObj=<TestTableData>{}
       testContentObj= item;
-      this.test_code=testContentObj.test_code;
       this.field_type=testContentObj.field_type;
-      if(testContentObj.data_type == ""){
+      if(!testContentObj.data_type){
         this.title_field=testContentObj.field_name;
-      }else if(testContentObj.sub_field!="" ){
+      }else if(testContentObj.sub_field ){
         this.title_field_of_subfield=testContentObj.field_name;
         this.field_name=testContentObj.sub_field;
       }else{
@@ -488,7 +480,7 @@ p:number=1;
       }
       this.data_type=testContentObj.data_type;
       this.unit=testContentObj.unit;
-      this.range=testContentObj.range;
+      this.range_from=testContentObj.range_from;
       this.range_to=testContentObj.range_to;
       this.opertaion=testContentObj.opertaion;
       this.operation_value=this.operation_value;
@@ -507,29 +499,12 @@ p:number=1;
       this.resetContentField();
     }else{
       this.modifyRow=true;
-      let testContentObj={
-        test_code:"",
-        sr_no:0,
-        field_type:"",
-        field_name:"",
-        sub_field:"",
-        data_type:"",
-        unit:"",
-        range:"",
-        range_to:"",
-        opertaion:"",
-        operation_value:"",
-        selected_options:[],
-        apply_formula:"",
-        formula:"",
-        sub_fiels_list:[]
-      }
+      let testContentObj=<TestTableData>{}
       testContentObj= item;
-      this.test_code=testContentObj.test_code;
       this.field_type=testContentObj.field_type;
-      if(testContentObj.data_type == ""){
+      if(!testContentObj.data_type){
         this.title_field=testContentObj.field_name;
-      }else if(testContentObj.sub_field!="" ){
+      }else if(testContentObj.sub_field ){
         this.title_field_of_subfield=testContentObj.field_name;
         this.field_name=testContentObj.sub_field;
       }else{
@@ -537,7 +512,7 @@ p:number=1;
       }
       this.data_type=testContentObj.data_type;
       this.unit=testContentObj.unit;
-      this.range=testContentObj.range;
+      this.range_from=testContentObj.range_from;
       this.range_to=testContentObj.range_to;
       this.opertaion=testContentObj.opertaion;
       this.operation_value=this.operation_value;
@@ -550,20 +525,20 @@ p:number=1;
 
   modifyRowInTestTable(){
     // if(this.indexForModify!=-1){
-    //   this.testContentList[this.indexForModify].field_type=this.field_type;
+    //   this.testMaster.testTableDataDTOList[this.indexForModify].field_type=this.field_type;
     // }else{
-    //   this.testContentList[this.subFieldTitleIdex][this.subFieldSelected].field_type=this.field_type;
+    //   this.testMaster.testTableDataDTOList[this.subFieldTitleIdex][this.subFieldSelected].field_type=this.field_type;
     // }
     
     if(this.field_type == "Title Field"){
       var b=false;
-      for(var i=0; i<this.testContentList.length;i++){
-        if(i!=this.indexForModify && (this.testContentList[i].field_name == this.title_field || this.testContentList[i].sub_field ==this.title_field)){
+      for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+        if(i!=this.indexForModify && (this.testMaster.testTableDataDTOList[i].field_name == this.title_field || this.testMaster.testTableDataDTOList[i].sub_field ==this.title_field)){
           b=true;
-        }if(this.testContentList[i].data_type==""){
-          var sub_fiels_list= this.testContentList[i].sub_fiels_list;
-          for(var j=0; j<sub_fiels_list.length;j++){
-            if(sub_fiels_list[j].sub_field ==this.title_field){
+        }if(this.testMaster.testTableDataDTOList[i].data_type==""){
+          var subFieldDataList= this.testMaster.testTableDataDTOList[i].subFieldDataList;
+          for(var j=0; j<subFieldDataList.length;j++){
+            if(subFieldDataList[j].sub_field ==this.title_field){
               b=true;
             }
           }
@@ -572,16 +547,16 @@ p:number=1;
       if(b){
         this.toaster.warning("Title Name should not be same with other Field name or Sub-field name!");
       }else{
-        var existingTitle= this.testContentList[this.indexForModify].field_name;
-        this.testContentList[this.indexForModify].field_name=this.title_field;
-        for(var i=0; i<this.testContentList.length;i++){
-          if(this.testContentList[i].field_name == existingTitle && this.testContentList[i].sub_field !=""){
-            this.testContentList[i].field_name=this.title_field;
+        var existingTitle= this.testMaster.testTableDataDTOList[this.indexForModify].field_name;
+        this.testMaster.testTableDataDTOList[this.indexForModify].field_name=this.title_field;
+        for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+          if(this.testMaster.testTableDataDTOList[i].field_name == existingTitle && this.testMaster.testTableDataDTOList[i].sub_field !=""){
+            this.testMaster.testTableDataDTOList[i].field_name=this.title_field;
           }
         }
-        var sub_fiels_list = this.testContentList[this.indexForModify].sub_fiels_list;
-        for(var j=0; j<sub_fiels_list.length;j++){
-          sub_fiels_list[j].field_name = this.title_field;
+        var subFieldDataList = this.testMaster.testTableDataDTOList[this.indexForModify].subFieldDataList;
+        for(var j=0; j<subFieldDataList.length;j++){
+          subFieldDataList[j].field_name = this.title_field;
         }
         this.title_field_list[this.title_field_list.indexOf(existingTitle)]=this.title_field;
         this.toaster.success("Row Modified successfully");
@@ -591,13 +566,13 @@ p:number=1;
     else if(this.field_type == "Sub Field"){
       
       var b=false;
-      for(var i=0; i<this.testContentList.length;i++){
-        if(this.testContentList[i].field_name == this.field_name || this.testContentList[i].sub_field ==this.field_name){
+      for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+        if(this.testMaster.testTableDataDTOList[i].field_name == this.field_name || this.testMaster.testTableDataDTOList[i].sub_field ==this.field_name){
           b=true;
-        }if(this.testContentList[i].data_type==""){
-          var sub_fiels_list= this.testContentList[i].sub_fiels_list;
-          for(var j=0; j<sub_fiels_list.length;j++){
-            if(sub_fiels_list[j].sub_field ==this.field_name && !(sub_fiels_list[j].field_name == this.title_field_of_subfield && j==this.subFieldSelected)){
+        }if(this.testMaster.testTableDataDTOList[i].data_type==""){
+          var subFieldDataList= this.testMaster.testTableDataDTOList[i].subFieldDataList;
+          for(var j=0; j<subFieldDataList.length;j++){
+            if(subFieldDataList[j].sub_field ==this.field_name && !(subFieldDataList[j].field_name == this.title_field_of_subfield && j==this.subFieldSelected)){
               b=true;
             }
           }
@@ -607,18 +582,18 @@ p:number=1;
         this.toaster.warning("Sub-Field Name should not be same with other Field name or Sub-field name!");
       }else{
       
-        var existingSubField= this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].sub_field;
+        var existingSubField= this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].sub_field;
 
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].sub_field=this.field_name;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].data_type=this.data_type;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].unit=this.unit;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].range=this.range;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].range_to=this.range_to;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].opertaion=this.opertaion;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].operation_value=this.operation_value;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].selected_options=this.selected_options;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].apply_formula=this.apply_formula;
-        this.testContentList[this.subFieldTitleIdex].sub_fiels_list[this.subFieldSelected].formula=this.formula;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].sub_field=this.field_name;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].data_type=this.data_type;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].unit=this.unit;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].range_from=this.range_from;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].range_to=this.range_to;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].opertaion=this.opertaion;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].operation_value=this.operation_value;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].selected_options=this.selected_options;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].apply_formula=this.apply_formula;
+        this.testMaster.testTableDataDTOList[this.subFieldTitleIdex].subFieldDataList[this.subFieldSelected].formula=this.formula;
 
         this.field_name_list[this.field_name_list.indexOf(existingSubField)]=this.field_name;
 
@@ -629,13 +604,13 @@ p:number=1;
     else if(this.field_type == "Single Field"){
       //title modify or not is pending
       var b=false;
-      for(var i=0; i<this.testContentList.length;i++){
-        if(i!=this.indexForModify && (this.testContentList[i].field_name == this.field_name || this.testContentList[i].sub_field ==this.field_name)){
+      for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+        if(i!=this.indexForModify && (this.testMaster.testTableDataDTOList[i].field_name == this.field_name || this.testMaster.testTableDataDTOList[i].sub_field ==this.field_name)){
           b=true;
-        }if(this.testContentList[i].data_type==""){
-          var sub_fiels_list= this.testContentList[i].sub_fiels_list;
-          for(var j=0; j<sub_fiels_list.length;j++){
-            if(sub_fiels_list[j].field_name == this.title_field || sub_fiels_list[j].sub_field ==this.title_field){
+        }if(this.testMaster.testTableDataDTOList[i].data_type==""){
+          var subFieldDataList= this.testMaster.testTableDataDTOList[i].subFieldDataList;
+          for(var j=0; j<subFieldDataList.length;j++){
+            if(subFieldDataList[j].field_name == this.title_field || subFieldDataList[j].sub_field ==this.title_field){
               b=true;
             }
           }
@@ -644,18 +619,18 @@ p:number=1;
       if(b){
         this.toaster.warning("Field Name should not be same with other Field name or Sub-field name!");
       }else{
-        var existingField= this.testContentList[this.indexForModify].field_name;
+        var existingField= this.testMaster.testTableDataDTOList[this.indexForModify].field_name;
 
-        this.testContentList[this.indexForModify].field_name=this.field_name;
-        this.testContentList[this.indexForModify].data_type=this.data_type;
-        this.testContentList[this.indexForModify].unit=this.unit;
-        this.testContentList[this.indexForModify].range=this.range;
-        this.testContentList[this.indexForModify].range_to=this.range_to;
-        this.testContentList[this.indexForModify].opertaion=this.opertaion;
-        this.testContentList[this.indexForModify].operation_value=this.operation_value;
-        this.testContentList[this.indexForModify].selected_options=this.selected_options;
-        this.testContentList[this.indexForModify].apply_formula=this.apply_formula;
-        this.testContentList[this.indexForModify].formula=this.formula;
+        this.testMaster.testTableDataDTOList[this.indexForModify].field_name=this.field_name;
+        this.testMaster.testTableDataDTOList[this.indexForModify].data_type=this.data_type;
+        this.testMaster.testTableDataDTOList[this.indexForModify].unit=this.unit;
+        this.testMaster.testTableDataDTOList[this.indexForModify].range_from=this.range_from;
+        this.testMaster.testTableDataDTOList[this.indexForModify].range_to=this.range_to;
+        this.testMaster.testTableDataDTOList[this.indexForModify].opertaion=this.opertaion;
+        this.testMaster.testTableDataDTOList[this.indexForModify].operation_value=this.operation_value;
+        this.testMaster.testTableDataDTOList[this.indexForModify].selected_options=this.selected_options;
+        this.testMaster.testTableDataDTOList[this.indexForModify].apply_formula=this.apply_formula;
+        this.testMaster.testTableDataDTOList[this.indexForModify].formula=this.formula;
 
         this.field_name_list[this.field_name_list.indexOf(existingField)]=this.field_name;
         
@@ -669,18 +644,18 @@ p:number=1;
   drop(event: CdkDragDrop<string[]>) {
    
         this.resetContentField();
-        moveItemInArray(this.testContentList, event.previousIndex, event.currentIndex);
+        moveItemInArray(this.testMaster.testTableDataDTOList, event.previousIndex, event.currentIndex);
         this.toaster.success("Row move to "+event.currentIndex+" position successfully");
   
   }
   subListDrop(event: CdkDragDrop<string[]>){
     this.resetContentField();
-    moveItemInArray(this.testContentList[ this.subFieldTitleIdex].sub_fiels_list, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.testMaster.testTableDataDTOList[ this.subFieldTitleIdex].subFieldDataList, event.previousIndex, event.currentIndex);
         this.toaster.success("Row move to "+event.currentIndex+" position successfully");
   }
 
   isRowClickable(rowIndex: number): boolean {
-    return this.testContentList[rowIndex].data_type == "";
+    return this.testMaster.testTableDataDTOList[rowIndex].data_type == undefined;
   }
 
   openSUbFieldTable(i:number){
@@ -688,16 +663,16 @@ p:number=1;
     this.expanded[i] = !this.expanded[i];
     this.subfieldTableFlag=this.expanded[i];
     this.subFieldTitleIdex=i;
-    this.sub_fiels_list=this.testContentList[i].sub_fiels_list;
+    this.subFieldDataList=this.testMaster.testTableDataDTOList[i].subFieldDataList;
   }
 
   createReportPdfData(){
     this.reportPdfList=[];
-    for(var i=0;i<this.testContentList.length;i++){
-      this.reportPdfList.push(this.testContentList[i]);
-      if(this.testContentList[i].sub_fiels_list.length>0){
-        for(var j=0; j<this.testContentList[i].sub_fiels_list.length; j++){
-          this.reportPdfList.push(this.testContentList[i].sub_fiels_list[j]);
+    for(var i=0;i<this.testMaster.testTableDataDTOList.length;i++){
+      this.reportPdfList.push(this.testMaster.testTableDataDTOList[i]);
+      if(this.testMaster.testTableDataDTOList[i].subFieldDataList.length>0){
+        for(var j=0; j<this.testMaster.testTableDataDTOList[i].subFieldDataList.length; j++){
+          this.reportPdfList.push(this.testMaster.testTableDataDTOList[i].subFieldDataList[j]);
         }
       }
     }
@@ -771,21 +746,21 @@ p:number=1;
     var v=pdf.getFont();
   
     pdf.setFontSize(11);
-    pdf.text(this.department,297.5,175,{align : "center"});
-    if(this.test_code != null && this.test_code != ""){
-      pdf.text(this.test_name+" ("+this.test_code+")",297.5,192,{align : "center"});
+    pdf.text(this.testMaster.department,297.5,175,{align : "center"});
+    if(this.testMaster.testCode != null && this.testMaster.testCode != ""){
+      pdf.text(this.testMaster.testName+" ("+this.testMaster.testCode+")",297.5,192,{align : "center"});
     }
-    if(this.test_type == 'Table'){
+    if(this.testMaster.testType == 'Table'){
 
       pdf.line(20, 200, 575, 200, "S");
       pdf.line(20, 220, 575, 220, "S");
 
       this.reportPdfList=[];
-      for(var i=0;i<this.testContentList.length;i++){
-        this.reportPdfList.push(this.testContentList[i]);
-        if(this.testContentList[i].sub_fiels_list.length>0){
-          for(var j=0; j<this.testContentList[i].sub_fiels_list.length; j++){
-            this.reportPdfList.push(this.testContentList[i].sub_fiels_list[j]);
+      for(var i=0;i<this.testMaster.testTableDataDTOList.length;i++){
+        this.reportPdfList.push(this.testMaster.testTableDataDTOList[i]);
+        if(this.testMaster.testTableDataDTOList[i].subFieldDataList.length>0){
+          for(var j=0; j<this.testMaster.testTableDataDTOList[i].subFieldDataList.length; j++){
+            this.reportPdfList.push(this.testMaster.testTableDataDTOList[i].subFieldDataList[j]);
           }
         }
       }
@@ -802,11 +777,11 @@ p:number=1;
         list.push("");
         list.push("");
 
-        if(this.reportPdfList[i].range != "" && this.reportPdfList[i].range_to != ""){
-          list.push(this.reportPdfList[i].range+"-"+this.reportPdfList[i].range_to);
-        }else if(this.reportPdfList[i].range != "" && this.reportPdfList[i].range_to == ""){
-          list.push(this.reportPdfList[i].range);
-        }else if (this.reportPdfList[i].field_type != 'Title Field' && this.reportPdfList[i].range == "" ){
+        if(this.reportPdfList[i].range_from != "" && this.reportPdfList[i].range_to != ""){
+          list.push(this.reportPdfList[i].range_from+"-"+this.reportPdfList[i].range_to);
+        }else if(this.reportPdfList[i].range_from != "" && this.reportPdfList[i].range_to == ""){
+          list.push(this.reportPdfList[i].range_from);
+        }else if (this.reportPdfList[i].field_type != 'Title Field' && this.reportPdfList[i].range_from == "" ){
           list.push("-");
         }else{
           list.push("");
@@ -866,10 +841,86 @@ p:number=1;
 
   transform(url:string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-     }
+  }
 
-     saveTest(){
-      alert("chsakhjkasc askcnsajkc");
-     }
+  addNewTest(){
+    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    let testMasterDTO = <TestMasterObj>{};
+    this.testMaster.userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.testService.addNewTest(this.testMaster,userId).subscribe(
+      (r)=>{
+        testMasterDTO = <any>r;
+        this.toaster.success("Test Added Successfully");
+        this.saveModal.nativeElement.click();
+        this.loadAlltest();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+  openTest(id:number){
+    this.modifyModal=true;
+    this.addmodal=false;
+    this.modalTitle="Test Details"
+    this.ModalButtonName="Proceed";
+    this.testMaster=<TestMasterObj>{};
+    this.testMaster.department="";
+    this.testMaster.testType="";
+    this.testMaster.testGender="";
+    this.testMaster.testGender="";
+    this.testMaster.sampleType="";
+    this.testMaster.testTableDataDTOList=[];
+    this.resetContentField();
+    this.subfieldTableFlag=false;
+    this.subFieldTitleIdex=-1
+    this.subFieldDataList=[];
+    this.subFieldSelected=-1;
+    this.selected_options=[];
+    this.title_field_list=[];
+    this.field_name_list=[];
+    this.allTestList=[];
+    this.testService.getTestById(id).subscribe(
+      (r)=>{
+        this.testMaster=<any>(r)
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+  modifyTest(){
+    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    let testMasterDTO = <TestMasterObj>{};
+    this.testService.updateTest(this.testMaster,userId).subscribe(
+      (r)=>{
+        testMasterDTO = <any>r;
+        this.toaster.success("Test Updated Successfully");
+        this.saveModal.nativeElement.click();
+        this.loadAlltest();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+  setTestId(testId:number){
+    this.deleteTestId=testId;
+  }
+  deleteTest(){
+    this.testService.deleteTestById(this.deleteTestId).subscribe(
+      (r)=>{
+        let res = <any>r;
+        this.toaster.success(res);
+        this.OptionModal.nativeElement.click();
+        this.loadAlltest();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+
+
 
 }

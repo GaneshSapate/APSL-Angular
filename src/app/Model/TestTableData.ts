@@ -1,17 +1,18 @@
+
 export interface TestTableData{
     entityId:number;
     sr_no:number;
-    field_type:String;
-    field_name:String;
-    sub_field:String;
-    data_type:String;
-    unit:String;
-    range:String;
-    range_to:String;
-    opertaion:String;
-    operation_value:String;
+    field_type:string;
+    field_name:string;
+    sub_field:string;
+    data_type:string;
+    unit:string;
+    range_from:string;
+    range_to:string;
+    opertaion:string;
+    operation_value:string;
     selected_options:[];
-    apply_formula:String;
-    formula:String;
-    subFieldDataList:[{}]
+    apply_formula:boolean;
+    formula:string;
+    subFieldDataList:TestTableData[]
 }

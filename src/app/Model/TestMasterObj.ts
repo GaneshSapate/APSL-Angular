@@ -1,3 +1,5 @@
+import { TestTableData } from "./TestTableData";
+
 export interface TestMasterObj{
     testId:number;
     userId:number;
@@ -11,36 +13,7 @@ export interface TestMasterObj{
     sampleType:string;
     remark:string;
     testType:string;
-    testTableDataDTOList:[{ 
-        entityId:number;
-        sr_no:number;
-        field_type:String;
-        field_name:String;
-        sub_field:String;
-        data_type:String;
-        unit:String;
-        range:String;
-        range_to:String;
-        opertaion:String;
-        operation_value:String;
-        selected_options:[];
-        apply_formula:String;
-        formula:String;
-        subFieldDataList:[{ 
-            subFieldId:number,
-            sr_no:number,
-            field_type:String,
-            field_name:String,
-            sub_field:String,
-            data_type:String,
-            unit:String,
-            range:String,
-            range_to:String,
-            opertaion:String,
-            operation_value:String,
-            selected_options:[],
-            apply_formula:String,
-            formula:String,
-        }]
-    }];
+    testTableDataDTOList:TestTableData[];
+    addedDate:Date;
+    modifiedDate:Date;
 }

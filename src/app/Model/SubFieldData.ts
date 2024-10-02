@@ -11,6 +11,6 @@ export interface SubFieldData{
     opertaion:String,
     operation_value:String,
     selected_options:[],
-    apply_formula:String,
+    apply_formula:boolean,
     formula:String,
 }

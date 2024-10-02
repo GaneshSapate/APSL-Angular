@@ -7,7 +7,7 @@ table{
     font-size: small;
     text-align: center;
 }
-.patientName:hover{
+.testName:hover{
     color: blue;
     cursor: pointer;
 }
