@@ -13,16 +13,14 @@
 <div class="row mx-1 mx-md-4  mt-4">
     <div class="patientTableDiv pt-2 shadow-sm">
         <div class="row mx-2 py-2">
-            <div class="col-6">
+            <div class="col-8">
                 <h6 style="font-weight: bold;">Test List</h6>
             </div>
-            <div class="col-6 ">
-                <div class="form-group " >
-                    <div class="input-group justify-content-md-end">
-                        <input type="text" class="form-control-sm"  placeholder="Enter Test Name" >
-                        <button class="btn btn-secondary btn-sm" type="button" > Search</button>
-                    </div>
-                 </div>
+            <div class="col-4 ">
+                <div class="input-group input-group-sm mb-3 justify-content-md-end">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="cursor: pointer;">Search</span>
+                  </div>
             </div>
         </div>
         <div class="PatientTable">
@@ -42,15 +40,16 @@
                 <tbody>
                     <tr *ngFor="let test of testMasterList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <th scope="row">{{test.testId}}</th>
-                        <td class="testName" (click)="openTest(test.testId)" data-bs-toggle="modal" data-bs-target="#addTestModal">{{test.testName}}</td>
+                        <td class="testName" >{{test.testName}}</td>
                         <td>{{test.testCode}}</td>
                         <td>{{test.testGender}}</td>
                         <td>{{test.department}}</td>
                         <td>{{test.addedDate | date:'medium'}}</td>
                         <td>{{test.modifiedDate | date:'medium'}}</td>
-                        <td><a style="color: green; cursor: pointer;">Edit test</a> | 
+                        <td><a (click)="openTest(test.testId)" data-bs-toggle="modal" data-bs-target="#addTestModal"
+                            style="color: green; cursor: pointer;">Edit test</a> | 
                             <a (click)="setTestId(test.testId)"  data-bs-toggle="modal" data-bs-target="#OptionModal" 
-                            style="color: rgb(255, 0, 0); cursor: pointer;">Remove</a></td>
+                            style="color: rgb(255, 0, 0); cursor: pointer;">Delete</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -67,7 +66,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
       <div class="modal-content">
         <div class="modal-header ">
-          <h5 class="modal-title" id="addTestModalLabel">{{modalTitle}}</h5>
+          <h5 class="modal-title ms-0" id="addTestModalLabel">{{modalTitle}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body reports-modalbody mb-0 pb-0 ">
@@ -516,7 +515,7 @@
   <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header py-2">
+        <div class="modal-header">
           <h5 class="modal-title" id="saveModalLabel"> Alert </h5>
           <button type="button" #saveModal aria-label="Close" data-bs-dismiss="modal" aria-label="Close" style="border: none; background-color: white;" ></button>
           <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#addTestModal"></button>
@@ -543,12 +542,12 @@
           <h5 class="modal-title" id="OptionModalLabel">Alert</h5>
           <button type="button" class="btn-close" #OptionModal data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ms-4">
             Do you want delete this test !
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal"> Cancle </button>
-          <button type="button" class="btn btn-primary btn-sm" (click)="deleteTest()"> Yes </button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal"> Cancel </button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteTest()"> Delete </button>
         </div>
       </div>
     </div>

@@ -32,8 +32,6 @@ export class TestMasterComponent implements OnInit {
    // Report Managment Variables
 
   testMaster=<TestMasterObj>{};
-  testTableData= <TestTableData>{};
-  subFieldData=<SubFieldData>{};
   
 
   //Test Modal name variables
@@ -758,7 +756,7 @@ deleteTestId:number=0;
       this.reportPdfList=[];
       for(var i=0;i<this.testMaster.testTableDataDTOList.length;i++){
         this.reportPdfList.push(this.testMaster.testTableDataDTOList[i]);
-        if(this.testMaster.testTableDataDTOList[i].subFieldDataList.length>0){
+        if(this.testMaster.testTableDataDTOList[i].subFieldDataList && this.testMaster.testTableDataDTOList[i].subFieldDataList.length>0){
           for(var j=0; j<this.testMaster.testTableDataDTOList[i].subFieldDataList.length; j++){
             this.reportPdfList.push(this.testMaster.testTableDataDTOList[i].subFieldDataList[j]);
           }
@@ -880,14 +878,36 @@ deleteTestId:number=0;
     this.title_field_list=[];
     this.field_name_list=[];
     this.allTestList=[];
+
+    let title_field_list: string[] =[]; 
+    let field_name_list :string[] =[];
+
     this.testService.getTestById(id).subscribe(
       (r)=>{
         this.testMaster=<any>(r)
+       
+        this.testMaster.testTableDataDTOList.forEach(function (field:any) {
+          console.log(field);
+          if(field.field_type=='Title Field'){
+             title_field_list.push(field.field_name);
+            for(let sub of field.subFieldDataList){
+              if(sub.data_type=='numeric'){
+                field_name_list.push(sub.sub_field);
+              }
+            }
+          }else{
+            if(field.data_type==='numeric'){
+               field_name_list.push(field.field_name);
+            }
+          }
+        });
+        this.title_field_list = title_field_list;
+        this.field_name_list =field_name_list;
       },(e)=>{
         this.errorObj=<any>e;
         this.toaster.error(this.errorObj.message,"Error");
       }
-    )
+    );
   }
   modifyTest(){
     var userId = <number> new Number(sessionStorage.getItem("mainUserId"));

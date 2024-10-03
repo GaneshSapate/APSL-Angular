@@ -1,6 +1,7 @@
 
 export interface TestTableData{
     entityId:number;
+    subFieldId:number;
     sr_no:number;
     field_type:string;
     field_name:string;

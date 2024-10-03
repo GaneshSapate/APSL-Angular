@@ -3,7 +3,7 @@
   <div class="row my-4 justify-content-center">
     <div class="card login-card px-0 px-md-2" >
       <div class="panel mt-4" >
-          <h4 style="color:   #525252; font-weight: bold ;">Login</h4>
+          <h4 style="color:   #525252; font-weight:500 ;">Login</h4>
           <p style="font-size: 14px;">Please Enter your Username and Password</p>  
           <span style="color: red; margin-top: 5px;">
           {{incorrect}}
@@ -36,15 +36,14 @@
   
               <!-- <p style="color:red;" *ngIf="password.touched && !password.valid">Please Enter Password</p> -->
               <div class="d-grid gap-2 ">
-                  <button type="submit" [disabled]= "!f.valid" class="btn btn-success  my-4" >Login</button>
+                  <button type="submit" [disabled]= "!f.valid" class="btn btn-primary  my-4" >Login</button>
               </div>
-              <hr>
-              <div class="d-grid gap-2 mb-4">
+              <div class="d-grid mb-4  justify-content-center">
                   <a  routerLink="/registration" >New Registration</a>
               </div>
           </div>
         </form>
-          <button class="btn" routerLink="/login-board" >Dahsboard</button>
+          <!-- <button class="btn" routerLink="/login-board" >Dahsboard</button> -->
     </div> 
   </div>
                  
