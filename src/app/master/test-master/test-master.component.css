@@ -36,3 +36,11 @@ table{
   width: 595px;
   height: 842px;
 }
+.formula-button{
+  font-weight: 500;
+  border: none;
+  padding: auto;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+}

@@ -79,7 +79,7 @@
                             <label for="">Department </label>
                         </div>
                         <div class="form-group input-group input-group-sm">
-                            <select class="form-control" [(ngModel)]="testMaster.department" name="department" #department="ngModel" minlength="2"
+                            <select class="form-select" [(ngModel)]="testMaster.department" name="department" #department="ngModel" minlength="2"
                             [ngClass]="{ 'is-valid': department.touched && !department.errors,'is-invalid': department.touched && department.errors }" required>
                                 <option  selected  value="">Select Department</option>
                                 <option   value="HAEMATOLOGY">HAEMATOLOGY</option>
@@ -103,7 +103,7 @@
                             <label for="">Gender </label>
                         </div>
                         <div class="form-group input-group input-group-sm">
-                            <select class="form-control" [(ngModel)]="testMaster.testGender" name="testGender" #testGender="ngModel" minlength="1"
+                            <select class="form-select" [(ngModel)]="testMaster.testGender" name="testGender" #testGender="ngModel" minlength="1"
                             [ngClass]="{ 'is-valid': testGender.touched && !testGender.errors,'is-invalid': testGender.touched && testGender.errors }" required>
                                 <option class="form-control" selected  value="">Select</option>
                                 <option class="form-control"  value="M">Male</option>
@@ -135,7 +135,7 @@
                             <label for="">Sample Type </label>
                         </div>
                         <div class="form-group input-group input-group-sm">
-                            <select class="form-control" [(ngModel)]="testMaster.sampleType" >
+                            <select class="form-select" [(ngModel)]="testMaster.sampleType" >
                                 <option class="form-control" selected value="">Select</option>
                                 <option class="form-control"  value="Serum">Serum</option>
                                 <option class="form-control"  value="Heparinised Blood">Heparinised Blood</option>
@@ -147,7 +147,7 @@
                             <label for="">Test Type </label>
                         </div>
                         <div class="form-group input-group input-group-sm">
-                            <select class="form-control" [(ngModel)]= "testMaster.testType" name="testTyper" #testType="ngModel" required>
+                            <select class="form-select" [(ngModel)]= "testMaster.testType" name="testTyper" #testType="ngModel" required>
                                 <option class="form-control" selected  value="">Select test type</option>
                                 <option class="form-control"  value="Table">Table</option>
                                 <option class="form-control"  value="Text">Text</option>
@@ -170,11 +170,11 @@
                                 <label for="">Type </label>
                             </div>
                             <div class="form-group input-group input-group-sm">
-                                <select class="form-control"  [(ngModel)]="field_type" name="field_type" [disabled]="modifyRow">
-                                    <option *ngIf = "testMaster.testType =='Table'" class="form-control"  value="Single Field">Single Field</option>
-                                    <option *ngIf = "testMaster.testType=='Table'" class="form-control"  value="Title Field">Title Field</option>
-                                    <option *ngIf = "testMaster.testType=='Table'" class="form-control"  value="Sub Field">Sub Field</option>
-                                    <option *ngIf = "testMaster.testType=='Text'" class="form-control"  value="Text Editor">Text Editor</option>
+                                <select class="form-select"  [(ngModel)]="field_type" name="field_type" [disabled]="modifyRow">
+                                    <option *ngIf = "testMaster.testType =='Table'"   value="Single Field">Single Field</option>
+                                    <option *ngIf = "testMaster.testType=='Table'"   value="Title Field">Title Field</option>
+                                    <option *ngIf = "testMaster.testType=='Table'"   value="Sub Field">Sub Field</option>
+                                    <option *ngIf = "testMaster.testType=='Text'"   value="Text Editor">Text Editor</option>
                                 </select>
                             </div>
                         </div>
@@ -185,9 +185,9 @@
                                         <label for="">Title Field *</label>
                                     </div>
                                     <div class="form-group input-group input-group-sm">
-                                        <select class="form-control" [(ngModel)]="title_field_of_subfield" name="title_field_of_subfield" [disabled]="modifyRow" >
-                                            <option class="form-control"  value="">Select</option>
-                                            <option class="form-control" *ngFor="let item of title_field_list" value="{{item}}">{{item}}</option>
+                                        <select class="form-select" [(ngModel)]="title_field_of_subfield" name="title_field_of_subfield" [disabled]="modifyRow" >
+                                            <option  value="">Select</option>
+                                            <option *ngFor="let item of title_field_list" value="{{item}}">{{item}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -204,12 +204,12 @@
                                     <label for="">Data Type *</label>
                                 </div>
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-control" [(ngModel)]= "data_type" name="data_type">
-                                        <option class="form-control"  value="text">text</option>
-                                        <option class="form-control"  value="numeric" selected>numeric</option>
-                                        <option class="form-control"  value="numeric unbound">numeric unbound</option>
-                                        <option class="form-control"  value="multiple ranges">multiple ranges</option>
-                                        <option class="form-control"  value="custom">custom</option>
+                                    <select class="form-select" [(ngModel)]= "data_type" name="data_type">
+                                        <option   value="text">text</option>
+                                        <option   value="numeric" selected>numeric</option>
+                                        <option   value="numeric unbound">numeric unbound</option>
+                                        <option   value="multiple ranges">multiple ranges</option>
+                                        <option   value="custom">custom</option>
                                     </select>
                                 </div>
                             </div>
@@ -277,13 +277,13 @@
                                                 <label for="">Select Operation </label>
                                             </div>
                                             <div class="form-group input-group input-group-sm">
-                                                <select class="form-control" [(ngModel)]="opertaion" name="opertaion">
-                                                    <option class="form-control"  value="">select operation</option>
-                                                    <option class="form-control"  value="less than equal to">less than equal to</option>
-                                                    <option class="form-control"  value="less than">less than</option>
-                                                    <option class="form-control"  value="greater than equal to">greater than equal to</option>
-                                                    <option class="form-control"  value="greater than">greater than</option>
-                                                    <option class="form-control"  value="equal to">equal to</option>
+                                                <select class="form-select" [(ngModel)]="opertaion" name="opertaion">
+                                                    <option   value="">select operation</option>
+                                                    <option   value="less than equal to">less than equal to</option>
+                                                    <option   value="less than">less than</option>
+                                                    <option   value="greater than equal to">greater than equal to</option>
+                                                    <option   value="greater than">greater than</option>
+                                                    <option   value="equal to">equal to</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -308,21 +308,21 @@
                                                 <label for="">Select Options </label>
                                             </div>
                                             <div class="form-group input-group input-group-sm">
-                                                <select class="form-control" #selectOptions>
-                                                    <option class="form-control"  value="">select options</option>
-                                                    <option class="form-control"  value="Positive">Positive</option>
-                                                    <option class="form-control"  value="Negative">Negative</option>
-                                                    <option class="form-control"  value="Absent">Absent</option>
-                                                    <option class="form-control"  value="Present">Present</option>
-                                                    <option class="form-control"  value="Reactive">Reactive</option>
-                                                    <option class="form-control"  value="Non-Reactive">Non-Reactive</option>
+                                                <select class="form-select" #selectOptions>
+                                                    <option   value="">select options</option>
+                                                    <option   value="Positive">Positive</option>
+                                                    <option   value="Negative">Negative</option>
+                                                    <option   value="Absent">Absent</option>
+                                                    <option   value="Present">Present</option>
+                                                    <option   value="Reactive">Reactive</option>
+                                                    <option   value="Non-Reactive">Non-Reactive</option>
                                                 </select>
-                                                <button class="btn btn-primary btn-sm" (click)="addCustom(selectOptions.value)">Add</button>
+                                                <button class="btn btn-secondary btn-sm" (click)="addCustom(selectOptions.value)">Add</button>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="text-right">
-                                                <span data-bs-toggle="modal" data-bs-target="#addOptionModal" style="cursor: pointer; font-size: 14px; color: blue;">
+                                                <span  style="cursor: pointer; font-size: 14px; color: blue;">
                                                     <i class="fa-solid fa-plus"></i> add new</span>
                                             </div>
                                         </div>
@@ -355,20 +355,20 @@
                             </div>
                             <!-- custom Fiels End -->
 
-                                <div class="form-check mt-2">
+                                <div class="form-check mt-2" *ngIf="data_type=='numeric';" >
                                     <div class="row">
                                         <div class="col-6 p-0">
                                             <label class="ms-0">Apply Formula</label>
                                         </div>
                                         
                                         <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio"  name="CheckBox" id="flexCheckDefault1" (click)= "apply_formula=true" [checked]="apply_formula" >
+                                            <input class="form-check-input" type="radio"  name="CheckBox" id="flexCheckDefault1" (click)= "applyFormulaYes()" [checked]="apply_formula" >
                                             <label class="form-check-label" for="flexCheckDefault1">
                                             Yes
                                             </label>
                                         </div>
                                         <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio"  name="CheckBox" id="flexCheckDefault2"  (click)= "apply_formula=false" [checked]="!apply_formula">
+                                            <input class="form-check-input" type="radio"  name="CheckBox" id="flexCheckDefault2"  (click)= "applyFormulaNo()" [checked]="!apply_formula">
                                             <label class="form-check-label" for="flexCheckDefault2">
                                             No
                                             </label>
@@ -376,29 +376,50 @@
                                     </div>
                                 </div>
                                 <div *ngIf="apply_formula==true;">
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2">
                                         <div class="form-group input-group-sm" >
                                             <label for="">Select Field </label>
                                         </div>
                                         <div class="form-group input-group input-group-sm">
-                                            <select class="form-control" #selectedField>
-                                                <option class="form-control"  value="">select</option>
-                                                <option class="form-control" *ngFor="let item of field_name_list"  value="{{item}}">{{item}}</option>
+                                            <select class="form-select" #selectedField [disabled]="inputButtonFlag">
+                                                <option   value="">select</option>
+                                                <option  *ngFor="let item of field_name_list"  value="{{item}}">{{item}}</option>
                                             </select>
-                                            <button class="btn btn-secondary btn-sm" (click)="addFieldInFormula(selectedField.value)">Add</button>
+                                            <button class="btn btn-secondary btn-sm" [disabled]="inputButtonFlag" (click)="addFieldInFormula(selectedField.value)">Add</button>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2 d-flex justify-content-between">
+                                        <button class="formula-button" [disabled]="mathButtonFlag" (click)="addButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Addition">+</button>
+                                        <button class="formula-button" [disabled]="mathButtonFlag" (click)="minusButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Substract">-</button>
+                                        <button class="formula-button" [disabled]="mathButtonFlag" (click)="multilyButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="multiply">*</button>
+                                        <button class="formula-button" [disabled]="mathButtonFlag" (click)="divideButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="division">/</button>
+                                        <button class="formula-button" (click)="openBracketButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Open Bracket">(</button>
+                                        <button class="formula-button" (click)="closeBracketButtonInFormula()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Close Bracket">)</button>
+                                        <div class="form-group input-group input-group-sm">
+                                            <input type="number" class="form-control" #formulaNumber placeholder="Number" [disabled]="inputButtonFlag">
+                                            <button class="btn btn-secondary btn-sm" (click)="addFieldInFormula(formulaNumber.value)" [disabled]="inputButtonFlag">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="form-group input-group-sm d-flex justify-content-between"  >                                              
+                                            <label for="exampleFormControlTextarea1" class="form-label">Formula *</label>
+                                            <div>
+                                                <button class="btn btn-secondary btn-sm " (click)="validateFormula()">Validate</button>
+                                                <button class="btn btn-secondary btn-sm ms-2" (click)="removeLastElement()" title="Backspace" ><i class="fa-solid fa-arrow-left"></i></button>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
                                         <div class="form-group input-group-sm"  >                                              
-                                            <label for="exampleFormControlTextarea1" class="form-label">Formula</label>
-                                            <textarea class="form-control" rows="2" placeholder="Enter Formula" [(ngModel)]="formula" name="formula"></textarea>
+                                            <textarea class="form-control" rows="2" placeholder="Add Formula" [(ngModel)]="formula" name="formula" disabled></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row px-2" >
-                                        <a *ngIf="!modifyRow"  class="btn btn-success btn-sm" (click)="addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
-                                        <a *ngIf="modifyRow"  class="btn btn-success btn-sm" (click)="modifyRowInTestTable()">Modify</a>
+                                        <button *ngIf="!modifyRow"  class="btn btn-success btn-sm" (click)="addRowInTestTable()" ><i class="fa-solid fa-plus"></i> add</button>
+                                        <button *ngIf="modifyRow"  class="btn btn-success btn-sm" (click)="modifyRowInTestTable()"> Modify</button>
                                     </div>
                                 </div>
                         </div>
@@ -412,7 +433,7 @@
                                     placeholder="Enter Title Field">
                                 </div>
                             </div>
-                            <div class="col-12 mt-2">
+                            <div class="col-12 my-4">
                                 <div class="row px-2" >
                                     <a *ngIf="!modifyRow"  class="btn btn-success btn-sm" (click)= "addRowInTestTable()"><i class="fa-solid fa-plus"></i> add</a>
                                     <a *ngIf="modifyRow"  class="btn btn-success btn-sm" (click)= "modifyRowInTestTable()" >Modify</a>
@@ -451,10 +472,10 @@
                                        <th><input class="form-check-input" type="checkbox" name="{{item.field_name}}" 
                                             id="{{item.field_name}}" [checked]="selected === i" (change)="onClickTestField($event,item,i)" ></th>
                                       <th>{{i+1}}</th>
-                                      <th (click)="openSUbFieldTable(i)" style="cursor: pointer;">
+                                      <th (click)="openSUbFieldTable(i)" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="bottom">
                                         <span  *ngIf="isRowClickable(i)"  >
-                                            <span *ngIf="expanded[i]">-</span>
-                                            <span *ngIf="!expanded[i]">+</span>
+                                            <span *ngIf="expanded[i]"   title="Collapse subfield Table">-</span>
+                                            <span *ngIf="!expanded[i]"   title="Expand subfield Table">+</span>
                                       </span></th>
                                       <td cdkDragHandle style="cursor: pointer;" >{{item.field_name}}</td>
                                       <td>{{item.sub_field}}</td>
@@ -464,7 +485,8 @@
                                       <th><input *ngIf="item.apply_formula == true" class="form-check-input" type="checkbox" name="check+i" id="check+i"  checked disabled>
                                          <input *ngIf="item.apply_formula == false" class="form-check-input" type="checkbox" name="check+i" id="check+i" disabled>
                                         </th>
-                                      <td><Button class="btn btn-outline-danger btn-sm" (click)="removeFormtestContentList(i,item)" ><i class="fa-solid fa-trash-can"></i></Button></td>
+                                      <td><Button class="btn btn-danger btn-sm" (click)="removeFormtestContentList(i,item)" ><i class="fa-solid fa-trash-can"
+                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="delete row"></i></Button></td>
                                     </tr>
                                   </tbody>
                                   <br>
@@ -483,7 +505,8 @@
                                       <th><input *ngIf="item.apply_formula == 'Y'" class="form-check-input" type="checkbox" name="check+i" id="check+i"  checked disabled>
                                          <input *ngIf="item.apply_formula == 'N'" class="form-check-input" type="checkbox" name="check+i" id="check+i" disabled>
                                         </th>
-                                      <td><Button class="btn btn-outline-danger btn-sm" (click)="removeFormSubFielsLlist(i,item)" ><i class="fa-solid fa-trash-can"></i></Button></td>
+                                      <td><Button class="btn btn-danger btn-sm" (click)="removeFormSubFielsLlist(i,item)" ><i class="fa-solid fa-trash-can"
+                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="delete row"></i></Button></td>
                                     </tr>
                                   </tbody>
 

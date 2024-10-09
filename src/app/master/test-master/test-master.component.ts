@@ -10,6 +10,9 @@ import { TestTableData } from 'src/app/Model/TestTableData';
 import { SubFieldData } from 'src/app/Model/SubFieldData';
 import { TestService } from 'src/app/service/test.service';
 import { ErrorObj } from 'src/app/Model/ErrorObj';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { LabServiceService } from 'src/app/service/lab-service.service';
+import { LabObj } from 'src/app/Model/LabObj';
 
 @Component({
   selector: 'app-test-master',
@@ -131,11 +134,14 @@ errorObj=<ErrorObj>{};
 
 //delete test variables
 deleteTestId:number=0;
+
+
 @ViewChild('OptionModal') OptionModal:any;
 
   constructor(private toaster : ToastrService,
               private sanitizer: DomSanitizer,
-              private testService:TestService) { 
+              private testService:TestService,
+              private labService: LabServiceService) { 
       this.pdfurl=sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
     }
 
@@ -208,10 +214,6 @@ deleteTestId:number=0;
     this.selected_options.splice(item,1);
   }
 
-  addFieldInFormula(selectedField:string){
-    this.formula=this.formula+""+selectedField;
-  }
-
   addRowInTestTable(){
 
     let testContentObj=<TestTableData>{}
@@ -251,8 +253,12 @@ deleteTestId:number=0;
               testContentObj.operation_value=this.operation_value;
             }
             if(this.data_type == 'custom'){
-              testContentObj.unit=this.unit;
-              testContentObj.selected_options=this.selected_options;
+              if(this.selected_options.length>0){
+                testContentObj.selected_options=this.selected_options;
+              }else{
+                this.toaster.error("Please select option and add !");
+                return;
+              }
               testContentObj.unit=this.unit;
               testContentObj.range_from=this.range_from;
             }
@@ -263,13 +269,46 @@ deleteTestId:number=0;
     
             testContentObj.apply_formula=this.apply_formula;
             testContentObj.formula=this.formula;
-            
-            this.testMaster.testTableDataDTOList.push(testContentObj);
-            if(this.data_type == 'numeric'){
-              this.field_name_list.push(this.field_name);
+            if(this.apply_formula){
+              this.createFormula();
+              let formula=this.formula.trim();
+              let requestMessage={
+                flag:false,
+                message:formula
+              }
+              let responseMessage:{
+                flag:boolean;
+                message:string;
+              }
+              this.testService.validateFormula(requestMessage).subscribe(
+                (r)=>{
+                  responseMessage=<any>r;
+                  if(!responseMessage.flag){
+                    this.toaster.error(responseMessage.message);
+                    return;
+                  }else{
+                    this.testMaster.testTableDataDTOList.push(testContentObj);
+                    if(this.data_type == 'numeric'){
+                      this.field_name_list.push(this.field_name);
+                    }
+                    this.toaster.success("Record Added Successfully");
+                    this.resetContentField();
+                  }
+                },(e)=>{
+                  this.errorObj=<any>e;
+                  this.toaster.error(this.errorObj.message,"Error");
+                  return;
+                }
+              )
+            }else{
+              this.testMaster.testTableDataDTOList.push(testContentObj);
+              if(this.data_type == 'numeric'){
+                this.field_name_list.push(this.field_name);
+              }
+              this.toaster.success("Record Added Successfully");
+              this.resetContentField();
             }
-            this.toaster.success("Record Added Successfully");
-            this.resetContentField();
+          
           }
       }else{
         // alert("Please Select Mandatory Field!")
@@ -352,8 +391,13 @@ deleteTestId:number=0;
                 testContentObj.operation_value=this.operation_value;
               }
               if(this.data_type == 'custom'){
-                testContentObj.unit=this.unit;
-                testContentObj.selected_options=this.selected_options;
+                if(this.selected_options.length>0){
+                  testContentObj.selected_options=this.selected_options;
+                }else{
+                  this.toaster.error("Please select option and add !");
+                  return;
+                }
+                
                 testContentObj.unit=this.unit;
                 testContentObj.range_from=this.range_from;
               }
@@ -364,19 +408,59 @@ deleteTestId:number=0;
       
               testContentObj.apply_formula=this.apply_formula;
               testContentObj.formula=this.formula;
-              
-              for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
-                if(this.testMaster.testTableDataDTOList[i].field_name == this.title_field_of_subfield){
-                  this.testMaster.testTableDataDTOList[i].subFieldDataList.push(testContentObj);
+              if(this.apply_formula){
+                this.createFormula();
+                let formula=this.formula.trim();
+                let requestMessage={
+                  flag:false,
+                  message:formula
                 }
+                let responseMessage:{
+                  flag:boolean;
+                  message:string;
+                }
+                this.testService.validateFormula(requestMessage).subscribe(
+                  (r)=>{
+                    responseMessage=<any>r;
+                    if(!responseMessage.flag){
+                      this.toaster.error(responseMessage.message);
+                      return;
+                    }else{
+                      for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+                        if(this.testMaster.testTableDataDTOList[i].field_name == this.title_field_of_subfield){
+                          this.testMaster.testTableDataDTOList[i].subFieldDataList.push(testContentObj);
+                        }
+                      }
+        
+                      // this.testMaster.testTableDataDTOList.push(testContentObj);
+                      if(this.data_type == 'numeric'){
+                        this.field_name_list.push(this.field_name);
+                      }
+                      this.toaster.success("Record Added Successfully");
+                      this.resetContentField();
+                    }
+                  },(e)=>{
+                    this.errorObj=<any>e;
+                    this.toaster.error(this.errorObj.message,"Error");
+                    return;
+                  }
+                )
+                
+              }else{
+                for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
+                  if(this.testMaster.testTableDataDTOList[i].field_name == this.title_field_of_subfield){
+                    this.testMaster.testTableDataDTOList[i].subFieldDataList.push(testContentObj);
+                  }
+                }
+  
+                // this.testMaster.testTableDataDTOList.push(testContentObj);
+                if(this.data_type == 'numeric'){
+                  this.field_name_list.push(this.field_name);
+                }
+                this.toaster.success("Record Added Successfully");
+                this.resetContentField();
               }
-
-              // this.testMaster.testTableDataDTOList.push(testContentObj);
-              if(this.data_type == 'numeric'){
-                this.field_name_list.push(this.field_name);
-              }
-              this.toaster.success("Record Added Successfully");
-              this.resetContentField();
+              
           }
       }else{
         // alert("Please Select Mandatory Field!")
@@ -677,6 +761,8 @@ deleteTestId:number=0;
 
   }
 
+  labObj=<LabObj>{};
+  
   makePdf(){
 
     let pdf= new jsPDF('p','pt','a4');
@@ -699,54 +785,58 @@ deleteTestId:number=0;
       
     // })
 
-    //topBar
-    //image
+    pdf.setProperties({
+      title: "Report"
+    })
     
-
+    //rect
+    pdf.setFillColor(184, 184, 184);
+    pdf.rect(20, 85, 555, 10,"F");
+    pdf.setFillColor(136, 136, 138);
+    pdf.line(20, 170, 575, 170, "F");
+    // pdf.rect(20, 90, 555, 75);
+    // pdf.line(297.5, 100, 297.5, 162, "F");
     //Box
-    pdf.setFontSize(10.5);
-    pdf.line(20, 80, 575, 80, "S");
-    pdf.line(20, 160, 575, 160, "S");
-    pdf.line(20, 80, 20, 160, "S");
-    pdf.line(575, 80, 575, 160, "S");
+     pdf.setFontSize(10.5);
+    // pdf.line(20, 90, 575, 90, "S");
+    // pdf.line(20, 165, 575, 165, "S");
+    // pdf.line(20, 90, 20, 165, "S");
+    // pdf.line(575, 90, 575, 165, "S");
 
     //patient Box Data
-    pdf.text("Name",40,95);
-    pdf.text("Age/Gender",40,113);
-    pdf.text("Referred By",40,131);
-    pdf.text("Phone No.",40,149);
+    pdf.text("PATIENT NAME",25,117);
+    pdf.text(":",110,117);
+    pdf.text("",110,117);
 
-    pdf.text(":",110,95);
-    pdf.text(":",110,113);
-    pdf.text(":",110,131);
-    pdf.text(":",110,149);
 
-    pdf.text("",120,95);
-    pdf.text("",120,113);
-    pdf.text("",120,131);
-    pdf.text("",120,149);
+    pdf.setFontSize(9);
+    pdf.text("AGE",25,133);
+    pdf.text("GENDER",25,148);
+    pdf.text("PID",25,163);
+    pdf.text(":",70,133);
+    pdf.text(":",70,148);
+    pdf.text(":",70,163);
+    
+    pdf.text("",80,133);
+    pdf.text("",80,148);
+    pdf.text("",80,163);
 
-    pdf.text("Patient ID",310,95);
-    pdf.text("Report ID",310,113);
-    pdf.text("Collection Date",310,131);
-    pdf.text("Phone No.",310,149);
+    pdf.text("COLLECTION DATE",310,148);
+    pdf.text("REFER BY",310,163);
+    pdf.text(":",400,148);
+    pdf.text(":",400,163);
+    // pdf.text(":",390,159);
 
-    pdf.text(":",390,95);
-    pdf.text(":",390,113);
-    pdf.text(":",390,131);
-    pdf.text(":",390,149);
-
-    pdf.text("",400,95);
-    pdf.text("",400,113);
-    pdf.text("",400,131);
-    pdf.text("",400,149);
+    pdf.text("",410,148);
+    pdf.text("",410,163);
 
     var v=pdf.getFont();
   
-    pdf.setFontSize(11);
-    pdf.text(this.testMaster.department,297.5,175,{align : "center"});
+    pdf.setFontSize(12);
+    pdf.setFont("Helvetica", "", "bold");
+    // pdf.text(this.testMaster.department,297.5,175,{align : "center"});
     if(this.testMaster.testCode != null && this.testMaster.testCode != ""){
-      pdf.text(this.testMaster.testName+" ("+this.testMaster.testCode+")",297.5,192,{align : "center"});
+      pdf.text(this.testMaster.testName+" ("+this.testMaster.testCode+")",297.5,190,{align : "center"});
     }
     if(this.testMaster.testType == 'Table'){
 
@@ -769,7 +859,7 @@ deleteTestId:number=0;
         if(this.reportPdfList[i].field_type != 'Sub Field'){
           list.push(this.reportPdfList[i].field_name);
         }else if(this.reportPdfList[i].field_type == 'Sub Field'){
-          list.push("    "+this.reportPdfList[i].sub_field);
+          list.push("      "+this.reportPdfList[i].sub_field);
         }
 
         list.push("");
@@ -799,13 +889,22 @@ deleteTestId:number=0;
           head: [['TEST DESCRIPTION', 'RESULT', 'FLAG','REF. RANGE','UNIT']],
           margin: { top: 200,right:20,left:20 },
           body: reportTableList,
-          theme:"plain"
+          theme:"striped",
+          headStyles:{
+            fontSize: 9,
+            fillColor: 220,
+            textColor: 20,
+          },
+          bodyStyles: {
+            textColor: 20,
+          },
+          alternateRowStyles: {
+            fillColor: 255,
+          },
+          columnStyles: {
+            2: {textColor: [196, 0, 0]}
+          },
         })
-      //pdf.save("sample.pdf");
-          pdf.setProperties({
-            title: "Report"
-        });
-
     }else{
       pdf.line(20, 200, 575, 200, "S");
       pdf.html(this.el.nativeElement,{
@@ -819,22 +918,43 @@ deleteTestId:number=0;
         margin :22
         
       })
-      // autoTable(pdf, {
-      //   head: [['TEST DESCRIPTION']],
-      //   margin: { top: 200,right:20,left:20 },
-      //   body: [[]],
-      //   theme:"plain"
-      // })
-    //pdf.save("sample.pdf");
-        pdf.setProperties({
-          title: "Report"
-      });
     }
     pdf.setFontSize(10);
     pdf.text('Footer Text', pdf.internal.pageSize.width - 60, pdf.internal.pageSize.height - 15,{align : "center"});
-     var blob = pdf.output("blob");
-     var usrl=window.URL.createObjectURL(blob);
-     this.pdfurl=this.transform(usrl);
+    //  var blob = pdf.output("blob");
+    //  var usrl=window.URL.createObjectURL(blob);
+    //  this.pdfurl=this.transform(usrl);
+
+       //topBar
+    //image
+    //addImage(imageData, format, x, y, width, height, alias, compression, rotation)
+    let labLogoString="";
+    var labId = <number> new Number(sessionStorage.getItem("labId"));
+    var labId = 1;
+    this.labService.getLabsById(labId).subscribe(
+      (r)=>{
+        this.labObj=<any>r;
+        pdf.addImage(this.labObj.labLogoString,30,10, 60,70);
+        console.log(pdf.getFontList() )
+        pdf.setTextColor(3, 32, 252);
+        pdf.setFont("Helvetica", "", "bold");
+        pdf.setFontSize(14);
+        pdf.text(this.labObj.labName,110,30);
+        pdf.setFont("Helvetica", "", "normal");
+        pdf.setFontSize(9);
+        pdf.setTextColor(0, 0, 0);
+        pdf.text(this.labObj.addLine+", "+this.labObj.city_village +", "+this.labObj.district,110,45);
+        pdf.text(this.labObj.state+", "+this.labObj.country +", "+this.labObj.pincode,110,58);
+        pdf.text("Mob No : "+this.labObj.mobileNumber+", Email : "+this.labObj.emailId,110,70);
+
+        var blob = pdf.output("blob");
+        var usrl=window.URL.createObjectURL(blob);
+        this.pdfurl=this.transform(usrl);
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
   }
 
   transform(url:string) {
@@ -939,6 +1059,113 @@ deleteTestId:number=0;
         this.toaster.error(this.errorObj.message,"Error");
       }
     )
+  }
+
+
+  //formula methods 
+  formula_list:any=[];
+  mathButtonFlag:boolean=true;
+  inputButtonFlag:boolean=false;
+ 
+
+  addFieldInFormula(selectedField:string){
+    this.formula=this.formula+""+selectedField;
+    this.formula_list.push(selectedField);
+    this.mathButtonFlag=false;
+    this.inputButtonFlag=true
+  }
+
+  applyFormulaYes(){
+    this.apply_formula=true;
+  }
+  applyFormulaNo(){
+    this.apply_formula=false;
+    this.formula = "";
+  }
+
+  addButtonInFormula(){
+    this.formula=this.formula+" + ";
+    this.formula_list.push(" + ");
+    this.mathButtonFlag=true;
+    this.inputButtonFlag=false;
+  }
+  minusButtonInFormula(){
+    this.formula=this.formula+" - ";
+    this.formula_list.push(" - ");
+    this.mathButtonFlag=true;
+    this.inputButtonFlag=false;
+  }
+  multilyButtonInFormula(){
+    this.formula=this.formula+" * ";
+    this.formula_list.push(" * ");
+    this.mathButtonFlag=true;
+    this.inputButtonFlag=false;
+  }
+  divideButtonInFormula(){
+    this.formula=this.formula+" / ";
+    this.formula_list.push(" / ");
+    this.mathButtonFlag=true;
+    this.inputButtonFlag=false;
+  }
+  openBracketButtonInFormula(){
+    this.formula=this.formula+" ( "
+    this.formula_list.push(" ( ");
+    this.inputButtonFlag=false;
+
+  }
+  closeBracketButtonInFormula(){
+    this.formula=this.formula+" ) "
+    this.formula_list.push(" ) ");
+    this.inputButtonFlag=false;
+  }
+
+  validateFormula(){
+    this.createFormula();
+    let formula=this.formula.trim();
+    let requestMessage={
+      flag:false,
+      message:formula
+    }
+    let responseMessage:{
+      flag:boolean;
+      message:string;
+    }
+    this.testService.validateFormula(requestMessage).subscribe(
+      (r)=>{
+        responseMessage=<any>r;
+        if(responseMessage.flag){
+          this.toaster.success(responseMessage.message);
+          return true;
+        }else{
+          this.toaster.error(responseMessage.message);
+          return false;
+        }
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+        return false;
+      }
+    )
+  }
+
+  createFormula(){
+    this.formula="";
+    let formula = "";
+    this.formula_list.forEach(function (field:any) {
+       formula= formula+field;
+    });
+    this.formula=formula;
+  }
+  removeLastElement(){
+    let last =this.formula_list.pop();
+    if(last == ' + ' || last == ' - ' || last == ' * ' || last == ' / '){
+      this.mathButtonFlag=false;
+      this.inputButtonFlag=true;
+    }else{
+      this.mathButtonFlag=true;
+      this.inputButtonFlag=false;
+    }
+    this.createFormula();
   }
 
 

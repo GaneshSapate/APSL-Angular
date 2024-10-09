@@ -24,4 +24,7 @@ export class TestService {
   deleteTestById(testId:number){
     return this.http.delete(`${this.testMasterUrl}`+`/`+testId,{responseType:'text'});
   }
+  validateFormula(formula:any){
+    return this.http.post(`${this.testMasterUrl}`+`/validateFormula`,formula);
+  }
 }
