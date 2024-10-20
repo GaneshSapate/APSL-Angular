@@ -1,28 +1,31 @@
 <div class="row mx-1 mx-md-4   ">
     <div class="card mt-2 py-2  " style="border: none;">
         <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold; color:rgb(80, 80, 80);">Docters Management </h5>
-          <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
-          <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-          <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal">
-            <i class="fa-solid fa-plus"></i> Add Doctor </a>
-          <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-regular fa-share-from-square"></i> Export in PDF </a>
+            <h5 class="card-title" style="font-weight: bold; color:rgb(80, 80, 80);">Docters Management </h5>
+            <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
+            <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
+                    class="fa-regular fa-square-caret-left"></i> Go Back</a>
+            <a class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal">
+                <i class="fa-solid fa-plus"></i> Add Doctor </a>
+            <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
+            </a>
         </div>
-      </div>
+    </div>
 </div>
 <div class="row mx-1 mx-md-4  mt-4">
     <div class="docterTableDiv pt-2 shadow-sm">
         <div class="row mx-2 py-2">
-            <div class="col-6">
+            <div class="col-xl-8 col-md-6">
                 <h6 style="font-weight: bold;">Docters List</h6>
             </div>
-            <div class="col-6 ">
-                <div class="form-group " >
-                    <div class="input-group justify-content-md-end">
-                        <input type="text" class="form-control-sm"  placeholder="Enter Name" >
-                        <button class="btn btn-secondary btn-sm" type="button" > Search</button>
+            <div class="col-xl-4 col-md-6">
+                <div class="form-group input-group-sm ps-md-4">
+                    <div class="input-group  input-group-sm">
+                        <input type="text" class="form-control" minlength="3" placeholder="Enter Docters Name" required>
+                        <button type="button" class="btn btn-secondary btn-sm"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
         <div class="docterTable">
@@ -50,255 +53,261 @@
             </table>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
+            <pagination-controls (pageChange)="p = $event" class="pull-right"
+                style="font-size: small;"></pagination-controls>
         </div>
     </div>
-    
+
 </div>
 
 <!-- Add New Doctor Modal -->
-<div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addDocterModalLabel" aria-hidden="true">
+<div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="addDocterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title ms-2" id="addDocterModalLabel" >Add New Doctor</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title ms-2" id="addDocterModalLabel">Add New Doctor</h5>
+                <button type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-sm">
+                    <form #f="ngForm">
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Title </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.title" name="title">
+                                        <option value="" selected>Select Title</option>
+                                        <option value="DR.">DR.</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4">
+                                <label for="">First Name</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class=" form-group input-group-sm">
+
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="text" class="form-control" [(ngModel)]="doctorObj.firstName"
+                                            name="firstName" minlength="3" placeholder="Enter First Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Last Name </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.lastName"
+                                        name="lastName" minlength="3" placeholder="Enter Last Name" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Gender </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.gender" name="gender">
+                                        <option value="" selected>Select Gender</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Country</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8 ">
+                                <div class="form-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.country" name="country">
+                                        <option value="" selected>Select Country</option>
+                                        <option value="IN">India</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">State </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.state"
+                                        (ngModelChange)="onSelectState()" name="state" #state="ngModel"
+                                        [ngClass]="{ 'is-invalid': state.touched && state.errors, 'is-valid': state.touched && !state.errors }"
+                                        required>
+                                        <option value="" selected>Select State</option>
+                                        <option *ngFor="let state of stateList" value="{{state.code}}">{{
+                                            state.discription
+                                            }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">District</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.district" name="district"
+                                        #district="ngModel"
+                                        [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }"
+                                        required>
+                                        <option value="" selected>Select District</option>
+                                        <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
+                                            dist.discription }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm">
+                                    <label for="">City / Village </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" minlength="3"
+                                        [(ngModel)]="doctorObj.city_village" name="city_village"
+                                        placeholder="Enter City / village name" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Address Line</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="text" class="form-control" minlength="3"
+                                            [(ngModel)]="doctorObj.addLine" name="addLine"
+                                            placeholder="Enter Address line" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">Pincode </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
+                                        name="pincode" minlength="3" placeholder="Enter Pincode" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Mobile No</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="number" class="form-control" minlength="3"
+                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="Enter Mobile No"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">Email ID </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="email" class="form-control" minlength="3"
+                                        [(ngModel)]="doctorObj.emailId" name="emailId"
+                                        placeholder="Enter Email Address " required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <label for="">Hospital Name </label>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hosptitalName"
+                                        name="hosptitalName" placeholder="Enter Remark" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <label for="">Remark </label>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark"
+                                        placeholder="Enter Remark" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success btn-sm" [disabled]="!f.valid" >Save changes</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <div class="container-sm">
-                <div class="row my-2 ">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group input-group-sm" >
-                            <label for="">Title </label>
-                        </div>
-                    </div>
-                    <div  class="col-12 col-md-8">
-                        <div class="form-group input-group input-group-sm">
-                            <select class="form-control" >
-                                <option class="form-control"  value="">Select</option>
-                                <option class="form-control"  value="DR.">DR.</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-               </div>
-               <div class="row my-2">
-                <div class="col-12 col-md-4">
-                    <label for="">First Name</label>
-                </div>
-                <div class="col-12 col-md-8">
-                    <div class=" form-group input-group-sm" >
-                        
-                        <div class="input-group flex-nowrap input-group-sm">
-                            <input type="text" class="form-control"   minlength="3"
-                             placeholder="Enter First Name" required>
-                        </div>
-                    </div>
-                </div>
-               </div>
-               <div class="row my-2 ">
-                <div class="col-12 col-md-4">
-                    <div class="form-group input-group-sm"  >
-                        <label for="">Last Name </label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-8">
-                    <div class="input-group flex-nowrap input-group-sm">
-                        <input type="text" class="form-control"   minlength="3"
-                        placeholder="Enter Last Name" required>
-                        </div>
-                </div>
-                
-               </div>
-               <div class="row my-2 ">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group input-group-sm" >
-                            <label for="">Gender </label>
-                        </div>
-                       
-                    </div>
-                    <div class="col-12 col-md-8">
-                        <div class="form-group input-group input-group-sm">
-                            <select class="form-control" >
-                                <option class="form-control"  value="">Select Gender</option>
-                                <option class="form-control"  value="M">Male</option>
-                                <option class="form-control"  value="F">Female</option>
-                                <option class="form-control"  value="O">Other</option>
-                            </select>
-                        </div>
-                    </div>
-               </div>
-
-               <div class="row my-2">
-                      
-                <div class="col-12 col-md-4 ">
-                    <div class=" form-group input-group-sm " >
-                        <label for="">Country</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-8 ">
-                    <div class="form-group input-group-sm"  >
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                          placeholder="Enter Country" required>
-                        </div>
-                    </div>
-                </div>
-                
-              </div>
-              <div class="row my-2">
-                <div class="col-12 col-md-4  ">
-                    <div class=" form-group input-group-sm  " >
-                      <label for="">State </label> 
-                    </div>
-                    
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="input-group flex-nowrap input-group-sm">
-                      <input type="text" class="form-control"   minlength="3"
-                      placeholder="Enter State" required>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="row my-2">
-                      
-                <div class="col-12 col-md-4 ">
-                    <div class=" form-group input-group-sm " >
-                        <label for="">District</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-8">
-                    <div class="form-group input-group-sm"  >
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                          placeholder="Enter District" required>
-                        </div>
-                    </div>
-                </div>
-                
-              </div>
-              <div class="row my-2">
-                <div class="col-12 col-md-4 ">
-                    <div class=" form-group input-group-sm" >
-                      <label for="">City / Village </label> 
-                    </div>
-                    
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="input-group flex-nowrap input-group-sm">
-                      <input type="text" class="form-control"   minlength="3"
-                      placeholder="Enter City / village name" required>
-                      </div>
-                  </div>
-              </div>
-
-              
-              <div class="row my-2">
-                
-                <div class="col-12 col-md-4 ">
-                    <div class=" form-group input-group-sm " >
-                        <label for="">Address Line</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-8">
-                    <div class="form-group input-group-sm"  >
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                          placeholder="Enter Address line" required>
-                        </div>
-                    </div>
-                </div>
-                
-              </div>
-              <div class="row my-2">
-                <div class="col-12 col-md-4  ">
-                    <div class=" form-group input-group-sm  " >
-                      <label for="">Pincode </label> 
-                    </div>
-                    
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="input-group flex-nowrap input-group-sm">
-                      <input type="number" class="form-control"   minlength="3"
-                      placeholder="Enter Pincode" required>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="row my-2">
-                
-                <div class="col-12 col-md-4 ">
-                    <div class=" form-group input-group-sm " >
-                        <label for="">Mobile No</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-8">
-                    <div class="form-group input-group-sm"  >
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="number" class="form-control"   minlength="3"
-                          placeholder="Enter Mobile No" required>
-                        </div>
-                    </div>
-                </div>
-                
-              </div>
-              <div class="row my-2">
-                <div class="col-12 col-md-4  ">
-                    <div class=" form-group input-group-sm  " >
-                      <label for="">Email ID </label> 
-                    </div>
-                    
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="input-group flex-nowrap input-group-sm">
-                      <input type="email" class="form-control"   minlength="3"
-                      placeholder="Enter Email Address " required>
-                      </div>
-                  </div>
-              </div>
-
-             
-               
-               <div class="row my-2">
-                    
-                    <div class="col-4">
-                        <label for="">Hospital Name </label>
-                        
-                    </div>
-                    <div class="col-8">
-                        <div class="form-group input-group-sm"  >
-                           
-                            <input type="text" class="form-control" name="userAge"
-                            placeholder="Enter Remark" required>
-                        </div>
-                    </div>
-                        
-                    
-               </div>
-
-               <div class="row my-2">
-                <div class="col-4">
-                    <label for="">Remark </label>
-                    
-                </div>
-                <div class="col-8">
-                    <div class="form-group input-group-sm"  >
-                       
-                        <input type="text" class="form-control" name="userAge"
-                        placeholder="Enter Remark" required>
-                    </div>
-                </div>
-               </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success btn-sm">Save changes</button>
-        </div>
-      </div>
     </div>
 </div>
-
-
-

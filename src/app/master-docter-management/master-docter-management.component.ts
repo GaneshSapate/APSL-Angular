@@ -1,4 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { MasterDataService } from '../master-data.service';
+import { ErrorObj } from '../Model/ErrorObj';
+import { Doctor } from '../Model/Doctor';
 
 @Component({
   selector: 'app-master-docter-management',
@@ -30,9 +34,31 @@ export class MasterDocterManagementComponent implements OnInit {
 
   p:number=1;
 
-  constructor() { }
+  stateList=[
+    {
+      id: 0,
+      code: "",
+      discription: ""
+    }
+   ];
+   districtList=[
+    {
+      id: 0,
+      stateCode: "",
+      discription: ""
+    }
+   ];
+   errorObj=<ErrorObj>{};
+
+   doctorObj=<Doctor>{};
+
+   @ViewChild('closeLabModal') closeLabModal:any;
+
+  constructor(private toaster : ToastrService,
+    private masterService: MasterDataService) { }
 
   ngOnInit(): void {
+    this.fetchStateList();
   }
 
   clickonBack(){
@@ -41,6 +67,31 @@ export class MasterDocterManagementComponent implements OnInit {
     this.masterPageObj.reportManagement = false;
     this.masterPageObj.labManagement = false;
     this.masterPageObjEmmitter.emit(this.masterPageObj);
+  }
+
+  fetchStateList(){
+    this.masterService.getAllState().subscribe(
+      (r)=>{
+        this.stateList = <any>r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
+  }
+
+  onSelectState() {
+    if(this.doctorObj.state ){
+      this.masterService.getDistrictByStateCode(this.doctorObj.state).subscribe(
+        (result)=>{
+          this.districtList = <any> result;
+      },
+        (e)=>{
+          this.errorObj=<any>e;
+          this.toaster.error(this.errorObj.message,"Error");
+        })
+    }
+    
   }
 
 
