@@ -33,20 +33,27 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">docter Name</th>
-                        <th scope="col">Gender</th>
+                        <th scope="col">Docter Name</th>
+                        <th scope="col">hospital Name</th>
                         <th scope="col">Mobile NO</th>
                         <th scope="col">Added Date</th>
+                        <th scope="col">Modify Date</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let docter of patientList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                        <th scope="row">{{docter.patientId}}</th>
-                        <td class="pdocterName">{{docter.patientName}}</td>
-                        <td>{{docter.gender}}</td>
-                        <td>{{docter.mobileNo}}</td>
+                    <tr *ngFor="let docter of doctorsList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
+                        <th scope="row">{{docter.doctorId}}</th>
+                        <td class="pdocterName">{{docter.firstName}} {{docter.lastName}}</td>
+                        <td>{{docter.hospitalName}}</td>
+                        <td>{{docter.mobile}}</td>
                         <td>{{docter.addedDate}}</td>
+                        <td>{{docter.modifiedDate}}</td>
+                        <td>
+                            <span *ngIf="docter.disableFlag==true">Disable</span>
+                            <span *ngIf="docter.disableFlag==false">Enable</span>
+                        </td>
                         <td><a style="color: green;">Fill Reports</a> | <a style="color: red;">Delete</a></td>
                     </tr>
                 </tbody>
@@ -284,8 +291,8 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-group input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hosptitalName"
-                                        name="hosptitalName" placeholder="Enter Remark" required>
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
+                                        name="hospitalName" placeholder="Enter Remark" required>
                                 </div>
                             </div>
                         </div>

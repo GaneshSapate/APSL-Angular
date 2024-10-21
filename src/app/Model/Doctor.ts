@@ -14,10 +14,12 @@ export interface Doctor{
     pincode:number;
     mobile:number;
     emailId:string;
-    hosptitalName:string;
+    hospitalName:string;
+    referHospitalNameFlag:boolean;
     remark:string;
     addedBy:Number;
     addedDate:Date;
     modifiedDate:Date;
     modifiedBy:number;
+    disableFlag:boolean;
 }

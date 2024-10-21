@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MasterDataService } from '../master-data.service';
 import { ErrorObj } from '../Model/ErrorObj';
 import { Doctor } from '../Model/Doctor';
+import { DoctorServiceService } from '../service/doctor-service.service';
 
 @Component({
   selector: 'app-master-docter-management',
@@ -20,45 +21,36 @@ export class MasterDocterManagementComponent implements OnInit {
     labManagement:false
   }
 
-  patientList=[
-    {
-      patientId:1,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-    }
-  ];
-  number1:number = 5420;
-  number2:number = 5.56;
+  doctorsList=[<Doctor>{}];
+  doctorObj=<Doctor>{};
 
   p:number=1;
 
-  stateList=[
-    {
-      id: 0,
-      code: "",
-      discription: ""
-    }
-   ];
-   districtList=[
-    {
-      id: 0,
-      stateCode: "",
-      discription: ""
-    }
-   ];
-   errorObj=<ErrorObj>{};
+  stateList=[{id: 0,code: "",discription: ""}];
+  districtList=[{id: 0,stateCode: "",discription: ""}];
+  errorObj=<ErrorObj>{};
 
-   doctorObj=<Doctor>{};
-
-   @ViewChild('closeLabModal') closeLabModal:any;
+  @ViewChild('closeLabModal') closeLabModal:any;
 
   constructor(private toaster : ToastrService,
-    private masterService: MasterDataService) { }
+    private masterService: MasterDataService,
+    private doctorService: DoctorServiceService) { }
 
   ngOnInit(): void {
     this.fetchStateList();
+    this.fetchDoctors();
+
+  }
+  fetchDoctors(){
+    var labId = <number> new Number(sessionStorage.getItem("labId"));
+    this.doctorService.getAlldoctorsByLabId(labId).subscribe(
+      (r)=>{
+        this.doctorsList = <any> r;
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      }
+    )
   }
 
   clickonBack(){
