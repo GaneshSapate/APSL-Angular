@@ -5,7 +5,7 @@
             <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
                     class="fa-regular fa-square-caret-left"></i> Go Back</a>
-            <a class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal">
+            <a class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal" (click)="addDoctorModal()">
                 <i class="fa-solid fa-plus"></i> Add Doctor </a>
             <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
             </a>
@@ -34,7 +34,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Docter Name</th>
-                        <th scope="col">hospital Name</th>
+                        <th scope="col">Hospital Name</th>
                         <th scope="col">Mobile NO</th>
                         <th scope="col">Added Date</th>
                         <th scope="col">Modify Date</th>
@@ -48,8 +48,8 @@
                         <td class="pdocterName">{{docter.firstName}} {{docter.lastName}}</td>
                         <td>{{docter.hospitalName}}</td>
                         <td>{{docter.mobile}}</td>
-                        <td>{{docter.addedDate}}</td>
-                        <td>{{docter.modifiedDate}}</td>
+                        <td>{{docter.addedDate | date}}</td>
+                        <td>{{docter.modifiedDate | date}}</td>
                         <td>
                             <span *ngIf="docter.disableFlag==true">Disable</span>
                             <span *ngIf="docter.disableFlag==false">Enable</span>
@@ -73,7 +73,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title ms-2" id="addDocterModalLabel">Add New Doctor</h5>
+                <h5 class="modal-title ms-2" id="addDocterModalLabel">{{modalHeader}}</h5>
                 <button type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -313,7 +313,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success btn-sm" [disabled]="!f.valid" >Save changes</button>
+                <button *ngIf= "modalType=='Add'" type="button" class="btn btn-success btn-sm"
+                    (click)="addDoctor()" [disabled]="!f.valid" >Add</button>
+                <button *ngIf= "modalType=='Modify'" type="button" class="btn btn-success btn-sm" [disabled]="!f.valid" >Add</button>
             </div>
         </div>
     </div>

@@ -4,5 +4,6 @@ export interface LoginUserResp{
     mainUserId:number,
     labId:number,
     authorities:[{authority:string}],
-    userRole:string
+    userRole:string,
+    userId:number
 }

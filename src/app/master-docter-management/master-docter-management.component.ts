@@ -30,6 +30,9 @@ export class MasterDocterManagementComponent implements OnInit {
   districtList=[{id: 0,stateCode: "",discription: ""}];
   errorObj=<ErrorObj>{};
 
+  modalHeader:string="";
+  modalType:string="";
+
   @ViewChild('closeLabModal') closeLabModal:any;
 
   constructor(private toaster : ToastrService,
@@ -85,6 +88,35 @@ export class MasterDocterManagementComponent implements OnInit {
     }
     
   }
+
+  addDoctorModal(){
+    this.modalHeader="Add New Doctor";
+    this.modalType="Add";
+    this.doctorObj=<Doctor>{};
+    this.doctorObj.title="";
+    this.doctorObj.country="";
+    this.doctorObj.district="";
+    this.doctorObj.gender="";
+  }
+  addDoctor(){
+    var labId = <number> new Number(sessionStorage.getItem("labId"));
+    var mainUserId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    var userId = <number> new Number(sessionStorage.getItem("userId"));
+    this.doctorObj.labId=labId;
+    this.doctorObj.userId=mainUserId;
+    this.doctorObj.addedBy=userId;
+    this.doctorService.addDoctor(this.doctorObj).subscribe(
+      (r)=>{
+        this.doctorObj=<any>r;
+        this.toaster.success("Doctor Added successfully");
+        this.closeLabModal.nativeElement.click();
+        this.fetchDoctors();
+      },(e)=>{
+        this.errorObj=<any>e;
+        this.toaster.error(this.errorObj.message,"Error");
+      })
+  }
+
 
 
 }
