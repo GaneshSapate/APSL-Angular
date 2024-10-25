@@ -105,7 +105,7 @@ export class LoginPageComponent implements OnInit {
         sessionStorage.setItem("token",UserResp.token);
         sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
         sessionStorage.setItem("labId",UserResp.labId.toString());
-        sessionStorage.setItem("userId",UserResp.userId.toString());
+        sessionStorage.setItem("userId",UserResp.mainUserId.toString());
         sessionStorage.setItem("userRole",UserResp.userRole);
         this.router.navigate(["/login-board"]); 
 

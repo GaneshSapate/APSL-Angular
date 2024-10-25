@@ -5,7 +5,7 @@
             <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
                     class="fa-regular fa-square-caret-left"></i> Go Back</a>
-            <a class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#addDocterModal" (click)="addDoctorModal()">
+            <a class="btn btn-secondary btn-sm ms-md-4 " (click)="addDoctorModal()" data-bs-toggle="modal" data-bs-target="#addDocterModal" >
                 <i class="fa-solid fa-plus"></i> Add Doctor </a>
             <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
             </a>
@@ -45,7 +45,8 @@
                 <tbody>
                     <tr *ngFor="let docter of doctorsList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <th scope="row">{{docter.doctorId}}</th>
-                        <td class="pdocterName">{{docter.firstName}} {{docter.lastName}}</td>
+                        <td class="docterName" (click)="viewDoctor(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#viewDocterModal"
+                            >{{docter.firstName}} {{docter.lastName}}</td>
                         <td>{{docter.hospitalName}}</td>
                         <td>{{docter.mobile}}</td>
                         <td>{{docter.addedDate | date}}</td>
@@ -54,7 +55,9 @@
                             <span *ngIf="docter.disableFlag==true">Disable</span>
                             <span *ngIf="docter.disableFlag==false">Enable</span>
                         </td>
-                        <td><a style="color: green;">Fill Reports</a> | <a style="color: red;">Delete</a></td>
+                        <td><a style="color: green; cursor: pointer;" (click)="modifyDoctorModal(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#addDocterModal"
+                             >Modify</a> | 
+                            <a style="color: red; cursor: pointer;" (click)="deleteModal(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#deleteDoctorModal" >Delete</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -67,73 +70,59 @@
 
 </div>
 
-<!-- Add New Doctor Modal -->
-<div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-    aria-labelledby="addDocterModalLabel" aria-hidden="true">
+
+<!-- View Doctor Modal -->
+<div class="modal fade" id="viewDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="viewDocterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title ms-2" id="addDocterModalLabel">{{modalHeader}}</h5>
+                <h5 class="modal-title ms-2" id="viewDocterModalLabel">{{doctorObj.title}} {{doctorObj.firstName}} {{doctorObj.lastName}}</h5>
                 <button type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body viewModalBody">
                 <div class="container-sm">
                     <form #f="ngForm">
                         <div class="row my-2 ">
                             <div class="col-12 col-md-4">
                                 <div class="form-group input-group-sm">
-                                    <label for="">Title </label>
+                                    <label for="">Doctor ID </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <input type="text" class="form-control" minlength="3"
+                                    [(ngModel)]="doctorObj.doctorId" name="doctorId" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Status </label>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.title" name="title">
-                                        <option value="" selected>Select Title</option>
-                                        <option value="DR.">DR.</option>
+                                    <select class="form-control" [(ngModel)]="doctorObj.status" name="disableFlag" disabled>
+                                        <option value="Enable" >Enable</option>
+                                        <option value="Disable" >Disable</option>
                                     </select>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row my-2">
-                            <div class="col-12 col-md-4">
-                                <label for="">First Name</label>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class=" form-group input-group-sm">
-
-                                    <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="text" class="form-control" [(ngModel)]="doctorObj.firstName"
-                                            name="firstName" minlength="3" placeholder="Enter First Name" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row my-2 ">
                             <div class="col-12 col-md-4">
                                 <div class="form-group input-group-sm">
-                                    <label for="">Last Name </label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.lastName"
-                                        name="lastName" minlength="3" placeholder="Enter Last Name" required>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row my-2 ">
-                            <div class="col-12 col-md-4">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Gender </label>
+                                    <label for="">Gender</label>
                                 </div>
 
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.gender" name="gender">
-                                        <option value="" selected>Select Gender</option>
+                                    <select class="form-control" [(ngModel)]="doctorObj.gender" name="gender" disabled>
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
                                         <option value="O">Other</option>
@@ -151,8 +140,7 @@
                             </div>
                             <div class="col-12 col-md-8 ">
                                 <div class="form-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.country" name="country">
-                                        <option value="" selected>Select Country</option>
+                                    <select class="form-control" [(ngModel)]="doctorObj.country" name="country" disabled>
                                         <option value="IN">India</option>
                                     </select>
                                 </div>
@@ -163,6 +151,262 @@
                             <div class="col-12 col-md-4  ">
                                 <div class=" form-group input-group-sm  ">
                                     <label for="">State </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <select class="form-control" [(ngModel)]="doctorObj.state"
+                                      name="state" #state="ngModel" disabled>
+                                        <option *ngFor="let state of stateList" value="{{state.code}}">{{
+                                            state.discription
+                                            }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">District </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <select class="form-control" [(ngModel)]="doctorObj.district" name="district"
+                                        #district="ngModel" disabled>
+                                        <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
+                                            dist.discription }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm">
+                                    <label for="">City / Village </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" minlength="3"
+                                        [(ngModel)]="doctorObj.city_village" name="city_village" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Address Line</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="text" class="form-control" minlength="3"
+                                            [(ngModel)]="doctorObj.addLine" name="addLine" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">Pincode </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
+                                        name="pincode" minlength="3" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Mobile No</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group-sm">
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="number" class="form-control" minlength="3"
+                                            [(ngModel)]="doctorObj.mobile" name="mobile" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">Email ID </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="email" class="form-control" minlength="3"
+                                        [(ngModel)]="doctorObj.emailId" name="emailId" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <label for="">Hospital Name </label>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
+                                        name="hospitalName" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <label for="">Remark </label>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Doctor Modal -->
+<div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="addDocterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title ms-2" id="addDocterModalLabel">{{modalHeader}}</h5>
+                <button type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-sm">
+                    <form #f="ngForm">
+                        <div *ngIf= "modalType=='Modify'" class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Status *</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.status" name="disableFlag" required>
+                                        <option value="Enable" >Enable</option>
+                                        <option value="Disable" >Disable</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Title *</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.title" name="title" required>
+                                        <option value="" selected>Select Title</option>
+                                        <option value="DR.">DR.</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4">
+                                <label for="">First Name *</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class=" form-group input-group-sm">
+
+                                    <div class="input-group flex-nowrap input-group-sm">
+                                        <input type="text" class="form-control" [(ngModel)]="doctorObj.firstName"
+                                            name="firstName" minlength="3" placeholder="Enter First Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Last Name *</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.lastName"
+                                        name="lastName" minlength="3" placeholder="Enter Last Name" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">Gender *</label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="form-group input-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.gender" name="gender" required>
+                                        <option value="" selected>Select Gender</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-12 col-md-4 ">
+                                <div class=" form-group input-group-sm ">
+                                    <label for="">Country *</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8 ">
+                                <div class="form-group input-group-sm">
+                                    <select class="form-select" [(ngModel)]="doctorObj.country" name="country" required>
+                                        <option value="" selected>Select Country</option>
+                                        <option value="IN">India</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4  ">
+                                <div class=" form-group input-group-sm  ">
+                                    <label for="">State *</label>
                                 </div>
 
                             </div>
@@ -185,7 +429,7 @@
 
                             <div class="col-12 col-md-4 ">
                                 <div class=" form-group input-group-sm ">
-                                    <label for="">District</label>
+                                    <label for="">District *</label>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
@@ -205,7 +449,7 @@
                         <div class="row my-2">
                             <div class="col-12 col-md-4 ">
                                 <div class=" form-group input-group-sm">
-                                    <label for="">City / Village </label>
+                                    <label for="">City / Village *</label>
                                 </div>
 
                             </div>
@@ -247,7 +491,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
-                                        name="pincode" minlength="3" placeholder="Enter Pincode" required>
+                                        name="pincode" minlength="3" placeholder="Enter Pincode">
                                 </div>
                             </div>
                         </div>
@@ -263,8 +507,7 @@
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="number" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="Enter Mobile No"
-                                            required>
+                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="Enter Mobile No">
                                     </div>
                                 </div>
                             </div>
@@ -281,18 +524,18 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="email" class="form-control" minlength="3"
                                         [(ngModel)]="doctorObj.emailId" name="emailId"
-                                        placeholder="Enter Email Address " required>
+                                        placeholder="Enter Email Address ">
                                 </div>
                             </div>
                         </div>
                         <div class="row my-2">
                             <div class="col-4">
-                                <label for="">Hospital Name </label>
+                                <label for="">Hospital Name *</label>
                             </div>
                             <div class="col-8">
                                 <div class="form-group input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
-                                        name="hospitalName" placeholder="Enter Remark" required>
+                                        name="hospitalName" placeholder="Enter Hospital Name" required>
                                 </div>
                             </div>
                         </div>
@@ -304,7 +547,7 @@
                             <div class="col-8">
                                 <div class="form-group input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark"
-                                        placeholder="Enter Remark" required>
+                                        placeholder="Enter Remark">
                                 </div>
                             </div>
                         </div>
@@ -315,7 +558,30 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 <button *ngIf= "modalType=='Add'" type="button" class="btn btn-success btn-sm"
                     (click)="addDoctor()" [disabled]="!f.valid" >Add</button>
-                <button *ngIf= "modalType=='Modify'" type="button" class="btn btn-success btn-sm" [disabled]="!f.valid" >Add</button>
+                <button *ngIf= "modalType=='Modify'" type="button" class="btn btn-success btn-sm"
+                    (click)="modifyDoctor()" [disabled]="!f.valid" >Modify</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-dialog-scrollable" id="deleteDoctorModal" tabindex="-1" data-bs-backdrop="static"
+    data-bs-keyboard="false" aria-labelledby="OptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="OptionModalLabel">Alert</h5>
+                <button type="button" class="btn-close" #OptionModal data-bs-toggle="modal" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body ms-4">
+                Do you want delete this Doctor !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal">
+                    Cancel </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteDoctor()"> Delete </button>
             </div>
         </div>
     </div>

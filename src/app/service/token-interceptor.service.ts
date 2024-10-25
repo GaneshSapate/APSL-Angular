@@ -1,13 +1,16 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import {  catchError, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private route : Router,
+              private toster : ToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
@@ -18,6 +21,16 @@ export class TokenInterceptorService implements HttpInterceptor {
         "Access-Control-Allow-Origin" : 'http://localhost:4200/'
       }
     })
-    return next.handle(jwttoken);
+    return next.handle(jwttoken).pipe(
+      catchError((requestError) => {
+        if (requestError.status == 401) {
+         this.toster.warning("Session May Be Ended Please Login Again");
+         this.route.navigate(["/login"]);
+        }else {
+          this.toster.error(requestError.message);
+        }
+        return throwError(() => new Error(requestError));
+      })
+    );
   }
 }

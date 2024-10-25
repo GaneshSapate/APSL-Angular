@@ -22,4 +22,5 @@ export interface Doctor{
     modifiedDate:Date;
     modifiedBy:number;
     disableFlag:boolean;
+    status:string;
 }

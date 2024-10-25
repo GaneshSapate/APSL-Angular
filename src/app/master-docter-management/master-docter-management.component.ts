@@ -35,6 +35,9 @@ export class MasterDocterManagementComponent implements OnInit {
 
   @ViewChild('closeLabModal') closeLabModal:any;
 
+  deleteDocterId=0;
+  @ViewChild('OptionModal') OptionModal:any;
+
   constructor(private toaster : ToastrService,
     private masterService: MasterDataService,
     private doctorService: DoctorServiceService) { }
@@ -49,11 +52,7 @@ export class MasterDocterManagementComponent implements OnInit {
     this.doctorService.getAlldoctorsByLabId(labId).subscribe(
       (r)=>{
         this.doctorsList = <any> r;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   clickonBack(){
@@ -68,23 +67,17 @@ export class MasterDocterManagementComponent implements OnInit {
     this.masterService.getAllState().subscribe(
       (r)=>{
         this.stateList = <any>r;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   onSelectState() {
+    this.districtList=[];
     if(this.doctorObj.state ){
       this.masterService.getDistrictByStateCode(this.doctorObj.state).subscribe(
         (result)=>{
           this.districtList = <any> result;
-      },
-        (e)=>{
-          this.errorObj=<any>e;
-          this.toaster.error(this.errorObj.message,"Error");
-        })
+          this.doctorObj.district=this.doctorObj.district;
+      })
     }
     
   }
@@ -95,6 +88,7 @@ export class MasterDocterManagementComponent implements OnInit {
     this.doctorObj=<Doctor>{};
     this.doctorObj.title="";
     this.doctorObj.country="";
+    this.doctorObj.state="";
     this.doctorObj.district="";
     this.doctorObj.gender="";
   }
@@ -111,10 +105,66 @@ export class MasterDocterManagementComponent implements OnInit {
         this.toaster.success("Doctor Added successfully");
         this.closeLabModal.nativeElement.click();
         this.fetchDoctors();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
       })
+  }
+
+  viewDoctor(docterId:number){
+    this.doctorObj=<Doctor>{};
+    this.doctorService.getDoctorsById(docterId).subscribe(
+      (r)=>{
+        this.doctorObj = <any>r;
+        if(!this.doctorObj.disableFlag){
+          this.doctorObj.status="Enable";
+        }else{
+          this.doctorObj.status="Disable";
+        }
+        this.onSelectState();
+      })
+  }
+
+  modifyDoctorModal( docterId:number){
+    this.modalHeader="Modify Doctor";
+    this.modalType="Modify";
+    this.doctorObj=<Doctor>{};
+    this.doctorService.getDoctorsById(docterId).subscribe(
+      (r)=>{
+        this.doctorObj = <any>r;
+        if(!this.doctorObj.disableFlag){
+          this.doctorObj.status="Enable";
+        }else{
+          this.doctorObj.status="Disable";
+        }
+        this.onSelectState();
+      })
+  }
+
+  modifyDoctor(){
+    if(this.doctorObj.status==="Disable"){
+      this.doctorObj.disableFlag=true;
+    }else{
+      this.doctorObj.disableFlag=false;
+    }
+    this.doctorService.modifyDoctor(this.doctorObj).subscribe(
+      (r)=>{
+        this.doctorObj=<any>r;
+        this.toaster.success("Doctor Modified successfully");
+        this.closeLabModal.nativeElement.click();
+        this.fetchDoctors();
+      })
+  }
+
+  deleteDoctor(){
+    this.doctorService.deleteDoctor(this.deleteDocterId).subscribe(
+      (r)=>{
+        this.doctorObj=<any>r;
+        this.toaster.success("Doctor Deleted successfully");
+        this.OptionModal.nativeElement.click();
+        this.fetchDoctors();
+      })
+  }
+
+  deleteModal(docterId:number){
+    this.deleteDocterId=docterId;
   }
 
 

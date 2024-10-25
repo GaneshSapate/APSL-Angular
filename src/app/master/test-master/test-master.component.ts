@@ -153,11 +153,7 @@ deleteTestId:number=0;
     this.testService.getTestListById(userId).subscribe(
       (r)=>{
         this.testMasterList=<any>r;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   clickonBack(){
@@ -294,12 +290,7 @@ deleteTestId:number=0;
                     this.toaster.success("Record Added Successfully");
                     this.resetContentField();
                   }
-                },(e)=>{
-                  this.errorObj=<any>e;
-                  this.toaster.error(this.errorObj.message,"Error");
-                  return;
-                }
-              )
+                })
             }else{
               this.testMaster.testTableDataDTOList.push(testContentObj);
               if(this.data_type == 'numeric'){
@@ -439,12 +430,7 @@ deleteTestId:number=0;
                       this.toaster.success("Record Added Successfully");
                       this.resetContentField();
                     }
-                  },(e)=>{
-                    this.errorObj=<any>e;
-                    this.toaster.error(this.errorObj.message,"Error");
-                    return;
-                  }
-                )
+                  } )
                 
               }else{
                 for(var i=0; i<this.testMaster.testTableDataDTOList.length;i++){
@@ -950,11 +936,7 @@ deleteTestId:number=0;
         var blob = pdf.output("blob");
         var usrl=window.URL.createObjectURL(blob);
         this.pdfurl=this.transform(usrl);
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   transform(url:string) {
@@ -971,11 +953,55 @@ deleteTestId:number=0;
         this.toaster.success("Test Added Successfully");
         this.saveModal.nativeElement.click();
         this.loadAlltest();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
+  }
+  viewTest(id:number){
+    this.modifyModal=true;
+    this.addmodal=false;
+    this.modalTitle="Test Details"
+    this.ModalButtonName="Proceed";
+    this.testMaster=<TestMasterObj>{};
+    this.testMaster.department="";
+    this.testMaster.testType="";
+    this.testMaster.testGender="";
+    this.testMaster.testGender="";
+    this.testMaster.sampleType="";
+    this.testMaster.testTableDataDTOList=[];
+    this.resetContentField();
+    this.subfieldTableFlag=false;
+    this.subFieldTitleIdex=-1
+    this.subFieldDataList=[];
+    this.subFieldSelected=-1;
+    this.selected_options=[];
+    this.title_field_list=[];
+    this.field_name_list=[];
+    this.allTestList=[];
+
+    let title_field_list: string[] =[]; 
+    let field_name_list :string[] =[];
+
+    this.testService.getTestById(id).subscribe(
+      (r)=>{
+        this.testMaster=<any>(r)
+       
+        this.testMaster.testTableDataDTOList.forEach(function (field:any) {
+          console.log(field);
+          if(field.field_type=='Title Field'){
+             title_field_list.push(field.field_name);
+            for(let sub of field.subFieldDataList){
+              if(sub.data_type=='numeric'){
+                field_name_list.push(sub.sub_field);
+              }
+            }
+          }else{
+            if(field.data_type==='numeric'){
+               field_name_list.push(field.field_name);
+            }
+          }
+        });
+        this.title_field_list = title_field_list;
+        this.field_name_list =field_name_list;
+      });
   }
   openTest(id:number){
     this.modifyModal=true;
@@ -1023,11 +1049,7 @@ deleteTestId:number=0;
         });
         this.title_field_list = title_field_list;
         this.field_name_list =field_name_list;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    );
+      });
   }
   modifyTest(){
     var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
@@ -1038,11 +1060,7 @@ deleteTestId:number=0;
         this.toaster.success("Test Updated Successfully");
         this.saveModal.nativeElement.click();
         this.loadAlltest();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
   setTestId(testId:number){
     this.deleteTestId=testId;
@@ -1054,11 +1072,7 @@ deleteTestId:number=0;
         this.toaster.success(res);
         this.OptionModal.nativeElement.click();
         this.loadAlltest();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
 
@@ -1140,12 +1154,7 @@ deleteTestId:number=0;
           this.toaster.error(responseMessage.message);
           return false;
         }
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-        return false;
-      }
-    )
+      })
   }
 
   createFormula(){

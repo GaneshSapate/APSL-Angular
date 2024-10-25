@@ -74,9 +74,6 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.elem = document.documentElement;
     this.masterService.getAllState().subscribe( (r) => {
         this.stateList = <any> r;
-      }, (e) =>{
-        this.error=e;
-        this.toaster.error(this.error.message, "Error");
       });
   }
 
@@ -213,11 +210,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
           this.masterService.getDistrictByStateCode(this.state).subscribe(
             (result)=>{
               this.districtList = <any> result;
-          },
-            (e)=>{
-              this.error=e;
-              this.toaster.error(this.error.message,"Error");
-            })
+          })
         }
         
       }

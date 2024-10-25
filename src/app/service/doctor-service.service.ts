@@ -17,4 +17,13 @@ export class DoctorServiceService {
   getAlldoctorsByLabId(labId:number){
     return this.http.get(`${this.url}`+`/`+labId);
   }
+  getDoctorsById(Id:number){
+    return this.http.get(`${this.url}`+`/doctor/`+Id);
+  }
+  modifyDoctor(doctor:any){
+    return this.http.put(`${this.url}`,doctor);
+  }
+  deleteDoctor(Id:number){
+    return this.http.delete(`${this.url}`+`/`+Id);
+  }
 }

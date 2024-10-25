@@ -85,11 +85,7 @@ export class MasterLabManagementComponent implements OnInit {
     this.labService.getLabsByUserId(userId).subscribe(
       (r)=>{
         this.labList=<any>r;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   public picked(evt:any){
@@ -114,23 +110,16 @@ export class MasterLabManagementComponent implements OnInit {
     this.masterService.getAllState().subscribe(
       (r)=>{
         this.stateList = <any>r;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   onSelectState() {
+    this.districtList=[];
     if(this.labObj.state ){
       this.masterService.getDistrictByStateCode(this.labObj.state).subscribe(
         (result)=>{
           this.districtList = <any> result;
-      },
-        (e)=>{
-          this.errorObj=<any>e;
-          this.toaster.error(this.errorObj.message,"Error");
-        })
+      })
     }
     
   }
@@ -152,11 +141,7 @@ export class MasterLabManagementComponent implements OnInit {
         this.labObj=<any>r;
         this.onSelectState();
         this.labLogoString=this.labObj.labLogoString;
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
 
   }
   pincodeValidation(){
@@ -190,11 +175,7 @@ export class MasterLabManagementComponent implements OnInit {
         this.toaster.success("Laboratory Added Successfully, LabId : "+labId);
         this.closeLabModal.nativeElement.click();
         this.getAllLabs();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    );
+      });
   }
 
   updateStatusModal(lab:any){
@@ -214,11 +195,7 @@ export class MasterLabManagementComponent implements OnInit {
         this.toaster.success(this.errorObj.message,"Success");
         this.closeStatusModal.nativeElement.click();
         this.getAllLabs();
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    )
+      })
   }
 
   modifyLab(){
@@ -238,11 +215,7 @@ export class MasterLabManagementComponent implements OnInit {
         this.closeLabModal.nativeElement.click();
         this.getAllLabs();
         this.labObj=<LabObj>{};
-      },(e)=>{
-        this.errorObj=<any>e;
-        this.toaster.error(this.errorObj.message,"Error");
-      }
-    );
+      });
 
   }
 
