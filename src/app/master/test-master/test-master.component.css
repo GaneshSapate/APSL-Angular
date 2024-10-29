@@ -11,6 +11,9 @@ table{
     color: blue;
     cursor: pointer;
 }
+th{
+  color: rgb(79, 79, 79);
+}
 
 
 .reports-modalbody {

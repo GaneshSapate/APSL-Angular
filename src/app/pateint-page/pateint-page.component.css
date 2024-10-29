@@ -23,6 +23,9 @@ table{
     border-radius: 7px;
     /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16); */
 }
+th{
+    color: rgb(79, 79, 79);
+}
 label{
     font-size: 14px;
 }

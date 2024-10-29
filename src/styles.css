@@ -29,29 +29,43 @@ body{
 }
 
 .btn-secondary{
-  border-width: 0px;
+  border-width: 1px;
+  border-color: #ebebeb;
   box-sizing: border-box;
   /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356); */
-  background: rgb(237, 237, 237);
+  background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 
 }
+.btn-secondary:disabled,
+button[disabled]{
+  border-width: 1px;
+  border-color: #ebebeb;
+  box-sizing: border-box;
+  /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356); */
+  background: rgb(255, 255, 255);
+  color: rgb(110, 110, 110);
+}
+
 .btn-secondary:hover{
-  background-color: rgb(219, 219, 219);
+  border-width: 1px;
+  border-color: #ebebeb;
+  background-color: rgb(243, 243, 243);
   color: rgb(0, 0, 0);
 }
 
 
 .btn-danger{
-  border-width: 0px;
+  border-width: 1px;
+  border-color: #ebebeb;
   border-radius: 3px;
   box-sizing: border-box;
   /* box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356); */
-  background: rgb(237, 237, 237);
+  background: white;
   color: #c20000;
 }
 .btn-danger:hover{
-  background-color: rgb(219, 219, 219);
+  background-color: #ebebeb;
   color: #c20000;
 }
 
@@ -81,27 +95,32 @@ body{
    padding: 10px;
 }
 
+.header-card .card-title{
+  font-weight: 500;
+  font-size: 18px;
+}
+
 .option-card{
   display: block;
   width: 22rem;
   margin-left: 20px;
   margin-top: 20px;
-  background-color: #f2f1f1;
+  /* background-color: #f2f1f1; */
   border: none;
   transition: 0.5s;
+  background-color: #f5f5f5;
 }
 
 .option-card:hover {
- background-color: #dadada;
+ background-color: #f3f3f3;
  cursor: pointer;
 }
 
 .option-card .card-title{
-  color: rgb(82, 82, 82);
 }
 
 .option-card .card-text{
-  font-size: 14px;
+  font-size: 13px;
   color: black;
 }
 /* .option-card .btn-primary{
@@ -123,4 +142,20 @@ body{
     width: 400px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.docterTableDiv{
+  background-color:  rgb(255, 255, 255);
+  border-radius: 7px;
+}
+th{
+  color: rgb(79, 79, 79);
+}
+table{
+  font-size: small;
+  text-align: center;
+}
+.docterName:hover{
+  color: blue;
+  cursor: pointer;
 }

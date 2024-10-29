@@ -34,8 +34,8 @@
 }
 .select{
     background: linear-gradient(45deg, #ffffff, #ffffff);
-    background: linear-gradient(to left, rgb(223, 223, 223) 97%, #5a5a5a 3%);
-    /* color: #bdbdbd; */
+    background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%);
+    color: #0041a1;
     cursor: pointer;
     /* border: solid;
     border-color: blue;
@@ -43,7 +43,7 @@
     border-left-width: 10px; */
 }
 .select i{
-    color: #494949;
+    color: #0d4eaf;
 }
 
 @keyframes myanimation {

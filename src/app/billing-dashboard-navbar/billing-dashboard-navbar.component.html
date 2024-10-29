@@ -1,5 +1,5 @@
 <div >
-    <nav class="navbar navbar-dark navbar-expand-sm fixed-top px-2 p-xs-0 py-1" style="background-color: #0d4eaf; " [ngClass]="{'side-nav-open': menuStatus}">
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top px-2 p-xs-0 py-1" [ngClass]="{'side-nav-open': menuStatus}">
       <div class="container-fluid px-0 mx-0 " >
         <div class="navbar-brand m-0 p-0 me-4 ">
           <span style="font-size: 16px; font-family: Arial, sans-serif;"> 
@@ -13,18 +13,18 @@
 
         <ul class="navbar-nav ms-4 mb-2 mb-lg-0 ">
           <li class="nav-item  ">
-            <a class="nav-link active " aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 14px;cursor: pointer;">
+            <a class="nav-link  " aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 14px;cursor: pointer;">
               <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
           </li>
           <li>
-            <a  class="nav-link active" data-bs-toggle="modal" data-bs-target="#NewPatientModal" style="font-size: 14px;cursor: pointer;">
+            <a  class="nav-link " data-bs-toggle="modal" data-bs-target="#NewPatientModal" style="font-size: 14px;cursor: pointer;">
               <i class="fa-solid fa-plus"></i> Add New Patient</a>
           </li>
         </ul>
         
       </div>
     
-        <div class="d-flex text-light me-0 pe-0" >
+        <div class="d-flex me-0 pe-0" >
           <div class="btn-group mx-3">
             <span style=" cursor: pointer;" >
                 <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i class="fa-solid fa-expand"></i></span>
@@ -70,8 +70,8 @@
         </div>
     </div>
     <div class="btn-group mx-sm-2 " >
-      <span class="p-1 shadow "  data-bs-toggle="dropdown" style="background-color: #1972f7; border-radius: 50%; cursor: pointer;">
-        <i class="fa-solid fa-user-doctor mx-1" style="font-size: 16px;color: white;"></i></span>
+      <span class="p-1 rounded-circle"  data-bs-toggle="dropdown" style="background-color: #1972f7;cursor: pointer; color: white; font-size: 14px;">
+        <i class="fa-solid fa-user-doctor mx-1"></i></span>
     
       <ul class="dropdown-menu dropdown-menu-end py-2 mt-2" >
           <li class="dropdown-item"> <i class="fa-solid fa-user-doctor p-2 profile-picture me-2"></i> Ganesh Sapate </li>

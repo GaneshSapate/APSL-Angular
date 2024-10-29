@@ -4,24 +4,10 @@
     box-shadow: 2px 2px 10px rgb(193, 193, 193);
     border-radius: 7px;
 }
-.card{
-    display: inline-block;
-    /* border: none; */
-    border-color: #e3e3e3;
-}
-.card-body{
-    display: inline-block;
-}
-.card-title{
-  font-weight: bold;
-}
 .symbol{
     color: green;
     font-size: 60px;
     margin-bottom: 5px;
-}
-.card h3{
-    color: rgb(87, 87, 87);
 }
  table{
     font-size: small;

@@ -3,8 +3,8 @@
     <div class="main ">
         <div class="row mainHeader row mx-1 p-1 py-2 p-md-4 mt-2 " style="background-color: white;">
             <div class="row pb-2">
-                <h5 style="font-weight: bold; color: rgb(83, 83, 83);"><i class="fa-solid fa-user me-2" ></i> Patient Management</h5>
-                <p style="color: black; font-size: 14px;">Here you can add and manage patient also fill and modify reports</p>
+                <h6><i class="fa-solid fa-user me-2" ></i> Patient Management</h6>
+                <p style="color: rgb(56, 56, 56); font-size: 13px;">Here you can add and manage patient also fill and modify reports</p>
             </div>
             <div class="row">
                 <div class="col-12 col-md-9">
@@ -48,7 +48,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                                    <th scope="row">{{patient.patientId}}</th>
+                                    <td >{{patient.patientId}}</td>
                                     <td class="patientName" (click)="onClickPateint(patient)">{{patient.patientName}}</td>
                                     <td><p class="patientStatus shadow-sm">{{patient.status}}</p></td>
                                     <td>{{patient.gender}}</td>
@@ -281,7 +281,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
       <div class="modal-content">
         <div class="modal-header ">
-          <h5 class="modal-title" id="editPatientModalLabel" style="color: rgb(82, 82, 82); font-weight: bold;"> Modify Patient Details</h5>
+          <h5 class="modal-title" id="editPatientModalLabel"> Modify Patient Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -529,14 +529,14 @@
 <!-- Patient Detail Page -->
 <div *ngIf="!patientPage">
     <div class="row mx-2 mt-2 " style="border-radius: 7px;">
-        <div class="card mt-2 py-3 ps-4" style="border: none;">
+        <div class="card py-3 ps-4" style="border: none;">
             <div class="card-body p-1 p-md-2">
-              <h5 class="card-title" style="font-weight: bold; color: rgb(87, 87, 87);">{{patientObj.patientName}} </h5>
+              <h6 class="card-title" style="font-size: 17px;">{{patientObj.patientName}} </h6>
               <p class="card-text" style="font-size: 14px; ">
-                <span class="ms-0" style="font-weight: bold;">Refer By : </span>{{patientObj.mobileNo}},  
-                <span class="ms-2" style="font-weight: bold;">Gender : </span>{{patientObj.gender}}, 
-                <span class="ms-2" style="font-weight: bold;">Mobile No : </span>{{patientObj.mobileNo}}, 
-                <span class="ms-2" style="font-weight: bold;">Added date : </span>{{patientObj.addedDate}} 
+                <span class="ms-0">Refer By : </span>{{patientObj.mobileNo}},  
+                <span class="ms-2">Gender : </span>{{patientObj.gender}}, 
+                <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}}, 
+                <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
                 </p>
               <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
               <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#editPatientModal">
@@ -575,7 +575,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 7, currentPage: p }; index as i">
-                            <th scope="row">{{patient.patientId}}</th>
+                            <td>{{patient.patientId}}</td>
                             <td class="patientName">{{patient.patientName}}</td>
                             <td>{{patient.gender}}</td>
                             <td>{{patient.mobileNo}}</td>

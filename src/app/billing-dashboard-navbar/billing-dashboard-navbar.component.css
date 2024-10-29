@@ -16,8 +16,17 @@
 .text-primary{
   color: rgb(189, 144, 28);
 }
-.navbar.scrolled {
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.12);
+.navbar {
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #ddddde;
+  /* background-color: #0d4eaf;  */
+  background-color: white;
+  color: #585858;
+}
+.navbar-nav{
+  font-size: 14px;
+  font-weight: 500;
 }
 @media screen and (max-width:575px){
   .navbar{

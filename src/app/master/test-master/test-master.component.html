@@ -1,7 +1,7 @@
 <div class="row mx-1 mx-md-4   ">
-    <div class="card mt-2 py-2" style="border: none;">
+    <div class="card mt-2 py-2 header-card" style="border: none;">
         <div class="card-body">
-            <h5 class="card-title" style="font-weight: bold; color: rgb(82, 82, 82);">Reports Management </h5>
+            <h5 class="card-title"><i class="fa-regular fa-pen-to-square me-2"></i> Reports Management </h5>
             <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Reports Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"><i class="fa-regular fa-square-caret-left"></i>
                 Go Back</a>
@@ -12,17 +12,19 @@
     </div>
 </div>
 
-<div class="row mx-1 mx-md-4  mt-4">
-    <div class="patientTableDiv pt-2 shadow-sm">
-        <div class="row mx-2 py-2">
-            <div class="col-8">
-                <h6 style="font-weight: bold;">Test List</h6>
+<div class="row mx-md-2  mt-4">
+    <div class="patientTableDiv pt-2">
+        <div class="row mx-1 py-2">
+            <div class="col-xl-8 col-md-6">
+                <h6>Test List</h6>
             </div>
-            <div class="col-4 ">
-                <div class="input-group input-group-sm mb-3 justify-content-md-end">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm">
-                    <span class="input-group-text" id="inputGroup-sizing-sm" style="cursor: pointer;">Search</span>
+            <div class="col-xl-4 col-md-6">
+                <div class="form-group input-group-sm ps-md-4">
+                    <div class="input-group  input-group-sm">
+                        <input type="text" class="form-control" minlength="3" placeholder="Enter Test Name" required>
+                        <button type="button" class="btn btn-secondary btn-sm"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,7 +44,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let test of testMasterList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                        <th scope="row">{{test.testId}}</th>
+                        <td scope="row">{{test.testId}}</td>
                         <td class="testName" (click)="viewTest(test.testId)" data-bs-toggle="modal" data-bs-target="#viewTestModal">{{test.testName}}</td>
                         <td>{{test.testCode}}</td>
                         <td>{{test.testGender}}</td>

@@ -1,18 +1,3 @@
-.docterTableDiv{
-    background-color:  rgb(255, 255, 255);
-    border-radius: 7px;
+th{
+    color: rgb(85, 85, 85);
 }
-table{
-    font-size: small;
-    text-align: center;
-}
-.docterName:hover{
-    color: blue;
-    cursor: pointer;
-}
-/* .viewModalBody input{
-    background-color: white;
-}
-.viewModalBody select{
-    background-color: white;
-} */
