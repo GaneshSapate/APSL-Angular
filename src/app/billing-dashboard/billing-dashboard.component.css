@@ -9,10 +9,10 @@ app-side-nav-bar{
     /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
     /* background-color: #525252; */
     transition: width 150ms ease-in;
-    border: solid;
+    /* border-right: solid;
     border-width: 1px;
-    border-color: #e8e8e8;
-    background-color: #ffffff;
+    border-color: #e8e8e8; */
+    /* background-color: #ffffff; */
 }
 .side-nav-open{
     width: 54px;

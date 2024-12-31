@@ -1,0 +1,33 @@
+
+.textContentDiv div{
+    margin-bottom: 0px;
+    font-size: 10px;
+    color: black;
+    font-family: Arial;
+  }
+  
+  .customCard{
+    border: 1px solid black; 
+    border-collapse: collapse; 
+    font-size: 11PX; 
+    padding-left: 12px; padding-right: 12px;
+    margin: 12px;
+  }
+  .customCard-name1{
+    width: 90px;
+    display: inline-block;
+  }
+  .customCard-name{
+    width: 100px;
+    display: inline-block;
+  }
+  .customCard-value1{
+    width: 180px;
+    display: inline-block;
+    }
+  
+  .customCard-value{
+  width: 170px;
+  display: inline-block;
+  }
+  

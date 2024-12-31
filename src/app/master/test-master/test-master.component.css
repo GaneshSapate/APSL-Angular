@@ -1,6 +1,5 @@
 
 .patientTableDiv{
-    background-color:  rgb(255, 255, 255);
     border-radius: 7px;
 }
 table{
@@ -10,9 +9,6 @@ table{
 .testName:hover{
     color: blue;
     cursor: pointer;
-}
-th{
-  color: rgb(79, 79, 79);
 }
 
 

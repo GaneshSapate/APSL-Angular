@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { BillingDashboardComponent } from './billing-dashboard/billing-dashboard.component';
+import { HomePageComponent } from './home-page/home-page.component';
 const routes: Routes = [
 
   {
@@ -14,8 +16,9 @@ const routes: Routes = [
     path:"registration",component:RegistrationComponent
   },
   {
-    path:'login-board',loadChildren:()=>import("./login-board/login-board.module").then(m=>m.LoginBoardModule)
+    path:'dashboard',loadChildren:()=>import("./login-board/login-board.module").then(m=>m.LoginBoardModule)
   },
+
 ];
 
 @NgModule({

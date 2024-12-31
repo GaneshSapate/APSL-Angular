@@ -4,7 +4,7 @@
     <div class="card login-card px-0 px-md-2" >
       <div class="panel mt-4" >
           <h4 style="color:   #525252; font-weight:500 ;">Login</h4>
-          <p style="font-size: 14px;">Please Enter your Username and Password</p>  
+          <p style="font-size: 14px;">Please Enter your Username and Password</p> 
           <span style="color: red; margin-top: 5px;">
           {{incorrect}}
           </span>
@@ -64,8 +64,8 @@
                 <label for="">Please enter your Username to search for your account.</label>
                 <div class="input-group flex-nowrap mt-2">
                     <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Enter Username" name="userName" [(ngModel)]="userName">
-                    <button type="button" class="btn btn-primary" (click)="onSearch()" >Search</button>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter Username" name="userName" [(ngModel)]="userName">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="onSearch()" >Search</button>
                 </div>
              </div>  
         
@@ -87,7 +87,7 @@
 
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" [disabled]="ProccedToVerification" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Procced To Verification</button>
+          <button class="btn btn-sm btn-primary" [disabled]="ProccedToVerification" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Procced To Verification</button>
         </div>
       </div>
     </div>
@@ -106,11 +106,11 @@
          
             <div class="form-group " >
                 <label for="">Mobile No </label>
-                <div class="input-group ">
-                    <span class="input-group-text" id="addon-wrapping">+91</span>
-                    <input type="text" class="form-control" [disabled]="true"
+                <div class="input-group">
+                    <span class="input-group-text" id="addon-wrapping" style="font-size: small;">+91</span>
+                    <input type="text" class="form-control form-control-sm" [disabled]="true"
                  placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber" required>
-                 <button type="button" (click)="onMobileOTPSend()" class="btn btn-primary">Send OTP</button>
+                 <button type="button" (click)="onMobileOTPSend()" class="btn btn-sm btn-primary">Send OTP</button>
                 </div>
              </div>
              <span style="color: blue; font-weight: bold; margin-top: 5px;">
@@ -118,9 +118,9 @@
            </span>
             <div class="form-group mt-2" >
                 <div class="input-group flex-nowrap">
-                    <input type="number" class="form-control"  name="mobileOTP" #tmobileOTP [readonly]="mobileOTPInputField" [(ngModel)]="mobileOTP"
+                    <input type="number" class="form-control form-control-sm"  name="mobileOTP" #tmobileOTP [readonly]="mobileOTPInputField" [(ngModel)]="mobileOTP"
                      placeholder="Enter OTP">
-                     <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
+                     <button type="button" (click)="onMobileOTPVerify(tmobileOTP.value)" class="btn btn-sm btn-primary" [disabled] = "disabledMobileVerifyButton">Verify</button>  
                 </div> 
            </div>
            <span style="color: red; font-weight: bold; margin-top: 5px;">
@@ -134,9 +134,9 @@
                 <label for="">Email </label>
                 <div class="input-group">
                 <span class="input-group-text" id="addon-wrapping" style="color: green;"><i class="fa-regular fa-envelope"></i></span>
-                <input type="email" class="form-control" name="userEmail" [(ngModel)]="mailId" [disabled]="true" 
+                <input type="email" class="form-control form-control-sm" name="userEmail" [(ngModel)]="mailId" [disabled]="true" 
                 placeholder="Enter the Email" required>
-                <button type="button" (click)="onEmailOTPSend()" class="btn btn-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
+                <button type="button" (click)="onEmailOTPSend()" class="btn btn-sm btn-primary"  [disabled] = "disabledEmailOTPSendButton">Send OTP</button>
                 </div>
              </div>
              <span style="color: blue; font-weight: bold; margin-top: 5px;">
@@ -144,9 +144,9 @@
            </span>
             <div class="form-group mt-2" >
                 <div class="input-group flex-nowrap"> 
-                    <input type="number" class="form-control"  name="mailOTP" #tmailOTP [readonly]="emailOTPInputField" [(ngModel)]="emailOTP"
+                    <input type="number" class="form-control form-control-sm"  name="mailOTP" #tmailOTP [readonly]="emailOTPInputField" [(ngModel)]="emailOTP"
                      placeholder="Enter OTP">  
-                     <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
+                     <button type="button" (click)="onEmailOTPVerify(tmailOTP.value)" class="btn btn-sm btn-primary" [disabled] = "disabledEmailVerifyButton">Verify</button>
                 </div> 
            </div>
            <span style="color: red; font-weight: bold; margin-top: 5px;">
@@ -157,8 +157,8 @@
             </span>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" >Back</button>
-          <button class="btn btn-primary" [disabled]="disabledProceedButon" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Procced</button>
+          <button class="btn btn-sm  btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" >Back</button>
+          <button class="btn btn-sm  btn-primary" [disabled]="disabledProceedButon" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Procced</button>
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@
             <label for="">New Password </label>
             <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
-            <input type="password" class="form-control" name="userPassword" [(ngModel)]="userPassword" minlength="8"
+            <input type="password" class="form-control form-control-sm" name="userPassword" [(ngModel)]="userPassword" minlength="8"
                     #newPassword (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)"
             placeholder="Enter the Password" >
             </div>
@@ -202,10 +202,10 @@
           <label for="">Confirm Password </label>
           <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping" style="color: red;"><i class="fa fa-lock"></i></span>
-          <input [type]="confirmPasswordshow" class="form-control" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
+          <input [type]="confirmPasswordshow" class="form-control form-control-sm" name="confirmUserPassword" [(ngModel)]="confirmUserPassword" minlength="8"
           #confPassword (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)"
           placeholder="Enter the Password" >
-          <button type="button" (click)="showPassword()" class="btn btn-secondary">{{passwordShowButton}}</button>
+          <button type="button" (click)="showPassword()" class="btn btn-sm btn-secondary">{{passwordShowButton}}</button>
           </div>
         </div>
         <span style="color: red; margin-top: 5px;">
@@ -217,8 +217,8 @@
 
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" >Back</button>
-          <button class="btn btn-primary" [disabled]="passwordSubmit" (click)="onPasswordChange()">Submit</button>
+          <button class="btn btn-sm  btn-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" >Back</button>
+          <button class="btn btn-sm  btn-primary" [disabled]="passwordSubmit" (click)="onPasswordChange()">Submit</button>
         </div>
       </div>
     </div>
@@ -239,7 +239,7 @@
           {{message}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="clickOnCancel()">OK</button>
+          <button type="button" class="btn btn-sm  btn-primary" data-bs-dismiss="modal" (click)="clickOnCancel()">OK</button>
         </div>
       </div>
     </div>

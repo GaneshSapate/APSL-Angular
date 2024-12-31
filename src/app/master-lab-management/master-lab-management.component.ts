@@ -4,6 +4,7 @@ import { MasterDataService } from '../master-data.service';
 import { LabObj } from '../Model/LabObj';
 import { LabServiceService } from '../service/lab-service.service';
 import { ErrorObj} from '../Model/ErrorObj'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-master-lab-management',
@@ -65,7 +66,8 @@ export class MasterLabManagementComponent implements OnInit {
 
   constructor(  private toaster : ToastrService,
                 private masterService: MasterDataService,
-                private labService: LabServiceService) { }
+                private labService: LabServiceService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.getAllLabs();
@@ -74,11 +76,7 @@ export class MasterLabManagementComponent implements OnInit {
 
   
   clickonBack(){
-    this.masterPageObj.masterPageShow =true;
-    this.masterPageObj.docterManagement = false;
-    this.masterPageObj.reportManagement = false;
-    this.masterPageObj.labManagement = false;
-    this.masterPageObjEmmitter.emit(this.masterPageObj);
+    this.router.navigate(['dashboard/master'])
   }
   getAllLabs(){
     var userId = <number> new Number(sessionStorage.getItem("mainUserId"));

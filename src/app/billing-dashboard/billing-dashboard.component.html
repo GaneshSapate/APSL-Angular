@@ -1,116 +1,52 @@
-
-<!-- Top bar -->
-<app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event"  (addPatientEvent)="eventObj = $event"></app-billing-dashboard-navbar>
-<main>
-    <!-- side bar -->
-    <app-side-nav-bar [sideNavStatus]="sideNavStatus"  [eventObj]="eventObj"
-    [ngClass]="{'side-nav-open': sideNavStatus}"
-    (sideNavPatient)="eventObj = $event"
-    ></app-side-nav-bar>
-
-    <!-- Main Display Area -->
-    <div class="display-area" [ngClass]="{'display-area-shrink': sideNavStatus}">
-
-        
-
-            <div *ngIf="eventObj.navHome" class="Billing-Dashboard-Content">
-               <app-home-page
-               (sideNavHome)="eventObj = $event"></app-home-page>
-            </div>
-    
-            <div *ngIf="eventObj.navDashboard" class="Billing-Dashboard-Content">
-               <div class="row m-1 mt-2 m-sm-4">
+<div class="row m-1 mt-2 m-sm-4">
              
-                  <!-- order-card start -->
-                  <div class="col-md-6 col-xl-3">
-                     <div class="card  order-card">
-                         <div class="card-block">
-                             <h5 class="m-b-20">Orders Received</h5>
-                             <h2 class="text-right"><span>486</span></h2>
-                             <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-6 col-xl-3">
-                     <div class="card  order-card">
-                         <div class="card-block">
-                             <h5 class="m-b-20">Total Sales</h5>
-                             <h2 class="text-right"><span>1641</span></h2>
-                             <p class="m-b-0">This Month<span class="f-right">213</span></p>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-6 col-xl-3">
-                     <div class="card  order-card">
-                         <div class="card-block">
-                             <h5 class="m-b-20">Revenue</h5>
-                             <h2 class="text-right"><span>$42,562</span></h2>
-                             <p class="m-b-0">This Month<span class="f-right">$5,032</span></p>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-6 col-xl-3">
-                     <div class="card  order-card">
-                         <div class="card-block">
-                             <h5 class="m-b-20">Total Profit</h5>
-                             <h2 class="text-right"><span>$9,562</span></h2>
-                             <p class="m-b-0">This Month<span class="f-right">$542</span></p>
-                         </div>
-                     </div>
-                 </div>
-                  <!-- order-card end -->
-                  <!-- statustic and process start -->
-                    <div class="col-md-12 col-lg-12 col-xl-6" >
-                        <div class="card" style="min-height: 30rem;">
-                            <div class="card-header">
-                                <h5 style="font-size: 16px; color: #3f51b5;">Monthly Patients Chart</h5>
-                            </div>
-                            <div class="card-block" style="position: relative; min-height: 25rem;">
-                                <canvas baseChart type="bar" [data]="barChartData" [options]="chartOptions" ></canvas>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-            </div>
-    
-            <div *ngIf="eventObj.navPatient" class="Billing-Dashboard-Content  mt-2">
-                <app-pateint-page></app-pateint-page>
-            </div>
-            
-            <div *ngIf="eventObj.navMaster" class="Billing-Dashboard-Content">
-                <app-master></app-master>
-            </div>
-
-            <div *ngIf="eventObj.navSetting" class="Billing-Dashboard-Content">
-               <app-setting></app-setting>
-            </div>
-    
-            <div *ngIf="eventObj.navAbout" class="Billing-Dashboard-Content">
-               About
-               <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Tab 1</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Tab 2</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Tab 3</a>
-                </li>
-              </ul>
-              <div class="tab-content pt-5" id="tab-content">
-                <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">Tab 1 selected</div>
-                <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab 2 selected</div>
-                <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">Tab 3 selected</div>
+    <!-- order-card start -->
+    <div class="col-md-6 col-xl-3">
+       <div class="card  order-card">
+           <div class="card-block">
+               <h5 class="m-b-20">Orders Received</h5>
+               <h2 class="text-right"><span>486</span></h2>
+               <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+           </div>
+       </div>
+   </div>
+   <div class="col-md-6 col-xl-3">
+       <div class="card  order-card">
+           <div class="card-block">
+               <h5 class="m-b-20">Total Sales</h5>
+               <h2 class="text-right"><span>1641</span></h2>
+               <p class="m-b-0">This Month<span class="f-right">213</span></p>
+           </div>
+       </div>
+   </div>
+   <div class="col-md-6 col-xl-3">
+       <div class="card  order-card">
+           <div class="card-block">
+               <h5 class="m-b-20">Revenue</h5>
+               <h2 class="text-right"><span>$42,562</span></h2>
+               <p class="m-b-0">This Month<span class="f-right">$5,032</span></p>
+           </div>
+       </div>
+   </div>
+   <div class="col-md-6 col-xl-3">
+       <div class="card  order-card">
+           <div class="card-block">
+               <h5 class="m-b-20">Total Profit</h5>
+               <h2 class="text-right"><span>$9,562</span></h2>
+               <p class="m-b-0">This Month<span class="f-right">$542</span></p>
+           </div>
+       </div>
+   </div>
+    <!-- order-card end -->
+    <!-- statustic and process start -->
+      <div class="col-md-12 col-lg-12 col-xl-6" >
+          <div class="card" style="min-height: 30rem;">
+              <div class="card-header">
+                  <h5 style="font-size: 16px; color: #3f51b5;">Monthly Patients Chart</h5>
               </div>
-            </div>
-    
-            <div *ngIf="eventObj.navContact" class="Billing-Dashboard-Content">
-               
-
-            </div>  
-
-            
-    </div>
-</main>
-
+              <div class="card-block" style="position: relative; min-height: 25rem;">
+                  <canvas baseChart type="bar" [data]="barChartData" [options]="chartOptions" ></canvas>
+              </div>
+          </div>
+      </div>
+ </div>

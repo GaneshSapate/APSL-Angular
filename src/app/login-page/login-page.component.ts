@@ -107,7 +107,7 @@ export class LoginPageComponent implements OnInit {
         sessionStorage.setItem("labId",UserResp.labId.toString());
         sessionStorage.setItem("userId",UserResp.mainUserId.toString());
         sessionStorage.setItem("userRole",UserResp.userRole);
-        this.router.navigate(["/login-board"]); 
+        this.router.navigate(["/dashboard/home"]); 
 
       },
       (error)=>{

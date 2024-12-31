@@ -4,6 +4,7 @@ import { MasterDataService } from '../master-data.service';
 import { ErrorObj } from '../Model/ErrorObj';
 import { Doctor } from '../Model/Doctor';
 import { DoctorServiceService } from '../service/doctor-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-master-docter-management',
@@ -40,7 +41,8 @@ export class MasterDocterManagementComponent implements OnInit {
 
   constructor(private toaster : ToastrService,
     private masterService: MasterDataService,
-    private doctorService: DoctorServiceService) { }
+    private doctorService: DoctorServiceService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.fetchStateList();
@@ -56,11 +58,7 @@ export class MasterDocterManagementComponent implements OnInit {
   }
 
   clickonBack(){
-    this.masterPageObj.masterPageShow =true;
-    this.masterPageObj.docterManagement = false;
-    this.masterPageObj.reportManagement = false;
-    this.masterPageObj.labManagement = false;
-    this.masterPageObjEmmitter.emit(this.masterPageObj);
+    this.router.navigate(['dashboard/master'])
   }
 
   fetchStateList(){

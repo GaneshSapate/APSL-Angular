@@ -17,12 +17,12 @@
   color: rgb(189, 144, 28);
 }
 .navbar {
-  border-bottom: solid;
+  /* border-bottom: solid;
   border-width: 1px;
   border-color: #ddddde;
-  /* background-color: #0d4eaf;  */
-  background-color: white;
-  color: #585858;
+  background-color: #0d4eaf; */
+  /* background-color: #d7e3ff; 
+  color: #005cbb; */
 }
 .navbar-nav{
   font-size: 14px;
@@ -59,13 +59,10 @@
     background: #3b74df; 
   }
 
-  .dropdown-menu{
-    border: none;
-    width: 180px;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
-    transition: height 1s ease-in-out;
-
-}
+  .nav-link {
+    font-size: 14px;
+    cursor: pointer;
+  }
 
    .dropdown-item {
       cursor: pointer;
@@ -80,16 +77,13 @@
     border-radius: 2px;
     box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
   }
-  .dropdown-item:hover{
-    background-color: #e5e5e5;
-  }
 
   .notification-dropdown {
     font-family: Arial, sans-serif;
     position: absolute;
     top: 30px;
     right: 0;
-    background-color: #fff;
+    /* background-color: #fff; */
     min-width: 350px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 5px;
@@ -105,11 +99,7 @@
 
     border-bottom: 1px solid #eee;
   }
-  .closeNotificationbtn{
-    cursor: pointer;
-    color: #f9f9f9;
-    font-size: 18px;
-  }
+  
   .all-notification-item{
     padding: 5px;
     border-bottom: 1px solid #e2e2e2;
@@ -117,11 +107,9 @@
   .notification-item:last-child {
     border-bottom: none;
   }
-  .notification-item:hover {
-    background-color: #f4f3f3;
-  }
+  
   .notification-item:hover .closeNotificationbtn{
-    background-color: #f4f3f3;
+    /* background-color: #f4f3f3; */
     color: #585858;
   }
   .notification-item .title {
@@ -158,13 +146,10 @@
 
 label{
   font-size: 14px;
+  /* color: #4f5265; */
 }
 
-#tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-  border-color: transparent transparent #f3f3f3;
-  border-bottom: 3px solid !important;
-  background-color: #eee;
-}
+
 .nav .nav-link{
   padding-top: 5px;
   padding-bottom: 4px;
@@ -181,6 +166,13 @@ ngx-toastr {
   background-color: #ffffff;
 }
 
+[data-bs-theme="light"] {
+
+}
+
+[data-bs-theme="dark"] {
+
+}
 
   
 

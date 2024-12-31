@@ -7,20 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BillingDashboardComponent implements OnInit {
 
-
-
-  sideNavStatus:boolean=false;
-
-  // side nav action 
-  eventObj={
-    navPatient:false,
-    navHome:true,
-    navDashboard:false,
-    navMaster:false,
-    navSetting:false,
-    navAbout:false,
-    navContact:false
-  }
   chartOptions= {
     responsive: true,
     maintainAspectRatio: false,

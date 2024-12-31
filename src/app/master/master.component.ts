@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-master',
@@ -17,48 +18,10 @@ export class MasterComponent implements OnInit {
 
   // Master Page Routing Variables
   // End Of Masters Routing Variables
-  masterPageObj:any={
-    masterPageShow:true,
-    docterManagement:false,
-    reportManagement:false,
-    labManagement:false
-  }
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
-
-  goToDocter(){
-    this.masterPageObj.masterPageShow =false;
-    this.masterPageObj.docterManagement = true;
-    this.masterPageObj.labManagement = false;
-    this.masterPageObj.reportManagement = false;
-  }
-
-  goToReport(){
-    this.masterPageObj.masterPageShow =false;
-    this.masterPageObj.reportManagement = true;
-    this.masterPageObj.labManagement = false;
-    this.masterPageObj.docterManagement = false;
-  }
-
-  goToLab(){
-    this.masterPageObj.masterPageShow =false;
-    this.masterPageObj.labManagement = true;
-    this.masterPageObj.reportManagement = false;
-    this.masterPageObj.docterManagement = false;
-  }
-
-  clickonBack(){
-    this.masterPageObj.masterPageShow =true;
-    this.masterPageObj.docterManagement = false;
-    this.masterPageObj.reportManagement = false;
-    this.masterPageObj.labManagement = false;
-  }
-
-
-
-
 
 }

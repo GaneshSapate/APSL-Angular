@@ -2,7 +2,7 @@
     <div class="card mt-2 py-2 header-card" style="border: none;">
         <div class="card-body">
             <h5 class="card-title"><i class="fa-regular fa-pen-to-square me-2"></i> Reports Management </h5>
-            <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Reports Details </p>
+            <p class="card-text" style="font-size: 13px;">Here you can manage Reports Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"><i class="fa-regular fa-square-caret-left"></i>
                 Go Back</a>
             <a class="btn btn-secondary btn-sm ms-md-4" (click)="addNewTestModal()" data-bs-toggle="modal"
@@ -45,7 +45,8 @@
                 <tbody>
                     <tr *ngFor="let test of testMasterList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td scope="row">{{test.testId}}</td>
-                        <td class="testName" (click)="viewTest(test.testId)" data-bs-toggle="modal" data-bs-target="#viewTestModal">{{test.testName}}</td>
+                        <td class="testName" (click)="viewTest(test.testId)" data-bs-toggle="modal"
+                            data-bs-target="#viewTestModal">{{test.testName}}</td>
                         <td>{{test.testCode}}</td>
                         <td>{{test.testGender}}</td>
                         <td>{{test.department}}</td>
@@ -79,321 +80,323 @@
             <div class="modal-body reports-modalbody mb-0 pb-0 ">
 
                 <div class="container-fluid m-0 p-0">
-                        <div class="row my-2 justify-content-center">
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Department </label>
-                                </div>
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="testMaster.department" name="department"
-                                        #department="ngModel" minlength="2" disabled>
-                                        <option value="HAEMATOLOGY">HAEMATOLOGY</option>
-                                        <option value="RADIOLOGY">RADIOLOGY</option>
-                                        <option value="HISTOPATHOLOGY">HISTOPATHOLOGY</option>
-                                    </select>
-                                </div>
+                    <div class="row my-2 justify-content-center">
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Department </label>
                             </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Test Name </label>
-                                    <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="text" class="form-control" minlength="3"
-                                            [(ngModel)]="testMaster.testName"
-                                            name="testName" #testName="ngModel" minlength="2" disabled>
-                                    </div>
-                                </div>
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-select" [(ngModel)]="testMaster.department" name="department"
+                                    #department="ngModel" minlength="2" disabled>
+                                    <option value="HAEMATOLOGY">HAEMATOLOGY</option>
+                                    <option value="RADIOLOGY">RADIOLOGY</option>
+                                    <option value="HISTOPATHOLOGY">HISTOPATHOLOGY</option>
+                                </select>
                             </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Gender </label>
-                                </div>
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="testMaster.testGender" name="testGender"
-                                        #testGender="ngModel" minlength="1" disabled>
-                                        <option class="form-control" value="M">Male</option>
-                                        <option class="form-control" value="F">Female</option>
-                                        <option class="form-control" value="B">Both</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Test Code </label>
-                                    <input type="text" class="form-control" [(ngModel)]="testMaster.testCode" name="testCode" #testCode="ngModel" minlength="2"
-                                        disabled>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Test Name </label>
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" minlength="3"
+                                        [(ngModel)]="testMaster.testName" name="testName" #testName="ngModel"
+                                        minlength="2" disabled>
                                 </div>
                             </div>
                         </div>
-                        <div class="row my-2 justify-content-center">
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Test Cost </label>
-                                    <input type="number" class="form-control" name="userAge"
-                                        [(ngModel)]="testMaster.testCost" name="testCost"
-                                        #testCost="ngModel" minlength="2" disabled>
-                                </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Gender </label>
                             </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Sample Type </label>
-                                </div>
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="testMaster.sampleType" disabled>
-                                        <option class="form-control" value="Serum">Serum</option>
-                                        <option class="form-control" value="Heparinised Blood">Heparinised Blood
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Test Type </label>
-                                </div>
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="testMaster.testType" name="testTyper"
-                                        #testType="ngModel" disabled>
-                                        <option class="form-control" value="Table">Table</option>
-                                        <option class="form-control" value="Text">Text</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Remark </label>
-                                    <input type="text" class="form-control" name="remark"
-                                        [(ngModel)]="testMaster.remark" name="remark" #remark="ngModel"
-                                        disabled>
-                                </div>
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-select" [(ngModel)]="testMaster.testGender" name="testGender"
+                                    #testGender="ngModel" minlength="1" disabled>
+                                    <option class="form-control" value="M">Male</option>
+                                    <option class="form-control" value="F">Female</option>
+                                    <option class="form-control" value="B">Both</option>
+                                </select>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Test Code </label>
+                                <input type="text" class="form-control" [(ngModel)]="testMaster.testCode"
+                                    name="testCode" #testCode="ngModel" minlength="2" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-2 justify-content-center">
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Test Cost </label>
+                                <input type="number" class="form-control" name="userAge"
+                                    [(ngModel)]="testMaster.testCost" name="testCost" #testCost="ngModel" minlength="2"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Sample Type </label>
+                            </div>
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-select" [(ngModel)]="testMaster.sampleType" disabled>
+                                    <option class="form-control" value="Serum">Serum</option>
+                                    <option class="form-control" value="Heparinised Blood">Heparinised Blood
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Test Type </label>
+                            </div>
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-select" [(ngModel)]="testMaster.testType" name="testTyper"
+                                    #testType="ngModel" disabled>
+                                    <option class="form-control" value="Table">Table</option>
+                                    <option class="form-control" value="Text">Text</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group input-group-sm">
+                                <label for="">Remark </label>
+                                <input type="text" class="form-control" name="remark" [(ngModel)]="testMaster.remark"
+                                    name="remark" #remark="ngModel" disabled>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Reports details start -->
                     <div class="row mt-4 justify-content-center">
                         <div class="col-4 report-data-field">
-                            <form #fieldform="ngForm" >
-                            <div class="col-12">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Type </label>
-                                </div>
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="field_type" name="field_type"
-                                        disabled>
-                                        <option *ngIf="testMaster.testType =='Table'" value="Single Field">Single Field
-                                        </option>
-                                        <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
-                                        </option>
-                                        <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
-                                        </option>
-                                        <option *ngIf="testMaster.testType=='Text'" value="Text Editor">Text Editor
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div
-                                *ngIf="(field_type=='Single Field' || field_type=='Sub Field') && testMaster.testType=='Table'">
-                                <div *ngIf="field_type=='Sub Field';">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Title Field </label>
-                                        </div>
-                                        <div class="form-group input-group input-group-sm">
-                                            <select class="form-select" [(ngModel)]="title_field_of_subfield"
-                                                name="title_field_of_subfield" [disabled]="modifyRow" required>
-                                                <option value="">Select</option>
-                                                <option *ngFor="let item of title_field_list" value="{{item}}">{{item}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                            <form #fieldform="ngForm">
                                 <div class="col-12">
                                     <div class="form-group input-group-sm">
-                                        <label for="">Name </label>
-                                        <input type="text" class="form-control" [(ngModel)]="field_name"
-                                            name="field_name" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group input-group-sm">
-                                        <label for="">Data Type </label>
+                                        <label for="">Type </label>
                                     </div>
                                     <div class="form-group input-group input-group-sm">
-                                        <select class="form-select" [(ngModel)]="data_type" name="data_type" disabled>
-                                            <option value="text">text</option>
-                                            <option value="numeric" selected>numeric</option>
-                                            <option value="numeric unbound">numeric unbound</option>
-                                            <option value="multiple ranges">multiple ranges</option>
-                                            <option value="custom">custom</option>
+                                        <select class="form-select" [(ngModel)]="field_type" name="field_type" disabled>
+                                            <option *ngIf="testMaster.testType =='Table'" value="Single Field">Single
+                                                Field
+                                            </option>
+                                            <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
+                                            </option>
+                                            <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
+                                            </option>
+                                            <option *ngIf="testMaster.testType=='Text'" value="Text Editor">Text Editor
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <!-- numeric Fiels start -->
-                                <div *ngIf="data_type=='numeric';">
+                                <div
+                                    *ngIf="(field_type=='Single Field' || field_type=='Sub Field') && testMaster.testType=='Table'">
+                                    <div *ngIf="field_type=='Sub Field';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Title Field </label>
+                                            </div>
+                                            <div class="form-group input-group input-group-sm">
+                                                <select class="form-select" [(ngModel)]="title_field_of_subfield"
+                                                    name="title_field_of_subfield" [disabled]="modifyRow" required>
+                                                    <option value="">Select</option>
+                                                    <option *ngFor="let item of title_field_list" value="{{item}}">
+                                                        {{item}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                            <label for="">Name </label>
+                                            <input type="text" class="form-control" [(ngModel)]="field_name"
+                                                name="field_name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group input-group-sm">
+                                            <label for="">Data Type </label>
+                                        </div>
+                                        <div class="form-group input-group input-group-sm">
+                                            <select class="form-select" [(ngModel)]="data_type" name="data_type"
                                                 disabled>
+                                                <option value="text">text</option>
+                                                <option value="numeric" selected>numeric</option>
+                                                <option value="numeric unbound">numeric unbound</option>
+                                                <option value="multiple ranges">multiple ranges</option>
+                                                <option value="custom">custom</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Range </label>
-                                                    <input type="number" class="form-control" name="range"
-                                                        [(ngModel)]="range_from" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">To </label>
-                                                    <input type="number" class="form-control" name="range_to"
-                                                        [(ngModel)]="range_to" disabled>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- numeric Fiels End -->
-                                <!-- text Fiels start -->
-                                <div *ngIf="(data_type=='text' || data_type=='multiple ranges');">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
-                                               disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Range </label>
-                                            <textarea class="form-control" rows="2" placeholder="enter range"
-                                                [(ngModel)]="range_from" name="range" disabled></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- text Fiels end -->
 
-                                <!-- numeric unbound Fiels start -->
-                                <div *ngIf="data_type=='numeric unbound';">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
-                                                disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Select Operation </label>
-                                                </div>
-                                                <div class="form-group input-group input-group-sm">
-                                                    <select class="form-select" [(ngModel)]="opertaion"
-                                                        name="opertaion" disabled>
-                                                        <option value="less than equal to">less than equal to</option>
-                                                        <option value="less than">less than</option>
-                                                        <option value="greater than equal to">greater than equal to
-                                                        </option>
-                                                        <option value="greater than">greater than</option>
-                                                        <option value="equal to">equal to</option>
-                                                    </select>
-                                                </div>
+                                    <!-- numeric Fiels start -->
+                                    <div *ngIf="data_type=='numeric';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    disabled>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Value </label>
-                                                    <input type="number" class="form-control" name="operation_value"
-                                                        [(ngModel)]="operation_value" disabled>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Range </label>
+                                                        <input type="number" class="form-control" name="range"
+                                                            [(ngModel)]="range_from" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">To </label>
+                                                        <input type="number" class="form-control" name="range_to"
+                                                            [(ngModel)]="range_to" disabled>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- numeric unbound Fiels End -->
+                                    <!-- numeric Fiels End -->
+                                    <!-- text Fiels start -->
+                                    <div *ngIf="(data_type=='text' || data_type=='multiple ranges');">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Range </label>
+                                                <textarea class="form-control" rows="2" placeholder="enter range"
+                                                    [(ngModel)]="range_from" name="range" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- text Fiels end -->
 
-                                <!-- custom Fiels start -->
-                                <div *ngIf="data_type=='custom';">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div *ngIf="selected_options.length != 0" class="col-12 mt-2">
-                                                <table class="table table-sm table-bordered">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td *ngFor="let item of selected_options index as i">
-                                                                {{item}}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                    <!-- numeric unbound Fiels start -->
+                                    <div *ngIf="data_type=='numeric unbound';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    disabled>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Units </label>
-                                                    <input type="text" class="form-control" name="unit"
-                                                        [(ngModel)]="unit" disabled>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Select Operation </label>
+                                                    </div>
+                                                    <div class="form-group input-group input-group-sm">
+                                                        <select class="form-select" [(ngModel)]="opertaion"
+                                                            name="opertaion" disabled>
+                                                            <option value="less than equal to">less than equal to
+                                                            </option>
+                                                            <option value="less than">less than</option>
+                                                            <option value="greater than equal to">greater than equal to
+                                                            </option>
+                                                            <option value="greater than">greater than</option>
+                                                            <option value="equal to">equal to</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="exampleFormControlTextarea1"
-                                                        class="form-label">Range</label>
-                                                    <textarea class="form-control" rows="2" disabled
-                                                        [(ngModel)]="range_from" name="range"></textarea>
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Value </label>
+                                                        <input type="number" class="form-control" name="operation_value"
+                                                            [(ngModel)]="operation_value" disabled>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- custom Fiels End -->
-                                <div class="form-check mt-2" *ngIf="data_type=='numeric';">
-                                    <div class="row">
-                                        <div class="col-6 p-0">
-                                            <label class="ms-0">Apply Formula</label>
-                                        </div>
+                                    <!-- numeric unbound Fiels End -->
 
-                                        <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio" name="CheckBox"
-                                                id="flexCheckDefault1" (click)="applyFormulaYes()"
-                                                [checked]="apply_formula" disabled>
-                                            <label class="form-check-label" for="flexCheckDefault1">
-                                                Yes
-                                            </label>
+                                    <!-- custom Fiels start -->
+                                    <div *ngIf="data_type=='custom';">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div *ngIf="selected_options.length != 0" class="col-12 mt-2">
+                                                    <table class="table table-sm table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td *ngFor="let item of selected_options index as i">
+                                                                    {{item}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Units </label>
+                                                        <input type="text" class="form-control" name="unit"
+                                                            [(ngModel)]="unit" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="exampleFormControlTextarea1"
+                                                            class="form-label">Range</label>
+                                                        <textarea class="form-control" rows="2" disabled
+                                                            [(ngModel)]="range_from" name="range"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio" name="CheckBox"
-                                                id="flexCheckDefault2" (click)="applyFormulaNo()"
-                                                [checked]="!apply_formula" disabled>
-                                            <label class="form-check-label" for="flexCheckDefault2">
-                                                No
-                                            </label>
+                                    </div>
+                                    <!-- custom Fiels End -->
+                                    <div class="form-check mt-2" *ngIf="data_type=='numeric';">
+                                        <div class="row">
+                                            <div class="col-6 p-0">
+                                                <label class="ms-0">Apply Formula</label>
+                                            </div>
+
+                                            <div class="col-3 form-check">
+                                                <input class="form-check-input" type="radio" name="CheckBox"
+                                                    id="flexCheckDefault1" (click)="applyFormulaYes()"
+                                                    [checked]="apply_formula" disabled>
+                                                <label class="form-check-label" for="flexCheckDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-3 form-check">
+                                                <input class="form-check-input" type="radio" name="CheckBox"
+                                                    id="flexCheckDefault2" (click)="applyFormulaNo()"
+                                                    [checked]="!apply_formula" disabled>
+                                                <label class="form-check-label" for="flexCheckDefault2">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="apply_formula==true;">
+                                        <div class="col-12 mt-2">
+                                            <div class="form-group input-group-sm">
+                                                <textarea class="form-control" rows="2" placeholder="Add Formula"
+                                                    [(ngModel)]="formula" name="formula" required disabled></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="apply_formula==true;">
+
+                                <!-- Title Field start -->
+                                <div *ngIf="field_type=='Title Field' && testMaster.testType=='Table'">
                                     <div class="col-12 mt-2">
                                         <div class="form-group input-group-sm">
-                                            <textarea class="form-control" rows="2" placeholder="Add Formula"
-                                                [(ngModel)]="formula" name="formula" required disabled></textarea>
+                                            <label for="">Title Field *</label>
+                                            <input type="text" class="form-control" name="title_field"
+                                                [(ngModel)]="title_field" placeholder="Enter Title Field" disabled>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Title Field start -->
-                            <div *ngIf="field_type=='Title Field' && testMaster.testType=='Table'">
-                                <div class="col-12 mt-2">
-                                    <div class="form-group input-group-sm">
-                                        <label for="">Title Field *</label>
-                                        <input type="text" class="form-control" name="title_field"
-                                            [(ngModel)]="title_field" placeholder="Enter Title Field" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Title Field end -->
-                        </form>
+                                <!-- Title Field end -->
+                            </form>
                         </div>
                         <div class="col-8">
                             <div *ngIf="testMaster.testType=='Text'" style="height: 54vh;">
@@ -421,9 +424,8 @@
                                             <th scope="col">Formula</th>
                                         </tr>
                                     </thead>
-                                    <tbody >
-                                        <tr
-                                            *ngFor="let item of testMaster.testTableDataDTOList index as i">
+                                    <tbody>
+                                        <tr *ngFor="let item of testMaster.testTableDataDTOList index as i">
                                             <th><input class="form-check-input" type="checkbox"
                                                     name="{{item.field_name}}" id="{{item.field_name}}"
                                                     [checked]="selected === i"
@@ -605,15 +607,16 @@
                     <!-- Reports details start -->
                     <div class="row mt-4 justify-content-center">
                         <div class="col-4 report-data-field">
-                            <form #fieldform="ngForm" >
+
                             <div class="col-12">
                                 <div class="form-group input-group-sm">
                                     <label for="">Type </label>
                                 </div>
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="field_type" name="field_type"
-                                        [disabled]="modifyRow" required>
-                                        <option *ngIf="testMaster.testType =='Table'" value="Single Field">Single Field
+                                        [disabled]="modifyRow">
+                                        <option *ngIf="testMaster.testType =='Table'" value="Single Field">Single
+                                            Field
                                         </option>
                                         <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
                                         </option>
@@ -624,309 +627,321 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div
                                 *ngIf="(field_type=='Single Field' || field_type=='Sub Field') && testMaster.testType=='Table'">
-                                <div *ngIf="field_type=='Sub Field';">
+                                <form #fieldform="ngForm">
+                                    <div *ngIf="field_type=='Sub Field';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Title Field *</label>
+                                            </div>
+                                            <div class="form-group input-group input-group-sm">
+                                                <select class="form-select" [(ngModel)]="title_field_of_subfield"
+                                                    name="title_field_of_subfield" [disabled]="modifyRow" required>
+                                                    <option value="">Select</option>
+                                                    <option *ngFor="let item of title_field_list" value="{{item}}">
+                                                        {{item}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-group input-group-sm">
-                                            <label for="">Title Field *</label>
+                                            <label for="">Field Name *</label>
+                                            <input type="text" class="form-control" [(ngModel)]="field_name"
+                                                name="field_name" placeholder="Enter Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group input-group-sm">
+                                            <label for="">Data Type *</label>
                                         </div>
                                         <div class="form-group input-group input-group-sm">
-                                            <select class="form-select" [(ngModel)]="title_field_of_subfield"
-                                                name="title_field_of_subfield" [disabled]="modifyRow" required>
-                                                <option value="">Select</option>
-                                                <option *ngFor="let item of title_field_list" value="{{item}}">{{item}}
-                                                </option>
+                                            <select class="form-select" [(ngModel)]="data_type" name="data_type">
+                                                <option value="text">text</option>
+                                                <option value="numeric" selected>numeric</option>
+                                                <option value="numeric unbound">numeric unbound</option>
+                                                <option value="multiple ranges">multiple ranges</option>
+                                                <option value="custom">custom</option>
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group input-group-sm">
-                                        <label for="">Name *</label>
-                                        <input type="text" class="form-control" [(ngModel)]="field_name"
-                                            name="field_name" placeholder="Enter Name" required>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group input-group-sm">
-                                        <label for="">Data Type *</label>
-                                    </div>
-                                    <div class="form-group input-group input-group-sm">
-                                        <select class="form-select" [(ngModel)]="data_type" name="data_type" required>
-                                            <option value="text">text</option>
-                                            <option value="numeric" selected>numeric</option>
-                                            <option value="numeric unbound">numeric unbound</option>
-                                            <option value="multiple ranges">multiple ranges</option>
-                                            <option value="custom">custom</option>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <!-- numeric Fiels start -->
-                                <div *ngIf="data_type=='numeric';">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
-                                                placeholder="Enter Unit">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Range </label>
-                                                    <input type="number" class="form-control" name="range"
-                                                        [(ngModel)]="range_from" placeholder="Minimum">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">To </label>
-                                                    <input type="number" class="form-control" name="range_to"
-                                                        [(ngModel)]="range_to" placeholder="Maximum">
-                                                </div>
+                                    <!-- numeric Fiels start -->
+                                    <div *ngIf="data_type=='numeric';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    placeholder="Enter Unit">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- numeric Fiels End -->
-                                <!-- text Fiels start -->
-                                <div *ngIf="(data_type=='text' || data_type=='multiple ranges');">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
-                                                placeholder="Enter Unit">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Range </label>
-                                            <textarea class="form-control" rows="2" placeholder="enter range"
-                                                [(ngModel)]="range_from" name="range"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- text Fiels end -->
-
-                                <!-- numeric unbound Fiels start -->
-                                <div *ngIf="data_type=='numeric unbound';">
-                                    <div class="col-12">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Unit </label>
-                                            <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
-                                                placeholder="Enter Unit">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Select Operation </label>
-                                                </div>
-                                                <div class="form-group input-group input-group-sm">
-                                                    <select class="form-select" [(ngModel)]="opertaion"
-                                                        name="opertaion" required>
-                                                        <option value="">select operation</option>
-                                                        <option value="less than equal to">less than equal to</option>
-                                                        <option value="less than">less than</option>
-                                                        <option value="greater than equal to">greater than equal to
-                                                        </option>
-                                                        <option value="greater than">greater than</option>
-                                                        <option value="equal to">equal to</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Value </label>
-                                                    <input type="number" class="form-control" name="operation_value"
-                                                        [(ngModel)]="operation_value" placeholder="enter value">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- numeric unbound Fiels End -->
-
-                                <!-- custom Fiels start -->
-                                <div *ngIf="data_type=='custom';">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Select Options </label>
-                                                </div>
-                                                <div class="form-group input-group input-group-sm">
-                                                    <select class="form-select" #selectOptions required>
-                                                        <option value="">select options</option>
-                                                        <option value="Positive">Positive</option>
-                                                        <option value="Negative">Negative</option>
-                                                        <option value="Absent">Absent</option>
-                                                        <option value="Present">Present</option>
-                                                        <option value="Reactive">Reactive</option>
-                                                        <option value="Non-Reactive">Non-Reactive</option>
-                                                    </select>
-                                                    <button class="btn btn-secondary btn-sm"
-                                                        (click)="addCustom(selectOptions.value)">Add</button>
-                                                </div>
-                                            </div>
+                                        <div class="col-12">
                                             <div class="row">
-                                                <div class="text-right">
-                                                    <span style="cursor: pointer; font-size: 14px; color: blue;">
-                                                        <i class="fa-solid fa-plus"></i> add new</span>
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Range </label>
+                                                        <input type="number" class="form-control" name="range"
+                                                            [(ngModel)]="range_from" placeholder="Minimum">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div *ngIf="selected_options.length != 0" class="col-12 mt-2">
-                                                <table class="table table-sm table-bordered">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td *ngFor="let item of selected_options index as i">
-                                                                {{item}}
-                                                                <button type="button" class="btn-close btn-sm"
-                                                                    (click)="removefromlistOfOptopns(i)"></button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="">Units </label>
-                                                    <input type="text" class="form-control" name="unit"
-                                                        [(ngModel)]="unit" placeholder="enter value" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group input-group-sm">
-                                                    <label for="exampleFormControlTextarea1"
-                                                        class="form-label">Range</label>
-                                                    <textarea class="form-control" rows="2" placeholder="enter range"
-                                                        [(ngModel)]="range_from" name="range"></textarea>
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">To </label>
+                                                        <input type="number" class="form-control" name="range_to"
+                                                            [(ngModel)]="range_to" placeholder="Maximum">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- custom Fiels End -->
-                                <div class="form-check mt-2" *ngIf="data_type=='numeric';">
-                                    <div class="row">
-                                        <div class="col-6 p-0">
-                                            <label class="ms-0">Apply Formula</label>
+                                    <!-- numeric Fiels End -->
+                                    <!-- text Fiels start -->
+                                    <div *ngIf="(data_type=='text' || data_type=='multiple ranges');">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    placeholder="Enter Unit">
+                                            </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Range </label>
+                                                <textarea class="form-control" rows="2" placeholder="enter range"
+                                                    [(ngModel)]="range_from" name="range"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- text Fiels end -->
 
-                                        <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio" name="CheckBox"
-                                                id="flexCheckDefault1" (click)="applyFormulaYes()"
-                                                [checked]="apply_formula">
-                                            <label class="form-check-label" for="flexCheckDefault1">
-                                                Yes
-                                            </label>
+                                    <!-- numeric unbound Fiels start -->
+                                    <div *ngIf="data_type=='numeric unbound';">
+                                        <div class="col-12">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Unit </label>
+                                                <input type="text" class="form-control" name="unit" [(ngModel)]="unit"
+                                                    placeholder="Enter Unit">
+                                            </div>
                                         </div>
-                                        <div class="col-3 form-check">
-                                            <input class="form-check-input" type="radio" name="CheckBox"
-                                                id="flexCheckDefault2" (click)="applyFormulaNo()"
-                                                [checked]="!apply_formula">
-                                            <label class="form-check-label" for="flexCheckDefault2">
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div *ngIf="apply_formula==true;">
-                                    <div class="col-12 mt-2">
-                                        <div class="form-group input-group-sm">
-                                            <label for="">Select Field </label>
-                                        </div>
-                                        <div class="form-group input-group input-group-sm">
-                                            <select class="form-select" #selectedField [disabled]="inputButtonFlag">
-                                                <option value="">select</option>
-                                                <option *ngFor="let item of field_name_list" value="{{item}}">{{item}}
-                                                </option>
-                                            </select>
-                                            <button class="btn btn-secondary btn-sm" [disabled]="inputButtonFlag"
-                                                (click)="addFieldInFormula(selectedField.value)">Add</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2 d-flex justify-content-between">
-                                        <button class="formula-button" [disabled]="mathButtonFlag"
-                                            (click)="addButtonInFormula()" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="Addition">+</button>
-                                        <button class="formula-button" [disabled]="mathButtonFlag"
-                                            (click)="minusButtonInFormula()" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="Substract">-</button>
-                                        <button class="formula-button" [disabled]="mathButtonFlag"
-                                            (click)="multilyButtonInFormula()" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="multiply">*</button>
-                                        <button class="formula-button" [disabled]="mathButtonFlag"
-                                            (click)="divideButtonInFormula()" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="division">/</button>
-                                        <button class="formula-button" (click)="openBracketButtonInFormula()"
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Open Bracket">(</button>
-                                        <button class="formula-button" (click)="closeBracketButtonInFormula()"
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Close Bracket">)</button>
-                                        <div class="form-group input-group input-group-sm">
-                                            <input type="number" class="form-control" #formulaNumber
-                                                placeholder="Number" [disabled]="inputButtonFlag">
-                                            <button class="btn btn-secondary btn-sm"
-                                                (click)="addFieldInFormula(formulaNumber.value)"
-                                                [disabled]="inputButtonFlag">Add</button>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Select Operation </label>
+                                                    </div>
+                                                    <div class="form-group input-group input-group-sm">
+                                                        <select class="form-select" [(ngModel)]="opertaion"
+                                                            name="opertaion">
+                                                            <option value="">select operation</option>
+                                                            <option value="less than equal to">less than equal to
+                                                            </option>
+                                                            <option value="less than">less than</option>
+                                                            <option value="greater than equal to">greater than equal to
+                                                            </option>
+                                                            <option value="greater than">greater than</option>
+                                                            <option value="equal to">equal to</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Value </label>
+                                                        <input type="number" class="form-control" name="operation_value"
+                                                            [(ngModel)]="operation_value" placeholder="enter value">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-4">
-                                        <div class="form-group input-group-sm d-flex justify-content-between">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Formula
-                                                *</label>
-                                            <div>
-                                                <button class="btn btn-secondary btn-sm "
-                                                    (click)="validateFormula()">Validate</button>
-                                                <button class="btn btn-secondary btn-sm ms-2"
-                                                    (click)="removeLastElement()" title="Backspace"><i
-                                                        class="fa-solid fa-arrow-left"></i></button>
+                                    <!-- numeric unbound Fiels End -->
+
+                                    <!-- custom Fiels start -->
+                                    <div *ngIf="data_type=='custom';">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Select Options </label>
+                                                    </div>
+                                                    <div class="form-group input-group input-group-sm">
+                                                        <select class="form-select" #selectOptions>
+                                                            <option value="">select options</option>
+                                                            <option value="Positive">Positive</option>
+                                                            <option value="Negative">Negative</option>
+                                                            <option value="Absent">Absent</option>
+                                                            <option value="Present">Present</option>
+                                                            <option value="Reactive">Reactive</option>
+                                                            <option value="Non-Reactive">Non-Reactive</option>
+                                                        </select>
+                                                        <button class="btn btn-secondary btn-sm"
+                                                            (click)="addCustom(selectOptions.value)">Add</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="text-right">
+                                                        <span style="cursor: pointer; font-size: 14px; color: blue;">
+                                                            <i class="fa-solid fa-plus"></i> add new</span>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="selected_options.length != 0" class="col-12 mt-2">
+                                                    <table class="table table-sm table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td *ngFor="let item of selected_options index as i">
+                                                                    {{item}}
+                                                                    <button type="button" class="btn-close btn-sm"
+                                                                        (click)="removefromlistOfOptopns(i)"></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="">Units </label>
+                                                        <input type="text" class="form-control" name="unit"
+                                                            [(ngModel)]="unit" placeholder="enter value">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group input-group-sm">
+                                                        <label for="exampleFormControlTextarea1"
+                                                            class="form-label">Range</label>
+                                                        <textarea class="form-control" rows="2"
+                                                            placeholder="enter range" [(ngModel)]="range_from"
+                                                            name="range"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- custom Fiels End -->
+                                    <div class="form-check mt-2" *ngIf="data_type=='numeric';">
+                                        <div class="row">
+                                            <div class="col-6 p-0">
+                                                <label class="ms-0">Apply Formula</label>
+                                            </div>
+
+                                            <div class="col-3 form-check">
+                                                <input class="form-check-input" type="radio" name="CheckBox"
+                                                    id="flexCheckDefault1" (click)="applyFormulaYes()"
+                                                    [checked]="apply_formula">
+                                                <label class="form-check-label" for="flexCheckDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-3 form-check">
+                                                <input class="form-check-input" type="radio" name="CheckBox"
+                                                    id="flexCheckDefault2" (click)="applyFormulaNo()"
+                                                    [checked]="!apply_formula">
+                                                <label class="form-check-label" for="flexCheckDefault2">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="apply_formula==true;">
+                                        <div class="col-12 mt-2">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Select Field </label>
+                                            </div>
+                                            <div class="form-group input-group input-group-sm">
+                                                <select class="form-select" #selectedField [disabled]="inputButtonFlag">
+                                                    <option value="">select</option>
+                                                    <option *ngFor="let item of field_name_list" value="{{item}}">
+                                                        {{item}}
+                                                    </option>
+                                                </select>
+                                                <button class="btn btn-secondary btn-sm" [disabled]="inputButtonFlag"
+                                                    (click)="addFieldInFormula(selectedField.value)">Add</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2 d-flex justify-content-between">
+                                            <button class="formula-button" [disabled]="mathButtonFlag"
+                                                (click)="addButtonInFormula()" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="Addition">+</button>
+                                            <button class="formula-button" [disabled]="mathButtonFlag"
+                                                (click)="minusButtonInFormula()" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="Substract">-</button>
+                                            <button class="formula-button" [disabled]="mathButtonFlag"
+                                                (click)="multilyButtonInFormula()" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="multiply">*</button>
+                                            <button class="formula-button" [disabled]="mathButtonFlag"
+                                                (click)="divideButtonInFormula()" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="division">/</button>
+                                            <button class="formula-button" (click)="openBracketButtonInFormula()"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                title="Open Bracket">(</button>
+                                            <button class="formula-button" (click)="closeBracketButtonInFormula()"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                title="Close Bracket">)</button>
+                                            <div class="form-group input-group input-group-sm">
+                                                <input type="number" class="form-control" #formulaNumber
+                                                    placeholder="Number" [disabled]="inputButtonFlag">
+                                                <button class="btn btn-secondary btn-sm"
+                                                    (click)="addFieldInFormula(formulaNumber.value)"
+                                                    [disabled]="inputButtonFlag">Add</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <div class="form-group input-group-sm d-flex justify-content-between">
+                                                <label for="exampleFormControlTextarea1" class="form-label">Formula
+                                                    *</label>
+                                                <div>
+                                                    <button class="btn btn-secondary btn-sm "
+                                                        (click)="validateFormula()">Validate</button>
+                                                    <button class="btn btn-secondary btn-sm ms-2"
+                                                        (click)="removeLastElement()" title="Backspace"><i
+                                                            class="fa-solid fa-arrow-left"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="form-group input-group-sm">
+                                                <textarea class="form-control" rows="2" placeholder="Add Formula"
+                                                    [(ngModel)]="formula" name="formula" disabled></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2">
-                                        <div class="form-group input-group-sm">
-                                            <textarea class="form-control" rows="2" placeholder="Add Formula"
-                                                [(ngModel)]="formula" name="formula" required disabled></textarea>
+                                        <div class="row px-2">
+                                            <button *ngIf="!modifyRow" class="btn btn-success btn-sm"
+                                                (click)="addRowInTestTable()" [disabled]="!fieldform.valid"><i
+                                                    class="fa-solid fa-plus"></i> add</button>
+                                            <button *ngIf="modifyRow" class="btn btn-success btn-sm"
+                                                (click)="modifyRowInTestTable()" [disabled]="!fieldform.valid">
+                                                Modify</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row px-2">
-                                        <button *ngIf="!modifyRow" class="btn btn-success btn-sm"
-                                            (click)="addRowInTestTable()" [disabled]="!fieldform.valid"><i class="fa-solid fa-plus" ></i> add</button>
-                                        <button *ngIf="modifyRow" class="btn btn-success btn-sm"
-                                            (click)="modifyRowInTestTable()" [disabled]="!fieldform.valid"> Modify</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
 
                             <!-- Title Field start -->
-                            <div *ngIf="field_type=='Title Field' && testMaster.testType=='Table'">
-                                <div class="col-12 mt-2">
-                                    <div class="form-group input-group-sm">
-                                        <label for="">Title Field *</label>
-                                        <input type="text" class="form-control" name="title_field"
-                                            [(ngModel)]="title_field" placeholder="Enter Title Field" required>
+                            <form #titlefieldform="ngForm">
+                                <div *ngIf="field_type=='Title Field' && testMaster.testType=='Table'">
+                                    <div class="col-12 mt-2">
+                                        <div class="form-group input-group-sm">
+                                            <label for="">Title Field *</label>
+                                            <input type="text" class="form-control" name="title_field"
+                                                [(ngModel)]="title_field" placeholder="Enter Title Field" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 my-4">
+                                        <div class="row px-2">
+                                            <button *ngIf="!modifyRow" class="btn btn-success btn-sm"
+                                                (click)="addRowInTestTable()" [disabled]="!titlefieldform.valid"><i
+                                                    class="fa-solid fa-plus"></i> add</button>
+                                            <button *ngIf="modifyRow" class="btn btn-success btn-sm"
+                                                (click)="modifyRowInTestTable()"
+                                                [disabled]="!titlefieldform.valid">Modify</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12 my-4">
-                                    <div class="row px-2">
-                                        <button *ngIf="!modifyRow" class="btn btn-success btn-sm"
-                                            (click)="addRowInTestTable()" [disabled]="!fieldform.valid"><i class="fa-solid fa-plus"></i> add</button>
-                                        <button *ngIf="modifyRow" class="btn btn-success btn-sm"
-                                            (click)="modifyRowInTestTable()" [disabled]="!fieldform.valid">Modify</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Title Field end -->
-                        </form>
+                                <!-- Title Field end -->
+                            </form>
                         </div>
                         <div class="col-8">
                             <div *ngIf="testMaster.testType=='Text'" style="height: 54vh;">

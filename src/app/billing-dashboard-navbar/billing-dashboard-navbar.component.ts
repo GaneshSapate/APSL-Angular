@@ -12,6 +12,26 @@ import { ErrorObj } from '../Model/ErrorObj';
 })
 export class BillingDashboardNavbarComponent implements OnInit {
 
+  useThemeDetector(){
+   const value = window.matchMedia("(prefers-color-scheme: dark)").matches;
+   if(value){
+    this.darkMode();
+   }
+  }
+
+  darkFlag:boolean=false;
+
+  mode:any=this.document.querySelector('html')?.getAttributeNode('data-bs-theme')
+
+  lightMode() {
+    this.darkFlag=!this.darkFlag;
+    this.mode.value='light';
+  }
+  darkMode() {
+    this.darkFlag=!this.darkFlag;
+    this.mode.value='dark';
+  }
+
 
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus:boolean=false;
@@ -75,6 +95,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.masterService.getAllState().subscribe( (r) => {
         this.stateList = <any> r;
       });
+
+     this.useThemeDetector();
   }
 
   onClickToggled(){
@@ -153,7 +175,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.eventObj.navAbout=false;
     this.eventObj.navContact=false;
     this.addPatientEvent.emit(this.eventObj);
-
+    this.router.navigate(["dashboard/pateint"]);
   }
 
 // Profile button all method start

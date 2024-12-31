@@ -1,61 +1,6 @@
-<div *ngIf = "masterPageObj.masterPageShow">
-    <div class="row mx-1 mx-md-4   " >
-        <div class="card mt-2 py-2 header-card" style="border: none;">
-            <div class="card-body">
-              <h5 class="card-title" ><i class="fa-solid fa-screwdriver-wrench me-2"></i> Masters Maintenance  </h5>
-              <p class="card-text" style="font-size: 13px; color: black;">Here you can manage Docters, Reports Details, Lab Details etc. </p>
-            </div>
-          </div>
-    </div>
-    <div class="row mt-2 mx-1 mx-md-4  ">
-      
-            <div class="card  option-card " >
-                <div class="card-body" (click) = "goToDocter()">
-                  <h6 class="card-title"> <i class="fa-solid fa-user-doctor me-2"></i> Docters Management</h6>
-                  <p class="card-text">Here you can manage Docters and Hospital details</p>
-                  <!-- <a  class="btn btn-sm  btn-primary " (click) = "goToDocter()">Go To Docters Management</a> -->
-                </div>
-              </div>
-        
-       
-            <div class="card option-card  " >
-                <div class="card-body " (click) = "goToReport()">
-                  <h6 class="card-title"> <i class="fa-regular fa-pen-to-square me-2"></i> Reports Management</h6>
-                  <p class="card-text">Here you can manage lab Reports and Cost details</p>
-                  <!-- <a  class="btn btn-sm btn-primary" (click) = "goToReport()">Go To Reports Management</a> -->
-                </div>
-              </div>
-       
-       
-            <div class="card option-card " >
-                <div class="card-body" (click) = "goToLab()">
-                  <h6 class="card-title"><i class="fa-solid fa-microscope navbar-brand me-2"></i> Lab Management</h6>
-                  <p class="card-text">Here you can manage Lab name, address etc details</p>
-                  <!-- <a  class="btn btn-sm  btn-primary" (click) = "goToLab()">Go To Lab Management</a> -->
-                </div>
-              </div>
-        
-    </div>
-    
-</div>
 
-<!-- Docter Management -->
-<div *ngIf = "masterPageObj.docterManagement">
-   <app-master-docter-management  (masterPageObjEmmitter)= "masterPageObj=$event" ></app-master-docter-management>
-</div>
+<router-outlet></router-outlet>
 
-<!-- Reports Management -->
-<div *ngIf = "masterPageObj.reportManagement">
-    <app-test-master (masterPageObjEmmitter)= "masterPageObj=$event"></app-test-master>
-</div>
-
-<!-- Lab Details Management -->
-<div *ngIf = "masterPageObj.labManagement">
-    <app-master-lab-management (masterPageObjEmmitter)= "masterPageObj=$event"></app-master-lab-management>
-</div>
-
-
-<!-- Add New Report Modal -->
 
 
 

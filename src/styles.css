@@ -7,7 +7,7 @@
 body{
     /* font-family: 'Fredoka',sans-serif; */
     font-family: Roboto,sans-serif;
-    background-color: white;
+    /* background-color: white; */
 }
 .bg_background{
     background-size: 100%; 
@@ -82,7 +82,7 @@ button[disabled]{
     /* border-bottom: 4px solid #2b6cb0; */
   }
   .modal-title{
-    color: rgb(61, 61, 61); 
+    /* color: rgb(61, 61, 61);  */
     font-size: 16px;
     margin-left: 14px;
     font-family: Roboto;
@@ -93,6 +93,9 @@ button[disabled]{
 
   .toast-top-center {
    padding: 10px;
+}
+.header-card{
+  background-color: transparent;
 }
 
 .header-card .card-title{
@@ -108,11 +111,12 @@ button[disabled]{
   /* background-color: #f2f1f1; */
   border: none;
   transition: 0.5s;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
 }
 
 .option-card:hover {
- background-color: #f3f3f3;
+ /* background-color: #f3f3f3; */
  cursor: pointer;
 }
 
@@ -121,7 +125,7 @@ button[disabled]{
 
 .option-card .card-text{
   font-size: 13px;
-  color: black;
+  /* color: black; */
 }
 /* .option-card .btn-primary{
   background-color: #eaeaea;
@@ -158,4 +162,102 @@ table{
 .docterName:hover{
   color: blue;
   cursor: pointer;
+}
+
+[data-bs-theme="light"] {
+  .navbar{
+    background-color: #ffffff;
+  }
+  app-side-nav-bar{
+    border-right: solid;
+    border-width: 1px;
+    border-color: #e8e8e8;
+  }
+
+  .select{
+    background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%);
+    color: #0041a1;
+    cursor: pointer;
+  }
+  .notification-item:hover {
+    background-color: #f4f3f3;
+  }
+  .closeNotificationbtn{
+    cursor: pointer;
+    color: #f9f9f9;
+    font-size: 18px;
+  }
+  .dropdown-menu{
+    border: none;
+    width: 180px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+    transition: height 1s ease-in-out;
+
+}
+  .dropdown-item:hover{
+    background-color: #e5e5e5;
+  }
+
+  #tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link{
+    color: #202020;
+  }
+
+  #tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    background-color: #eee;
+  }
+
+}
+
+[data-bs-theme="dark"] {
+  .navbar{
+    background-color: #3a3a3a;
+  }
+  .option-card {
+    border: solid;
+    border-width: 1px;
+    border-color: #535353;
+  }
+  .btn-secondary{
+    border-color: rgb(1, 1, 1);
+    background-color: #696969;
+    color: #ffffff;
+  }
+  .btn-danger{
+    background-color: #dcdcdc;
+  }
+  app-side-nav-bar{
+    border-right: solid;
+    border-width: 1px;
+    border-color: #3c3c3c;
+  }
+  .select{
+    background: linear-gradient(to left, #4b4b4b 97%, #1472ff 3%);
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .notification-item:hover {
+    background-color: #202020;
+    color: white;
+  }
+  .closeNotificationbtn{
+    cursor: pointer;
+    color: transparent;
+    font-size: 18px;
+  }
+  .dropdown-menu{
+    border: solid;
+    border-width: 1px;
+    border-color: #535353;
+  }
+  #tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link{
+    color: #ffffff;
+  }
+  #tabs .nav-tab .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    background-color: #3a3a3a;
+  }
+
 }

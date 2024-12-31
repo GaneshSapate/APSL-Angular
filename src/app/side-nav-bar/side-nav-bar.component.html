@@ -2,37 +2,25 @@
 
  <div class="side-nav" [ngClass]= "{'side-nav-open': sideNavStatus}" >
     <div>
-
-        <!-- <a  style="text-decoration:none" class="Home">
-            <div class="nav-list-item"  style="text-decoration:none; margin-bottom: 10px;">
-                <i class="fa-solid fa-microscope navbar-brand" style="font-size: 20px; animation: myanimation 10s infinite;"></i>
-                <i class="fa-solid fa-microscope navbar-brand" style="font-size: 20px;"></i>
-                <h6 style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif; animation: myanimation 10s infinite;">APLS</h6>
-                <h6 style="font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">APLS</h6>
-            </div>
-        </a> -->
-
-        <a  (click)="clickOnHome()" style="text-decoration:none"  class="Home">
+        <a (click)="clickOnHome()" style="text-decoration:none" >
             <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navHome}">
                 <i class="fa-solid fa-house" ></i>
-                <!-- <img [src]="homeIcon"> -->
+                <!-- <img [src]="patientIcon"> -->
                 <h6>Home</h6>
             </div>
         </a>
-
-        <a (click)="clickOnDashboard()" style="text-decoration:none" class="Dashboard">
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navDashboard}">
-                <i class="fa-solid fa-chart-line"></i>
-                <!-- <img [src]="dashboardIcon"> -->
-                <h6>Dashboard</h6>
-            </div>
-        </a>
-
         <a (click)="clickOnPateint()" style="text-decoration:none" >
             <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navPatient}">
                 <i class="fa-solid fa-user" ></i>
                 <!-- <img [src]="patientIcon"> -->
                 <h6>Patient</h6>
+            </div>
+        </a>
+        <a (click)="clickOnDashboard()" style="text-decoration:none" >
+            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navDashboard}">
+                <i class="fa-solid fa-chart-line"></i>
+                <!-- <img [src]="patientIcon"> -->
+                <h6>Dashboard</h6>
             </div>
         </a>
 

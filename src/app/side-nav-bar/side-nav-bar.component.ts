@@ -30,103 +30,76 @@ export class SideNavBarComponent implements OnInit {
     navContact:false
   }
 
-  homeIcon:string = '../../assets/redshotIcon/home.svg';
-  dashboardIcon:string = '../../assets/redshotIcon/dashboard.svg';
-  patientIcon:string = '../../assets/redshotIcon/user.svg';
-  masterIcon:string = '../../assets/redshotIcon/master.svg';
-  settingIcon:string = '../../assets/redshotIcon/setting.svg';
-  contactIcon:string = '../../assets/redshotIcon/contact.svg';
-  infoIcon:string = '../../assets/redshotIcon/info.svg';
-
   constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
   clickOnHome(){
-    // this.router.navigate(['login-board',{outlets :{ childRout: ['home']}}])
+    this.clearAll();
     if(this.eventObj.navHome==false){
-     this.eventObj.navDashboard=false;
      this.eventObj.navHome=true;
-     this.eventObj.navPatient=false;
-     this.eventObj.navMaster=false;
-     this.eventObj.navSetting=false;
-     this.eventObj.navAbout=false;
-     this.eventObj.navContact=false;
     }
     this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/home"]);
   }
   clickOnDashboard(){
+    this.clearAll();
     if(this.eventObj.navDashboard==false){
       this.eventObj.navDashboard=true;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
-      this.eventObj.navMaster=false;
-      this.eventObj.navSetting=false;
-      this.eventObj.navAbout=false;
-      this.eventObj.navContact=false;
      }
     this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/dashboardDetails"]);
   }
   clickOnPateint(){
+    this.clearAll();
     if(this.eventObj.navPatient==false){
-      this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
       this.eventObj.navPatient=true;
-      this.eventObj.navMaster=false;
-      this.eventObj.navSetting=false;
-      this.eventObj.navAbout=false;
-      this.eventObj.navContact=false;
      }
     this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/pateint"]);
   }
   clickOnMaster(){
+    this.clearAll();
     if(this.eventObj.navMaster==false){
-      this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
       this.eventObj.navMaster=true;
-      this.eventObj.navSetting=false;
-      this.eventObj.navAbout=false;
-      this.eventObj.navContact=false;
      }
     this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/master"]);
   }
 
   clickOnSetting(){
+    this.clearAll();
     if(this.eventObj.navSetting==false){
-      this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
-      this.eventObj.navMaster=false;
       this.eventObj.navSetting=true;
-      this.eventObj.navAbout=false;
-      this.eventObj.navContact=false;
      }
     this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/setting"]);
   }
   clickOnAbout(){
+    this.clearAll();
     if(this.eventObj.navAbout==false){
-      this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
-      this.eventObj.navMaster=false;
-      this.eventObj.navSetting=false;
       this.eventObj.navAbout=true;
-      this.eventObj.navContact=false;
      }
     this.sideNavPatient.emit(this.eventObj);
+    // this.router.navigate(["dashboard/about"]);
   }
   clickOnContact(){
+    this.clearAll();
     if(this.eventObj.navContact==false){
-      this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
-      this.eventObj.navMaster=false;
-      this.eventObj.navSetting=false;
-      this.eventObj.navAbout=false;
       this.eventObj.navContact=true;
      }
     this.sideNavPatient.emit(this.eventObj);
+    // this.router.navigate(["dashboard/contact"]);
+  }
+
+  clearAll(){
+    this.eventObj.navDashboard=false;
+      this.eventObj.navHome=false;
+      this.eventObj.navPatient=false;
+      this.eventObj.navMaster=false;
+      this.eventObj.navSetting=false;
+      this.eventObj.navAbout=false;
+      this.eventObj.navContact=false;
   }
 
 }

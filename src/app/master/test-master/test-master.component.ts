@@ -13,6 +13,7 @@ import { ErrorObj } from 'src/app/Model/ErrorObj';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test-master',
@@ -141,7 +142,8 @@ deleteTestId:number=0;
   constructor(private toaster : ToastrService,
               private sanitizer: DomSanitizer,
               private testService:TestService,
-              private labService: LabServiceService) { 
+              private labService: LabServiceService,
+            private router:Router) { 
       this.pdfurl=sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
     }
 
@@ -157,11 +159,7 @@ deleteTestId:number=0;
   }
 
   clickonBack(){
-    this.masterPageObj.masterPageShow =true;
-    this.masterPageObj.docterManagement = false;
-    this.masterPageObj.reportManagement = false;
-    this.masterPageObj.labManagement = false;
-    this.masterPageObjEmmitter.emit(this.masterPageObj);
+    this.router.navigate(['dashboard/master'])
   }
 
   addNewTestModal(){

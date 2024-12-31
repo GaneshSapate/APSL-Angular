@@ -18,6 +18,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SafePipe } from './safe.pipe';
 import { TokenInterceptorService } from './service/token-interceptor.service';
+import { HomePageDetailsComponent } from './home-page-details/home-page-details.component';
+import { MasterMenuComponent } from './master/master-menu/master-menu.component';
+import { PatientDetailsComponent } from './pateint-page/patient-details/patient-details.component';
+import { PatientListComponent } from './pateint-page/patient-list/patient-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     RegistrationComponent,
     NavbarComponent,
     SafePipe,
-    LoginPageComponent
+    LoginPageComponent,
+    HomePageDetailsComponent,
+    MasterMenuComponent,
+    PatientDetailsComponent,
+    PatientListComponent
   ],
   imports: [
     
