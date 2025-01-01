@@ -211,6 +211,11 @@ table{
 }
 
 [data-bs-theme="dark"] {
+  .login-card{
+    border: solid;
+    border-width: 1px;
+    border-color: #535353;
+  }
   .navbar{
     background-color: #3a3a3a;
   }

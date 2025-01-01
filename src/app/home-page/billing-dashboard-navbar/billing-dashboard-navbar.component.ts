@@ -2,8 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService, ToastPackage } from 'ngx-toastr';
-import { MasterDataService } from '../master-data.service';
-import { ErrorObj } from '../Model/ErrorObj';
+import { MasterDataService } from '../../master-data.service';
+import { ErrorObj } from '../../Model/ErrorObj';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',

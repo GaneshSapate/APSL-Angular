@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MasterDataService } from '../master-data.service';
-import { ErrorObj } from '../Model/ErrorObj';
-import { Doctor } from '../Model/Doctor';
-import { DoctorServiceService } from '../service/doctor-service.service';
+import { MasterDataService } from '../../master-data.service';
+import { ErrorObj } from '../../Model/ErrorObj';
+import { Doctor } from '../../Model/Doctor';
+import { DoctorServiceService } from '../../service/doctor-service.service';
 import { Router } from '@angular/router';
 
 @Component({
