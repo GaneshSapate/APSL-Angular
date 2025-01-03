@@ -18,7 +18,8 @@ export class HomePageComponent implements OnInit {
     navMaster:false,
     navSetting:false,
     navAbout:false,
-    navContact:false
+    navContact:false,
+    navEntry:false
   }
   chartOptions= {
     responsive: true,

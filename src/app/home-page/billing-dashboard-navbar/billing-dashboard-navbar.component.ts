@@ -51,7 +51,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
     navMaster:false,
     navSetting:false,
     navAbout:false,
-    navContact:false
+    navContact:false,
+    navEntry:false
   }
 
 
@@ -169,7 +170,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
 
     this.eventObj.navDashboard=false;
     this.eventObj.navHome=false;
-    this.eventObj.navPatient=true;
+    this.eventObj.navEntry=true
+    this.eventObj.navPatient=false;
     this.eventObj.navMaster=false;
     this.eventObj.navSetting=false;
     this.eventObj.navAbout=false;
@@ -186,6 +188,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     onSecurityClick() {
       this.eventObj.navDashboard=false;
       this.eventObj.navHome=false;
+      this.eventObj.navEntry=false;
       this.eventObj.navPatient=false;
       this.eventObj.navMaster=false;
       this.eventObj.navSetting=true;
@@ -196,6 +199,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     onSettingClick() {
       this.eventObj.navDashboard=false;
       this.eventObj.navHome=false;
+      this.eventObj.navEntry=false;
       this.eventObj.navPatient=false;
       this.eventObj.navMaster=false;
       this.eventObj.navSetting=true;

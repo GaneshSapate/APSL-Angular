@@ -19,6 +19,7 @@ export class SideNavBarComponent implements OnInit {
   navSetting:boolean=false;
   navAbout:boolean=false;
   navContact:boolean=false;
+  navEntry:boolean=false;
 
   @Input() eventObj={
     navDashboard:false,
@@ -27,7 +28,8 @@ export class SideNavBarComponent implements OnInit {
     navMaster:false,
     navSetting:false,
     navAbout:false,
-    navContact:false
+    navContact:false,
+    navEntry:false
   }
 
   constructor(private router : Router) { }
@@ -41,6 +43,14 @@ export class SideNavBarComponent implements OnInit {
     }
     this.sideNavPatient.emit(this.eventObj);
     this.router.navigate(["dashboard/home"]);
+  }
+  clickOnEntry(){
+    this.clearAll();
+    if(this.eventObj.navEntry==false){
+      this.eventObj.navEntry=true;
+     }
+    this.sideNavPatient.emit(this.eventObj);
+    this.router.navigate(["dashboard/entryList"]);
   }
   clickOnDashboard(){
     this.clearAll();
@@ -100,6 +110,7 @@ export class SideNavBarComponent implements OnInit {
       this.eventObj.navSetting=false;
       this.eventObj.navAbout=false;
       this.eventObj.navContact=false;
+      this.eventObj.navEntry=false;
   }
 
 }

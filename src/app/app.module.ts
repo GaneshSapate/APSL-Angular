@@ -22,6 +22,9 @@ import { HomePageDetailsComponent } from './home-page/home-page-details/home-pag
 import { MasterMenuComponent } from './master/master-menu/master-menu.component';
 import { PatientDetailsComponent } from './pateint-page/patient-details/patient-details.component';
 import { PatientListComponent } from './pateint-page/patient-list/patient-list.component';
+import { EntryListComponent } from './entry-page/entry-list/entry-list.component';
+import { EntryDetailsComponent } from './entry-page/entry-details/entry-details.component';
+import { EntryPageComponent } from './entry-page/entry-Page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { PatientListComponent } from './pateint-page/patient-list/patient-list.c
     HomePageDetailsComponent,
     MasterMenuComponent,
     PatientDetailsComponent,
-    PatientListComponent
+    PatientListComponent,
+    EntryDetailsComponent,
+    EntryListComponent,
+    EntryPageComponent
   ],
   imports: [
     

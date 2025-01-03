@@ -9,6 +9,13 @@
                 <h6>Home</h6>
             </div>
         </a>
+        <a (click)="clickOnEntry()" style="text-decoration:none" >
+            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navEntry}">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <!-- <img [src]="patientIcon"> -->
+                <h6>Entry List</h6>
+            </div>
+        </a>
         <a (click)="clickOnPateint()" style="text-decoration:none" >
             <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navPatient}">
                 <i class="fa-solid fa-user" ></i>
