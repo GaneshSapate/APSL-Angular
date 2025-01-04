@@ -20,6 +20,25 @@
             <a  class="nav-link " data-bs-toggle="modal" data-bs-target="#NewPatientModal">
               <i class="fa-solid fa-plus"></i> Add New Patient</a>
           </li>
+          <li class="dropdown">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+              {{lab.labName}}
+            </a>
+            <ul class="dropdown-menu p-2" style="width: 17rem;" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <div class="row">
+                  <img src="{{lab.labLogoString}}" class="card-img-top px-4 pt-2">
+                  <p class="ms-2">{{lab.labName}}</p>
+                </div>
+              </li>
+              <li>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button type="button" class="btn btn-primary btn-sm mt-4 mb-2 me-2" routerLink="/selectLab" >
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i> Change Lab</button>
+                </div>
+              </li>
+            </ul>
+          </li>
         </ul>
         
       </div>
@@ -94,9 +113,9 @@
   </div>
 
 
-
+<app-entry-modal></app-entry-modal>
 <!-- Add new patient modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
       <div class="modal-content ">
         <div class="modal-header d-flex">
@@ -465,7 +484,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   <!-- Add New Patient Modal -->

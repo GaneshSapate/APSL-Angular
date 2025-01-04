@@ -25,6 +25,7 @@ import { PatientListComponent } from './pateint-page/patient-list/patient-list.c
 import { EntryListComponent } from './entry-page/entry-list/entry-list.component';
 import { EntryDetailsComponent } from './entry-page/entry-details/entry-details.component';
 import { EntryPageComponent } from './entry-page/entry-Page.component';
+import { SelectLabComponent } from './select-lab/select-lab.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EntryPageComponent } from './entry-page/entry-Page.component';
     PatientListComponent,
     EntryDetailsComponent,
     EntryListComponent,
-    EntryPageComponent
+    EntryPageComponent,
+    SelectLabComponent
   ],
   imports: [
     

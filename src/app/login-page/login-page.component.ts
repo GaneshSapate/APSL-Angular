@@ -6,6 +6,8 @@ import { LoginUserOBJ } from '../Model/LoginUserOBJ';
 import { LoginUserResp } from '../Model/LoginUserRes';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LabServiceService } from '../service/lab-service.service';
+import { LabObj } from '../Model/LabObj';
 
 
 @Component({
@@ -82,10 +84,13 @@ export class LoginPageComponent implements OnInit {
     errorMessage:""
   }
   message:string="";
+
+  labList=[<LabObj>{}];
   
   constructor(private title:Title,
                 private service:UserServiceService,
                 private toster:ToastrService,
+                private labService: LabServiceService,
                 private router:Router) { }
   
   ngOnDestroy(): void {
@@ -107,13 +112,29 @@ export class LoginPageComponent implements OnInit {
         sessionStorage.setItem("labId",UserResp.labId.toString());
         sessionStorage.setItem("userId",UserResp.mainUserId.toString());
         sessionStorage.setItem("userRole",UserResp.userRole);
-        this.router.navigate(["/dashboard/home"]); 
-
+        this.labService.getLabsByUserId(UserResp.mainUserId).subscribe(
+          (r)=>{
+            this.labList=<any>r;
+            if(this.labList.length>1){
+              this.router.navigate(["selectLab"]);
+            }else{
+              sessionStorage.setItem("labId",this.labList[0].labId.toString());
+              this.router.navigate(["/dashboard/home"]); 
+            }
+          })
       },
       (error)=>{
         this.toster.error(error.message,"Error");
       }
     )
+  }
+  getAllLabs(){
+    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.labService.getLabsByUserId(userId).subscribe(
+      (r)=>{
+        console.log(r);
+        this.labList=<any>r;
+      })
   }
 
   clickOnCancel(){

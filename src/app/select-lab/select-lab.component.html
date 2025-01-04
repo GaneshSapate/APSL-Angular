@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="row my-4 justify-content-center">
+    <div class="card login-card">
+        <div class="card-body">
+            <form #f="ngForm">
+                <div>Select Laboratory</div> 
+                <select class="form-select mt-4" name="laboratory" [(ngModel)]= "labId" required>
+                    <option selected value="">Select Laboratory</option>
+                    <option *ngFor= "let lab of labList" value={{lab.labId}}>{{lab.labName}}</option>
+                </select>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-secondary btn-sm mt-4 mb-2 mx-2 "
+                        routerLink="/login">back</button>
+                    <button type="button" class="btn btn-primary btn-sm mt-4 mb-2" (click)="onNext()"
+                        [disabled]="!f.valid">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

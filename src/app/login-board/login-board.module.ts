@@ -20,6 +20,7 @@ import { PateintPageComponent } from '../pateint-page/pateint-page.component';
 import { MasterLabManagementComponent } from '../master/master-lab-management/master-lab-management.component';
 import { MasterDocterManagementComponent } from '../master/master-docter-management/master-docter-management.component';
 import { TestMasterComponent } from '../master/test-master/test-master.component';
+import { EntryModalComponent } from '../entry-page/entry-modal/entry-modal.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { TestMasterComponent } from '../master/test-master/test-master.component
     PateintPageComponent,
     MasterLabManagementComponent,
     MasterDocterManagementComponent,
-    TestMasterComponent
+    TestMasterComponent,
+    EntryModalComponent
   ],
   imports: [
     CommonModule,

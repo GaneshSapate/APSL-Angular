@@ -1,0 +1,9 @@
+.nav .nav-link{
+    padding-top: 5px;
+    padding-bottom: 4px;
+    border-radius: 2px;
+    font-size: 14px;
+  }
+  .nav .nav-link:hover {
+    border-color: #fff;
+  }
