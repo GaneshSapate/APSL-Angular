@@ -1,30 +1,22 @@
-
 .nav-list-item{
-    margin-left: 0px;
-    padding: 13px;
-    padding-left: 20px;
+    padding-left: 18px;
     display: flex;
     height: 40px;
-    font-size: 12px; 
+    background-color: transparent;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 4px;
 }
 .nav-list-item i{
+    padding: 2px;
     margin-right: 21px;
-    font-size: 15px;
+    font-size: 17px;
     width: 25px;
-}
-
-.nav-list-item h6{
-    width: 60px;
-    font-size: 14px;
-    font-weight: 400;
+    justify-content: center;
+    /* background:radial-gradient(circle, rgb(97, 153, 236) 0%, rgb(64, 162, 236) 20%, rgb(0, 25, 254) 100%); 
+    -webkit-background-clip: text;
+    color: transparent; */
 }
 .nav-list-item:hover{
     cursor: pointer;
 }
-/* .select{
-    background: linear-gradient(45deg, #ffffff, #ffffff);
-    background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%);
-    color: #0041a1;
-    cursor: pointer;
-} */
-

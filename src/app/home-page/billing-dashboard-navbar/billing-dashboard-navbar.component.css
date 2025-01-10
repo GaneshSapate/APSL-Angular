@@ -36,7 +36,12 @@
       transition: width 250ms ease-in,left 250ms ease-in;
   }
 }
-
+.badge{
+  position: absolute;
+  right: -5px;
+  top: -7px;
+  font-size: 10px;
+}
 
 ::-webkit-scrollbar {
     width: 5px;

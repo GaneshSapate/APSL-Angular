@@ -108,11 +108,15 @@ export class LoginPageComponent implements OnInit {
         UserResp = (<any>r);
         console.log(UserResp);
         sessionStorage.setItem("token",UserResp.token);
-        sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
+        if(UserResp.mainUserId === 0 && UserResp.userRole === "MAIN_USER") {
+          sessionStorage.setItem("mainUserId",UserResp.userId.toString());
+        }else{
+          sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
+        }
         sessionStorage.setItem("labId",UserResp.labId.toString());
-        sessionStorage.setItem("userId",UserResp.mainUserId.toString());
+        sessionStorage.setItem("userId",UserResp.userId.toString());
         sessionStorage.setItem("userRole",UserResp.userRole);
-        this.labService.getLabsByUserId(UserResp.mainUserId).subscribe(
+        this.labService.getLabsByUserId(UserResp.userId).subscribe(
           (r)=>{
             this.labList=<any>r;
             if(this.labList.length>1){

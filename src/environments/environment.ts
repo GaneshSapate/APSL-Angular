@@ -8,7 +8,8 @@ export const environment = {
   laburl:"http://localhost:8080/lab",
   masterDataUrl:"http://localhost:8080/masterdata",
   testMasterUrl:"http://localhost:8080/test",
-  doctorUrl:"http://localhost:8080/doctor"
+  doctorUrl:"http://localhost:8080/doctor",
+  utilsUrl:"http://localhost:8080/utils"
 };
 /*
  * For easier debugging in development mode, you can import the following file

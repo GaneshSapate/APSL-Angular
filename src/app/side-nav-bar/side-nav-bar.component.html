@@ -2,65 +2,57 @@
 
  <div class="side-nav" [ngClass]= "{'side-nav-open': sideNavStatus}" >
     <div>
-        <a (click)="clickOnHome()" style="text-decoration:none" >
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navHome}">
-                <i class="fa-solid fa-house" ></i>
-                <!-- <img [src]="patientIcon"> -->
-                <h6>Home</h6>
+        <div (click)="clickOnHome()"  >
+            <div class="nav-list-item linear-gradient-default"  [ngClass]="{'select':eventObj.navHome}">
+                <i class="fa-solid fa-house"></i>
+                <div>Home</div>
             </div>
-        </a>
-        <a (click)="clickOnEntry()" style="text-decoration:none" >
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navEntry}">
+        </div>
+        <div (click)="clickOnEntry()"  >
+            <div class="nav-list-item linear-gradient-default"  [ngClass]="{'select':eventObj.navEntry}">
                 <i class="fa-regular fa-pen-to-square"></i>
-                <!-- <img [src]="patientIcon"> -->
-                <h6>Entry List</h6>
+                <div>Entry List</div>
             </div>
-        </a>
-        <a (click)="clickOnPateint()" style="text-decoration:none" >
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navPatient}">
-                <i class="fa-solid fa-user" ></i>
-                <!-- <img [src]="patientIcon"> -->
-                <h6>Patient</h6>
+        </div>
+        <div (click)="clickOnPateint()"  >
+            <div class="nav-list-item linear-gradient-patient"  [ngClass]="{'select':eventObj.navPatient}">
+                <i class="fa-solid fa-user" style="font-size: 18px;" ></i>
+                <div>Patient</div>
             </div>
-        </a>
-        <a (click)="clickOnDashboard()" style="text-decoration:none" >
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navDashboard}">
+        </div>
+        <div (click)="clickOnDashboard()">
+            <div class="nav-list-item linear-gradient-default "  [ngClass]="{'select':eventObj.navDashboard}">
                 <i class="fa-solid fa-chart-line"></i>
-                <!-- <img [src]="patientIcon"> -->
-                <h6>Dashboard</h6>
+                <div>Dashboard</div>
             </div>
-        </a>
+        </div>
 
-        <a (click)="clickOnMaster()" style="text-decoration:none" >
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navMaster}">
+        <div (click)="clickOnMaster()" >
+            <div class="nav-list-item linear-gradient-default" [ngClass]="{'select':eventObj.navMaster}">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
-                <!-- <img [src]="masterIcon"> -->
-                <h6 >Master</h6>
+                <div >Master</div>
             </div>
-        </a>
+        </div>
 
-        <a (click)="clickOnSetting()" style="text-decoration:none">
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navSetting}">
-                <i class="fa-solid fa-gear" ></i>
-                <!-- <img [src]="settingIcon"> -->
-                <h6 >Setting</h6>
+        <div (click)="clickOnSetting()">
+            <div class="nav-list-item linear-gradient-setting" [ngClass]="{'select':eventObj.navSetting}">
+                <i class="fa-solid fa-gear" style="font-size: 19px;" ></i>
+                <div >Setting</div>
             </div>
-        </a>
+        </div>
 
-        <a (click)="clickOnAbout()"  style="text-decoration:none">
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navAbout}">
-                <i class="fa-solid fa-circle-info" ></i>
-                <!-- <img [src]="infoIcon"> -->
-                <h6 >About</h6>
+        <div (click)="clickOnAbout()">
+            <div class="nav-list-item linear-gradient-info" [ngClass]="{'select':eventObj.navAbout}">
+                <i class="fa-solid fa-circle-info" style="font-size: 19px;"  ></i>
+                <div >About</div>
             </div>
-        </a>
+        </div>
 
-        <a (click)="clickOnContact()"  style="text-decoration:none">
-            <div class="nav-list-item"  style="text-decoration:none" [ngClass]="{'select':eventObj.navContact}">
+        <div (click)="clickOnContact()">
+            <div class="nav-list-item linear-gradient-default" [ngClass]="{'select':eventObj.navContact}">
                 <i class="fa-solid fa-phone" ></i>
-                <!-- <img [src]="contactIcon"> -->
-                <h6 >Contact</h6>
+                <div >Contact</div>
             </div>
-        </a>
+        </div>
     </div>
  </div>

@@ -41,7 +41,7 @@ import { SelectLabComponent } from './select-lab/select-lab.component';
     EntryDetailsComponent,
     EntryListComponent,
     EntryPageComponent,
-    SelectLabComponent
+    SelectLabComponent,
   ],
   imports: [
     
@@ -56,7 +56,7 @@ import { SelectLabComponent } from './select-lab/select-lab.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     DragDropModule,
-    NgxExtendedPdfViewerModule,
+    NgxExtendedPdfViewerModule
 
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

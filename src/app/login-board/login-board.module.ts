@@ -21,6 +21,7 @@ import { MasterLabManagementComponent } from '../master/master-lab-management/ma
 import { MasterDocterManagementComponent } from '../master/master-docter-management/master-docter-management.component';
 import { TestMasterComponent } from '../master/test-master/test-master.component';
 import { EntryModalComponent } from '../entry-page/entry-modal/entry-modal.component';
+import { UserManagementComponent } from '../master/user-management/user-management.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { EntryModalComponent } from '../entry-page/entry-modal/entry-modal.compo
     MasterLabManagementComponent,
     MasterDocterManagementComponent,
     TestMasterComponent,
-    EntryModalComponent
+    EntryModalComponent,
+    UserManagementComponent
   ],
   imports: [
     CommonModule,

@@ -1,78 +1,9 @@
-app-side-nav-bar{
-    padding-top: 15px;
-    position: fixed;
-    margin-top: 3rem;
-    height: 100vh;
-    width: 180px;
-    z-index: 11;
-    overflow: auto;
-    /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
-    /* background-color: #525252; */
-    transition: width 150ms ease-in;
-    /* border-right: solid;
-    border-width: 1px;
-    border-color: #e8e8e8; */
-    /* background-color: #ffffff; */
-}
-.side-nav-open{
-    width: 54px;
-    overflow-x: hidden;
-    white-space: nowrap;
-}
-.display-area{
-    margin-top: 3.5rem;
-    position: absolute;
-    width: (100% - 180px);
-    left: 180px;
-    right: 0px;
-    transition: width 250ms ease-in,left 250ms ease-in;
-}
-.display-area-shrink{
-
-    width: (100% - 50px);
-    left: 56px;
-}
-
-@media screen and (max-width:575px){
-  app-side-nav-bar{
-    padding-top:5px;
-    position: fixed;
-    height: 100vh;
-    width: 0px;
-    z-index: 11;
-    overflow: auto;
-    /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
-    background-color: #f6f6f6;
-    transition: width 150ms ease-in;
- 
-  }
-  .side-nav-open{
-    width: 54px;
-    overflow-x: hidden;
-    white-space: nowrap;
-  }
-  .display-area{
-    margin-top: 3.5rem;
-    position: absolute;
-    width: 100%;
-    left: 0px;
-    right: 0px;
-    transition: width 250ms ease-in,left 250ms ease-in;
-    padding: 0px;
-  }
-}
 
 
  
 .text-right {
   text-align: right; }
 
-
-
-
-  
-
-  
   a {
     font-size: 13px;
     color: #222; }

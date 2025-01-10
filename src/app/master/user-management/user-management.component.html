@@ -1,12 +1,13 @@
 <div class="row mx-1 mx-md-4   ">
     <div class="card mt-2 py-2 header-card " style="border: none;">
         <div class="card-body">
-            <h5 class="card-title linear-gradient-doctor"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px; padding: 2px;"></i> Docters Management </h5>
+            <h5 class="card-title linear-gradient-default"><i class="fa-solid fa-user me-2" style="font-size: 20px; padding: 2px;"></i> User Management </h5>
             <p class="card-text" style="font-size: 13px;">Here you can manage Docters Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
                     class="fa-regular fa-square-caret-left"></i> Go Back</a>
-            <a class="btn btn-secondary btn-sm ms-md-4 " (click)="addDoctorModal()" data-bs-toggle="modal" data-bs-target="#addDocterModal" >
-                <i class="fa-solid fa-plus"></i> Add Doctor </a>
+            <a class="btn btn-secondary btn-sm ms-md-4 " (click)="addUserModal()" data-bs-toggle="modal"
+                data-bs-target="#addUserModal">
+                <i class="fa-solid fa-plus"></i> Add User </a>
             <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
             </a>
         </div>
@@ -16,7 +17,7 @@
     <div class=" pt-2">
         <div class="row mx-1 py-2">
             <div class="col-xl-8 col-md-6">
-                <h6>Docters List</h6>
+                <h6>User List</h6>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="form-group input-group-sm ps-md-4">
@@ -33,8 +34,7 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Docter Name</th>
-                        <th scope="col">Hospital Name</th>
+                        <th scope="col">User Name</th>
                         <th scope="col">Mobile NO</th>
                         <th scope="col">Added Date</th>
                         <th scope="col">Modify Date</th>
@@ -43,21 +43,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let docter of doctorsList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
+                    <tr *ngFor="let docter of UsersList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td scope="row">{{docter.doctorId}}</td>
-                        <td class="docterName" (click)="viewDoctor(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#viewDocterModal"
-                            >{{docter.firstName}} {{docter.lastName}}</td>
-                        <td>{{docter.hospitalName}}</td>
+                        <td class="docterName" (click)="viewUser(docter.doctorId)" data-bs-toggle="modal"
+                            data-bs-target="#viewUserModal">{{docter.firstName}} {{docter.lastName}}</td>
                         <td>{{docter.mobile}}</td>
                         <td>{{docter.addedDate | date}}</td>
                         <td>{{docter.modifiedDate | date}}</td>
                         <td>
-                            <span *ngIf="docter.disableFlag==true" class="p-1" style="color: red; background-color: rgb(255, 234, 234); border-radius: 5px;">Inactive</span>
-                            <span *ngIf="docter.disableFlag==false" class="p-1" style="color: darkgreen; background-color: rgb(233, 255, 233);border-radius: 5px;">Active</span>
+                            <span *ngIf="docter.disableFlag==true" class="p-1"
+                                style="color: red; background-color: rgb(255, 234, 234); border-radius: 5px;">Inactive</span>
+                            <span *ngIf="docter.disableFlag==false" class="p-1"
+                                style="color: darkgreen; background-color: rgb(233, 255, 233);border-radius: 5px;">Active</span>
                         </td>
-                        <td><a style="color: green; cursor: pointer;" (click)="modifyDoctorModal(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#addDocterModal"
-                             >Modify</a> | 
-                            <a style="color: red; cursor: pointer;" (click)="deleteModal(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#deleteDoctorModal" >Delete</a></td>
+                        <td><a style="color: green; cursor: pointer;" (click)="modifyUserModal(docter.doctorId)"
+                                data-bs-toggle="modal" data-bs-target="#addUserModal">Modify</a> |
+                            <a style="color: red; cursor: pointer;" (click)="deleteModal(docter.doctorId)"
+                                data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -71,219 +74,218 @@
 </div>
 
 
-<!-- View Doctor Modal -->
-<div class="modal fade" id="viewDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-    aria-labelledby="viewDocterModalLabel" aria-hidden="true">
+<!-- View User Modal -->
+<div class="modal fade" id="viewUserModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="viewUserrModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title ms-2" id="viewDocterModalLabel">{{doctorObj.title}} {{doctorObj.firstName}} {{doctorObj.lastName}}</h5>
+                <h5 class="modal-title ms-2" id="viewUserModalLabel">{{userObj.title}} {{userObj.userFirstName}}
+                    {{userObj.userLastName}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body viewModalBody">
                 <div class="container-sm">
-                        <div class="row my-2 ">
-                            <div class="col-12 col-md-4">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Doctor ID </label>
-                                </div>
-
+                    <div class="row my-2 ">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group input-group-sm">
+                                <label for="">User ID </label>
                             </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group input-group-sm">
+
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group input-group-sm">
+                                <input type="text" class="form-control" minlength="3" [(ngModel)]="userObj.userId"
+                                    name="doctorId" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-2 ">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group input-group-sm">
+                                <label for="">Status </label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-control" [(ngModel)]="userObj.userStatus" name="disableFlag" disabled>
+                                    <option value="Enable">Active</option>
+                                    <option value="Disable">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row my-2 ">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group input-group-sm">
+                                <label for="">Gender</label>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group input-group-sm">
+                                <select class="form-control" [(ngModel)]="userObj.gender" name="gender" disabled>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+
+                        <div class="col-12 col-md-4 ">
+                            <div class=" form-group input-group-sm ">
+                                <label for="">Country</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8 ">
+                            <div class="form-group input-group-sm">
+                                <select class="form-control" [(ngModel)]="userObj.userCountry" name="country" disabled>
+                                    <option value="IN">India</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-4  ">
+                            <div class=" form-group input-group-sm  ">
+                                <label for="">State </label>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <select class="form-control" [(ngModel)]="userObj.userState" name="state" #state="ngModel"
+                                    disabled>
+                                    <option *ngFor="let state of stateList" value="{{state.code}}">{{
+                                        state.discription
+                                        }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+
+                        <div class="col-12 col-md-4 ">
+                            <div class=" form-group input-group-sm ">
+                                <label for="">District </label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group-sm">
+                                <select class="form-control" [(ngModel)]="userObj.userDistrict" name="district"
+                                    #district="ngModel" disabled>
+                                    <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
+                                        dist.discription }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-4 ">
+                            <div class=" form-group input-group-sm">
+                                <label for="">City / Village </label>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="text" class="form-control" minlength="3"
+                                    [(ngModel)]="userObj.userCityOrVillage" name="city_village" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row my-2">
+
+                        <div class="col-12 col-md-4 ">
+                            <div class=" form-group input-group-sm ">
+                                <label for="">Address Line</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group-sm">
+                                <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" minlength="3"
-                                    [(ngModel)]="doctorObj.doctorId" name="doctorId" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-2 ">
-                            <div class="col-12 col-md-4">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Status </label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-control" [(ngModel)]="doctorObj.status" name="disableFlag" disabled>
-                                        <option value="Enable" >Active</option>
-                                        <option value="Disable" >Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row my-2 ">
-                            <div class="col-12 col-md-4">
-                                <div class="form-group input-group-sm">
-                                    <label for="">Gender</label>
-                                </div>
-
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group input-group-sm">
-                                    <select class="form-control" [(ngModel)]="doctorObj.gender" name="gender" disabled>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-                                        <option value="O">Other</option>
-                                    </select>
+                                        [(ngModel)]="userObj.userAddressLine" name="addLine" disabled>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row my-2">
-
-                            <div class="col-12 col-md-4 ">
-                                <div class=" form-group input-group-sm ">
-                                    <label for="">Country</label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8 ">
-                                <div class="form-group input-group-sm">
-                                    <select class="form-control" [(ngModel)]="doctorObj.country" name="country" disabled>
-                                        <option value="IN">India</option>
-                                    </select>
-                                </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-4  ">
+                            <div class=" form-group input-group-sm  ">
+                                <label for="">Pincode </label>
                             </div>
 
                         </div>
-                        <div class="row my-2">
-                            <div class="col-12 col-md-4  ">
-                                <div class=" form-group input-group-sm  ">
-                                    <label for="">State </label>
-                                </div>
-
+                        <div class="col-12 col-md-8">
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="number" class="form-control" [(ngModel)]="userObj.userPincode" name="pincode"
+                                    minlength="3" disabled>
                             </div>
-                            <div class="col-12 col-md-8">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+
+                        <div class="col-12 col-md-4 ">
+                            <div class=" form-group input-group-sm ">
+                                <label for="">Mobile No</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="form-group input-group-sm">
                                 <div class="input-group flex-nowrap input-group-sm">
-                                    <select class="form-control" [(ngModel)]="doctorObj.state"
-                                      name="state" #state="ngModel" disabled>
-                                        <option *ngFor="let state of stateList" value="{{state.code}}">{{
-                                            state.discription
-                                            }}</option>
-                                    </select>
+                                    <input type="number" class="form-control" minlength="3"
+                                        [(ngModel)]="userObj.userMobileNumber" name="mobile" disabled>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row my-2">
-
-                            <div class="col-12 col-md-4 ">
-                                <div class=" form-group input-group-sm ">
-                                    <label for="">District </label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group-sm">
-                                    <select class="form-control" [(ngModel)]="doctorObj.district" name="district"
-                                        #district="ngModel" disabled>
-                                        <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
-                                            dist.discription }}</option>
-                                    </select>
-                                </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-4  ">
+                            <div class=" form-group input-group-sm  ">
+                                <label for="">Email ID </label>
                             </div>
 
                         </div>
-                        <div class="row my-2">
-                            <div class="col-12 col-md-4 ">
-                                <div class=" form-group input-group-sm">
-                                    <label for="">City / Village </label>
-                                </div>
-
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="text" class="form-control" minlength="3"
-                                        [(ngModel)]="doctorObj.city_village" name="city_village" disabled>
-                                </div>
+                        <div class="col-12 col-md-8">
+                            <div class="input-group flex-nowrap input-group-sm">
+                                <input type="email" class="form-control" minlength="3" [(ngModel)]="userObj.userMailId"
+                                    name="emailId" disabled>
                             </div>
                         </div>
+                    </div>
 
-
-                        <div class="row my-2">
-
-                            <div class="col-12 col-md-4 ">
-                                <div class=" form-group input-group-sm ">
-                                    <label for="">Address Line</label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group-sm">
-                                    <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="text" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.addLine" name="addLine" disabled>
-                                    </div>
-                                </div>
-                            </div>
-
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <label for="">User Role </label>
                         </div>
-                        <div class="row my-2">
-                            <div class="col-12 col-md-4  ">
-                                <div class=" form-group input-group-sm  ">
-                                    <label for="">Pincode </label>
-                                </div>
-
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
-                                        name="pincode" minlength="3" disabled>
-                                </div>
+                        <div class="col-8">
+                            <div class="form-group input-group-sm">
+                                <input type="text" class="form-control" [(ngModel)]="userObj.userRole" name="remark"
+                                    disabled>
                             </div>
                         </div>
-
-                        <div class="row my-2">
-
-                            <div class="col-12 col-md-4 ">
-                                <div class=" form-group input-group-sm ">
-                                    <label for="">Mobile No</label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="form-group input-group-sm">
-                                    <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="number" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.mobile" name="mobile" disabled>
-                                    </div>
-                                </div>
-                            </div>
-
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <label for="">User Authorities </label>
                         </div>
-                        <div class="row my-2">
-                            <div class="col-12 col-md-4  ">
-                                <div class=" form-group input-group-sm  ">
-                                    <label for="">Email ID </label>
-                                </div>
-
-                            </div>
-                            <div class="col-12 col-md-8">
-                                <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="email" class="form-control" minlength="3"
-                                        [(ngModel)]="doctorObj.emailId" name="emailId" disabled>
-                                </div>
-                            </div>
+                        <div class="col-8">
+                         
                         </div>
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <label for="">Hospital Name </label>
-                            </div>
-                            <div class="col-8">
-                                <div class="form-group input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
-                                        name="hospitalName" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <label for="">Remark </label>
-                            </div>
-                            <div class="col-8">
-                                <div class="form-group input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark" disabled>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -293,19 +295,20 @@
     </div>
 </div>
 
-<!-- Add New Doctor Modal -->
-<div class="modal fade" id="addDocterModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-    aria-labelledby="addDocterModalLabel" aria-hidden="true">
+<!-- Add New User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title ms-2" id="addDocterModalLabel">{{modalHeader}}</h5>
-                <button type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title ms-2" id="addUserModalLabel">{{modalHeader}}</h5>
+                <button #closeUserModel type="button" class="btn-close" #closeLabModal data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-sm">
                     <form #f="ngForm">
-                        <div *ngIf= "modalType=='Modify'" class="row my-2 ">
+                        <div *ngIf="modalType=='Modify'" class="row my-2 ">
                             <div class="col-12 col-md-4">
                                 <div class="form-group input-group-sm">
                                     <label for="">Status *</label>
@@ -313,9 +316,9 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.status" name="disableFlag">
-                                        <option value="Enable" >Active</option>
-                                        <option value="Disable" >Inactive</option>
+                                    <select class="form-select" [(ngModel)]="userObj.userStatus" name="disableFlag">
+                                        <option value="Enable">Active</option>
+                                        <option value="Disable">Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -329,7 +332,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.title" name="title" required>
+                                    <select class="form-select" [(ngModel)]="userObj.title" name="title" required>
                                         <option value="" selected>Select Title</option>
                                         <option value="DR.">DR.</option>
                                     </select>
@@ -345,7 +348,7 @@
                                 <div class=" form-group input-group-sm">
 
                                     <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="text" class="form-control" [(ngModel)]="doctorObj.firstName"
+                                        <input type="text" class="form-control" [(ngModel)]="userObj.userFirstName"
                                             name="firstName" minlength="3" placeholder="Enter First Name" required>
                                     </div>
                                 </div>
@@ -359,7 +362,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.lastName"
+                                    <input type="text" class="form-control" [(ngModel)]="userObj.userLastName"
                                         name="lastName" minlength="3" placeholder="Enter Last Name" required>
                                 </div>
                             </div>
@@ -374,7 +377,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.gender" name="gender" required>
+                                    <select class="form-select" [(ngModel)]="userObj.gender" name="gender" required>
                                         <option value="" selected>Select Gender</option>
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
@@ -393,7 +396,7 @@
                             </div>
                             <div class="col-12 col-md-8 ">
                                 <div class="form-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.country" name="country" required>
+                                    <select class="form-select" [(ngModel)]="userObj.userCountry" name="country" required>
                                         <option value="" selected>Select Country</option>
                                         <option value="IN">India</option>
                                     </select>
@@ -410,7 +413,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.state"
+                                    <select class="form-select" [(ngModel)]="userObj.userState"
                                         (ngModelChange)="onSelectState()" name="state" #state="ngModel"
                                         [ngClass]="{ 'is-invalid': state.touched && state.errors, 'is-valid': state.touched && !state.errors }"
                                         required>
@@ -432,7 +435,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="doctorObj.district" name="district"
+                                    <select class="form-select" [(ngModel)]="userObj.userDistrict" name="district"
                                         #district="ngModel"
                                         [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }"
                                         required>
@@ -454,7 +457,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" minlength="3"
-                                        [(ngModel)]="doctorObj.city_village" name="city_village"
+                                        [(ngModel)]="userObj.userCityOrVillage" name="city_village"
                                         placeholder="Enter City / village name" required>
                                 </div>
                             </div>
@@ -472,7 +475,7 @@
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.addLine" name="addLine"
+                                            [(ngModel)]="userObj.userAddressLine" name="addLine"
                                             placeholder="Enter Address line" required>
                                     </div>
                                 </div>
@@ -488,7 +491,7 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
+                                    <input type="number" class="form-control" [(ngModel)]="userObj.userPincode"
                                         name="pincode" minlength="3" placeholder="Enter Pincode">
                                 </div>
                             </div>
@@ -498,14 +501,14 @@
 
                             <div class="col-12 col-md-4 ">
                                 <div class=" form-group input-group-sm ">
-                                    <label for="">Mobile No</label>
+                                    <label for="">Mobile No *</label>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="number" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="Enter Mobile No">
+                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required="">
                                     </div>
                                 </div>
                             </div>
@@ -514,38 +517,60 @@
                         <div class="row my-2">
                             <div class="col-12 col-md-4  ">
                                 <div class=" form-group input-group-sm  ">
-                                    <label for="">Email ID </label>
+                                    <label for="">Email ID *</label>
                                 </div>
 
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="email" class="form-control" minlength="3"
-                                        [(ngModel)]="doctorObj.emailId" name="emailId"
-                                        placeholder="Enter Email Address ">
+                                        [(ngModel)]="userObj.userMailId" name="emailId"
+                                        placeholder="Enter Email Address" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="row my-2">
-                            <div class="col-4">
-                                <label for="">Hospital Name *</label>
+                            <div class="col-12 col-md-4">
+                                <label for="">User Role </label>
                             </div>
-                            <div class="col-8">
+                            <div class="col-12 col-md-8">
                                 <div class="form-group input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
-                                        name="hospitalName" placeholder="Enter Hospital Name" required>
+                                    <input type="text" class="form-control" [(ngModel)]="userObj.userRole"
+                                        name="userRole" required disabled>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row my-2">
-                            <div class="col-4">
-                                <label for="">Remark </label>
+                            <div class="col-12 col-md-4">
+                                <label for="">User Authorities *</label>
                             </div>
-                            <div class="col-8">
-                                <div class="form-group input-group-sm">
-                                    <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark"
-                                        placeholder="Enter Remark">
+                            <div class="col-12 col-md-8">
+                                <div class="dropup">
+                                    <span #dropdownButtonclose></span>
+                                    <span #dropdownButton id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                        aria-expanded="false"></span>
+                                    <div class="form-select mb-0" (click)="onClickSelectedAuthorities()">
+                                        <div class="text-secondary" style="font-size: 14px;" *ngIf="selectedAuthorities.length==0">Select
+                                            Authorities</div>
+                                        <div class="selectedAuthorities ps-2 m-1 rounded-pill" *ngFor="let auth of selectedAuthorities index as i">
+                                            {{auth}} <span class="btn rounded-circle p-1 px-2 me-0" stop-event-propagation
+                                                (click)="onRemove(i,$event)"><i class="fa-solid fa-xmark"></i></span>
+                                        </div>
+                                    </div>
+                                    <ul class="row dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+                                        <li><a class="dropdown-item"><input type="text" class="form-control" placeholder="search"></a></li>
+                                        <li><a class="dropdown-item" style="font-size: 13px;"  *ngFor="let auth of authorities index as i">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="{{i}}"
+                                                        (click)="checkBoxCheck($event,auth.auth)" [checked]="auth.check">
+                                                    <label class="form-check-label" style="font-size: 13px;" for="{{i}}">
+                                                        {{auth.auth}}
+                                                    </label>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -554,17 +579,17 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                <button *ngIf= "modalType=='Add'" type="button" class="btn btn-success btn-sm"
-                    (click)="addDoctor()" [disabled]="!f.valid" >Add</button>
-                <button *ngIf= "modalType=='Modify'" type="button" class="btn btn-success btn-sm"
-                    (click)="modifyDoctor()" [disabled]="!f.valid" >Modify</button>
+                <button *ngIf="modalType=='Add'" type="button" class="btn btn-success btn-sm" (click)="addUser()"
+                    [disabled]="!f.valid">Add</button>
+                <button *ngIf="modalType=='Modify'" type="button" class="btn btn-success btn-sm" (click)="modifyUser()"
+                    [disabled]="!f.valid">Modify</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="modal fade modal-dialog-scrollable" id="deleteDoctorModal" tabindex="-1" data-bs-backdrop="static"
+<div class="modal fade modal-dialog-scrollable" id="deleteUserModal" tabindex="-1" data-bs-backdrop="static"
     data-bs-keyboard="false" aria-labelledby="OptionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -574,12 +599,12 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body ms-4">
-                Do you want delete this Doctor !
+                Do you want delete this User !
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal">
                     Cancel </button>
-                <button type="button" class="btn btn-danger btn-sm" (click)="deleteDoctor()"> Delete </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser()"> Delete </button>
             </div>
         </div>
     </div>

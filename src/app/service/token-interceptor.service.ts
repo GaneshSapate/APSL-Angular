@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -15,11 +15,16 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     let t = sessionStorage.getItem("token");
+    let uid = sessionStorage.getItem("userId");
+    let lid = sessionStorage.getItem("labId");
     let jwttoken = req.clone({
       setHeaders:{
         Authorization : "Bearer "+t,
-        "Access-Control-Allow-Origin" : 'http://localhost:4200/'
-      }
+        "UID":''+uid,
+        "LID":''+lid,
+        // "Access-Control-Allow-Origin" : 'http://localhost:4200/'
+      },
+      
     })
     return next.handle(jwttoken).pipe(
       catchError((requestError) => {

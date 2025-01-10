@@ -15,6 +15,7 @@ import { PatientDetailsComponent } from '../pateint-page/patient-details/patient
 import { EntryListComponent } from '../entry-page/entry-list/entry-list.component';
 import { EntryPageComponent } from '../entry-page/entry-Page.component';
 import { EntryDetailsComponent } from '../entry-page/entry-details/entry-details.component';
+import { UserManagementComponent } from '../master/user-management/user-management.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
           {path: 'doctersManagement', component: MasterDocterManagementComponent},
           {path: 'reportsManagement', component: TestMasterComponent},
           {path: 'labDetailsManagement', component: MasterLabManagementComponent},
+          {path: 'userManagement', component: UserManagementComponent},
         ]
        },
       {path: 'setting', component: SettingComponent},

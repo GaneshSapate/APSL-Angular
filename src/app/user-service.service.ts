@@ -47,4 +47,7 @@ export class UserServiceService {
   checkMobileNumberExist(mobileNumber:string){
     return (this.userhttp.get(`${this.userurl}`+`/checkMobileNumberExist/`+mobileNumber));
   }
+  getUserAuthorities(){
+    return (this.userhttp.get(`${this.userurl}`+`/getUserAuthorities/`));
+  }
 }

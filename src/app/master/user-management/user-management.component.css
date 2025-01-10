@@ -1,0 +1,20 @@
+.selectedAuthorities{
+    font-size: 12px;
+    display: inline-block;
+    color: black;
+    background-color: rgb(219, 219, 219);
+
+    .btn{
+        color: rgb(5, 5, 5);
+        font-size: 12px;
+        cursor: pointer;
+        background-color: rgb(173, 173, 173);
+    }
+}
+.dropdown-menu{
+    min-width: 15rem;
+    
+    .dropdown-item{
+        font-size: 12px;
+    }
+}

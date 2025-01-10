@@ -24,5 +24,8 @@ export class MasterMenuComponent implements OnInit {
   goToLab(){
     this.router.navigate(['dashboard/master/labDetailsManagement'])
   }
+  goToUserManagement(){
+    this.router.navigate(['dashboard/master/userManagement'])
+  }
 
 }
