@@ -1,13 +1,25 @@
 <div class="row mx-2 mt-2 " style="border-radius: 7px;">
   <div class="card py-3 ps-4 header-card" style="border: none;">
       <div class="card-body p-1 p-md-2">
-        <h6 class="card-title" style="font-size: 17px;">{{patientObj.patientName}} </h6>
-        <p class="card-text" style="font-size: 14px; ">
-          <span class="ms-0">Refer By : </span>{{patientObj.mobileNo}},  
-          <span class="ms-2">Gender : </span>{{patientObj.gender}}, 
-          <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}}, 
-          <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
-          </p>
+        <div class="mb-4">
+          <div style="display: inline-block;">
+            <div class=""  *ngIf="patientObj.gender=='M'">
+              <img class="image" src="../../../assets/icon/user-male.png" alt="">
+            </div>
+            <div *ngIf="patientObj.gender=='F'">
+              <img class="image" src="../../../assets/icon/user-female.png" alt="">
+            </div>
+          </div>
+          <div style="display: inline-block; vertical-align: middle;">
+            <div class="card-title" style="font-size: 17px;">{{patientObj.patientName}} </div>
+          <div class="card-text" style="font-size: 14px; ">
+            <span class="ms-0">Refer By : </span>{{patientObj.mobileNo}},  
+            <span class="ms-2">Gender : </span>{{patientObj.gender}}, 
+            <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}}, 
+            <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
+            </div>
+          </div>
+        </div>
         <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
         <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#editPatientModal">
           <i class="fa-regular fa-pen-to-square"></i> Edit Pateint </a>

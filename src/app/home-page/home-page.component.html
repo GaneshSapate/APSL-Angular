@@ -1,10 +1,9 @@
 <!-- Top bar -->
-<app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event"  (addPatientEvent)="eventObj = $event"></app-billing-dashboard-navbar>
+<app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event" ></app-billing-dashboard-navbar>
 <main>
     <!-- side bar -->
-    <app-side-nav-bar [sideNavStatus]="sideNavStatus"  [eventObj]="eventObj"
+    <app-side-nav-bar [sideNavStatus]="sideNavStatus"
     [ngClass]="{'side-nav-open': sideNavStatus}"
-    (sideNavPatient)="eventObj = $event"
     ></app-side-nav-bar>
     <!-- Main Display Area -->
     <div class="display-area" [ngClass]="{'display-area-shrink': sideNavStatus}">

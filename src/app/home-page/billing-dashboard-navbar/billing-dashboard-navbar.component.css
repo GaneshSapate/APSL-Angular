@@ -12,21 +12,16 @@
     overflow-y: auto;
 }
 
-
 .text-primary{
   color: rgb(189, 144, 28);
 }
-.navbar {
-  /* border-bottom: solid;
-  border-width: 1px;
-  border-color: #ddddde;
-  background-color: #0d4eaf; */
-  /* background-color: #d7e3ff; 
-  color: #005cbb; */
-}
+
 .navbar-nav{
   font-size: 14px;
   font-weight: 500;
+}
+.theme i{
+  width: 20px;
 }
 @media screen and (max-width:575px){
   .navbar{

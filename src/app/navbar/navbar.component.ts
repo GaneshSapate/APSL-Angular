@@ -9,12 +9,15 @@ import { Component, Inject, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   darkFlag:boolean=false;
+  systemFlag: boolean = false;
   mode:any=this.document.querySelector('html')?.getAttributeNode('data-bs-theme')
 
   constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit(): void {
-    this.useThemeDetector();
+    if(this.systemFlag){
+      this.useThemeDetector();
+    }
   }
 
   lightMode() {

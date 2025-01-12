@@ -49,7 +49,7 @@ export class EntryListComponent implements OnInit {
    {
      patientId:4,
      patientName:"Ganesh Sapate",
-     gender:"M",
+     gender:"F",
      mobileNo:"9096916759",
      addedDate:new Date().toLocaleString(),
      status:"pending"

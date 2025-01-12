@@ -45,10 +45,15 @@
     
         <div class="d-flex me-0 pe-0" >
           <div class="btn-group mx-3">
-            <span style=" cursor: pointer;" >
-                <span *ngIf="!darkFlag" (click)="darkMode()" data-bs-toggle="tooltip" title="dark mode" data-bs-placement="bottom"  style="font-size: 18px"><i class="fa-solid fa-moon"></i></span>
-                <span *ngIf="darkFlag" (click)="lightMode()" data-bs-toggle="tooltip" title="light mode" data-bs-placement="bottom" style="font-size: 18px"><i class="fa-regular fa-sun"></i></span>
-            </span>
+            <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span *ngIf="Flag==='dark'"  data-bs-toggle="tooltip" title="dark mode" data-bs-placement="bottom"  style="font-size: 18px"><i class="fa-solid fa-moon"></i></span>
+                <span *ngIf="Flag==='light'" data-bs-toggle="tooltip" title="light mode" data-bs-placement="bottom" style="font-size: 18px"><i class="fa-regular fa-sun"></i></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end  mt-2" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item d-flex theme" (click)="lightMode()"> <div><i class="fa-regular fa-sun me-2"></i> light Mode </div> <span *ngIf="theme==='light'" class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span> </a></li>
+              <li><a class="dropdown-item d-flex theme" (click)="darkMode()"> <div><i class="fa-solid fa-moon me-2"></i> dark Mode </div> <span    *ngIf="theme==='dark'" class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span> </a></li>
+              <li><a class="dropdown-item d-flex theme" (click)="systemMode()"><div><i class="fa-solid fa-desktop me-2"></i> System </div> <span  *ngIf="theme==='system'"class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span></a></li>
+            </ul>
         </div>
           <div class="btn-group mx-2">
             <span style=" cursor: pointer;" >
@@ -102,7 +107,7 @@
           <li><hr class="dropdown-divider"></li>
           <li class="dropdown-item linear-gradient-default" (click)= "onProfileClick()"><i class="fa-solid fa-user me-2"></i> Your Profile</li>
           <li class="dropdown-item linear-gradient-setting" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
-          <li class="dropdown-item linear-gradient-default" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
+          <li class="dropdown-item linear-gradient-info" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
           <li><hr class="dropdown-divider"></li>
           <li class="dropdown-item linear-gradient-default" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
       </ul>

@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService, ToastPackage } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { MasterDataService } from '../../master-data.service';
 import { ErrorObj } from '../../Model/ErrorObj';
 import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
+import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -14,26 +15,12 @@ import { LabObj } from 'src/app/Model/LabObj';
 })
 export class BillingDashboardNavbarComponent implements OnInit {
 
-  useThemeDetector() {
-    const value = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (value) {
-      this.darkMode();
-    }
-  }
+  Flag: string = '';
 
-  darkFlag: boolean = false;
+  theme:any;
+  
 
   mode: any = this.document.querySelector('html')?.getAttributeNode('data-bs-theme')
-
-  lightMode() {
-    this.darkFlag = !this.darkFlag;
-    this.mode.value = 'light';
-  }
-  darkMode() {
-    this.darkFlag = !this.darkFlag;
-    this.mode.value = 'dark';
-  }
-
 
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus: boolean = false;
@@ -41,23 +28,6 @@ export class BillingDashboardNavbarComponent implements OnInit {
   //full screen button variables
   fullScreenFlag: boolean = false;
   elem: any;
-
-  //add patient varivable
-
-  @Output() addPatientEvent = new EventEmitter<any>();
-
-  eventObj = {
-    navPatient: false,
-    navHome: false,
-    navDashboard: false,
-    navMaster: false,
-    navSetting: false,
-    navAbout: false,
-    navContact: false,
-    navEntry: false
-  }
-
-
   notification = [
     {
       nId: 1,
@@ -87,12 +57,11 @@ export class BillingDashboardNavbarComponent implements OnInit {
   district: string = "";
   lab = <LabObj>{};
   error = <ErrorObj>{};
-
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private toaster: ToastrService,
     private masterService: MasterDataService,
-    private labService: LabServiceService) { }
+    private labService: LabServiceService,private sideNaveService : SidebarService) { }
 
   ngOnInit(): void {
     this.getCountOfNotification();
@@ -100,9 +69,44 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.masterService.getAllState().subscribe((r) => {
       this.stateList = <any>r;
     });
-
-    this.useThemeDetector();
+    this.theme=localStorage.getItem("theme");
+    this.Flag=''+this.theme;
+    if(this.theme === 'system'){
+      this.useThemeDetector();
+    }else if(this.theme === 'light'){
+      this.mode.value = 'light';
+    }else{
+      this.mode.value = 'dark';
+    }
+    
     this.setlab();
+  }
+
+  lightMode() {
+    this.mode.value = 'light';
+    this.Flag='light';
+    localStorage.setItem("theme",'light')
+    this.theme='light';
+  }
+  darkMode() {
+    this.mode.value = 'dark';
+    this.Flag='dark';
+    localStorage.setItem("theme",'dark');
+    this.theme='dark';
+  }
+  systemMode(){
+    this.useThemeDetector();
+    localStorage.setItem("theme",'system');
+    this.theme='system';
+  }
+
+  useThemeDetector() {
+    const value = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (value) {
+      this.darkMode();
+    }else{
+      this.lightMode();
+    }
   }
 
   setlab() {
@@ -175,60 +179,25 @@ export class BillingDashboardNavbarComponent implements OnInit {
     }
   }
 
-
-  addPatient() {
-
-
-    //call this in subscribe
-
-    this.eventObj.navDashboard = false;
-    this.eventObj.navHome = false;
-    this.eventObj.navEntry = true
-    this.eventObj.navPatient = false;
-    this.eventObj.navMaster = false;
-    this.eventObj.navSetting = false;
-    this.eventObj.navAbout = false;
-    this.eventObj.navContact = false;
-    this.addPatientEvent.emit(this.eventObj);
-    this.router.navigate(["dashboard/pateint"]);
-  }
-
   // Profile button all method start
   onLogoutClick() {
     this.toaster.success("Logout Successfully");
     this.router.navigate(['/login'])
   }
   onSecurityClick() {
-    this.eventObj.navDashboard = false;
-    this.eventObj.navHome = false;
-    this.eventObj.navEntry = false;
-    this.eventObj.navPatient = false;
-    this.eventObj.navMaster = false;
-    this.eventObj.navSetting = true;
-    this.eventObj.navAbout = false;
-    this.eventObj.navContact = false;
-    this.addPatientEvent.emit(this.eventObj);
+    this.router.navigate(["dashboard/setting"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   onSettingClick() {
-    this.eventObj.navDashboard = false;
-    this.eventObj.navHome = false;
-    this.eventObj.navEntry = false;
-    this.eventObj.navPatient = false;
-    this.eventObj.navMaster = false;
-    this.eventObj.navSetting = true;
-    this.eventObj.navAbout = false;
-    this.eventObj.navContact = false;
-    this.addPatientEvent.emit(this.eventObj);
+    this.router.navigate(["dashboard/setting"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   onProfileClick() {
-    this.eventObj.navDashboard = false;
-    this.eventObj.navHome = false;
-    this.eventObj.navPatient = false;
-    this.eventObj.navMaster = false;
-    this.eventObj.navSetting = true;
-    this.eventObj.navAbout = false;
-    this.eventObj.navContact = false;
-    this.addPatientEvent.emit(this.eventObj);
+    this.router.navigate(["dashboard/setting"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   // Profile button all method end
 

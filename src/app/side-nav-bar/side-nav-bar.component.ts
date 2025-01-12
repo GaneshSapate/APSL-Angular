@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SidebarService } from './sidebar.service';
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -8,109 +9,106 @@ import { Router } from '@angular/router';
 })
 export class SideNavBarComponent implements OnInit {
 
-  homePage:boolean=false;
-  @Input() sideNavStatus:boolean=true;
+  homePage: boolean = false;
+  @Input() sideNavStatus: boolean = true;
 
-
-  @Output() sideNavPatient = new EventEmitter<any>();
-  navPatient:boolean=false;
-  navHome:boolean=false;
-  navDashboard:boolean=false;
-  navSetting:boolean=false;
-  navAbout:boolean=false;
-  navContact:boolean=false;
-  navEntry:boolean=false;
-
-  @Input() eventObj={
-    navDashboard:false,
-    navHome:true,
-    navPatient:false,
-    navMaster:false,
-    navSetting:false,
-    navAbout:false,
-    navContact:false,
-    navEntry:false
+  eventObj = {
+    navDashboard: false,
+    navHome: true,
+    navPatient: false,
+    navMaster: false,
+    navSetting: false,
+    navAbout: false,
+    navContact: false,
+    navEntry: false
   }
-
-  constructor(private router : Router) { }
+  constructor(private router: Router,
+    private sideNaveService: SidebarService) {
+    this.sideNaveService.onButtonClick.subscribe(() => {
+      console.log("side nave called")
+      this.ngOnInit();
+    })
+  }
 
   ngOnInit(): void {
-  }
-  clickOnHome(){
-    this.clearAll();
-    if(this.eventObj.navHome==false){
-     this.eventObj.navHome=true;
+    let url: string = this.router.url;
+    if (url.startsWith("/dashboard/home")) {
+      this.clearAll();
+      this.eventObj.navHome = true;
     }
-    this.sideNavPatient.emit(this.eventObj);
+    if (url.startsWith("/dashboard/entryList")) {
+      this.clearAll();
+      this.eventObj.navEntry = true;
+    }
+    if (url.startsWith("/dashboard/dashboardDetails")) {
+      this.clearAll();
+      this.eventObj.navDashboard = true;
+    }
+    if (url.startsWith("/dashboard/pateint")) {
+      this.clearAll();
+      this.eventObj.navPatient = true;
+    }
+    if (url.startsWith("/dashboard/master")) {
+      this.clearAll();
+      this.eventObj.navMaster = true;
+    }
+    if (url.startsWith("/dashboard/setting")) {
+      this.clearAll();
+      this.eventObj.navSetting = true;
+    }
+  }
+
+  clickOnHome() {
+    this.clearAll();
+    this.eventObj.navHome = true;
     this.router.navigate(["dashboard/home"]);
   }
-  clickOnEntry(){
+  clickOnEntry() {
     this.clearAll();
-    if(this.eventObj.navEntry==false){
-      this.eventObj.navEntry=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navEntry = true;
     this.router.navigate(["dashboard/entryList"]);
   }
-  clickOnDashboard(){
+  clickOnDashboard() {
     this.clearAll();
-    if(this.eventObj.navDashboard==false){
-      this.eventObj.navDashboard=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navDashboard = true;
     this.router.navigate(["dashboard/dashboardDetails"]);
   }
-  clickOnPateint(){
+  clickOnPateint() {
     this.clearAll();
-    if(this.eventObj.navPatient==false){
-      this.eventObj.navPatient=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navPatient = true;
     this.router.navigate(["dashboard/pateint"]);
   }
-  clickOnMaster(){
+  clickOnMaster() {
     this.clearAll();
-    if(this.eventObj.navMaster==false){
-      this.eventObj.navMaster=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navMaster = true;
     this.router.navigate(["dashboard/master"]);
   }
 
-  clickOnSetting(){
+  clickOnSetting() {
     this.clearAll();
-    if(this.eventObj.navSetting==false){
-      this.eventObj.navSetting=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navSetting = true;
     this.router.navigate(["dashboard/setting"]);
   }
-  clickOnAbout(){
+  clickOnAbout() {
     this.clearAll();
-    if(this.eventObj.navAbout==false){
-      this.eventObj.navAbout=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navAbout = true;
     // this.router.navigate(["dashboard/about"]);
   }
-  clickOnContact(){
+  clickOnContact() {
     this.clearAll();
-    if(this.eventObj.navContact==false){
-      this.eventObj.navContact=true;
-     }
-    this.sideNavPatient.emit(this.eventObj);
+    this.eventObj.navContact = true;
     // this.router.navigate(["dashboard/contact"]);
   }
 
-  clearAll(){
-    this.eventObj.navDashboard=false;
-      this.eventObj.navHome=false;
-      this.eventObj.navPatient=false;
-      this.eventObj.navMaster=false;
-      this.eventObj.navSetting=false;
-      this.eventObj.navAbout=false;
-      this.eventObj.navContact=false;
-      this.eventObj.navEntry=false;
+  clearAll() {
+    this.eventObj.navDashboard = false;
+    this.eventObj.navHome = false;
+    this.eventObj.navPatient = false;
+    this.eventObj.navMaster = false;
+    this.eventObj.navSetting = false;
+    this.eventObj.navAbout = false;
+    this.eventObj.navContact = false;
+    this.eventObj.navEntry = false;
   }
 
 }

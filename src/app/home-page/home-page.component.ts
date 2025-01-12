@@ -10,17 +10,6 @@ export class HomePageComponent implements OnInit {
 
   sideNavStatus:boolean=false;
 
-  // side nav action 
-  eventObj={
-    navPatient:false,
-    navHome:true,
-    navDashboard:false,
-    navMaster:false,
-    navSetting:false,
-    navAbout:false,
-    navContact:false,
-    navEntry:false
-  }
   chartOptions= {
     responsive: true,
     maintainAspectRatio: false,

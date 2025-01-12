@@ -8,6 +8,7 @@ import { DoctorServiceService } from 'src/app/service/doctor-service.service';
 import { Doctor } from 'src/app/Model/Doctor';
 import { TestService } from 'src/app/service/test.service';
 import { TestMasterObj } from 'src/app/Model/TestMasterObj';
+import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 
 @Component({
   selector: 'app-entry-modal',
@@ -55,7 +56,7 @@ export class EntryModalComponent implements OnInit {
     private router: Router,
     private masterService: MasterDataService,
     private doctorService: DoctorServiceService,
-    private testService:TestService) { }
+    private testService:TestService,private sideNaveService : SidebarService) { }
 
   ngOnInit(): void {
     this.masterService.getAllState().subscribe((r) => {
@@ -79,19 +80,10 @@ export class EntryModalComponent implements OnInit {
 
   addPatient() {
 
-
-    //call this in subscribe
-
-    this.eventObj.navDashboard = false;
-    this.eventObj.navHome = false;
-    this.eventObj.navEntry = true
-    this.eventObj.navPatient = false;
-    this.eventObj.navMaster = false;
-    this.eventObj.navSetting = false;
-    this.eventObj.navAbout = false;
-    this.eventObj.navContact = false;
-    this.addPatientEvent.emit(this.eventObj);
-    this.router.navigate(["dashboard/pateint"]);
+    this.router.navigate(["dashboard/pateint"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
+   
   }
 
 }
