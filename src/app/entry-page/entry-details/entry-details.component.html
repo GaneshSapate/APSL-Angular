@@ -3,10 +3,10 @@
       <div class="card-body p-1 p-md-2">
         <div class="mb-4">
           <div style="display: inline-block;">
-            <div class=""  *ngIf="patientObj.gender=='M'">
-              <img class="image" src="../../../assets/icon/user-male.png" alt="">
+            <div class="image-block"  *ngIf="patientObj.gender=='M'">
+              <img class="image"  src="../../../assets/icon/user-male.png" alt="">
             </div>
-            <div *ngIf="patientObj.gender=='F'">
+            <div class="image-block" *ngIf="patientObj.gender=='F'">
               <img class="image" src="../../../assets/icon/user-female.png" alt="">
             </div>
           </div>

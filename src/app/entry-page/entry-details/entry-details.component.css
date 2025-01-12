@@ -1,9 +1,13 @@
-.image{
+.image-block{
     padding: 8px;
     padding-left: 12px;
     padding-right: 12px;
     margin-right: 15px;
-    width: 60px;
-    background-color: rgb(176, 216, 255);
+    background: linear-gradient(310deg, rgb(122, 151, 255), rgb(152, 236, 255));
     border-radius: 4px;
+}
+.image{
+    width: 50px;
+    filter: brightness(1.50);
+    
 }
