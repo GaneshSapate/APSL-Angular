@@ -29,12 +29,28 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(jwttoken).pipe(
       catchError((requestError) => {
         if (requestError.status == 401) {
-         this.toster.warning("Session May Be Ended Please Login Again");
-         this.route.navigate(["/login"]);
+          let url: string = this.route.url;
+          if (!url.startsWith("/login")) {
+            this.route.navigate(["/login"]).then(()=>{
+              this.toster.warning("Session May Be Ended Please Login Again !", );
+             });
+          }
         }else {
-          this.toster.error(requestError.message);
+          console.log(requestError)
+          if(requestError.error!=null){
+            if(requestError.error.message!=null){
+              this.toster.error(requestError.error.message);
+            }else if(typeof requestError.error === 'string'){
+               let obj:Error= JSON.parse(requestError.error);
+               this.toster.error(obj.message);
+            }
+            
+          }else{
+            this.toster.error(requestError.message);
+          }
+          
         }
-        return throwError(() => new Error(requestError));
+        return throwError(requestError);
       })
     );
   }

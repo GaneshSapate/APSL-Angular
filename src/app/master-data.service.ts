@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MasterDataService {
-  masterurl:string =environment.masterDataUrl;
+  masterurl:string =environment.url+"/masterdata";
 
   constructor(private http : HttpClient) { }
 

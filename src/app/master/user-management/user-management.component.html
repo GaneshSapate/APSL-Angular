@@ -43,23 +43,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let docter of UsersList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                        <td scope="row">{{docter.doctorId}}</td>
-                        <td class="docterName" (click)="viewUser(docter.doctorId)" data-bs-toggle="modal"
-                            data-bs-target="#viewUserModal">{{docter.firstName}} {{docter.lastName}}</td>
-                        <td>{{docter.mobile}}</td>
-                        <td>{{docter.addedDate | date}}</td>
-                        <td>{{docter.modifiedDate | date}}</td>
+                    <tr *ngFor="let user of UsersList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
+                        <td scope="row">{{user.userId}}</td>
+                        <td class="docterName" (click)="viewUser(user.userId)" data-bs-toggle="modal"
+                            data-bs-target="#viewUserModal">{{user.userFirstName}} {{user.userLastName}}</td>
+                        <td>{{user.userMobileNumber}}</td>
+                        <td>{{user.userRegestrationDate | date}}</td>
+                        <td>{{user.userModificationDate | date}}</td>
                         <td>
-                            <span *ngIf="docter.disableFlag==true" class="p-1"
+                            <span *ngIf="user.userStatus == 'Inactive'" class="p-1"
                                 style="color: red; background-color: rgb(255, 234, 234); border-radius: 5px;">Inactive</span>
-                            <span *ngIf="docter.disableFlag==false" class="p-1"
+                            <span *ngIf="user.userStatus == 'Active'" class="p-1"
                                 style="color: darkgreen; background-color: rgb(233, 255, 233);border-radius: 5px;">Active</span>
                         </td>
-                        <td><a style="color: green; cursor: pointer;" (click)="modifyUserModal(docter.doctorId)"
-                                data-bs-toggle="modal" data-bs-target="#addUserModal">Modify</a> |
-                            <a style="color: red; cursor: pointer;" (click)="deleteModal(docter.doctorId)"
-                                data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</a>
+                        <td><a style="color: green; cursor: pointer;" (click)="modifyUserModal(user.userId)"
+                                data-bs-toggle="modal" data-bs-target="#addUserModal">Modify</a> 
                         </td>
                     </tr>
                 </tbody>
@@ -70,7 +68,6 @@
                 style="font-size: small;"></pagination-controls>
         </div>
     </div>
-
 </div>
 
 
@@ -109,8 +106,8 @@
                         <div class="col-12 col-md-8">
                             <div class="form-group input-group input-group-sm">
                                 <select class="form-control" [(ngModel)]="userObj.userStatus" name="disableFlag" disabled>
-                                    <option value="Enable">Active</option>
-                                    <option value="Disable">Inactive</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
                                 </select>
                             </div>
                         </div>
@@ -316,9 +313,9 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
-                                    <select class="form-select" [(ngModel)]="userObj.userStatus" name="disableFlag">
-                                        <option value="Enable">Active</option>
-                                        <option value="Disable">Inactive</option>
+                                    <select class="form-select" [(ngModel)]="userObj.userStatus" name="userStatus">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -349,7 +346,7 @@
 
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" [(ngModel)]="userObj.userFirstName"
-                                            name="firstName" minlength="3" placeholder="Enter First Name" required>
+                                            name="firstName" minlength="2" placeholder="Enter First Name" required>
                                     </div>
                                 </div>
                             </div>
@@ -363,7 +360,22 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="userObj.userLastName"
-                                        name="lastName" minlength="3" placeholder="Enter Last Name" required>
+                                        name="lastName" minlength="2" placeholder="Enter Last Name" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-2 ">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group input-group-sm">
+                                    <label for="">User Name *</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="input-group flex-nowrap input-group-sm">
+                                    <input type="text" class="form-control" [(ngModel)]="userObj.userName"
+                                        name="useName" minlength="3" placeholder="Enter User Name" required (blur)="userNameExistCheck(f)"
+                                        [ngClass]="{ 'is-invalid': matchResponse.match === 'Y' }">
                                 </div>
                             </div>
 
@@ -507,8 +519,8 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
-                                        <input type="number" class="form-control" minlength="3"
-                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required="">
+                                        <input type="number" class="form-control" minlength="10"
+                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required>
                                     </div>
                                 </div>
                             </div>
@@ -523,9 +535,9 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="email" class="form-control" minlength="3"
+                                    <input type="email" class="form-control"
                                         [(ngModel)]="userObj.userMailId" name="emailId"
-                                        placeholder="Enter Email Address" required="">
+                                        placeholder="Enter Email Address" required>
                                 </div>
                             </div>
                         </div>
@@ -551,21 +563,56 @@
                                     <span #dropdownButton id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                         aria-expanded="false"></span>
                                     <div class="form-select mb-0" (click)="onClickSelectedAuthorities()">
-                                        <div class="text-secondary" style="font-size: 14px;" *ngIf="selectedAuthorities.length==0">Select
+                                        <div class="text-secondary" style="font-size: 14px;" *ngIf="selectedAuthorities == undefined || selectedAuthorities.length==0">Select
                                             Authorities</div>
                                         <div class="selectedAuthorities ps-2 m-1 rounded-pill" *ngFor="let auth of selectedAuthorities index as i">
-                                            {{auth}} <span class="btn rounded-circle p-1 px-2 me-0" stop-event-propagation
-                                                (click)="onRemove(i,$event)"><i class="fa-solid fa-xmark"></i></span>
+                                            {{auth}} <button [disabled]="i==0" class="btn rounded-circle p-1 px-2 me-0" stop-event-propagation
+                                                (click)="onRemove(i,$event)"><i class="fa-solid fa-xmark"></i></button>
                                         </div>
                                     </div>
                                     <ul class="row dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
                                         <li><a class="dropdown-item"><input type="text" class="form-control" placeholder="search"></a></li>
                                         <li><a class="dropdown-item" style="font-size: 13px;"  *ngFor="let auth of authorities index as i">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="{{i}}"
+                                                <div class="form-check" >
+                                                    <input [disabled]="i==0" class="form-check-input" type="checkbox" id="{{i}}" style="cursor: pointer;"
                                                         (click)="checkBoxCheck($event,auth.auth)" [checked]="auth.check">
-                                                    <label class="form-check-label" style="font-size: 13px;" for="{{i}}">
+                                                    <label class="form-check-label" style="font-size: 13px;" for="{{i}}" style="cursor: pointer;">
                                                         {{auth.auth}}
+                                                    </label>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-4">
+                                <label for="">Lab Access *</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="dropup">
+                                    <span #labdropdownButtonclose></span>
+                                    <span #labdropdownButton id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                        aria-expanded="false"></span>
+                                    <div class="form-select mb-0" (click)="onClickSelectedLab()">
+                                        <div class="text-secondary" style="font-size: 14px;" *ngIf="labList.length==0">Select
+                                            Labs</div>
+                                        <div *ngFor="let lab of labList index as i">
+                                            <span *ngIf="lab.check==true" class="selectedAuthorities ps-2 m-1 rounded-pill">
+                                                {{lab.LabName}} <button class="btn rounded-circle p-1 px-2 me-0" stop-event-propagation
+                                                (click)="onRemoveLab(i,$event)"><i class="fa-solid fa-xmark"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ul class="row dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+                                        <li><a class="dropdown-item"><input type="text" class="form-control" placeholder="search"></a></li>
+                                        <li><a class="dropdown-item" style="font-size: 13px;"  *ngFor="let lab of labList index as i">
+                                                <div class="form-check" >
+                                                    <input  class="form-check-input" type="checkbox" id="{{lab.LabName}}" style="cursor: pointer;"
+                                                        (click)="labCheckBoxCheck($event,i)" [checked]="lab.check">
+                                                    <label class="form-check-label" style="font-size: 13px;" for="{{lab.LabName}}" style="cursor: pointer;">
+                                                        {{lab.LabName}}
                                                     </label>
                                                 </div>
                                             </a>

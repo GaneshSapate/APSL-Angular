@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LabServiceService {
-  labUrl:string = environment.laburl;
+  labUrl:string = environment.url+"/lab";
   constructor(private http:HttpClient) { }
 
   addLab(labObj:any){

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UtilServiceService {
-  utilsUrl:string = environment.utilsUrl;
+  utilsUrl:string = environment.url+"/utils";
   constructor(private http:HttpClient) { }
 
   getUserAuthorities(){

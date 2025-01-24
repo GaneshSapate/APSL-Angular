@@ -18,13 +18,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SafePipe } from './safe.pipe';
 import { TokenInterceptorService } from './service/token-interceptor.service';
-import { HomePageDetailsComponent } from './home-page/home-page-details/home-page-details.component';
-import { MasterMenuComponent } from './master/master-menu/master-menu.component';
-import { PatientDetailsComponent } from './pateint-page/patient-details/patient-details.component';
-import { PatientListComponent } from './pateint-page/patient-list/patient-list.component';
-import { EntryListComponent } from './entry-page/entry-list/entry-list.component';
-import { EntryDetailsComponent } from './entry-page/entry-details/entry-details.component';
-import { EntryPageComponent } from './entry-page/entry-Page.component';
 import { SelectLabComponent } from './select-lab/select-lab.component';
 
 @NgModule({
@@ -34,13 +27,6 @@ import { SelectLabComponent } from './select-lab/select-lab.component';
     NavbarComponent,
     SafePipe,
     LoginPageComponent,
-    HomePageDetailsComponent,
-    MasterMenuComponent,
-    PatientDetailsComponent,
-    PatientListComponent,
-    EntryDetailsComponent,
-    EntryListComponent,
-    EntryPageComponent,
     SelectLabComponent,
   ],
   imports: [

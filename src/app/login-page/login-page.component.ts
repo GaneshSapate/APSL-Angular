@@ -102,8 +102,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin(f:NgForm){
-    this.service.getUserLogin(this.loginUserOBJ).subscribe(
-      (r)=>{
+    this.service.getUserLogin(this.loginUserOBJ).subscribe({
+      next:(r)=>{
         var UserResp = <LoginUserResp>{};
         UserResp = (<any>r);
         console.log(UserResp);
@@ -127,10 +127,10 @@ export class LoginPageComponent implements OnInit {
             }
           })
       },
-      (error)=>{
-        this.toster.error(error.message,"Error");
+      error(err) {
+      //  console.log(JSON.stringify(err));
       }
-    )
+    })
   }
   getAllLabs(){
     var userId = <number> new Number(sessionStorage.getItem("mainUserId"));

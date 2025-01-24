@@ -97,6 +97,7 @@ export class MasterDocterManagementComponent implements OnInit {
     this.doctorObj.labId=labId;
     this.doctorObj.userId=mainUserId;
     this.doctorObj.addedBy=userId;
+    console.log(this.doctorObj);
     this.doctorService.addDoctor(this.doctorObj).subscribe(
       (r)=>{
         this.doctorObj=<any>r;

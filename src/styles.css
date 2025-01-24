@@ -1,11 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'ngx-toastr/toastr';
-
+/* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family:Roboto,Roboto Condensed,Mono Sans;
 }
 
 .bg_background {
@@ -15,7 +18,6 @@ body {
 
 .btn-primary {
   border: none;
-  background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));;
 }
 
 .btn-success {
@@ -145,14 +147,12 @@ button[disabled] {
   background-color: rgb(255, 255, 255);
   border-radius: 7px;
 }
-
-th {
-  color: rgb(79, 79, 79);
-}
-
 table {
   font-size: small;
   text-align: center;
+}
+.table thead tr th {
+  font-size: 13px;
 }
 
 .docterName:hover {
@@ -172,7 +172,12 @@ app-side-nav-bar {
 
 .select {
   /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-  background: linear-gradient(to left, #f0f8ff 97%, #f4faff 3%);
+  background-color: #ebebeb;
+  color: #0041a1;
+  cursor: pointer;
+}
+.nav-list-item:hover {
+  background-color: #ebebeb;
   color: #0041a1;
   cursor: pointer;
 }
@@ -199,6 +204,11 @@ app-side-nav-bar {
   background-color: #e5e5e5;
 }
 
+.any-item:hover {
+  background-color: #bfbfbf53;
+  border-radius: 4px;
+}
+
 #tabs .nav-tab .nav-item.show .nav-link,
 .nav-tabs .nav-link {
   color: #202020;
@@ -215,8 +225,8 @@ app-side-nav-bar {
 
 app-side-nav-bar {
   border-right: solid;
-  border-width: 1px;
-  border-color: #e8e8e8;
+  border-width: 3px;
+  border-color: #f2f2f2;
 }
 .linear-gradient-default i{ 
   background:radial-gradient(circle, rgb(97, 153, 236) 0%, rgb(64, 162, 236) 20%, rgb(0, 25, 254) 100%); 
@@ -247,6 +257,42 @@ app-side-nav-bar {
   background:radial-gradient(circle, #82e9fe 0%, #45defd 20%, #0091e4 100%); 
   -webkit-background-clip: text;
   color: transparent;
+}
+
+#toast-container>.toast-success {
+  background-image: none;
+
+}
+#toast-container>.toast-error {
+  background-image: none;
+
+}
+
+#toast-container>.toast-warning {
+  background-image: none;
+}
+#toast-container>.toast-info {
+  background-image: none;
+  background-color: #0070f3 ;
+}
+
+.toast-top-right {
+  top: 60px;
+}
+.toast-message {
+  font-size: 13px;
+}
+.toast-close-button {
+  font-weight: 400;
+  font-size: 20px;
+  color: #4c4c4c;
+  right: 0.3em;
+  top: -0.5em;
+  padding: 0px;
+  margin: 0px;
+}
+.toast-container .ngx-toastr {
+  padding: 15px 0px 15px 15px;
 }
 
 
@@ -297,13 +343,17 @@ app-side-nav-bar {
 
   app-side-nav-bar {
     border-right: solid;
-    border-width: 1px;
+    border-width: 3px;
     border-color: #3c3c3c;
   }
 
   .select {
-    background: linear-gradient(to left, #393939 97%, #1472ff 3%);
-    background: linear-gradient(to left, #393939 97%, #393939 3%);
+    background-color: #393939;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .nav-list-item:hover {
+    background-color: #393939;
     color: #ffffff;
     cursor: pointer;
   }

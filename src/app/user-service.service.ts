@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class UserServiceService {
 
-  userurl:string = environment.userurl;
+  userurl:string = environment.url+"/user";
+  newUserurl:string = environment.url+"/newUserController";
 
   constructor(private userhttp:HttpClient) { }
 
@@ -49,5 +50,14 @@ export class UserServiceService {
   }
   getUserAuthorities(){
     return (this.userhttp.get(`${this.userurl}`+`/getUserAuthorities/`));
+  }
+  getUserListByMasterUer(){
+    return (this.userhttp.get(`${this.newUserurl}`+`/getUsers`));
+  }
+  getUserByUserId(obj:any){
+    return (this.userhttp.post(`${this.newUserurl}`+`/getUserById`,obj));
+  }
+  updateUserByUserId(obj:any){
+    return (this.userhttp.post(`${this.newUserurl}`+`/updateUserById`,obj));
   }
 }

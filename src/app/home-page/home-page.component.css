@@ -6,18 +6,16 @@ app-side-nav-bar{
     width: 180px;
     z-index: 11;
     overflow: auto;
-    /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
-    /* background-color: #525252; */
     transition: width 150ms ease-in;
-    /* border-right: solid;
-    border-width: 1px;
-    border-color: #e8e8e8; */
-    /* background-color: #ffffff; */
+    padding-left: 7px;
+    padding-right: 7px;
 }
-.side-nav-open{
-    width: 54px;
-    overflow-x: hidden;
-    white-space: nowrap;
+.side-nav-open {
+  padding: 0px;
+  padding-top: 15px;
+  width: 54px;
+  overflow-x: hidden;
+  white-space: nowrap;
 }
 .display-area{
     margin-top: 3.5rem;
@@ -35,6 +33,7 @@ app-side-nav-bar{
 
 @media screen and (max-width:575px){
   app-side-nav-bar{
+    padding: 0px;
     padding-top:5px;
     position: fixed;
     height: 100vh;
@@ -47,6 +46,8 @@ app-side-nav-bar{
  
   }
   .side-nav-open{
+    padding: 0px;
+    padding-top:5px;
     width: 54px;
     overflow-x: hidden;
     white-space: nowrap;

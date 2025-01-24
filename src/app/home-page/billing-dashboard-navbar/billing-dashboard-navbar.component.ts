@@ -15,7 +15,7 @@ import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 })
 export class BillingDashboardNavbarComponent implements OnInit {
 
-  Flag: string = '';
+  Flag: string = 'light';
 
   theme:any;
   
@@ -75,8 +75,13 @@ export class BillingDashboardNavbarComponent implements OnInit {
       this.useThemeDetector();
     }else if(this.theme === 'light'){
       this.mode.value = 'light';
-    }else{
+    }else if(this.theme === 'dark'){
       this.mode.value = 'dark';
+    }
+    else{
+      this.mode.value = 'light';
+      this.theme='light'
+      this.Flag='light';
     }
     
     this.setlab();
@@ -103,9 +108,11 @@ export class BillingDashboardNavbarComponent implements OnInit {
   useThemeDetector() {
     const value = window.matchMedia("(prefers-color-scheme: dark)").matches;
     if (value) {
-      this.darkMode();
+      this.mode.value = 'dark';
+      this.Flag='dark';
     }else{
-      this.lightMode();
+      this.mode.value = 'light';
+      this.Flag='light';
     }
   }
 
@@ -181,7 +188,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
 
   // Profile button all method start
   onLogoutClick() {
-    this.toaster.success("Logout Successfully");
+    this.toaster.info("Logout Successfully","");
     this.router.navigate(['/login'])
   }
   onSecurityClick() {

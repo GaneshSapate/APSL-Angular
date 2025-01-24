@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DoctorServiceService {
 
-  url:string=environment.doctorUrl;
+  url:string=environment.url+"/doctor";
 
   constructor(private http:HttpClient) { }
 

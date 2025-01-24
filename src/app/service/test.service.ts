@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TestService {
-  testMasterUrl:string = environment.testMasterUrl;
+  testMasterUrl:string = environment.url+"/test";
   constructor(private http:HttpClient) { }
 
   addNewTest(obj:any,userId:number){

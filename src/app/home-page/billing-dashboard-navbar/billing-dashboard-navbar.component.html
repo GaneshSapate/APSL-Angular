@@ -1,27 +1,32 @@
-<div >
-    <nav class="navbar navbar-expand-sm fixed-top px-2 p-xs-0 py-1 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
-      <div class="container-fluid px-0 mx-0 " >
-        <div class="navbar-brand m-0 p-0 me-4 ">
-          <span style="font-size: 16px; font-family: Arial, sans-serif;"> 
-            <i class="fa-solid fa-microscope mx-3 p-2 shadow " style="font-size: 16px; background-color: #1369ea; border-radius: 4px; color: white;"></i> 
-            APLS</span>
-        </div>
-        <div class="navbar-brand  ">
-          <span class="ms-4" (click)= "onClickToggled()" style=" cursor: pointer; font-size: 16px; "><i class="fa-solid fa-bars"></i></span>
-        </div>    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div>
+  <nav class="navbar navbar-expand-sm fixed-top px-2 p-xs-0 py-1 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
+    <div class="container-fluid px-0 mx-0 ">
+      <div class="navbar-brand m-0 p-0 me-4 ">
+        <span style="font-size: 16px; font-family: Arial, sans-serif;">
+          <i class="fa-solid fa-microscope mx-3 p-2 shadow "
+            style="font-size: 16px; background-color: #1369ea; border-radius: 4px; color: white;"></i>
+          APLS</span>
+      </div>
+      <div class="navbar-brand  ">
+        <span class="ms-4 nav-item navbar-text any-item p-1 " (click)="onClickToggled()" style=" cursor: pointer; font-size: 16px;">
+          <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
+          <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
+        </span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
-        <ul class="navbar-nav ms-4 mb-2 mb-lg-0 " >
-          <li >
-            <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+        <ul class="navbar-nav ms-4 mb-2 mb-lg-0" style="font-weight: 400;">
+          <li class="nav-item" >
+            <a class="nav-link active any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
               <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
           </li>
-          <li>
-            <a  class="nav-link " data-bs-toggle="modal" data-bs-target="#NewPatientModal">
+          <li class="nav-item">
+            <a class="nav-link py-1 any-item" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
               <i class="fa-solid fa-plus"></i> Add New Patient</a>
           </li>
-          <li class="dropdown">
-            <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item dropdown any-item">
+            <a class="nav-link py-1 dropdown-toggle" id="navbarDropdownMenuLink" data-bs-auto-close="outside"
+              data-bs-toggle="dropdown" aria-expanded="false">
               {{lab.labName}}
             </a>
             <ul class="dropdown-menu p-2" style="width: 17rem;" aria-labelledby="navbarDropdownMenuLink">
@@ -33,93 +38,116 @@
               </li>
               <li>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button type="button" class="btn btn-primary btn-sm mt-4 mb-2 me-2" routerLink="/selectLab" >
+                  <button type="button" class="btn btn-primary btn-sm mt-4 mb-2 me-2" routerLink="/selectLab">
                     <i class="fa-solid fa-arrow-right-arrow-left"></i> Change Lab</button>
                 </div>
               </li>
             </ul>
           </li>
         </ul>
-        
+
       </div>
-    
-        <div class="d-flex me-0 pe-0" >
-          <div class="btn-group mx-3">
-            <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span *ngIf="Flag==='dark'"  data-bs-toggle="tooltip" title="dark mode" data-bs-placement="bottom"  style="font-size: 18px"><i class="fa-solid fa-moon"></i></span>
-                <span *ngIf="Flag==='light'" data-bs-toggle="tooltip" title="light mode" data-bs-placement="bottom" style="font-size: 18px"><i class="fa-regular fa-sun"></i></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end  mt-2" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item d-flex theme" (click)="lightMode()"> <div><i class="fa-regular fa-sun me-2"></i> light Mode </div> <span *ngIf="theme==='light'" class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span> </a></li>
-              <li><a class="dropdown-item d-flex theme" (click)="darkMode()"> <div><i class="fa-solid fa-moon me-2"></i> dark Mode </div> <span    *ngIf="theme==='dark'" class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span> </a></li>
-              <li><a class="dropdown-item d-flex theme" (click)="systemMode()"><div><i class="fa-solid fa-desktop me-2"></i> System </div> <span  *ngIf="theme==='system'"class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span></a></li>
-            </ul>
+
+      <div class="d-flex  navbar-text me-0 p-0">
+        <div class="btn-group dropdown mx-2 px-1 any-item">
+          <a data-bs-toggle="dropdown" aria-expanded="false">
+            <span *ngIf="Flag==='dark'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
+                class="fa-solid fa-moon"></i></span>
+            <span *ngIf="Flag==='light'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
+                class="fa-regular fa-sun"></i></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end  mt-2" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item d-flex theme" (click)="lightMode()">
+                <div><i class="fa-regular fa-sun me-2"></i> light Mode </div> <span *ngIf="theme==='light'"
+                  class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+              </a></li>
+            <li><a class="dropdown-item d-flex theme" (click)="darkMode()">
+                <div><i class="fa-solid fa-moon me-2"></i> dark Mode </div> <span *ngIf="theme==='dark'"
+                  class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+              </a></li>
+            <li><a class="dropdown-item d-flex theme" (click)="systemMode()">
+                <div><i class="fa-solid fa-desktop me-2"></i> System </div> <span *ngIf="theme==='system'"
+                  class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+              </a></li>
+          </ul>
         </div>
-          <div class="btn-group mx-2">
-            <span style=" cursor: pointer;" >
-                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i class="fa-solid fa-expand"></i></span>
-                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px"><i class="fa-solid fa-compress"></i></span>
-            </span>
+        <div class="btn-group mx-1 px-1 any-item">
+          <span style=" cursor: pointer;">
+            <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i
+                class="fa-solid fa-expand"></i></span>
+            <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px"><i
+                class="fa-solid fa-compress"></i></span>
+          </span>
         </div>
-        <div class="btn-group mx-1">
-          <span class="" style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" 
-          data-bs-auto-close="outside" aria-expanded="true" >
+        <div class="btn-group mx-1 any-item">
+          <span style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+            aria-expanded="true">
             <i class="fas fa-bell px-sm-2"></i>
-            <span class="badge bg-danger" *ngIf = "!noNotification">
+            <span class="badge bg-danger" *ngIf="!noNotification">
               {{countOfNotification}}
             </span>
           </span>
-          
-          <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container mt-2 " id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
-            <div class="all-notification-item d-flex" >
+
+          <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container mt-2 "
+            id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
+            <div class="all-notification-item d-flex">
               <h6 class="mx-2" style="font-size: 14; font-weight: 600; color: rgb(94, 94, 94);"> Notifications</h6>
-              <!-- <button type="button" class="btn btn-secondary btn-sm me-2 m-auto" (click)= "clearAllNotification()">clear all</button> -->
-              <p class="mx-auto me-2 my-0" (click)= "clearAllNotification()" style="cursor: pointer;">clear all</p>
+              <p class="mx-auto me-2 my-0" (click)="clearAllNotification()" style="cursor: pointer;">clear all</p>
             </div>
             <div style="max-height: 450px; overflow-y: auto;">
-              <div *ngIf = "noNotification">
-                <div class="notification-item" >
+              <div *ngIf="noNotification">
+                <div class="notification-item">
                   <div class="message">No New Notification.</div>
                 </div>
               </div>
-  
-              <div class="notification-item" *ngFor= "let obj of notification index as i">
+
+              <div class="notification-item" *ngFor="let obj of notification index as i">
                 <div class="d-flex">
                   <div>
-                      <div class="notification-title d-flex">New Notification</div>
-                      <div class="message">{{obj.message}}</div>
-                      <div class="time">5 minutes ago</div>
+                    <div class="notification-title d-flex">New Notification</div>
+                    <div class="message">{{obj.message}}</div>
+                    <div class="time">5 minutes ago</div>
                   </div>
-                  <span class="closeNotificationbtn me-0 mx-auto"  (click)= "closeNotification(i)"><i class="fa-solid fa-xmark" ></i></span>
-                  <!-- <button type="button" class="btn-close me-0 m-auto" data-bs-dismiss="toast" aria-label="Close"  (click)= "closeNotification(i)"></button> -->
+                  <span class="closeNotificationbtn me-0 mx-auto" (click)="closeNotification(i)"><i
+                      class="fa-solid fa-xmark"></i></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="btn-group mx-sm-2 any-item">
+        <span class="p-1 rounded-circle" data-bs-toggle="dropdown"
+          style="background-color: #1972f7;cursor: pointer; color: white; font-size: 14px;">
+          <i class="fa-solid fa-user mx-1"></i></span>
+
+        <ul class="dropdown-menu dropdown-menu-end py-2 mt-2">
+          <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i>
+            Ganesh Sapate </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="dropdown-item linear-gradient-default" (click)="onProfileClick()"><i
+              class="fa-solid fa-user me-2"></i> Your Profile</li>
+          <li class="dropdown-item linear-gradient-setting" (click)="onSettingClick()"><i
+              class="fa-solid fa-gear me-2"></i> Setting</li>
+          <li class="dropdown-item linear-gradient-info" (click)="onSecurityClick()"><i
+              class="fa-solid fa-shield me-2"></i> Security</li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="dropdown-item linear-gradient-default" (click)="onLogoutClick()"><i
+              class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+        </ul>
+      </div>
     </div>
-    <div class="btn-group mx-sm-2 " >
-      <span class="p-1 rounded-circle"  data-bs-toggle="dropdown" style="background-color: #1972f7;cursor: pointer; color: white; font-size: 14px;">
-        <i class="fa-solid fa-user mx-1"></i></span>
-    
-      <ul class="dropdown-menu dropdown-menu-end py-2 mt-2" >
-          <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i> Ganesh Sapate </li>
-          <li><hr class="dropdown-divider"></li>
-          <li class="dropdown-item linear-gradient-default" (click)= "onProfileClick()"><i class="fa-solid fa-user me-2"></i> Your Profile</li>
-          <li class="dropdown-item linear-gradient-setting" (click)= "onSettingClick()"><i class="fa-solid fa-gear me-2"></i> Setting</li>
-          <li class="dropdown-item linear-gradient-info" (click)= "onSecurityClick()"><i class="fa-solid fa-shield me-2"></i> Security</li>
-          <li><hr class="dropdown-divider"></li>
-          <li class="dropdown-item linear-gradient-default" (click)= "onLogoutClick()"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
-      </ul>
-  </div>
-    </div>
-    </nav>
-  </div>
+  </nav>
+</div>
 
 
 <app-entry-modal></app-entry-modal>
 <!-- Add new patient modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
       <div class="modal-content ">
         <div class="modal-header d-flex">
@@ -491,8 +519,9 @@
   </div> -->
 
 
-  <!-- Add New Patient Modal -->
-<div class="modal fade" id="NewPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="NewPatientModalLabel" aria-hidden="true">
+<!-- Add New Patient Modal -->
+<div class="modal fade" id="NewPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="NewPatientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header ">
@@ -503,232 +532,220 @@
         <div class="container-sm">
           <div class="row my-2 px-2">
             <div class="col-12 col-md-4 col-lg-2">
-              <label for="">Title </label> 
+              <label for="">Title </label>
             </div>
             <div class="col-12 col-md-8 col-lg-4">
-  
-                <div class="form-group input-group input-group-sm">
-                    <select class="form-control" >
-                        <option class="form-control"  value="">Select</option>
-                        <option class="form-control"  value="MR.">MR.</option>
-                        <option class="form-control"  value="MRS.">MRS.</option>
-                        <option class="form-control"  value="MS.">MS.</option>
-                        <option class="form-control"  value="DR.">DR.</option>
-                    </select>
-                </div>
+
+              <div class="form-group input-group input-group-sm">
+                <select class="form-control">
+                  <option class="form-control" value="">Select</option>
+                  <option class="form-control" value="MR.">MR.</option>
+                  <option class="form-control" value="MRS.">MRS.</option>
+                  <option class="form-control" value="MS.">MS.</option>
+                  <option class="form-control" value="DR.">DR.</option>
+                </select>
+              </div>
             </div>
             <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                <div class=" form-group input-group-sm ms-lg-4" >
-                    <label for="">First Name</label>
-                </div>
+              <div class=" form-group input-group-sm ms-lg-4">
+                <label for="">First Name</label>
+              </div>
             </div>
             <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-                <div class="form-group input-group-sm"  >
-                    <div class="input-group flex-nowrap input-group-sm">
-                      <input type="text" class="form-control"   minlength="3"
-                      placeholder="Enter First Name" required>
-                    </div>
+              <div class="form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="text" class="form-control" minlength="3" placeholder="Enter First Name" required>
                 </div>
+              </div>
             </div>
-      </div>
+          </div>
 
-      <div class="row my-2 px-2">
-        
-        <div class="col-12 col-md-4 col-lg-2">
-            <div class=" form-group input-group-sm " >
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class=" form-group input-group-sm ">
                 <label for="">Middle Name</label>
-            </div>
-        </div>
-        <div class="col-12 col-md-8 col-lg-4">
-            <div class="form-group input-group-sm"  >
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="text" class="form-control"   minlength="3"
-                  placeholder="Enter Middle Name" required>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">Last Name </label> 
-          </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          <div class="input-group flex-nowrap input-group-sm">
-            <input type="text" class="form-control"   minlength="3"
-            placeholder="Enter Last Name" required>
-            </div>
-        </div>
-      </div>
-
-      <div class="row my-2 px-2">
-        
-      <div class="col-12 col-md-4 col-lg-2">
-        <div class="form-group input-group-sm" >
-            <label for="">Gender </label>
-        </div>
-      </div>
-      <div class="col-12 col-md-8 col-lg-4 ">
-        <div class="form-group input-group input-group-sm">
-          <select class="form-control" >
-              <option class="form-control"  value="">Select gender</option>
-              <option class="form-control"  value="M">Male</option>
-              <option class="form-control"  value="F">Female</option>
-              <option class="form-control"  value="O">Other</option>
-          </select>
-      </div>
-      </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">Age </label>
-          </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          
-       
-            <div class="row">
-              <div class="col-6">
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="number" class="form-control"   minlength="3"
-                  placeholder="Enter Age" required>
-                </div>
               </div>
-              <div class="col-6">
-                <div class="form-group input-group input-group-sm">
-                  <select class="form-control" >
-                      <option class="form-control"  value="Y">Year</option>
-                      <option class="form-control"  value="M">Month</option>
-                  </select>
+            </div>
+            <div class="col-12 col-md-8 col-lg-4">
+              <div class="form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="text" class="form-control" minlength="3" placeholder="Enter Middle Name" required>
                 </div>
               </div>
             </div>
-         
-        </div>
-      </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">Last Name </label>
+              </div>
 
-      <div class="row my-2 mt-4">
-        <label for="">Address And Communication</label>
-      </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="3" placeholder="Enter Last Name" required>
+              </div>
+            </div>
+          </div>
 
-      
-      <div class="row my-2 px-2">
-        
-        <div class="col-12 col-md-4 col-lg-2">
-            <div class=" form-group input-group-sm " >
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class="form-group input-group-sm">
+                <label for="">Gender </label>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 ">
+              <div class="form-group input-group input-group-sm">
+                <select class="form-control">
+                  <option class="form-control" value="">Select gender</option>
+                  <option class="form-control" value="M">Male</option>
+                  <option class="form-control" value="F">Female</option>
+                  <option class="form-control" value="O">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">Age </label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+
+
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <input type="number" class="form-control" minlength="3" placeholder="Enter Age" required>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-control">
+                      <option class="form-control" value="Y">Year</option>
+                      <option class="form-control" value="M">Month</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row my-2 mt-4">
+            <label for="">Address And Communication</label>
+          </div>
+
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class=" form-group input-group-sm ">
                 <label for="">Country</label>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-8 col-lg-4">
-            <div class="form-group input-group-sm"  >
+            <div class="col-12 col-md-8 col-lg-4">
+              <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
-                  <input type="text" class="form-control"   minlength="3"
-                  placeholder="Enter Middle Name" required>
+                  <input type="text" class="form-control" minlength="3" placeholder="Enter Middle Name" required>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">State </label> 
-          </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          <div class="input-group flex-nowrap input-group-sm">
-            <input type="text" class="form-control"   minlength="3"
-            placeholder="Enter Last Name" required>
-            </div>
-        </div>
-      </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">State </label>
+              </div>
 
-      
-      <div class="row my-2 px-2">
-        
-        <div class="col-12 col-md-4 col-lg-2">
-            <div class=" form-group input-group-sm " >
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="3" placeholder="Enter Last Name" required>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class=" form-group input-group-sm ">
                 <label for="">District</label>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-8 col-lg-4">
-            <div class="form-group input-group-sm"  >
+            <div class="col-12 col-md-8 col-lg-4">
+              <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
-                  <input type="text" class="form-control"   minlength="3"
-                  placeholder="Enter Middle Name" required>
+                  <input type="text" class="form-control" minlength="3" placeholder="Enter Middle Name" required>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">City / Village </label> 
-          </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          <div class="input-group flex-nowrap input-group-sm">
-            <input type="text" class="form-control"   minlength="3"
-            placeholder="Enter City / village name" required>
-            </div>
-        </div>
-      </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">City / Village </label>
+              </div>
 
-      
-      <div class="row my-2 px-2">
-        
-        <div class="col-12 col-md-4 col-lg-2">
-            <div class=" form-group input-group-sm " >
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="3" placeholder="Enter City / village name" required>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class=" form-group input-group-sm ">
                 <label for="">Address Line</label>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-8 col-lg-4">
-            <div class="form-group input-group-sm"  >
+            <div class="col-12 col-md-8 col-lg-4">
+              <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
-                  <input type="text" class="form-control"   minlength="3"
-                  placeholder="Enter Address line" required>
+                  <input type="text" class="form-control" minlength="3" placeholder="Enter Address line" required>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">Pincode </label> 
-          </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          <div class="input-group flex-nowrap input-group-sm">
-            <input type="number" class="form-control"   minlength="3"
-            placeholder="Enter Pincode" required>
-            </div>
-        </div>
-      </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">Pincode </label>
+              </div>
 
-      <div class="row my-2 px-2">
-        
-        <div class="col-12 col-md-4 col-lg-2">
-            <div class=" form-group input-group-sm " >
-                <label for="">Mobile No</label>
             </div>
-        </div>
-        <div class="col-12 col-md-8 col-lg-4">
-            <div class="form-group input-group-sm"  >
-                <div class="input-group flex-nowrap input-group-sm">
-                  <input type="number" class="form-control"   minlength="3"
-                  placeholder="Enter Mobile No" required>
-                </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="number" class="form-control" minlength="3" placeholder="Enter Pincode" required>
+              </div>
             </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-          <div class=" form-group input-group-sm ms-lg-4 " >
-            <label for="">Email ID </label> 
           </div>
-          
-        </div>
-        <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
-          <div class="input-group flex-nowrap input-group-sm">
-            <input type="email" class="form-control"   minlength="3"
-            placeholder="Enter Email Address " required>
+
+          <div class="row my-2 px-2">
+
+            <div class="col-12 col-md-4 col-lg-2">
+              <div class=" form-group input-group-sm ">
+                <label for="">Mobile No</label>
+              </div>
             </div>
-        </div>
-      </div>
+            <div class="col-12 col-md-8 col-lg-4">
+              <div class="form-group input-group-sm">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="number" class="form-control" minlength="3" placeholder="Enter Mobile No" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+              <div class=" form-group input-group-sm ms-lg-4 ">
+                <label for="">Email ID </label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="email" class="form-control" minlength="3" placeholder="Enter Email Address " required>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

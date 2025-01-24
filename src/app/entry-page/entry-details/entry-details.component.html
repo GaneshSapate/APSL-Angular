@@ -21,7 +21,7 @@
           </div>
         </div>
         <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-        <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#editPatientModal">
+        <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#entryModal">
           <i class="fa-regular fa-pen-to-square"></i> Edit Pateint </a>
         <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Report </a>
         <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Bill </a>
@@ -74,9 +74,10 @@
 </div>
 
 
-
+<app-entry-modal></app-entry-modal>
 <!-- patient modal -->
-<div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+<!-- <app-entry-modal></app-entry-modal> -->
+<!-- <div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
     <div class="modal-content ">
       <div class="modal-header d-flex">
@@ -456,4 +457,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
