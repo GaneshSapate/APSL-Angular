@@ -10,7 +10,6 @@ import { TestTableData } from 'src/app/Model/TestTableData';
 import { SubFieldData } from 'src/app/Model/SubFieldData';
 import { TestService } from 'src/app/service/test.service';
 import { ErrorObj } from 'src/app/Model/ErrorObj';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
 import { Router } from '@angular/router';
