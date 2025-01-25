@@ -276,11 +276,39 @@
                         </div>
                     </div>
                     <div class="row my-2">
-                        <div class="col-4">
-                            <label for="">User Authorities </label>
+                        <div class="col-12 col-md-4">
+                            <label for="">User Authorities *</label>
                         </div>
-                        <div class="col-8">
-                         
+                        <div class="col-12 col-md-8">
+                            <div class="dropup">
+                                <div class="form-select mb-0">
+                                    <div class="text-secondary" style="font-size: 14px;" *ngIf="selectedAuthorities == undefined || selectedAuthorities.length==0">Select
+                                        Authorities</div>
+                                    <div class="selectedAuthorities ps-2 m-1 rounded-pill" *ngFor="let auth of selectedAuthorities index as i">
+                                        {{auth}} <button [disabled]="i==0" class="btn rounded-circle p-1 px-2 me-0"
+                                            ><i class="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-4">
+                            <label for="">Lab Access *</label>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="dropup">
+                                <div class="form-select mb-0" (click)="onClickSelectedLab()">
+                                    <div class="text-secondary" style="font-size: 14px;" *ngIf="labList.length==0">Select
+                                        Labs</div>
+                                    <div *ngFor="let lab of labList index as i">
+                                        <span *ngIf="lab.check==true" class="selectedAuthorities ps-2 m-1 rounded-pill">
+                                            {{lab.LabName}} <button class="btn rounded-circle p-1 px-2 me-0"
+                                            ><i class="fa-solid fa-xmark"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

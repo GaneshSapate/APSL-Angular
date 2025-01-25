@@ -89,8 +89,38 @@ export class UserManagementComponent implements OnInit {
       this.UsersList= <any>s;
     })
   }
-  viewUser(arg0: any) {
+  viewUser(userId: any) {
     this.userObj=<User>{};
+    let obj= <UserIdDTO>{};
+    obj.userId=userId
+    this.userService.getUserByUserId(obj).subscribe((result)=>{
+      this.userObj=<any>result;
+      this.onSelectState();
+      this.selectedAuthorities=this.userObj.userAuthorities;
+      this.labList=[<LabCheckList>{}];
+      let selectedLabList:number[]=this.userObj.labIds;
+      var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+      let labList1:LabObj[]=[];
+      this.labService.getLabsByUserId(userId).subscribe(
+        (r)=>{
+          labList1=<any>r;
+          let newlabList:LabCheckList[]=[];
+          labList1.forEach(function (value){
+            let newlabCheckObj=<LabCheckList>{};
+            newlabCheckObj.labId=value.labId;
+            newlabCheckObj.LabName=value.labName;
+            if(selectedLabList != null && selectedLabList.indexOf(newlabCheckObj.labId)!=-1){
+              newlabCheckObj.check=true;
+            }else{
+              newlabCheckObj.check=false;
+            }
+            newlabList.push(newlabCheckObj);
+          });
+          this.labList=newlabList;
+        })
+    })
+   
+
   }
 
   addUserModal() {
@@ -312,7 +342,6 @@ export class UserManagementComponent implements OnInit {
           this.toaster.error("Username already exist !"); 
           f.valid=false;
         }
-       
       });
     }
   }
