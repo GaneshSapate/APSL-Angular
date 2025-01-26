@@ -5,10 +5,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { BillingDashboardComponent } from './home-page/billing-dashboard/billing-dashboard.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SelectLabComponent } from './select-lab/select-lab.component';
+import { WebpageComponent } from './webpage/webpage.component';
 const routes: Routes = [
-
   {
-    path:"",redirectTo:"/login", pathMatch:"full"
+    path:"",component:WebpageComponent
   },
   {
     path:"login",component:LoginPageComponent

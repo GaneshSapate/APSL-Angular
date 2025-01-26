@@ -160,14 +160,13 @@ table {
   cursor: pointer;
 }
 
-app-side-nav-bar {
-  border-right: solid;
-  border-width: 1px;
-  border-color: #e8e8e8;
-}
-
 .navbar {
   background-color: #ffffff;
+}
+.brand-name {
+  color: #003a91;
+  font-size: 15px; 
+  font-family: Arial, sans-serif;
 }
 
 .select {
@@ -225,7 +224,7 @@ app-side-nav-bar {
 
 app-side-nav-bar {
   border-right: solid;
-  border-width: 3px;
+  border-width: 2px;
   border-color: #f2f2f2;
 }
 .linear-gradient-default i{ 
@@ -323,6 +322,9 @@ app-side-nav-bar {
 
   .navbar {
     background-color: #3a3a3a;
+  }
+  .brand-name {
+    color: #8dbaff;
   }
 
   .option-card {

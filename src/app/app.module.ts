@@ -19,6 +19,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SafePipe } from './safe.pipe';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { SelectLabComponent } from './select-lab/select-lab.component';
+import { WebpageComponent } from './webpage/webpage.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SelectLabComponent } from './select-lab/select-lab.component';
     SafePipe,
     LoginPageComponent,
     SelectLabComponent,
+    WebpageComponent,
   ],
   imports: [
     

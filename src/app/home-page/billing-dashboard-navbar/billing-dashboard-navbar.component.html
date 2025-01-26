@@ -1,23 +1,24 @@
 <div>
-  <nav class="navbar navbar-expand-sm fixed-top px-2 p-xs-0 py-1 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
+  <nav class="navbar navbar-expand-lg fixed-top px-2 p-xs-0 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
     <div class="container-fluid px-0 mx-0 ">
-      <div class="navbar-brand m-0 p-0 me-4 ">
-        <span style="font-size: 16px; font-family: Arial, sans-serif;">
-          <i class="fa-solid fa-microscope mx-3 p-2 shadow "
-            style="font-size: 16px; background-color: #1369ea; border-radius: 4px; color: white;"></i>
-          APLS</span>
-      </div>
-      <div class="navbar-brand  ">
-        <span class="ms-4 nav-item navbar-text any-item p-1 " (click)="onClickToggled()" style=" cursor: pointer; font-size: 16px;">
-          <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
-          <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
+      <div class="navbar-brand m-0 p-0 me-3 brand-name " style="font-family: Roboto;">
+        <span>
+          <img class="mx-2" style="width: 30px;" src="../../assets/Swasthya Lab logo.png">
+        </span>
+        <span style="vertical-align: middle;">
+          Swasthya Lab
         </span>
       </div>
+      <span class=" nav-item navbar-text any-item p-1" (click)="onClickToggled()"
+      style=" cursor: pointer; font-size: 16px;">
+      <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
+      <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
+    </span>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
-        <ul class="navbar-nav ms-4 mb-2 mb-lg-0" style="font-weight: 400;">
+        <ul class="navbar-nav ms-3 mb-2 mb-lg-0" style="font-weight: 400;">
           <li class="nav-item" >
-            <a class="nav-link active any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
+            <a class="nav-link any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
               <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
           </li>
           <li class="nav-item">
