@@ -403,7 +403,7 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="userObj.userName"
                                         name="useName" minlength="3" placeholder="Enter User Name" required (blur)="userNameExistCheck(f)"
-                                        [ngClass]="{ 'is-invalid': matchResponse.match === 'Y' }">
+                                        [ngClass]="{ 'is-invalid': responseDto.usernameFlag}">
                                 </div>
                             </div>
 
@@ -548,7 +548,8 @@
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="number" class="form-control" minlength="10"
-                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required>
+                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required
+                                            [ngClass]="{ 'is-invalid': responseDto.mobileFlag}">
                                     </div>
                                 </div>
                             </div>
@@ -565,7 +566,8 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="email" class="form-control"
                                         [(ngModel)]="userObj.userMailId" name="emailId"
-                                        placeholder="Enter Email Address" required>
+                                        placeholder="Enter Email Address" required 
+                                        [ngClass]="{ 'is-invalid': responseDto.emailFlag}">
                                 </div>
                             </div>
                         </div>

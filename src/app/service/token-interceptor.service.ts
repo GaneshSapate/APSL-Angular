@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import {  catchError, Observable, tap, throwError } from 'rxjs';
+import {  catchError, Observable, tap, throwError, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private route : Router,
               private toster : ToastrService) { }
+              
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
@@ -32,6 +33,7 @@ export class TokenInterceptorService implements HttpInterceptor {
           let url: string = this.route.url;
           if (!url.startsWith("/login")) {
             this.route.navigate(["/login"]).then(()=>{
+              window.location.reload();
               this.toster.warning("Session May Be Ended Please Login Again !", );
              });
           }

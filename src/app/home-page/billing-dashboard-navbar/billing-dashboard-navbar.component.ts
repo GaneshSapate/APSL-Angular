@@ -117,11 +117,17 @@ export class BillingDashboardNavbarComponent implements OnInit {
   }
 
   setlab() {
-    let labId = <number>new Number(sessionStorage.getItem("labId"));
-    this.labService.getLabsById(labId).subscribe(
-      (r) => {
-        this.lab = <any>r;
-      })
+    
+    if(new Number(sessionStorage.getItem("labId")) && new Number(sessionStorage.getItem("labId")) !=0){
+      let labId = <number>new Number(sessionStorage.getItem("labId"));
+      this.labService.getLabsById(labId).subscribe(
+        (r) => {
+          this.lab = <any>r;
+        })
+    }else{
+      this.router.navigate(['/selectLab']);
+    }
+    
   }
 
   onClickToggled() {
@@ -189,7 +195,9 @@ export class BillingDashboardNavbarComponent implements OnInit {
   // Profile button all method start
   onLogoutClick() {
     this.toaster.info("Logout Successfully","");
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']).then(()=>{
+      sessionStorage.clear();
+    });
   }
   onSecurityClick() {
     this.router.navigate(["dashboard/setting"]).then(()=>{

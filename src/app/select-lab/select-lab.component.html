@@ -1,18 +1,23 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 <div class="row page">
-    <div class="card login-card shadow">
+    <div class="card">
         <div class="card-body">
+            <h5 style="font-weight:500 ; color: #1369ea; vertical-align: middle; text-align: center;"><i
+                    class="fa-solid fa-microscope me-3 shadow "
+                    style="font-size: 20px; background-color: #1369ea; border-radius: 4px; color: white; padding: 10px;"></i>
+                APLS
+            </h5>
+            <div class="panel mt-4" style="text-align: center;">Select Laboratory</div>
             <form #f="ngForm">
-                <div class="panel shadow">Select Laboratory</div> 
-                <div class=" mt-4 pt-4">
-                    <select class="form-select" name="laboratory" [(ngModel)]= "labId" required>
-                        <option selected value="">Select Laboratory</option>
-                        <option *ngFor= "let lab of labList" value={{lab.labId}}>{{lab.labName}}</option>
-                    </select>
-                </div>
-                <div class="d-grid gap-2 d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary btn-sm mt-4 mb-2 mx-2 "
-                        routerLink="/login">back</button>
+
+                <select class="form-select mt-4" name="laboratory" [(ngModel)]="labId" required>
+                    <option selected value="">Select Laboratory</option>
+                    <option *ngFor="let lab of labList" value={{lab.labId}}>{{lab.labName}}</option>
+                </select>
+
+                <div class="d-grid gap-2 d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary btn-sm mt-4 mb-2" routerLink="/login">back to
+                        login</button>
                     <button type="button" class="btn btn-primary btn-sm mt-4 mb-2" (click)="onNext()"
                         [disabled]="!f.valid">Next</button>
                 </div>

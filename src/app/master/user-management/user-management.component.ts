@@ -12,6 +12,7 @@ import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
 import { LabCheckList } from './Model/LabCheckList';
 import { UserIdDTO } from 'src/app/Model/UserIdDTO';
+import { UserUpdateResponseDTO } from './Model/UserUpdateResponseDTO';
 
 @Component({
   selector: 'app-user-management',
@@ -54,6 +55,7 @@ export class UserManagementComponent implements OnInit {
     match:"",
     errorMessage:""
   }
+  responseDto=<UserUpdateResponseDTO>{};
   
   constructor(private toaster: ToastrService,
     private router: Router,private masterService: MasterDataService,
@@ -136,6 +138,7 @@ export class UserManagementComponent implements OnInit {
     this.userObj.userCountry="";
     this.userObj.userRole="User";
     this.labList=[<LabCheckList>{}];
+    this.responseDto=<UserUpdateResponseDTO>{};
     this.utilsService.getUserAuthorities().subscribe((r)=>{
       let list=<any>r;
       this.selectedAuthorities.push(list[0]);
@@ -166,6 +169,7 @@ export class UserManagementComponent implements OnInit {
     this.modalHeader="Modify user"
     this.modalType="Modify";
     this.userObj=<User>{};
+    this.responseDto=<UserUpdateResponseDTO>{};
     let obj= <UserIdDTO>{};
     obj.userId=userId
     this.userService.getUserByUserId(obj).subscribe((result)=>{
@@ -256,12 +260,25 @@ export class UserManagementComponent implements OnInit {
     this.userObj.userModificationDate=new Date;
     this.userService.updateUserByUserId(this.userObj).subscribe({
       next: (r) => {
-        let s = <User>r
-        this.toaster.success("User "+ s.userName+" updated successfully");
-        if (this.closeUserModel) {
-          this.closeUserModel.nativeElement.click();
-        }
-        this.getUserList();
+        this.responseDto = <UserUpdateResponseDTO>r
+        if(this.responseDto.username && this.responseDto.username!==''){
+          this.toaster.success("User "+ this.responseDto.username+" updated successfully");
+          if (this.closeUserModel) {
+            this.closeUserModel.nativeElement.click();
+          }
+          this.getUserList();
+        }else{
+          let errorMessage="";
+          if(this.responseDto.usernameFlag){
+            this.toaster.error(this.responseDto.usernameMessage,"",{timeOut:7000});
+          }
+          if(this.responseDto.mobileFlag){
+            this.toaster.error(this.responseDto.mobileMessage,"",{timeOut:7000});
+          }
+          if(this.responseDto.emailFlag){
+            this.toaster.error(this.responseDto.emailMessage,"",{timeOut:7000});
+          }
+        } 
       }
     })
   }

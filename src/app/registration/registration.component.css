@@ -1,11 +1,28 @@
+.page {
+    margin-right: 0px;
+    margin-left: 0px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
 .row {
     margin-right: 0px;
     margin-left: 0px;
-}
-label{
-    font-size: 14px;
+    height: 100%;
+    width: 100%;
 }
 .card{
-    margin-top: 10vh;
-    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+    max-width: 24rem; 
+    border: none;
+    background-color: transparent;
+}
+.errorMessage{
+    color: red; 
+    margin-top: 5px;
+    font-size: 13px;
+}
+a{
+    text-decoration: none;
 }
