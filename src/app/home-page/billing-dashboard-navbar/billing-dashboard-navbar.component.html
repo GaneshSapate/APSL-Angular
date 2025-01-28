@@ -1,7 +1,11 @@
 <div>
-  <nav class="navbar navbar-expand-lg fixed-top px-2 p-xs-0 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
+  <nav class="navbar navbar-expand-md  fixed-top  px-2 p-xs-0 shadow-sm" [ngClass]="{'side-nav-open': menuStatus}">
     <div class="container-fluid px-0 mx-0 ">
-      <div class="navbar-brand m-0 p-0 me-3 brand-name " style="font-family: Roboto;">
+      <button class=" navbar-toggler focus-ring focus-ring-light" (click)="onClickToggledOffcanvas()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideNavbar" aria-controls="staticBackdrop"
+      style="border: none; cursor: pointer; font-size: 16px;">
+      <i  class="fa-solid fa-angles-right"></i>
+    </button>
+      <div class="navbar-brand m-0 p-0 me-3 brand-name ">
         <span>
           <img class="mx-2" style="width: 30px;" src="../../assets/Swasthya Lab logo.png">
         </span>
@@ -9,24 +13,28 @@
           Swasthya Lab
         </span>
       </div>
-      <span class=" nav-item navbar-text any-item p-1" (click)="onClickToggled()"
-      style=" cursor: pointer; font-size: 16px;">
-      <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
-      <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
-    </span>
+    <button class="navbar-toggler focus-ring focus-ring-light" style="border: none;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="font-size: 14px;"></span>
+    </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-
-        <ul class="navbar-nav ms-3 mb-2 mb-lg-0" style="font-weight: 400;">
+        <span class="nav-item me-2">
+          <a class="nav-link navbar-text any-item p-1" (click)="onClickToggled()"
+          style=" cursor: pointer; font-size: 16px;">
+          <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
+          <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
+        </a>
+        </span>
+        <ul class="navbar-nav me-auto mb-md-0" style="vertical-align: middle;">
           <li class="nav-item" >
             <a class="nav-link any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
-              <i class="fa-regular fa-pen-to-square"></i> New Entry</a>
+              <i class="fa-solid fa-plus"></i> New Entry</a>
           </li>
           <li class="nav-item">
             <a class="nav-link py-1 any-item" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
-              <i class="fa-solid fa-plus"></i> Add New Patient</a>
+               Add New Patient</a>
           </li>
           <li class="nav-item dropdown any-item">
-            <a class="nav-link py-1 dropdown-toggle" id="navbarDropdownMenuLink" data-bs-auto-close="outside"
+            <a class="nav-link py-1 pb-0 dropdown-toggle" id="navbarDropdownMenuLink" data-bs-auto-close="outside"
               data-bs-toggle="dropdown" aria-expanded="false">
               {{lab.labName}}
             </a>
@@ -46,11 +54,145 @@
             </ul>
           </li>
         </ul>
-
+        <div class="d-flex  navbar-text me-0 p-0">
+          <div class="btn-group dropdown me-2 px-1 any-item">
+            <a data-bs-toggle="dropdown" aria-expanded="false">
+              <span *ngIf="Flag==='dark'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
+                  class="fa-solid fa-moon"></i></span>
+              <span *ngIf="Flag==='light'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
+                  class="fa-regular fa-sun"></i></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end  mt-2" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item d-flex theme" (click)="lightMode()">
+                  <div><i class="fa-regular fa-sun me-2"></i> light Mode </div> <span *ngIf="theme==='light'"
+                    class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+                </a></li>
+              <li><a class="dropdown-item d-flex theme" (click)="darkMode()">
+                  <div><i class="fa-solid fa-moon me-2"></i> dark Mode </div> <span *ngIf="theme==='dark'"
+                    class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+                </a></li>
+              <li><a class="dropdown-item d-flex theme" (click)="systemMode()">
+                  <div><i class="fa-solid fa-desktop me-2"></i> System </div> <span *ngIf="theme==='system'"
+                    class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
+                </a></li>
+            </ul>
+          </div>
+          <div class="btn-group me-2 px-1 any-item">
+            <span style=" cursor: pointer;">
+              <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i
+                  class="fa-solid fa-expand"></i></span>
+              <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px"><i
+                  class="fa-solid fa-compress"></i></span>
+            </span>
+          </div>
+          <div class="btn-group me-2 any-item">
+            <span style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+              aria-expanded="true">
+              <i class="fas fa-bell px-sm-2">
+                <span *ngIf="!noNotification" class="position-absolute top-0 start-10 translate-middle p-1 bg-danger border border-light rounded-circle">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+              </i>
+            </span>
+  
+            <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container mt-2 "
+              id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
+              <div class="all-notification-item d-flex">
+                <h6 class="mx-2" style="font-size: 14; font-weight: 600; color: rgb(94, 94, 94);"> Notifications</h6>
+                <p class="mx-auto me-2 my-0" (click)="clearAllNotification()" style="cursor: pointer;">clear all</p>
+              </div>
+              <div style="max-height: 450px; overflow-y: auto;">
+                <div *ngIf="noNotification">
+                  <div class="notification-item">
+                    <div class="message">No New Notification.</div>
+                  </div>
+                </div>
+  
+                <div class="notification-item" *ngFor="let obj of notification index as i">
+                  <div class="d-flex">
+                    <div>
+                      <div class="notification-title d-flex">New Notification</div>
+                      <div class="message">{{obj.message}}</div>
+                      <div class="time">5 minutes ago</div>
+                    </div>
+                    <span class="closeNotificationbtn me-0 mx-auto" (click)="closeNotification(i)"><i
+                        class="fa-solid fa-xmark"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-group me-2 p-0">
+            <span class="p-1 rounded-circle" data-bs-toggle="dropdown"
+              style="background-color: #1972f7;cursor: pointer; color: white; font-size: 13px;">
+              <i class="fa-solid fa-user mx-1"></i>
+            </span>
+            <ul class="dropdown-menu dropdown-menu-end py-2 mt-2">
+              <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i>
+                Ganesh Sapate </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="dropdown-item linear-gradient-default" (click)="onProfileClick()"><i
+                  class="fa-solid fa-user me-2"></i> Your Profile</li>
+              <li class="dropdown-item linear-gradient-setting" (click)="onSettingClick()"><i
+                  class="fa-solid fa-gear me-2"></i> Setting</li>
+              <li class="dropdown-item linear-gradient-info" (click)="onSecurityClick()"><i
+                  class="fa-solid fa-shield me-2"></i> Security</li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="dropdown-item linear-gradient-default" (click)="onLogoutClick()"><i
+                  class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+            </ul>
+          </div>
+        </div>
       </div>
+     
+    </div>
+  </nav>
+</div>
 
-      <div class="d-flex  navbar-text me-0 p-0">
-        <div class="btn-group dropdown mx-2 px-1 any-item">
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ">
+        <li class="nav-item" >
+          <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
+            <i class="fa-solid fa-plus"></i> New Entry</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " data-bs-toggle="modal" data-bs-target="#NewPatientModal">
+             Add New Patient</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-auto-close="outside"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            {{lab.labName}}
+          </a>
+          <ul class="dropdown-menu p-2" style="width: 17rem;" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <div class="row">
+                <img src="{{lab.labLogoString}}" class="card-img-top px-4 pt-2">
+                <p class="ms-2">{{lab.labName}}</p>
+              </div>
+            </li>
+            <li>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-primary btn-sm mt-4 mb-2 me-2" routerLink="/selectLab">
+                  <i class="fa-solid fa-arrow-right-arrow-left"></i> Change Lab</button>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="d-flex  navbar-text mt-3">
+        <div class="btn-group dropdown me-4 px-1 any-item">
           <a data-bs-toggle="dropdown" aria-expanded="false">
             <span *ngIf="Flag==='dark'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
                 class="fa-solid fa-moon"></i></span>
@@ -72,7 +214,7 @@
               </a></li>
           </ul>
         </div>
-        <div class="btn-group mx-1 px-1 any-item">
+        <div class="btn-group me-4 px-1 any-item">
           <span style=" cursor: pointer;">
             <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i
                 class="fa-solid fa-expand"></i></span>
@@ -80,7 +222,7 @@
                 class="fa-solid fa-compress"></i></span>
           </span>
         </div>
-        <div class="btn-group mx-1 any-item">
+        <div class="btn-group me-4 any-item">
           <span style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"
             aria-expanded="true">
             <i class="fas fa-bell px-sm-2"></i>
@@ -116,35 +258,96 @@
             </div>
           </div>
         </div>
+        <div class="btn-group me-4 any-item">
+          <span class="p-1 rounded-circle" data-bs-toggle="dropdown"
+            style="background-color: #1972f7;cursor: pointer; color: white; font-size: 14px;">
+            <i class="fa-solid fa-user mx-1"></i>
+          </span>
+          <ul class="dropdown-menu dropdown-menu-end py-2 mt-2">
+            <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i>
+              Ganesh Sapate </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-item linear-gradient-default" (click)="onProfileClick()"><i
+                class="fa-solid fa-user me-2"></i> Your Profile</li>
+            <li class="dropdown-item linear-gradient-setting" (click)="onSettingClick()"><i
+                class="fa-solid fa-gear me-2"></i> Setting</li>
+            <li class="dropdown-item linear-gradient-info" (click)="onSecurityClick()"><i
+                class="fa-solid fa-shield me-2"></i> Security</li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-item linear-gradient-default" (click)="onLogoutClick()"><i
+                class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+          </ul>
+        </div>
       </div>
-      <div class="btn-group mx-sm-2 any-item">
-        <span class="p-1 rounded-circle" data-bs-toggle="dropdown"
-          style="background-color: #1972f7;cursor: pointer; color: white; font-size: 14px;">
-          <i class="fa-solid fa-user mx-1"></i></span>
-
-        <ul class="dropdown-menu dropdown-menu-end py-2 mt-2">
-          <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i>
-            Ganesh Sapate </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li class="dropdown-item linear-gradient-default" (click)="onProfileClick()"><i
-              class="fa-solid fa-user me-2"></i> Your Profile</li>
-          <li class="dropdown-item linear-gradient-setting" (click)="onSettingClick()"><i
-              class="fa-solid fa-gear me-2"></i> Setting</li>
-          <li class="dropdown-item linear-gradient-info" (click)="onSecurityClick()"><i
-              class="fa-solid fa-shield me-2"></i> Security</li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li class="dropdown-item linear-gradient-default" (click)="onLogoutClick()"><i
-              class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  </div>
 </div>
 
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="offcanvasSideNavbar" aria-labelledby="offcanvasSideNavbarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasSideNavbarLabel">Side Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div (click)="clickOnHome()"  >
+          <div class="nav-list-item linear-gradient-default"  [ngClass]="{'select':eventObj.navHome}">
+              <i class="fa-solid fa-house"></i>
+              <div>Home</div>
+          </div>
+      </div>
+      <div (click)="clickOnEntry()"  >
+          <div class="nav-list-item linear-gradient-default"  [ngClass]="{'select':eventObj.navEntry}">
+              <i class="fa-regular fa-pen-to-square"></i>
+              <div>Entry List</div>
+          </div>
+      </div>
+      <div (click)="clickOnPateint()"  >
+          <div class="nav-list-item linear-gradient-patient"  [ngClass]="{'select':eventObj.navPatient}">
+              <i class="fa-solid fa-user" style="font-size: 16px;" ></i>
+              <div>Patient</div>
+          </div>
+      </div>
+      <div (click)="clickOnDashboard()">
+          <div class="nav-list-item linear-gradient-default "  [ngClass]="{'select':eventObj.navDashboard}">
+              <i class="fa-solid fa-chart-line"></i>
+              <div>Dashboard</div>
+          </div>
+      </div>
+
+      <div (click)="clickOnMaster()" >
+          <div class="nav-list-item linear-gradient-default" [ngClass]="{'select':eventObj.navMaster}">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <div >Master</div>
+          </div>
+      </div>
+
+      <div (click)="clickOnSetting()">
+          <div class="nav-list-item linear-gradient-setting" [ngClass]="{'select':eventObj.navSetting}">
+              <i class="fa-solid fa-gear" style="font-size: 17px;" ></i>
+              <div >Setting</div>
+          </div>
+      </div>
+
+      <div (click)="clickOnAbout()">
+          <div class="nav-list-item linear-gradient-info" [ngClass]="{'select':eventObj.navAbout}">
+              <i class="fa-solid fa-circle-info" style="font-size: 17px;"  ></i>
+              <div >About</div>
+          </div>
+      </div>
+
+      <div (click)="clickOnContact()">
+          <div class="nav-list-item linear-gradient-default" [ngClass]="{'select':eventObj.navContact}">
+              <i class="fa-solid fa-phone" ></i>
+              <div >Contact</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-entry-modal></app-entry-modal>
 <!-- Add new patient modal -->

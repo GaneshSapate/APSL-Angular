@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-page',
@@ -18,9 +19,10 @@ export class HomePageComponent implements OnInit {
   @Output() sideNavHome = new EventEmitter<any>();
 
 
-  constructor() { }
+  constructor(private title:Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle('dashboard');
   }
 
 

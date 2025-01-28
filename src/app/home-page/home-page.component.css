@@ -31,7 +31,7 @@ app-side-nav-bar{
     left: 56px;
 }
 
-@media screen and (max-width:575px){
+@media screen and (max-width:767px){
   app-side-nav-bar{
     padding: 0px;
     padding-top:5px;
@@ -40,15 +40,14 @@ app-side-nav-bar{
     width: 0px;
     z-index: 11;
     overflow: auto;
-    /* box-shadow: 0px 10px 10px rgb(168, 168, 168); */
     background-color: #f6f6f6;
     transition: width 150ms ease-in;
  
   }
   .side-nav-open{
     padding: 0px;
-    padding-top:5px;
-    width: 54px;
+    padding-top:0px;
+    width: 0px;
     overflow-x: hidden;
     white-space: nowrap;
   }

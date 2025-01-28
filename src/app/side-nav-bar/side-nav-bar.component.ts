@@ -61,33 +61,45 @@ export class SideNavBarComponent implements OnInit {
   clickOnHome() {
     this.clearAll();
     this.eventObj.navHome = true;
-    this.router.navigate(["dashboard/home"]);
+    this.router.navigate(["dashboard/home"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   clickOnEntry() {
     this.clearAll();
     this.eventObj.navEntry = true;
-    this.router.navigate(["dashboard/entryList"]);
+    this.router.navigate(["dashboard/entryList"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   clickOnDashboard() {
     this.clearAll();
     this.eventObj.navDashboard = true;
-    this.router.navigate(["dashboard/dashboardDetails"]);
+    this.router.navigate(["dashboard/dashboardDetails"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   clickOnPateint() {
     this.clearAll();
     this.eventObj.navPatient = true;
-    this.router.navigate(["dashboard/pateint"]);
+    this.router.navigate(["dashboard/pateint"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   clickOnMaster() {
     this.clearAll();
     this.eventObj.navMaster = true;
-    this.router.navigate(["dashboard/master"]);
+    this.router.navigate(["dashboard/master"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
 
   clickOnSetting() {
     this.clearAll();
     this.eventObj.navSetting = true;
-    this.router.navigate(["dashboard/setting"]);
+    this.router.navigate(["dashboard/setting"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
   }
   clickOnAbout() {
     this.clearAll();

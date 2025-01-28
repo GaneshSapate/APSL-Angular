@@ -16,10 +16,8 @@
 .text-primary {
   color: rgb(189, 144, 28);
 }
-
-.navbar-nav {
+.nav-item{
   font-size: 14px;
-  font-weight: 500;
 }
 
 .theme i {
@@ -37,9 +35,11 @@
 
 .badge {
   position: absolute;
-  right: -5px;
-  top: -7px;
-  font-size: 10px;
+  right: 2px;
+  top: -1px;
+  font-size: 8px;
+  width: 2px;
+  height: 6px;
 }
 
 .nav-link {
@@ -150,15 +150,27 @@ label {
   padding-top: 5px;
   padding-bottom: 4px;
   border-radius: 2px;
-  font-size: 14px;
 }
 
 .nav .nav-link:hover {
   border-color: #fff;
 }
 
-
-
-ngx-toastr {
-  background-color: #ffffff;
+.nav-list-item{
+  padding-left: 18px;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: 0.3s;
+  transition: width 250ms ease-in,left 250ms ease-in;
+}
+.nav-list-item i{
+  padding: 2px;
+  margin-right: 21px;
+  font-size: 15px;
+  width: 25px;
+  justify-content: center;
+  transition: 0.3s;
 }
