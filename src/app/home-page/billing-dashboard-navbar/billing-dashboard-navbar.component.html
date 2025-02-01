@@ -17,14 +17,7 @@
       <span class="navbar-toggler-icon" style="font-size: 14px;"></span>
     </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-        <span class="nav-item me-2">
-          <a class="nav-link navbar-text any-item p-1" (click)="onClickToggled()"
-          style=" cursor: pointer; font-size: 16px;">
-          <i *ngIf="this.menuStatus" class="fa-solid fa-angles-right"></i>
-          <i *ngIf="!this.menuStatus" class="fa-solid fa-angles-left"></i>
-        </a>
-        </span>
-        <ul class="navbar-nav me-auto mb-md-0" style="vertical-align: middle;">
+        <ul class="navbar-nav me-auto mb-md-0 ms-4" style="vertical-align: middle;">
           <li class="nav-item" >
             <a class="nav-link any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
               <i class="fa-solid fa-plus"></i> New Entry</a>

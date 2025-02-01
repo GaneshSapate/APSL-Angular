@@ -37,5 +37,11 @@ export class HomePageDetailsComponent implements OnInit {
     })
   }
 
+  clickOnEntryCard(){
+    this.router.navigate(["dashboard/entryList"]).then(()=>{
+      this.sideNaveService.onButtonClick.next('');
+    })
+  }
+
 
 }

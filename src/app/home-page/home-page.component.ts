@@ -25,5 +25,9 @@ export class HomePageComponent implements OnInit {
     this.title.setTitle('dashboard');
   }
 
+  onClickToggled() {
+    this.sideNavStatus = !this.sideNavStatus;
+  }
+
 
 }

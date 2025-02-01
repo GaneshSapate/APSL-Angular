@@ -1,14 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'ngx-toastr/toastr';
 /* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
 
 body {
-  font-family:Roboto,Roboto Condensed,Mono Sans;
+  font-family: Roboto,Mona Sans,Roboto Condensed;
 }
 
 .bg_background {
@@ -99,15 +96,15 @@ button[disabled] {
 }
 
 .header-card .card-title {
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 18px;
   color: #454545;
 }
 
 .option-card {
   display: block;
   width: 22rem;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 20px;
   border: none;
   transition: 0.5s;
@@ -117,12 +114,32 @@ button[disabled] {
 
 .option-card:hover {
   cursor: pointer;
-}.option-card .card-title{
-  color: #454545;
+}
+.card-title{
+  color: #000000;
+  font-size: 17px;
+  font-weight: 400;
+}
+.card-text {
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .option-card .card-text {
   font-size: 13px;
+}
+
+.work-card-div .card {
+  border: none;
+  border-left: 5px solid var(--ds-background-accent-orange-subtler, #7777774a);
+  border-radius: 3px;
+  box-shadow: var(--ds-shadow-raised, 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31));
+  transition: box-shadow 0.3s ease-in-out, border-color 0.6s ease-in;
+
+}
+
+.work-card-div .card:hover {
+  box-shadow: 0px 5px 7px rgba(153, 153, 153, 0.322);
 }
 
 .toast-container .ngx-toastr {
@@ -143,10 +160,6 @@ button[disabled] {
   margin-right: auto;
 }
 
-.docterTableDiv {
-  background-color: rgb(255, 255, 255);
-  border-radius: 7px;
-}
 table {
   font-size: small;
   text-align: center;
@@ -169,15 +182,18 @@ table {
   font-family: Roboto Condensed;
   cursor: pointer;
 }
+.navbar .nav-link {
+  color: #303030;
+}
 
 .select {
   /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-  background-color: #ebebeb;
+  background-color: #c1c1c139;
   color: #0041a1;
   cursor: pointer;
 }
 .nav-list-item:hover {
-  background-color: #ebebeb;
+  background-color: #c1c1c139;
   color: #0041a1;
   cursor: pointer;
 }
@@ -205,7 +221,7 @@ table {
 }
 
 .any-item:hover {
-  background-color: #bfbfbf53;
+  background-color: #bfbfbf2c;
   border-radius: 4px;
 }
 
@@ -295,6 +311,15 @@ app-side-nav-bar {
   padding: 15px 0px 15px 15px;
 }
 
+@media screen and (max-width:576px){
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
 
 [data-bs-theme="light"] {
   .order-card{
@@ -304,13 +329,6 @@ app-side-nav-bar {
 
 [data-bs-theme="dark"] {
 
-  /* .modal-content{
-    background: rgba(47, 47, 47, 0.71);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12.1px);
-    -webkit-backdrop-filter: blur(12.1px);
-    border: 1px solid rgba(47, 47, 47, 0.3);
-  } */
   .login-card {
     background-color: #3a3a3a85;
   }
@@ -320,12 +338,19 @@ app-side-nav-bar {
   .option-card .card-title{
   color: #ededed;
   }
+  .card-title{
+    color: #ededed;
+    }
 
   .navbar {
     background-color: #3a3a3a;
   }
   .brand-name {
     color: #8dbaff;
+  }
+
+  .navbar .nav-link {
+    color: #dfdfdf;
   }
 
   .option-card {

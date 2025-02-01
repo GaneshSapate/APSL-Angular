@@ -100,6 +100,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     }
     
     this.setlab();
+    this. autoRefresh();
   }
 
   lightMode() {
@@ -145,7 +146,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     
   }
 
-  onClickToggled() {
+  onClickToggled() {   //  this method is not use
     this.menuStatus = !this.menuStatus;
     this.sideNavToggled.emit(this.menuStatus);
   }

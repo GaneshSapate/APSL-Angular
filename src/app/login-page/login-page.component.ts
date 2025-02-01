@@ -86,6 +86,8 @@ export class LoginPageComponent implements OnInit {
   message:string="";
 
   labList=[<LabObj>{}];
+
+  loginButtonLoading:boolean=false;
   
   constructor(private title:Title,
                 private service:UserServiceService,
@@ -97,11 +99,13 @@ export class LoginPageComponent implements OnInit {
     document.body.className='';
   }
   ngOnInit(): void {
-    this.title.setTitle('Login')
+    this.title.setTitle('Login');
+    this.loginButtonLoading=false;
    // document.body.className="bg_background";
   }
 
   onLogin(f:NgForm){
+    this.loginButtonLoading=true;
     this.service.getUserLogin(this.loginUserOBJ).subscribe({
       next:(r)=>{
         var UserResp = <LoginUserResp>{};
