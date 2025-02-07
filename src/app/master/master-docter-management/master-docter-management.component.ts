@@ -92,7 +92,7 @@ export class MasterDocterManagementComponent implements OnInit {
   }
   addDoctor(){
     var labId = <number> new Number(sessionStorage.getItem("labId"));
-    var mainUserId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    var mainUserId = <number> new Number(sessionStorage.getItem("mid"));
     var userId = <number> new Number(sessionStorage.getItem("userId"));
     this.doctorObj.labId=labId;
     this.doctorObj.userId=mainUserId;

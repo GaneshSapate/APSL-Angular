@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SelectLabComponent implements OnInit {
 
   labList=[<LabObj>{}];
-  userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+  userId = <number> new Number(sessionStorage.getItem("mid"));
   labId:string="";
   constructor(private labService: LabServiceService,
                   private router:Router) { }

@@ -21,4 +21,5 @@ export interface Patient{
     addedUserId:number;
     modifiedDate:Date;
     modifiedUserId:number;
+    patientEntryList:[];
 }

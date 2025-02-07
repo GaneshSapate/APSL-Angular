@@ -8,3 +8,6 @@
 .nav .nav-link:hover {
   border-color: #fff;
 }
+.dropdown-item:hover{
+  cursor: pointer;
+}

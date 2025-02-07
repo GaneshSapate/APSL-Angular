@@ -27,4 +27,7 @@ export class TestService {
   validateFormula(formula:any){
     return this.http.post(`${this.testMasterUrl}`+`/validateFormula`,formula);
   }
+  formattingText(obj:any){
+    return this.http.post(`${this.testMasterUrl}`+`/formattingOfText`,obj);
+  }
 }

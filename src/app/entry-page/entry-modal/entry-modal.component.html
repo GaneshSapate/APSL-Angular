@@ -7,29 +7,25 @@
       </div>
       <div class="modal-body" style="height: 40rem;">
           <div class="container-xl">
-
               <div class="row my-lg-2 justify-content-center">
-                  <div class="col-12 col-md-3 col-lg-4 col-xl-3">
+                  <div class="col-12 col-md-3">
                       <div>Search Patient </div>
                   </div>
-                  <div class="col-12 col-md-4 col-lg-5 col-xl-5">
-                    <div class="form-group input-group input-group-sm">
-                        <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
+                  <div class="col-12 col-md-4">
+                    <div class="form-group input-group input-group-sm" >
+                        <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;" data-bs-toggle="dropdown" aria-expanded="false" minlength="3" placeholder="Enter Name or Mobile No" required>
                         
-                        <datalist id="datalistOptions">
-                          <option value="San Francisco">
-                          <option value="New York">
-                          <option value="Seattle">
-                          <option value="Los Angeles">
-                          <option value="Chicago">
-                        </datalist>
-                        <button class="btn btn-secondary btn-sm">Add</button>
+
+                        <ul class="dropdown-menu" style="width: 100%;">
+                          <li><a class="dropdown-item" >Action</a></li>
+                          <li><a class="dropdown-item" >Another action</a></li>
+                          <li><a class="dropdown-item" >Something else here</a></li>
+                          <li><a class="dropdown-item" >Action</a></li>
+                          <li><a class="dropdown-item" >Another action</a></li>
+                          <li><a class="dropdown-item" >Something else here</a></li>
+                        </ul>
                       </div>
                   </div>
-                  <div class="col-12 col-md-3 col-lg-3">
-                    <a  class="btn btn-secondary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
-                      <i class="fa-solid fa-plus"></i> New Patient</a>
-                </div>
               </div>
               <br>
               <ul class="nav nav-tabs" role="tablist">

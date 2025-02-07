@@ -101,7 +101,7 @@ export class UserManagementComponent implements OnInit {
       this.selectedAuthorities=this.userObj.userAuthorities;
       this.labList=[<LabCheckList>{}];
       let selectedLabList:number[]=this.userObj.labIds;
-      var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+      var userId = <number> new Number(sessionStorage.getItem("mid"));
       let labList1:LabObj[]=[];
       this.labService.getLabsByUserId(userId).subscribe(
         (r)=>{
@@ -136,14 +136,14 @@ export class UserManagementComponent implements OnInit {
     this.userObj.userState="";
     this.userObj.userDistrict="";
     this.userObj.userCountry="";
-    this.userObj.userRole="User";
+    this.userObj.userRole="SUB_USER";
     this.labList=[<LabCheckList>{}];
     this.responseDto=<UserUpdateResponseDTO>{};
     this.utilsService.getUserAuthorities().subscribe((r)=>{
       let list=<any>r;
       this.selectedAuthorities.push(list[0]);
     })
-    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    var userId = <number> new Number(sessionStorage.getItem("mid"));
     let labList1:LabObj[]=[];
     this.labService.getLabsByUserId(userId).subscribe(
       (r)=>{
@@ -178,7 +178,7 @@ export class UserManagementComponent implements OnInit {
       this.selectedAuthorities=this.userObj.userAuthorities;
       this.labList=[<LabCheckList>{}];
       let selectedLabList:number[]=this.userObj.labIds;
-      var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+      var userId = <number> new Number(sessionStorage.getItem("mid"));
       let labList1:LabObj[]=[];
       this.labService.getLabsByUserId(userId).subscribe(
         (r)=>{
@@ -215,7 +215,7 @@ export class UserManagementComponent implements OnInit {
     this.userObj.userPasswordType="default";
     this.userObj.userPassword="password";
     this.userObj.userAuthorities=this.selectedAuthorities;
-    var mainUserId = new Number(sessionStorage.getItem("mainUserId"));
+    var mainUserId = new Number(sessionStorage.getItem("mid"));
     console.log(mainUserId);
     this.userObj.parentUserId = <number>mainUserId;
     let labIdList:number[]=[];

@@ -12,18 +12,25 @@ label {
 }
 
 .card {
-    border-color: #e4e4e4;
+    border-color: #dfdfdf;
+}
+.PatientTable {
+    height: 68vh;
 }
 
-@media screen and (max-height:900px) {
+@media screen and (max-height:820px) {
     .PatientTable {
-        height: 350px;
+        max-height: 64vh;
     }
 }
-
-@media screen and (max-height:720px) {
+@media screen and (max-height:680px) {
     .PatientTable {
-        max-height: 350px;
+        max-height: 55vh;
+    }
+}
+@media screen and (max-height:550px) {
+    .PatientTable {
+        max-height: 50vh;
     }
 }
 

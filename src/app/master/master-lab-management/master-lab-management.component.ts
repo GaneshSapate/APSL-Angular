@@ -79,7 +79,7 @@ export class MasterLabManagementComponent implements OnInit {
     this.router.navigate(['dashboard/master'])
   }
   getAllLabs(){
-    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    var userId = <number> new Number(sessionStorage.getItem("mid"));
     this.labService.getLabsByUserId(userId).subscribe(
       (r)=>{
         this.labList=<any>r;
@@ -161,7 +161,7 @@ export class MasterLabManagementComponent implements OnInit {
 
   addLab(){
     
-    this.labObj.userId= <number> new Number(sessionStorage.getItem("mainUserId"));
+    this.labObj.userId= <number> new Number(sessionStorage.getItem("mid"));
     this.labObj.mobileNumber=this.labObj.mobileNumber.toString();
     this.labObj.pincode=this.labObj.pincode.toString();
     this.labObj.labLogoString=this.labLogoString;
@@ -198,7 +198,7 @@ export class MasterLabManagementComponent implements OnInit {
 
   modifyLab(){
 
-    //this.labObj.userId= <number> new Number(sessionStorage.getItem("mainUserId"));
+    //this.labObj.userId= <number> new Number(sessionStorage.getItem("mid"));
     this.labObj.mobileNumber=this.labObj.mobileNumber.toString();
     this.labObj.pincode=this.labObj.pincode.toString();
     if(this.Base64Url!=""){

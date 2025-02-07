@@ -16,14 +16,6 @@ table{
   height: 82vh;
   overflow-y: auto;
 }
-/* .modal-footer{
-  border-bottom: 4px solid #2b6cb0;
-} */
-
-/* .report-data-field{
-  height: 54vh;
-  overflow-y: auto;
-} */
 
 .report-table-head th{
   border: 1px solid black;

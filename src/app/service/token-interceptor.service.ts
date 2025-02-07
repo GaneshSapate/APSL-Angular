@@ -18,11 +18,15 @@ export class TokenInterceptorService implements HttpInterceptor {
     let t = sessionStorage.getItem("token");
     let uid = sessionStorage.getItem("userId");
     let lid = sessionStorage.getItem("labId");
+    let mid = sessionStorage.getItem("mid");
+    let account_type = sessionStorage.getItem("account_type");
     let jwttoken = req.clone({
       setHeaders:{
         Authorization : "Bearer "+t,
         "UID":''+uid,
         "LID":''+lid,
+        "MID":''+mid,
+        "account_type": ''+account_type
         // "Access-Control-Allow-Origin" : 'http://localhost:4200/'
       },
       

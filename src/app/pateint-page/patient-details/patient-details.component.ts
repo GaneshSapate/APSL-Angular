@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MasterDataService } from 'src/app/master-data.service';
+import { PatientService } from '../service/patient.service';
+import { Patient } from '../model/PatientModel';
+import { PatientModalComponent } from '../patient-modal/patient-modal.component';
+import { Subject } from 'rxjs';
+import { PatientModalService } from '../service/patient-modal.service';
+import { PatientDetailsService } from '../service/patient-details.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patient-details',
@@ -9,86 +16,93 @@ import { MasterDataService } from 'src/app/master-data.service';
 })
 export class PatientDetailsComponent implements OnInit {
 
-  patientPage:boolean=true;
+  patientPage: boolean = true;
 
-  patientObj={
-   patientId:0,
-   patientName:null,
-   gender:null,
-   mobileNo:null,
-   addedDate:null,
- }
+  patientObj = <Patient>{};
 
- patientList=[
-  {
-    patientId:1,
-    patientName:"Ganesh Sapate",
-    gender:"M",
-    mobileNo:"9096916759",
-    addedDate:new Date().toLocaleString(),
-    status:"pending"
-  }
-]
-p:number=1;
+  patientModalType:string="Modify";
 
-nameSearch:string='';
+  patientList = [
+    {
+      patientId: 1,
+      patientName: "Ganesh Sapate",
+      gender: "M",
+      mobileNo: "9096916759",
+      addedDate: new Date().toLocaleString(),
+      status: "pending"
+    }
+  ]
+  p: number = 1;
+  nameSearch: string = '';
 
+  stateList = [
+    {
+      id: 0,
+      code: "",
+      discription: ""
+    }
+  ];
+  districtList = [
+    {
+      id: 0,
+      stateCode: "",
+      discription: ""
+    }
+  ];
 
-stateList=[
-  {
-    id: 0,
-    code: "",
-    discription: ""
-  }
- ];
- districtList=[
-  {
-    id: 0,
-    stateCode: "",
-    discription: ""
-  }
- ];
+  modalTitle: string = "";
+  @ViewChild('closemodifyPatientModal') closerModel: any;
 
- state:string="";
- district:string="";
-
-  constructor( private masterService: MasterDataService,
-    private router : Router,
-    private route : ActivatedRoute
-  ) { }
+  constructor(private masterService: MasterDataService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toaster: ToastrService,
+    private patientService:PatientService) {}
 
   ngOnInit(): void {
-    this.masterService.getAllState().subscribe( (r) => {
-      this.stateList = <any> r;
+    this.masterService.getAllState().subscribe((r) => {
+      this.stateList = <any>r;
     });
-    this.route.queryParams.subscribe(params => {
-      this.patientObj=<any>params;
-      
-  });
-  this.route.paramMap.subscribe(params =>{
-    console.log("pid"+params.get('pid'));
-    console.log("eid"+params.get('eid'));
-  })
-
+    this.route.paramMap.subscribe(params => {
+      let pId =params.get('pid');
+      this.patientService.getPatientById(pId).subscribe((r)=>{
+        this.patientObj = <Patient>r;
+      })
+    })
   }
 
-  clickonBack(){
+  clickonBack() {
     this.router.navigate(["dashboard/pateint"]);
   }
 
   onSelectState() {
-        if(this.state ){
-          this.masterService.getDistrictByStateCode(this.state).subscribe(
-            (result)=>{
-              this.districtList = <any> result;
-          })
+    this.districtList = [];
+    if (this.patientObj.state) {
+      this.masterService.getDistrictByStateCode(this.patientObj.state).subscribe(
+        (result) => {
+          this.districtList = <any>result;
+        })
+    }
+
+  }
+
+  openPatientModal() {
+    this.modalTitle = " Modify Patient";
+    this.patientService.getPatientById(this.patientObj.patientId).subscribe((r) => {
+          this.patientObj = <Patient>r;
+          this.onSelectState();
+        })
+  }
+
+   modifyPatient() {
+      this.patientObj.modifiedDate =new Date();
+      this.patientService.updatePatient(this.patientObj).subscribe((r)=>{
+        let patient = <Patient>r;
+        this.toaster.success("Patient "+patient.patientId+" updated successfully");
+        if (this.closerModel) {
+          this.closerModel.nativeElement.click();
         }
-        
- }
-
- addPatient(){
-
-
-}
+      })
+    }
 
 }

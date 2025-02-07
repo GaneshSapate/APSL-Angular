@@ -25,7 +25,7 @@ const routes: Routes = [
       {path: 'pateint', component: PateintPageComponent,
         children:[
           {path: '', component: PatientListComponent},
-          {path: 'PatientDetails/:pid/:eid', component: PatientDetailsComponent},
+          {path: 'PatientDetails/:pid', component: PatientDetailsComponent},
         ]
       }, 
       {path: 'dashboardDetails', component: BillingDashboardComponent}, 

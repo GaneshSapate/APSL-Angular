@@ -168,9 +168,8 @@
                     </div>
                     <!-- Reports details start -->
                     <div class="row mt-4 justify-content-center">
-                        <div class="col-4 report-data-field">
-                            <form #fieldform="ngForm">
-                                <div class="col-12">
+                        <div class="col-4 report-data-field" >
+                                <div class="col-12" *ngIf="testMaster.testType=='Table'">
                                     <div class="form-group input-group-sm">
                                         <label for="">Type </label>
                                     </div>
@@ -182,8 +181,6 @@
                                             <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
                                             </option>
                                             <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
-                                            </option>
-                                            <option *ngIf="testMaster.testType=='Text'" value="Text Editor">Text Editor
                                             </option>
                                         </select>
                                     </div>
@@ -269,7 +266,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group input-group-sm">
-                                                <label for="">Range </label>
+                                                <label for="">Range / info </label>
                                                 <textarea class="form-control" rows="2" placeholder="enter range"
                                                     [(ngModel)]="range_from" name="range" disabled></textarea>
                                             </div>
@@ -342,7 +339,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group input-group-sm">
                                                         <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Range</label>
+                                                            class="form-label">Range / info</label>
                                                         <textarea class="form-control" rows="2" disabled
                                                             [(ngModel)]="range_from" name="range"></textarea>
                                                     </div>
@@ -396,18 +393,8 @@
                                     </div>
                                 </div>
                                 <!-- Title Field end -->
-                            </form>
                         </div>
-                        <div class="col-8">
-                            <div *ngIf="testMaster.testType=='Text'" style="height: 54vh;">
-                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent"
-                                    [config]="editorConfig" disabled></angular-editor>
-                                <iframe frameborder="0">
-                                    <div id="pdfContent" class="textContentDiv" style="width: 570px;" #pdfContent>
-                                        <div class="textContentDiv" [innerHTML]="textContent"></div>
-                                    </div>
-                                </iframe>
-                            </div>
+                        <div class="col-8">  
                             <div *ngIf="field_type!='Text Editor' && testMaster.testType=='Table'"
                                 style="height: 54vh;  width: 100%;">
                                 <table class="table table-hover table-bordered">
@@ -420,7 +407,7 @@
                                             <th scope="col">Sub Field</th>
                                             <th scope="col">Data Type</th>
                                             <th scope="col">Unit</th>
-                                            <th scope="col">Range</th>
+                                            <th scope="col">Range / info</th>
                                             <th scope="col">Formula</th>
                                         </tr>
                                     </thead>
@@ -476,6 +463,12 @@
                             <div>
                             </div>
                         </div>
+                        <div class="row justify-content-center" style="align-items: center;">
+                            <div class="mt-2 justify-content-center" *ngIf="testMaster.testType=='Text'" style="height: 54vh; width: 918px;">
+                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent" name="textContent"
+                                    [config]="editorConfigView"></angular-editor>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -483,7 +476,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#viewReportPdf1"
-                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" makePdf()">View Report</button>
+                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" viewPdf()">View Report</button>
             </div>
         </div>
     </div>
@@ -608,7 +601,7 @@
                     <div class="row mt-4 justify-content-center">
                         <div class="col-4 report-data-field">
 
-                            <div class="col-12">
+                            <div class="col-12" *ngIf="testMaster.testType=='Table'">
                                 <div class="form-group input-group-sm">
                                     <label for="">Type </label>
                                 </div>
@@ -621,8 +614,6 @@
                                         <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
                                         </option>
                                         <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
-                                        </option>
-                                        <option *ngIf="testMaster.testType=='Text'" value="Text Editor">Text Editor
                                         </option>
                                     </select>
                                 </div>
@@ -682,7 +673,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group input-group-sm">
-                                                        <label for="">Range </label>
+                                                        <label for="">Range / info </label>
                                                         <input type="number" class="form-control" name="range"
                                                             [(ngModel)]="range_from" placeholder="Minimum">
                                                     </div>
@@ -709,9 +700,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group input-group-sm">
-                                                <label for="">Range </label>
+                                                <label for="">Range / info </label>
                                                 <textarea class="form-control" rows="2" placeholder="enter range"
-                                                    [(ngModel)]="range_from" name="range"></textarea>
+                                                    [(ngModel)]="range_from" name="range_from"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -809,7 +800,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group input-group-sm">
                                                         <label for="exampleFormControlTextarea1"
-                                                            class="form-label">Range</label>
+                                                            class="form-label">Range / info</label>
                                                         <textarea class="form-control" rows="2"
                                                             placeholder="enter range" [(ngModel)]="range_from"
                                                             name="range"></textarea>
@@ -944,15 +935,6 @@
                             </form>
                         </div>
                         <div class="col-8">
-                            <div *ngIf="testMaster.testType=='Text'" style="height: 54vh;">
-                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent"
-                                    [config]="editorConfig"></angular-editor>
-                                <iframe frameborder="0">
-                                    <div id="pdfContent" class="textContentDiv" style="width: 570px;" #pdfContent>
-                                        <div class="textContentDiv" [innerHTML]="textContent"></div>
-                                    </div>
-                                </iframe>
-                            </div>
                             <div *ngIf="field_type!='Text Editor' && testMaster.testType=='Table'"
                                 style="height: 54vh;  width: 100%;">
                                 <table class="table table-hover table-bordered">
@@ -965,7 +947,7 @@
                                             <th scope="col">Sub Field</th>
                                             <th scope="col">Data Type</th>
                                             <th scope="col">Unit</th>
-                                            <th scope="col">Range</th>
+                                            <th scope="col">Range / info</th>
                                             <th scope="col">Formula</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -1033,6 +1015,17 @@
                             <div>
                             </div>
                         </div>
+                        <div class="row justify-content-center" style="align-items: center;">
+                            <div class="mt-2 justify-content-center" *ngIf="testMaster.testType=='Text'" style="height: 54vh; width: 918px;">
+                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent" name="textContent"
+                                    [config]="editorConfig"></angular-editor>
+                                <!-- <iframe frameborder="0" style="height: 0px;">
+                                    <div id="pdfContent" style="width: 560px;" #pdfContent >
+                                        <div class="textContentDiv" [innerHTML]="newTextContent"></div>
+                                    </div>
+                                </iframe> -->
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -1041,7 +1034,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-secondary btn-sm" [disabled]="!f.valid">Reset Report</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#viewReportPdf"
-                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" makePdf()" [disabled]="!f.valid">View
+                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" viewPdf()" [disabled]="!f.valid">View
                     Report</button>
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#saveModal"
                     (click)="onProceedClick()" [disabled]="!f.valid">{{ModalButtonName}}</button>
@@ -1103,8 +1096,6 @@
     </div>
 </div>
 
-
-
 <!-- Report in PDF Model -->
 <div class="modal fade" id="viewReportPdf" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
     aria-labelledby="viewReportPdfLabel" aria-hidden="true">
@@ -1119,19 +1110,7 @@
                 <div class="row justify-content-center">
                     <embed [src]="pdfurl" style="height: 70vh; width: 150vh;" />
                 </div>
-                <!-- <iframe frameborder="0" id="pdfHeaderContent" class="" style="width: 570px;" #pdfHeaderContent >
-                <div class="row">
-                        <div class="col-2">
-                            <img src="assets/Microscop.png" alt="Microscop" height="70" width="">
-                        </div>
-                        <div class="col-8">
-                            <h5>Ganesh Labarotory</h5>
-                        </div>
-                        <div class="col-2">
-
-                        </div>
-                </div>
-            </iframe> -->
+              
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"

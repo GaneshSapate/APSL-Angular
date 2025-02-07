@@ -5,5 +5,6 @@ export interface LoginUserResp{
     labId:number,
     authorities:[{authority:string}],
     userRole:string,
-    userId:number
+    userId:number,
+    accountType:string;
 }

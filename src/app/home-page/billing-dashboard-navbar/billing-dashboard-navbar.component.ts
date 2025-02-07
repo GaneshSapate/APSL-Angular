@@ -7,6 +7,7 @@ import { ErrorObj } from '../../Model/ErrorObj';
 import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
 import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
+import { PatientModalService } from 'src/app/pateint-page/service/patient-modal.service';
 
 @Component({
   selector: 'app-billing-dashboard-navbar',
@@ -24,6 +25,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
 
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus: boolean = false;
+
+  patientModalType="add";
 
   //full screen button variables
   fullScreenFlag: boolean = false;
@@ -72,7 +75,9 @@ export class BillingDashboardNavbarComponent implements OnInit {
     private router: Router,
     private toaster: ToastrService,
     private masterService: MasterDataService,
-    private labService: LabServiceService,private sideNaveService : SidebarService) { 
+    private labService: LabServiceService,
+    private sideNaveService : SidebarService,
+    private patientModalService:PatientModalService) { 
       this.sideNaveService.onButtonClick.subscribe(() => {
         this.autoRefresh();
       })
@@ -101,6 +106,10 @@ export class BillingDashboardNavbarComponent implements OnInit {
     
     this.setlab();
     this. autoRefresh();
+  }
+
+  openNewPatientModal(){
+    this.patientModalService.onButtonClick.next(null);
   }
 
   lightMode() {

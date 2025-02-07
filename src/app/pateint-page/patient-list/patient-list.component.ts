@@ -3,6 +3,10 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { PatientService } from '../service/patient.service';
+import { Patient } from '../model/PatientModel';
+import { PatientPage } from '../model/PatientPage';
+import { PatientModalService } from '../service/patient-modal.service';
 
 @Component({
   selector: 'app-patient-list',
@@ -10,9 +14,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent implements OnInit {
-
-  patientPage:boolean=true;
-
    patientObj={
     patientId:0,
     patientName:null,
@@ -21,115 +22,14 @@ export class PatientListComponent implements OnInit {
     addedDate:null,
   }
 
-  patientList=[
-    {
-      patientId:1,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:2,
-      patientName:"Shivprasad Gaikwad",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:3,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:4,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:5,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:6,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:7,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:8,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:9,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:10,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:11,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:12,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    },
-    {
-      patientId:13,
-      patientName:"Ganesh Sapate",
-      gender:"M",
-      mobileNo:"9096916759",
-      addedDate:new Date().toLocaleString(),
-      status:"pending"
-    }
-  ];
+  patientList:Patient[]=[];
+  patientPage=<PatientPage>{};
+  lId = <number> new Number(sessionStorage.getItem("labId"));
 
-  p:number=1;
-
+  pageNumber:number=1;
+  pageSize:number=9;
+  totalCount:number=0
+  MaxPageNumbers:number=0;
   nameSearch:string='';
 
 
@@ -138,13 +38,40 @@ export class PatientListComponent implements OnInit {
   safepdfUrl=this.sanitizer.bypassSecurityTrustResourceUrl("");
 
   constructor(private sanitizer: DomSanitizer,
-              private router : Router) { }
+              private router : Router,
+              private patientService:PatientService,
+              private patientModalService:PatientModalService) { }
 
   ngOnInit(): void {
+    var lId = <number> new Number(sessionStorage.getItem("labId"));
+    this.patientService.getPatientListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
+        this.patientPage = <any>r;
+        this.patientList = this.patientPage.content;
+        this.totalCount = this.patientPage.totalElements;
+        this.pageNumber = this.patientPage.number;
+        this.MaxPageNumbers = this.patientPage.totalPages;
+        console.log(<any>r)
+    })
   }
+
+  openNewPatientModal(){
+    this.patientModalService.onButtonClick.next(null);
+  }
+
+  changePage(event:any){
+    this.pageNumber = event;
+    this.patientService.getPatientListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
+      this.patientPage = <any>r;
+      this.patientList = this.patientPage.content;
+      this.totalCount = this.patientPage.totalElements;
+      this.pageNumber = this.patientPage.number;
+      console.log(<any>r)
+  })
+  }
+
   onClickPateint(patient:any){
     this.patientObj = patient;
-    this.router.navigate(["dashboard/pateint/PatientDetails",this.patientObj.patientId,this.patientObj.patientId],{  queryParams: this.patientObj });
+    this.router.navigate(["dashboard/pateint/PatientDetails",this.patientObj.patientId]);
   }
 
 

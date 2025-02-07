@@ -1,18 +1,29 @@
 <div class="row mx-2 mt-2 " style="border-radius: 7px;">
     <div class="card py-3 ps-4 header-card" style="border: none;">
         <div class="card-body p-1 p-md-2">
-          <h6 class="card-title" style="font-size: 17px;">{{patientObj.patientName}} </h6>
-          <p class="card-text" style="font-size: 14px; ">
-            <span class="ms-0">Refer By : </span>{{patientObj.mobileNo}},  
-            <span class="ms-2">Gender : </span>{{patientObj.gender}}, 
-            <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}}, 
-            <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
-            </p>
+          <div class="mb-4">
+            <div style="display: inline-block;">
+              <div class="image-block"  *ngIf="patientObj.gender=='M'">
+                <img class="image"  src="../../../assets/icon/user-male.png" alt="">
+              </div>
+              <div class="image-block" *ngIf="patientObj.gender=='F'">
+                <img class="image" src="../../../assets/icon/user-female.png" alt="">
+              </div>
+            </div>
+            <div style="display: inline-block; vertical-align: middle;">
+              <h6 class="card-title" style="font-size: 17px;">{{patientObj.firstName}} {{patientObj.lastName}}</h6>
+              <div style="font-size: 13px;">Address Detials : {{patientObj.addressLine}}, {{patientObj.cityVillage}}, {{patientObj.district}}, {{patientObj.state}}</div>
+              <p class="card-text" style="font-size: 14px; ">
+                <span>Gender : </span>{{patientObj.gender}} 
+                <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}} 
+                <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
+              </p>
+            </div>
+          </div>
+          
           <a  class="btn btn-secondary btn-sm " (click) = "clickonBack()" > <i class="fa-regular fa-square-caret-left"></i> Go Back</a>
-          <a  class="btn btn-secondary btn-sm ms-md-4 " data-bs-toggle="modal" data-bs-target="#editPatientModal">
+          <a  class="btn btn-secondary btn-sm ms-md-4 " (click)="openPatientModal()" data-bs-toggle="modal" data-bs-target="#modifyPatientModal" >
             <i class="fa-regular fa-pen-to-square"></i> Edit Pateint </a>
-          <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Report </a>
-          <a  class="btn btn-secondary btn-sm ms-md-4 "  ><i class="fa-solid fa-print"></i> Print Bill </a>
           <a  class="btn btn-danger btn-sm ms-md-4 "  ><i class="fa-solid fa-trash-can"></i> Trash </a>
         </div>
       </div>
@@ -21,7 +32,7 @@
     <div class="patientTableDiv pt-2">
         <div class="row mx-2 py-2 mt-2">
             <div class="col-6">
-                <h6>Reports List</h6>
+                <h6>Entry List</h6>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group " >
@@ -64,373 +75,235 @@
 
 
 <!-- patient modal -->
-<div class="modal fade" id="editPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPatientModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-      <div class="modal-content ">
-        <div class="modal-header d-flex">
-          <h5 class="modal-title" id="editPatientModalLabel"> Modify Entry </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="height: 40rem;">
-            <div class="container-xl">
-
-                <div class="row my-lg-2 justify-content-center">
-                    <div class="col-12 col-md-3 col-lg-4 col-xl-3">
-                        <h6>Search Patient </h6>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-5 col-xl-5">
-                      <div class="form-group input-group input-group-sm">
-                          <input type="text" class="form-control" list="datalistOptions"  minlength="3" placeholder="Enter Name or Mobile No" required>
-                          
-                          <datalist id="datalistOptions">
-                            <option value="San Francisco">
-                            <option value="New York">
-                            <option value="Seattle">
-                            <option value="Los Angeles">
-                            <option value="Chicago">
-                          </datalist>
-                          <button class="btn btn-secondary btn-sm">Add</button>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 col-lg-3">
-                      <a  class="btn btn-secondary btn-sm ms-md-4" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
-                        <i class="fa-solid fa-plus"></i> New Patient</a>
-                  </div>
-                </div>
-                <br>
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <a class="nav-link active  " id="tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="justified-tabpanel-0" aria-selected="true"> Patient Details * </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a class="nav-link  " id="tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="justified-tabpanel-1" aria-selected="false"> Refers Details * </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a class="nav-link  " id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="justified-tabpanel-2" aria-selected="false"> Reports * </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a class="nav-link  " id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="justified-tabpanel-3" aria-selected="false"> Remark </a>
-                  </li>
-                </ul>
-                <div class="tab-content pt-2" id="tab-content">
-                  <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> 
-                        <div class="row my-2 px-2 mt-4">
-                          <div class="col-12 col-md-4 col-lg-2">
-                            <label for="">Title </label> 
-                          </div>
-                          <div class="col-12 col-md-6 col-lg-4">
-                
-                              <div class="form-group input-group input-group-sm">
-                                  <select class="form-select" >
-                                      <option selected value="">Select</option>
-                                      <option  value="MR.">MR.</option>
-                                      <option  value="MRS.">MRS.</option>
-                                      <option  value="MS.">MS.</option>
-                                      <option  value="DR.">DR.</option>
-                                  </select>
-                              </div>
-                          </div>
-                          <div class="col-12 col-md-4 col-lg-2">
-                              <div class=" form-group input-group-sm ms-lg-4 mt-2 mt-lg-0" >
-                                  <label for="">First Name</label>
-                              </div>
-                          </div>
-                          <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                              <div class="form-group input-group-sm"  >
-                                  <div class="input-group flex-nowrap input-group-sm">
-                                    <input type="text" class="form-control"   minlength="3"
-                                    placeholder="Enter First Name" required>
-                                  </div>
-                              </div>
-                          </div>
-                    </div>
-
-                    <div class="row my-2 px-2">
-                      
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Middle Name</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                          <div class="form-group input-group-sm"  >
-                              <div class="input-group flex-nowrap input-group-sm">
-                                <input type="text" class="form-control"   minlength="3"
-                                placeholder="Enter Middle Name" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">Last Name </label> 
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                          placeholder="Enter Last Name" required>
-                          </div>
-                      </div>
-                    </div>
-
-                    <div class="row my-2 px-2">
-                      
-                    <div class="col-12 col-md-4 col-lg-2">
-                      <div class="form-group input-group-sm" >
-                          <label for="">Gender </label>
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                      <div class="form-group input-group input-group-sm">
-                        <select class="form-select" >
-                            <option  value="" selected >Select gender</option>
-                            <option  value="M">Male</option>
-                            <option  value="F">Female</option>
-                            <option  value="O">Other</option>
-                        </select>
-                    </div>
-                    </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">Age </label>
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        
-                     
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="input-group flex-nowrap input-group-sm">
-                                <input type="number" class="form-control"   minlength="3"
-                                placeholder="Enter Age" required>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group input-group input-group-sm">
-                                <select class="form-select" >
-                                    <option selected  value="Y">Year</option>
-                                    <option  value="M">Month</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                       
-                      </div>
-                    </div>
-
-                    <div class="row my-2 mt-4">
-                      <label for="">Address And Communication</label>
-                    </div>
-
-                    
-                    <div class="row my-2 px-2">
-                      
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Country</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                          <div class="form-group input-group input-group-sm">
-                            <select class="form-select" required >
-                                <option  value="" selected >Select Country</option>
-                                <option  value="IN">India</option>
-                            </select>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">State </label> 
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        <div class="form-group input-group input-group-sm">
-                          <select class="form-select" [(ngModel)]= "state" (ngModelChange)= "onSelectState()" required >
-                              <option  value="" selected >Select State</option>
-                              <option *ngFor= "let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
-                              
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    
-                    <div class="row my-2 px-2">
-                      
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">District</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                          <div class="form-group input-group input-group-sm">
-                            <select class="form-select" [(ngModel)]= "district" required>
-                                <option  value="" selected >Select District</option>
-                                <option *ngFor= "let dist of districtList" value="dist.discription">{{ dist.discription }}</option>
-                                
-                            </select>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">City / Village </label> 
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="text" class="form-control"   minlength="3"
-                          placeholder="Enter City / village name" required>
-                          </div>
-                      </div>
-                    </div>
-
-                    
-                    <div class="row my-2 px-2">
-                      
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Address Line</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                          <div class="form-group input-group-sm"  >
-                              <div class="input-group flex-nowrap input-group-sm">
-                                <input type="text" class="form-control"   minlength="3"
-                                placeholder="Enter Address line" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">Pincode </label> 
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="number" class="form-control"   minlength="3"
-                          placeholder="Enter Pincode" required>
-                          </div>
-                      </div>
-                    </div>
-
-                    <div class="row my-2 px-2">
-                      
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Mobile No</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                          <div class="form-group input-group-sm"  >
-                              <div class="input-group flex-nowrap input-group-sm">
-                                <input type="number" class="form-control"   minlength="3"
-                                placeholder="Enter Mobile No" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                        <div class=" form-group input-group-sm ms-lg-4 " >
-                          <label for="">Email ID </label> 
-                        </div>
-                        
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <input type="email" class="form-control"   minlength="3"
-                          placeholder="Enter Email Address " required>
-                          </div>
-                      </div>
-                    </div>
-                    
-                  </div>
-                 
-                  <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-
-                    <div class="row my-2 px-2 mt-4">
-                      <div class="col-12 col-md-4 col-lg-2">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Refer By</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group input-group-sm">
-                          <select class="form-select" >
-                              <option selected   value="">Select</option>
-                              <option   value="Myself">Myself</option>
-                              <option   value="Dr. Agrawal">Dr. Agrawal</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                 
-                  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2"> 
-                    <div class="row my-2 px-2 my-4">
-                      <div class="col-12 col-md-4 col-lg-3">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Add Reports</label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group input-group-sm">
-                          <select class="form-control" >
-                              <option class="form-control"  value="">Select</option>
-                              <option class="form-control"  value="Myself">CBC</option>
-                              <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
-                          </select>
-                          <button class="btn btn-secondary btn-sm">add</button>
-                      </div>
-                      </div>
-                    </div>
-                    <div class="container-sm">
-                      <table class="table table-hover table-sm table-bordered">
-                          <thead style="color: blue;">
-                            <tr style="color: blue;">
-                              <th scope="col">#</th>
-                              <th scope="col">First</th>
-                              <th scope="col">Last</th>
-                              <th scope="col">Handle</th>
-                            </tr>
-                          </thead>
-                          <tbody style="background-color: cadetblue;">
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>mdo</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div> 
-
-                  </div>
-                  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
-                    <div class="row my-2 px-2 mt-4">
-                      <div class="col-12 col-md-4 col-lg-3">
-                          <div class=" form-group input-group-sm " >
-                              <label for="">Remark </label>
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-4">
-                        <div class="input-group flex-nowrap input-group-sm">
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+<div class="modal fade" id="modifyPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+aria-labelledby="modifyPatientModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+  <div class="modal-content">
+    <div class="modal-header ">
+      <h5 class="modal-title" id="modifyPatientModalLabel">{{modalTitle}} </h5>
+      <button type="button" #closemodifyPatientModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm">
+      <div class="container-sm">
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <label for="">Title </label>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group input-group-sm">
+              <select class="form-select" name="title" [(ngModel)]="patientObj.title" required>
+                <option class="form-control" value="">Select</option>
+                <option class="form-control" value="MR.">MR.</option>
+                <option class="form-control" value="MRS.">MRS.</option>
+                <option class="form-control" value="MS.">MS.</option>
+                <option class="form-control" value="DR.">DR.</option>
+              </select>
             </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4">
+              <label for="">First Name</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="2" name="firstName"
+                  [(ngModel)]="patientObj.firstName" placeholder="Enter First Name" required>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm ">
+              <label for="">Middle Name</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" name="middleName"
+                  [(ngModel)]="patientObj.middleName" placeholder="Enter Middle Name">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">Last Name </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="input-group flex-nowrap input-group-sm">
+              <input type="text" class="form-control" minlength="2" name="lastName" [(ngModel)]="patientObj.lastName"
+                placeholder="Enter Last Name" required>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class="form-group input-group-sm">
+              <label for="">Gender </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 ">
+            <div class="form-group input-group input-group-sm">
+              <select class="form-select" name="gender" [(ngModel)]="patientObj.gender" minlength="1" required>
+                <option class="form-control" value="">Select gender</option>
+                <option class="form-control" value="M">Male</option>
+                <option class="form-control" value="F">Female</option>
+                <option class="form-control" value="O">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">Age </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group flex-nowrap input-group-sm">
+                  <input type="number" class="form-control" minlength="2" name="age" [(ngModel)]="patientObj.age"
+                    placeholder="Enter Age" required>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group input-group input-group-sm">
+                  <select class="form-select" name="ageUnit" [(ngModel)]="patientObj.ageUnit"  minlength="1" required="">
+                    <option class="form-control" selected value="Y">Year</option>
+                    <option class="form-control" value="M">Month</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 mt-4">
+          <label for="">Address And Communication</label>
+        </div>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm ">
+              <label for="">Country</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <select class="form-select" minlength="2" name="country" [(ngModel)]="patientObj.country" required>
+                  <option value="" selected>Select Country</option>
+                  <option value="IN">India</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">State </label>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="input-group flex-nowrap input-group-sm">
+              <select class="form-select" name="state" [(ngModel)]="patientObj.state"
+                (ngModelChange)="onSelectState()" required>
+                <option value="" selected>Select State</option>
+                <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm ">
+              <label for="">District</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <select class="form-select" name="district" minlength="2" [(ngModel)]="patientObj.district" required>
+                  <option value="" selected>Select District</option>
+                  <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">City / Village </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="input-group flex-nowrap input-group-sm">
+              <input type="text" class="form-control" minlength="2" name="cityVillage"
+                [(ngModel)]="patientObj.cityVillage" placeholder="Enter City / village name" required>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm ">
+              <label for="">Address Line</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="text" class="form-control" minlength="2" name="addressLine"
+                  [(ngModel)]="patientObj.addressLine" placeholder="Enter Address line" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">Pincode </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="input-group flex-nowrap input-group-sm">
+              <input type="number" class="form-control" name="pincode" [(ngModel)]="patientObj.pincode"
+                placeholder="Enter Pincode">
+            </div>
+          </div>
+        </div>
+        <div class="row my-2 px-2">
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class=" form-group input-group-sm ">
+              <label for="">Mobile No</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4">
+            <div class="form-group input-group-sm">
+              <div class="input-group flex-nowrap input-group-sm">
+                <input type="number" class="form-control" name="mobileNo"
+                  [(ngModel)]="patientObj.mobileNo" placeholder="Enter Mobile No">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+            <div class=" form-group input-group-sm ms-lg-4 ">
+              <label for="">Email ID </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
+            <div class="input-group flex-nowrap input-group-sm">
+              <input type="email" class="form-control" name="emailId" [(ngModel)]="patientObj.emailId"
+                placeholder="Enter Email Address ">
+            </div>
+          </div>
         </div>
       </div>
+    </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      <button type="button" [disabled]="!f.valid" (click)="modifyPatient()" class="btn btn-success btn-sm">Save
+        changes</button>
     </div>
   </div>
+</div>
+</div>

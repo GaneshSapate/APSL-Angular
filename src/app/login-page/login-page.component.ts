@@ -113,13 +113,14 @@ export class LoginPageComponent implements OnInit {
         console.log(UserResp);
         sessionStorage.setItem("token",UserResp.token);
         if(UserResp.mainUserId === 0 && UserResp.userRole === "MAIN_USER") {
-          sessionStorage.setItem("mainUserId",UserResp.userId.toString());
+          sessionStorage.setItem("mid",UserResp.userId.toString());
         }else{
-          sessionStorage.setItem("mainUserId",UserResp.mainUserId.toString());
+          sessionStorage.setItem("mid",UserResp.mainUserId.toString());
         }
         sessionStorage.setItem("labId",UserResp.labId.toString());
         sessionStorage.setItem("userId",UserResp.userId.toString());
         sessionStorage.setItem("userRole",UserResp.userRole);
+        sessionStorage.setItem("account_type",UserResp.accountType);
         this.labService.getLabsByUserId(UserResp.userId).subscribe(
           (r)=>{
             this.labList=<any>r;
@@ -137,7 +138,7 @@ export class LoginPageComponent implements OnInit {
     })
   }
   getAllLabs(){
-    var userId = <number> new Number(sessionStorage.getItem("mainUserId"));
+    var userId = <number> new Number(sessionStorage.getItem("mid"));
     this.labService.getLabsByUserId(userId).subscribe(
       (r)=>{
         console.log(r);

@@ -23,7 +23,7 @@
               <i class="fa-solid fa-plus"></i> New Entry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link py-1 any-item" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
+            <a class="nav-link py-1 any-item" (click)="openNewPatientModal()" data-bs-toggle="modal" data-bs-target="#NewPatientModal">
                Add New Patient</a>
           </li>
           <li class="nav-item dropdown any-item">
@@ -717,7 +717,8 @@
 
 
 <!-- Add New Patient Modal -->
-<div class="modal fade" id="NewPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+<app-patient-modal [modalType]="patientModalType"></app-patient-modal>
+<!-- <div class="modal fade" id="NewPatientModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
   aria-labelledby="NewPatientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
@@ -951,4 +952,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
