@@ -16,4 +16,5 @@ export interface TestMasterObj{
     testTableDataDTOList:TestTableData[];
     addedDate:Date;
     modifiedDate:Date;
+    testTextData:string;
 }

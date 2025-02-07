@@ -9,6 +9,8 @@ import { Doctor } from 'src/app/Model/Doctor';
 import { TestService } from 'src/app/service/test.service';
 import { TestMasterObj } from 'src/app/Model/TestMasterObj';
 import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
+import { PatientEntryService } from '../service/patient-entry.service';
+import { PatientService } from 'src/app/pateint-page/service/patient.service';
 
 @Component({
   selector: 'app-entry-modal',
@@ -32,9 +34,9 @@ export class EntryModalComponent implements OnInit {
       discription: ""
     }
   ];
-  doctorsList=[<Doctor>{}];
-
-  testMasterList=[<TestMasterObj>{}];
+  doctorsList:Doctor[]=[];
+  searchPatientList:Patient[]=[];
+  testMasterList:TestMasterObj[]=[];
 
   eventObj = {
     navPatient: false,
@@ -47,43 +49,84 @@ export class EntryModalComponent implements OnInit {
     navEntry: false
   }
 
-  @Output() addPatientEvent = new EventEmitter<any>();
-
   patientObj = <Patient>{};
   patientEntry = <PatientEntry>{};
+  doctorObj=<Doctor>{};
+  searchString:string = "";
+  doctorString:string = "";
 
   constructor(private toaster: ToastrService,
     private router: Router,
     private masterService: MasterDataService,
     private doctorService: DoctorServiceService,
-    private testService:TestService,private sideNaveService : SidebarService) { }
+    private testService:TestService,
+    private sideNaveService : SidebarService,
+    private patientEntryService:PatientEntryService,
+    private patientService:PatientService) { }
 
   ngOnInit(): void {
+    this.patientEntry.patient=<Patient>{};
+    this.patientEntry.patient.title="";
+    this.patientEntry.patient.gender="";
+    this.patientEntry.patient.district="";
+    this.patientEntry.patient.country="";
+    this.patientEntry.referBy = <Doctor>{};
     this.masterService.getAllState().subscribe((r) => {
       this.stateList = <any>r;
     });
     this.doctorService.getAlldoctorsByLabId(this.labId).subscribe((r)=>{
       this.doctorsList=<any>r;
     })
-
   }
 
   onSelectState() {
-    if (this.patientObj.state) {
-      this.masterService.getDistrictByStateCode(this.patientObj.state).subscribe(
+    this.districtList=[];
+    if (this.patientEntry.patient.state) {
+      this.masterService.getDistrictByStateCode(this.patientEntry.patient.state).subscribe(
         (result) => {
           this.districtList = <any>result;
         })
     }
-
+  }
+  search($event:any){
+    if(this.searchString.length>=2){
+      this.patientService.searchPatientByNameOrMRN(this.searchString).subscribe((s)=>{
+        this.searchPatientList = <any>s;
+      })
+    }
+  }
+  onSelect(p:Patient){
+    this.searchString = p.firstName +" "+p.lastName
+    this.patientEntry.patient = p;
+    this.onSelectState();
+  }
+  onSelectDoctor(d:Doctor){
+    this.patientEntry.referBy = d;
+    this.doctorString = d.title +" "+d.firstName+" "+d.lastName;
+  }
+  removeRefer(){
+    this.patientEntry.referBy=<Doctor>{};
+    this.doctorString ="";
+  }
+  clearAll(){
+    this.searchString ="";
+    this.doctorString ="";
+    this.patientEntry=<PatientEntry>{};
+    this.patientEntry.patient=<Patient>{};
+    this.patientEntry.patient.title="";
+    this.patientEntry.patient.gender="";
+    this.patientEntry.patient.district="";
+    this.patientEntry.patient.country="";
+    this.patientEntry.referBy = <Doctor>{};
+  }
+  closeModal(){
+    this.clearAll();
   }
 
   addPatient() {
-
     this.router.navigate(["dashboard/pateint"]).then(()=>{
       this.sideNaveService.onButtonClick.next('');
     })
-   
   }
 
 }

@@ -465,7 +465,7 @@
                         </div>
                         <div class="row justify-content-center" style="align-items: center;">
                             <div class="mt-2 justify-content-center" *ngIf="testMaster.testType=='Text'" style="height: 54vh; width: 918px;">
-                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent" name="textContent"
+                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testMaster.testTextData" name="textContent"
                                     [config]="editorConfigView"></angular-editor>
                             </div>
                         </div>
@@ -1017,7 +1017,7 @@
                         </div>
                         <div class="row justify-content-center" style="align-items: center;">
                             <div class="mt-2 justify-content-center" *ngIf="testMaster.testType=='Text'" style="height: 54vh; width: 918px;">
-                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="textContent" name="textContent"
+                                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testMaster.testTextData" name="textContent"
                                     [config]="editorConfig"></angular-editor>
                                 <!-- <iframe frameborder="0" style="height: 0px;">
                                     <div id="pdfContent" style="width: 560px;" #pdfContent >

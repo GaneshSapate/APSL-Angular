@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { PatientEntryService } from '../service/patient-entry.service';
+import { PatientEntry } from '../model/PatientEntry';
 
 @Component({
   selector: 'app-entry-list',
@@ -21,31 +23,29 @@ export class EntryListComponent implements OnInit {
    addedDate:null,
  }
 
- patientList=[
-   {
-     patientId:1,
-     patientName:"Ganesh Sapate",
-     gender:"M",
-     mobileNo:"9096916759",
-     addedDate:new Date().toLocaleString(),
-     status:"pending"
-   }
- ];
-
+ patienEntrytList:PatientEntry[]=[];
+ lId = <number> new Number(sessionStorage.getItem("labId"));
+ 
  p:number=1;
-
  nameSearch:string='';
-
+ pageNumber:number=1;
+ pageSize:number=9;
+ totalCount:number=0
+ MaxPageNumbers:number=0;
 
  //export patint pdf objects
  pdfurl:any;
  safepdfUrl=this.sanitizer.bypassSecurityTrustResourceUrl("");
 
  constructor(private sanitizer: DomSanitizer,
-             private router : Router) { }
+             private router : Router,
+             private patientEntryService:PatientEntryService) { }
 
              
   ngOnInit(): void {
+    this.patientEntryService.getPatientEntryListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
+
+    })
   }
   
  onClickPateint(patient:any){

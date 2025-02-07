@@ -2,10 +2,9 @@
     <div class="row header-card pb-2">
         <h6 class="linear-gradient-default mb-2 card-title"><i class="fa-regular fa-pen-to-square"></i> 
             &nbsp;&nbsp;Entry Management</h6>
-        <p style="font-size: 13px;">Here you can add and manage patient also fill and modify reports</p>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-9">
+    <div class="row mt-2">
+        <div class="col-12 col-md-8 justify-content-between">
             <button type="button" class="btn btn-primary btn-sm active" data-bs-toggle="modal"
                 data-bs-target="#entryModal">
                 <i class="fa-solid fa-plus"></i> New Entry</button>
@@ -16,28 +15,21 @@
                 data-bs-toggle="modal" data-bs-dismiss="modal">
                 <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
         </div>
+        <div class="col-12 col-md-4 col-lg-4 ms-auto mt-2 mt-md-0" style="min-width: 100px;">
+            <div class="input-group  input-group-sm">
+                <input type="text" class="form-control" minlength="3" placeholder="Enter Patient Name" required>
+                <button type="button" class="btn btn-secondary btn-sm"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row mx-2 mt-4">
-    <div class="patientTableDiv pt-2 ">
-        <div class="row mx-2 py-2 mt-2">
-            <div class="col-12 col-md-6">
-                <h6>Recently Added Patient List</h6>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="form-group input-group-sm">
-                    <div class="input-group  input-group-sm">
-                        <input type="text" class="form-control" minlength="3" placeholder="Enter Patient Name" required>
-                        <button type="button" class="btn btn-secondary btn-sm"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="patientTableDiv mt-2 ">
         <div class="PatientTable" style="overflow-y: auto;">
-            <table class="table table-hover table-sm table-bordered">
-                <thead>
+            <table class="table table-borderless table-hover">
+                <thead style="position: sticky; top: 0; z-index: 1;">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Patient Name</th>
@@ -45,22 +37,20 @@
                         <th scope="col">Gender</th>
                         <th scope="col">Mobile NO</th>
                         <th scope="col">Added Date</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">modified Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                        <td>{{patient.patientId}}</td>
-                        <td class="patientName" (click)="onClickPateint(patient)">{{patient.patientName}}</td>
+                    <tr *ngFor="let entry of patienEntrytList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
+                        <td>{{entry.patientId}}</td>
+                        <td class="patientName" (click)="onClickPateint(entry)">{{entry.patient.firstName}} {{entry.patient.lastName}}</td>
                         <td>
-                            <p class="patientStatus shadow-sm">{{patient.status}}</p>
+                            <p class="patientStatus shadow-sm">{{entry.status}}</p>
                         </td>
-                        <td>{{patient.gender}}</td>
-                        <td>{{patient.mobileNo}}</td>
-                        <td>{{patient.addedDate}}</td>
-                        <td>
-                            <p class="tableLink shadow-sm "><i class="fa-solid fa-print"></i> Print</p>
-                        </td>
+                        <td>{{entry.patient.gender}}</td>
+                        <td>{{entry.patient.mobileNo}}</td>
+                        <td>{{entry.patient.addedDate}}</td>
+                        <td>{{entry.patient.modifiedDate}}</td>
                     </tr>
                 </tbody>
             </table>

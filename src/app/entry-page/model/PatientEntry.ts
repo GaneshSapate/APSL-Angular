@@ -1,3 +1,4 @@
+import { Doctor } from "src/app/Model/Doctor";
 import { Patient } from "./Patient";
 
 export interface PatientEntry{
@@ -5,7 +6,7 @@ entryId:number;
 patientId:number;
 labId:number;
 status:string;
-referById:number;
+referBy:Doctor;
 testCode:string;
 remark:string;
 addedDate:Date;

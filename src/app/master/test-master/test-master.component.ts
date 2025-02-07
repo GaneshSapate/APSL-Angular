@@ -750,15 +750,17 @@ export class TestMasterComponent implements OnInit {
   }
 
   labObj = <LabObj>{};
-
+  
+ // this is IMP method
   viewPdf() {
-    let text: string = this.textContent;
+    let text: string = this.testMaster.testTextData;
     let replcetext = text.replaceAll("<font face=\"Arial\"", "<font face=\"Arial\"")
     this.newTextContent = "<div style=\"width: 542px; font-size:10px;\" >" + replcetext + "</div>";
     console.log(this.newTextContent)
     this.makePdf();
   }
 
+  // this is IMP method
   makePdf() {
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setProperties({
@@ -911,6 +913,7 @@ export class TestMasterComponent implements OnInit {
     var userId = <number>new Number(sessionStorage.getItem("mid"));
     let testMasterDTO = <TestMasterObj>{};
     this.testMaster.userId = <number>new Number(sessionStorage.getItem("mid"));
+    this.testMaster.testTextData = this.newTextContent;
     this.testService.addNewTest(this.testMaster, userId).subscribe(
       (r) => {
         testMasterDTO = <any>r;
@@ -940,6 +943,7 @@ export class TestMasterComponent implements OnInit {
     this.title_field_list = [];
     this.field_name_list = [];
     this.allTestList = [];
+    this.newTextContent = "";
 
     let title_field_list: string[] = [];
     let field_name_list: string[] = [];

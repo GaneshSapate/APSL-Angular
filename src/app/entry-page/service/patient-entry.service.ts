@@ -5,29 +5,25 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService {
-  
-  url: string = environment.url + "/patient";
+export class PatientEntryService {
 
+  url: string = environment.url + "/patientEntry";
+  
   constructor(private http: HttpClient) { }
 
-  addPatient(obj: any) {
+  addPatientEntry(obj: any) {
     return this.http.post(`${this.url}`, obj);
   }
-  updatePatient(obj: any) {
+  updatePatientEntry(obj: any) {
     return this.http.put(`${this.url}`, obj);
   }
-  getPatientListByLabId(labId: number, pageNo: number, pageSize: number) {
+  getPatientEntryListByLabId(labId: number, pageNo: number, pageSize: number) {
     return this.http.get(`${this.url}` + `/` + labId + `/` + pageNo + `/` + pageSize);
   }
-  getPatientById(id: any) {
-    return this.http.get(`${this.url}` + `/getPatient/` + id);
+  getPatientEntryById(id: any) {
+    return this.http.get(`${this.url}` + `/getPatientEntryById/` + id);
   }
-  deletePatientById(id: any) {
+  deletePatientEntryById(id: any) {
     return this.http.delete(`${this.url}` + `/` + id);
   }
-  searchPatientByNameOrMRN(name: string) {
-    return this.http.get(`${this.url}` + `/searchPatientByNameOrMRN/` + name);
-  }
-
 }
