@@ -9,6 +9,8 @@ import { LabObj } from 'src/app/Model/LabObj';
 import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 import { PatientModalService } from 'src/app/pateint-page/service/patient-modal.service';
 
+declare var bootstrap: any
+
 @Component({
   selector: 'app-billing-dashboard-navbar',
   templateUrl: './billing-dashboard-navbar.component.html',
@@ -71,6 +73,7 @@ export class BillingDashboardNavbarComponent implements OnInit {
     navContact: false,
     navEntry: false
   }
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private toaster: ToastrService,
@@ -106,6 +109,11 @@ export class BillingDashboardNavbarComponent implements OnInit {
     
     this.setlab();
     this. autoRefresh();
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })   
   }
 
   openNewPatientModal(){

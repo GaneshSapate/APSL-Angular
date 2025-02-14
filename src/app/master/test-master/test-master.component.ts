@@ -750,15 +750,6 @@ export class TestMasterComponent implements OnInit {
   }
 
   labObj = <LabObj>{};
-  
- // this is IMP method
-  viewPdf() {
-    let text: string = this.testMaster.testTextData;
-    let replcetext = text.replaceAll("<font face=\"Arial\"", "<font face=\"Arial\"")
-    this.newTextContent = "<div style=\"width: 542px; font-size:10px;\" >" + replcetext + "</div>";
-    console.log(this.newTextContent)
-    this.makePdf();
-  }
 
   // this is IMP method
   makePdf() {
@@ -866,6 +857,8 @@ export class TestMasterComponent implements OnInit {
         },
       })
     } else {
+      let text: string = this.testMaster.testTextData;
+      this.newTextContent = "<div style=\"width: 542px; font-size:10px;\" >" + text + "</div>";
       pdf.line(40, 200, 575, 200, "S");
       pdf.html(this.newTextContent, {
         callback: (pdf) => {
@@ -880,7 +873,6 @@ export class TestMasterComponent implements OnInit {
     }
     pdf.setFontSize(10);
     pdf.text('Footer Text', pdf.internal.pageSize.width - 60, pdf.internal.pageSize.height - 15, { align: "center" });
-    let labLogoString = "";
     var labId = <number>new Number(sessionStorage.getItem("labId"));
     var labId = 1;
     this.labService.getLabsById(labId).subscribe(

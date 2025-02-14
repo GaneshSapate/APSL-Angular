@@ -47,7 +47,8 @@ export class PatientModalComponent implements OnInit {
   constructor(private masterService: MasterDataService,
     private toaster: ToastrService,
     private router: Router,
-    private patientService: PatientService) {}
+    private patientService: PatientService,
+    private patientModalService:PatientModalService) {}
 
   ngOnInit(): void {
     this.masterService.getAllState().subscribe((r) => {
@@ -85,7 +86,9 @@ export class PatientModalComponent implements OnInit {
       if (this.closeUserModel) {
         this.closeUserModel.nativeElement.click();
       }
-      this.router.navigate(["dashboard/pateint"]);
+      this.router.navigate(["dashboard/pateint"]).then(()=>{
+        this.patientModalService.onButtonClick.next(null);
+      });
     })
   }
 

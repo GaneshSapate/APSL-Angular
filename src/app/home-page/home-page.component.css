@@ -2,7 +2,7 @@ app-side-nav-bar {
   position: fixed;
   top: 3rem;
   height: calc(100vh - 3rem);
-  width: 180px;
+  width: 200px;
   overflow-y: auto;
   transition: width 250ms ease-in;
   padding-left: 7px;
@@ -19,8 +19,8 @@ app-side-nav-bar {
 /* width reduce due to add new button */
 .display-area {
   position: absolute;
-  width: (100% - 180px); 
-  left: 180px;
+  width: (100% - 200px); 
+  left: 200px;
   right: 0px;
   transition: width 250ms ease-in, left 250ms ease-in;
 

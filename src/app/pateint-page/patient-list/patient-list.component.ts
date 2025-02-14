@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -14,105 +14,120 @@ import { PatientModalService } from '../service/patient-modal.service';
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent implements OnInit {
-   patientObj={
-    patientId:0,
-    patientName:null,
-    gender:null,
-    mobileNo:null,
-    addedDate:null,
+  patientObj = {
+    patientId: 0,
+    patientName: null,
+    gender: null,
+    mobileNo: null,
+    addedDate: null,
   }
 
-  patientList:Patient[]=[];
-  patientPage=<PatientPage>{};
-  lId = <number> new Number(sessionStorage.getItem("labId"));
+  patientList: Patient[] = [];
+  patientPage = <PatientPage>{};
+  lId = <number>new Number(sessionStorage.getItem("labId"));
 
-  pageNumber:number=1;
-  pageSize:number=9;
-  totalCount:number=0
-  MaxPageNumbers:number=0;
-  nameSearch:string='';
+  pageNumber: number = 1;
+  pageSize: number = 9;
+  totalCount: number = 0
+  MaxPageNumbers: number = 0;
+  nameSearch: string = '';
 
 
   //export patint pdf objects
-  pdfurl:any;
-  safepdfUrl=this.sanitizer.bypassSecurityTrustResourceUrl("");
+  pdfurl: any;
+  safepdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl("");
 
   constructor(private sanitizer: DomSanitizer,
-              private router : Router,
-              private patientService:PatientService,
-              private patientModalService:PatientModalService) { }
+    private router: Router,
+    private patientService: PatientService,
+    private patientModalService: PatientModalService,
+    private renderer: Renderer2) {
+      this.patientModalService.onButtonClick.subscribe(()=>{
+            this.ngOnInit();
+      })
+     }
 
   ngOnInit(): void {
-    var lId = <number> new Number(sessionStorage.getItem("labId"));
-    this.patientService.getPatientListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
-        this.patientPage = <any>r;
-        this.patientList = this.patientPage.content;
-        this.totalCount = this.patientPage.totalElements;
-        this.pageNumber = this.patientPage.number;
-        this.MaxPageNumbers = this.patientPage.totalPages;
-        console.log(<any>r)
+    var lId = <number>new Number(sessionStorage.getItem("labId"));
+    this.patientService.getPatientListByLabId(this.lId, this.pageNumber, this.pageSize).subscribe((r) => {
+      this.patientPage = <any>r;
+      this.patientList = this.patientPage.content;
+      this.totalCount = this.patientPage.totalElements;
+      this.pageNumber = this.patientPage.number;
+      this.MaxPageNumbers = this.patientPage.totalPages;
+      console.log(<any>r)
     })
+
+    const tableContainer = document.getElementById('PatientTable');
+    const tableHeader = document.getElementById('table-head');
+
+    if (tableContainer && tableHeader) {
+      tableContainer.addEventListener('scroll', () => {
+        if (tableContainer.scrollTop > 0) {
+          this.renderer.addClass(tableHeader, 'shadow-sm');
+        } else {
+          this.renderer.removeClass(tableHeader, 'shadow-sm');
+        }
+      });
+    }
+    
   }
 
-  openNewPatientModal(){
-    this.patientModalService.onButtonClick.next(null);
-  }
-
-  changePage(event:any){
+  changePage(event: any) {
     this.pageNumber = event;
-    this.patientService.getPatientListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
+    this.patientService.getPatientListByLabId(this.lId, this.pageNumber, this.pageSize).subscribe((r) => {
       this.patientPage = <any>r;
       this.patientList = this.patientPage.content;
       this.totalCount = this.patientPage.totalElements;
       this.pageNumber = this.patientPage.number;
       console.log(<any>r)
-  })
+    })
   }
 
-  onClickPateint(patient:any){
+  onClickPateint(patient: any) {
     this.patientObj = patient;
-    this.router.navigate(["dashboard/pateint/PatientDetails",this.patientObj.patientId]);
+    this.router.navigate(["dashboard/pateint/PatientDetails", this.patientObj.patientId]);
   }
 
 
-  makePdf(){
+  makePdf() {
 
-    let pdf= new jsPDF('p','pt','a4');
+    let pdf = new jsPDF('p', 'pt', 'a4');
 
-      pdf.line(20, 20, 575, 20, "S");
-      pdf.line(20, 40, 575, 40, "S");
+    pdf.line(20, 20, 575, 20, "S");
+    pdf.line(20, 40, 575, 40, "S");
 
-      let reportTableList =[
-        [
-          8,
-          "Ganesh Sapate",
-          "M",
-          "9096916759",
-          new Date().toLocaleString(),
-          "pending"
-        ]
+    let reportTableList = [
+      [
+        8,
+        "Ganesh Sapate",
+        "M",
+        "9096916759",
+        new Date().toLocaleString(),
+        "pending"
       ]
-      autoTable(pdf, {
-          head: [['ID', 'Paitent Name', 'Gender','Report Date','Report List','Cost']],
-          margin: { top: 20,right:20,left:20 },
-          body: reportTableList,
-          theme:"striped"
-        })
-      //pdf.save("sample.pdf");
-          pdf.setProperties({
-            title: "Paitent List"
-        });
+    ]
+    autoTable(pdf, {
+      head: [['ID', 'Paitent Name', 'Gender', 'Report Date', 'Report List', 'Cost']],
+      margin: { top: 20, right: 20, left: 20 },
+      body: reportTableList,
+      theme: "striped"
+    })
+    //pdf.save("sample.pdf");
+    pdf.setProperties({
+      title: "Paitent List"
+    });
 
     pdf.setFontSize(10);
-    pdf.text('Footer Text', pdf.internal.pageSize.width - 60, pdf.internal.pageSize.height - 15,{align : "center"});
+    pdf.text('Footer Text', pdf.internal.pageSize.width - 60, pdf.internal.pageSize.height - 15, { align: "center" });
     var blob = pdf.output("blob");
-    var usrl=window.URL.createObjectURL(blob);
-    this.pdfurl=usrl;
-    this.safepdfUrl=this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
+    var usrl = window.URL.createObjectURL(blob);
+    this.pdfurl = usrl;
+    this.safepdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfurl);
   }
 
-  printReport(){
-    window.open( this.pdfurl, "Export Data");
+  printReport() {
+    window.open(this.pdfurl, "Export Data");
   }
 
 }

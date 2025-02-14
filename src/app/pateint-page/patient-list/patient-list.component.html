@@ -1,12 +1,10 @@
-<div class="row header-card row mx-1 p-1 py-2 p-md-4 mt-2 ">
-    <div class="row pb-2">
-        <h6 class="linear-gradient-patient mb-2 card-title"><i class="fa-solid fa-user me-2" style="padding: 1px;"></i>
-            Patient List
-        </h6>
+<div class="row mx-1 py-2 mx-md-4 mt-4">
+    <div class="row pb-2 p-0">
+        <h6 class="mb-2 card-title">Patient List</h6>
     </div>
-    <div class="row mt-2">
+    <div class="row p-0">
         <div class="col-12 col-md-6">
-            <button type="button" class="btn btn-secondary btn-sm " (click)="openNewPatientModal()" data-bs-toggle="modal"
+            <button type="button" class="btn btn-secondary btn-sm " data-bs-toggle="modal"
                 data-bs-target="#NewPatientModal">
                 <i class="fa-solid fa-plus"></i> Add New Patient</button>
             <a class="btn btn-secondary btn-sm ms-sm-4 me-auto" (click)="makePdf()" data-bs-target="#viewPatientsPdf"
@@ -24,14 +22,13 @@
     </div>
 </div>
 
-<div class="row mx-2 mt-4">
-    <div class="patientTableDiv" >
-        <div class="PatientTable mt-2" style="overflow-y: auto;">
-            <table class="table table-borderless table-hover">
-                <thead style="position: sticky; top: 0; z-index: 1;">
+<div class="row mx-1 mx-md-4 mt-2">
+        <div class="PatientTable mt-2 p-0 " id="PatientTable" style="overflow-y: auto;">
+            <table class="table table-hover p-0">
+                <thead id="table-head" style="position: sticky; top: 0; z-index: 1;">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Patient Details</th>
+                        <th scope="col" style="text-align: left;">Patient Details</th>
                         <th scope="col">Added Date</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Mobile NO</th>
@@ -41,14 +38,17 @@
                 <tbody>
                     <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: pageSize, currentPage: pageNumber,totalItems: totalCount }; index as i">
                         <td class="align-middle">{{patient.patientId}}</td>
-                        <td class="NameColumn" (click)="onClickPateint(patient)">
-                            <div style="font-size: 18px; font-weight: 300;">{{patient.firstName}} {{patient.lastName}}</div>
-                            <div style="font-size: 13px;">{{patient.addressLine}}, {{patient.cityVillage}}, {{patient.district}}, {{patient.state}}</div>
+                        <td class="NameColumn align-left" style="text-align: left;" (click)="onClickPateint(patient)">
+                            <div class="table-patient-name">{{patient.firstName}} {{patient.lastName}}</div>
+                            <div class="text-color-muted" style="font-size: 13px;">{{patient.addressLine}}, {{patient.cityVillage}}, {{patient.district}}, {{patient.state}}</div>
                         </td>
-                        <td class="align-middle">{{patient.addedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
-                        <td class="align-middle">{{patient.gender}}</td>
-                        <td class="align-middle">{{patient.mobileNo}}</td>
-                        <td class="align-middle">{{patient.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
+                        <td><span class="text-color-muted">{{patient.addedDate | date: 'dd/MM/yyyy hh:mm a'}}</span></td>
+                        <td><span class="text-color-muted">{{patient.gender}}</span></td>
+                        <td><span class="text-color-muted">{{patient.mobileNo}}</span></td>
+                        <td class="text-color-muted">
+                            <span *ngIf="patient.modifiedDate" class="text-color-muted">{{patient.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                            <span *ngIf="!patient.modifiedDate"> - </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -57,8 +57,6 @@
             <pagination-controls (pageChange)="changePage($event)" class="pull-right"
                 style="font-size: small;"></pagination-controls>
         </div>
-    </div>
-
 </div>
 
 

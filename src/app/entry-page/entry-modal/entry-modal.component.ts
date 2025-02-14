@@ -68,6 +68,7 @@ export class EntryModalComponent implements OnInit {
     this.patientEntry.patient=<Patient>{};
     this.patientEntry.patient.title="";
     this.patientEntry.patient.gender="";
+    this.patientEntry.patient.ageUnit="Y";
     this.patientEntry.patient.district="";
     this.patientEntry.patient.country="";
     this.patientEntry.referBy = <Doctor>{};
@@ -111,10 +112,12 @@ export class EntryModalComponent implements OnInit {
   clearAll(){
     this.searchString ="";
     this.doctorString ="";
+    this.searchPatientList=[];
     this.patientEntry=<PatientEntry>{};
     this.patientEntry.patient=<Patient>{};
     this.patientEntry.patient.title="";
     this.patientEntry.patient.gender="";
+    this.patientEntry.patient.ageUnit="Y";
     this.patientEntry.patient.district="";
     this.patientEntry.patient.country="";
     this.patientEntry.referBy = <Doctor>{};

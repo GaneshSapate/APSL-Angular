@@ -48,11 +48,16 @@
 
 .dropdown-item {
   cursor: pointer;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-top: 2px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 3px;
   font-size: 14px;
-  transition: all 0.5s;
+  transition: all 0.3s;
+}
+.dropdown-menu .profile-li{
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
 }
 
 .profile-picture {
@@ -173,4 +178,14 @@ label {
   width: 25px;
   justify-content: center;
   transition: 0.3s;
+}
+
+.user-logo{
+  cursor: pointer; 
+  height: 27px;
+  padding: 1px;
+}
+
+.any-item:hover{
+  cursor: pointer; 
 }

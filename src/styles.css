@@ -2,16 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'ngx-toastr/toastr';
 /* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
 
 body {
-  font-family: Roboto,Mona Sans,Roboto Condensed;
+  font-family: Roboto, Mona Sans, Roboto Condensed;
 }
 
 .bg_background {
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.btn {
+  font-family: IBM Plex Sans;
 }
 
 .btn-primary {
@@ -99,7 +105,7 @@ button[disabled] {
 .header-card .card-title {
   font-weight: 400;
   font-size: 18px;
-  color: #454545;
+  color: #313131;
 }
 
 .option-card {
@@ -110,17 +116,19 @@ button[disabled] {
   border: none;
   transition: 0.5s;
   -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-            box-shadow: 0 0.5px 1.5px 0.06px rgba(4, 26, 55, 0.322);
+  box-shadow: 0 0.5px 1.5px 0.06px rgba(4, 26, 55, 0.322);
 }
 
 .option-card:hover {
   cursor: pointer;
 }
-.card-title{
+
+.card-title {
   color: #000000;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
 }
+
 .card-text {
   font-size: 13px;
   font-weight: 400;
@@ -165,39 +173,55 @@ table {
   font-size: 13px;
   text-align: center;
   vertical-align: middle;
-  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: Inter;
   font-weight: 400;
 }
+
 .table thead tr th {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   vertical-align: middle;
 }
 
-.table thead tr td {
+.table tbody tr td {
+  font-weight: 400;
   vertical-align: middle;
+  font-size: 13px;
+}
+.text-color-muted {
+  color: #3f3f3f;
+}
+
+.table-patient-name{
+  font-size: 15px;
+  font-family: Roboto;
 }
 
 .docterName:hover {
   color: rgb(4, 54, 129);
   cursor: pointer;
 }
-.NameColumn:hover{
+
+.NameColumn:hover {
   color: rgb(0, 85, 213);
   cursor: pointer;
 }
 
 .navbar {
-  background-color: #ffffff;
+  background-color: #dee8ff;
+  color: #003a91;
+
 }
+
 .brand-name {
   color: #003a91;
-  font-size: 18px; 
+  font-size: 18px;
   font-family: Roboto Condensed;
   cursor: pointer;
 }
+
 .navbar .nav-link {
-  color: #303030;
+  color: #003a91;
 }
 
 .select {
@@ -206,6 +230,7 @@ table {
   color: #0041a1;
   cursor: pointer;
 }
+
 .nav-list-item:hover {
   background-color: #c1c1c139;
   color: #0041a1;
@@ -239,6 +264,12 @@ table {
   border-radius: 4px;
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: #003a91;
+  --bs-tooltip-color: var(--bs-white);
+  --bs-tooltip-font-size : 12px;
+}
+
 #tabs .nav-tab .nav-item.show .nav-link,
 .nav-tabs .nav-link {
   color: #202020;
@@ -258,33 +289,39 @@ app-side-nav-bar {
   border-width: 3px;
   border-color: #f2f2f2;
 }
-.linear-gradient-default i{ 
-  background:radial-gradient(circle, rgb(97, 153, 236) 0%, rgb(64, 162, 236) 20%, rgb(0, 25, 254) 100%); 
+
+.linear-gradient-default i {
+  background: radial-gradient(circle, rgb(97, 153, 236) 0%, rgb(64, 162, 236) 20%, rgb(0, 25, 254) 100%);
   -webkit-background-clip: text;
   color: transparent;
 }
-.linear-gradient-patient i{ 
-  background:linear-gradient(to top, #82e9fe 50%, #0091e4 50%); 
+
+.linear-gradient-patient i {
+  background: linear-gradient(to top, #82e9fe 50%, #0091e4 50%);
   -webkit-background-clip: text;
   color: transparent;
 }
-.linear-gradient-user i{
-  background:linear-gradient(to top, #fef482 50%, #ffaa00 50%); 
+
+.linear-gradient-user i {
+  background: linear-gradient(to top, #fef482 50%, #ffaa00 50%);
   -webkit-background-clip: text;
   color: transparent;
 }
-.linear-gradient-doctor i{
-  background:linear-gradient(to top, #6dffe4 50%, #00dc8f 50%); 
+
+.linear-gradient-doctor i {
+  background: linear-gradient(to top, #6dffe4 50%, #00dc8f 50%);
   -webkit-background-clip: text;
   color: transparent;
 }
-.linear-gradient-setting i{
-  background:linear-gradient(to bottom, #47ceff, #558eff, #1f17ff ); 
+
+.linear-gradient-setting i {
+  background: linear-gradient(to bottom, #47ceff, #558eff, #1f17ff);
   -webkit-background-clip: text;
   color: transparent;
 }
-.linear-gradient-info i{
-  background:radial-gradient(circle, #82e9fe 0%, #45defd 20%, #0091e4 100%); 
+
+.linear-gradient-info i {
+  background: radial-gradient(circle, #82e9fe 0%, #45defd 20%, #0091e4 100%);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -293,6 +330,7 @@ app-side-nav-bar {
   background-image: none;
 
 }
+
 #toast-container>.toast-error {
   background-image: none;
 
@@ -301,17 +339,20 @@ app-side-nav-bar {
 #toast-container>.toast-warning {
   background-image: none;
 }
+
 #toast-container>.toast-info {
   background-image: none;
-  background-color: #0070f3 ;
+  background-color: #0070f3;
 }
 
 .toast-top-right {
   top: 60px;
 }
+
 .toast-message {
   font-size: 13px;
 }
+
 .toast-close-button {
   font-weight: 400;
   font-size: 20px;
@@ -321,11 +362,12 @@ app-side-nav-bar {
   padding: 0px;
   margin: 0px;
 }
+
 .toast-container .ngx-toastr {
   padding: 15px 0px 15px 15px;
 }
 
-@media screen and (max-width:576px){
+@media screen and (max-width:576px) {
 
   table {
     display: block;
@@ -336,7 +378,7 @@ app-side-nav-bar {
 
 
 [data-bs-theme="light"] {
-  .order-card{
+  .order-card {
     border: none;
   }
 }
@@ -346,19 +388,24 @@ app-side-nav-bar {
   .login-card {
     background-color: #3a3a3a85;
   }
+
   .header-card .card-title {
     color: #ededed;
   }
-  .option-card .card-title{
-  color: #ededed;
-  }
-  .card-title{
+
+  .option-card .card-title {
     color: #ededed;
-    }
+  }
+
+  .card-title {
+    color: #ededed;
+  }
 
   .navbar {
     background-color: #3a3a3a;
+    color: #dfdfdf;
   }
+
   .brand-name {
     color: #8dbaff;
   }
@@ -394,15 +441,18 @@ app-side-nav-bar {
     color: #ffffff;
     cursor: pointer;
   }
+
   .nav-list-item:hover {
     background-color: #393939;
     color: #ffffff;
     cursor: pointer;
   }
-  .NameColumn:hover{
+
+  .NameColumn:hover {
     color: rgb(91, 157, 255);
     cursor: pointer;
   }
+
   .notification-item:hover {
     background-color: #202020;
     color: white;
@@ -419,7 +469,8 @@ app-side-nav-bar {
     border-width: 1px;
     border-color: #535353;
   }
-  .dropdown-item:hover{
+
+  .dropdown-item:hover {
     background-color: #4b4b4b;
   }
 
@@ -433,6 +484,10 @@ app-side-nav-bar {
     border-color: transparent transparent #f3f3f3;
     border-bottom: 3px solid !important;
     background-color: #3a3a3a;
+  }
+  
+  .text-color-muted{
+    color: #c7c7c7;
   }
 
 }

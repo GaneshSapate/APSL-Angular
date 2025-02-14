@@ -476,7 +476,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#viewReportPdf1"
-                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" viewPdf()">View Report</button>
+                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" makePdf()">View Report</button>
             </div>
         </div>
     </div>
@@ -1034,7 +1034,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-secondary btn-sm" [disabled]="!f.valid">Reset Report</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#viewReportPdf"
-                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" viewPdf()" [disabled]="!f.valid">View
+                    data-bs-toggle="modal" data-bs-dismiss="modal" (click)=" makePdf()" [disabled]="!f.valid">View
                     Report</button>
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#saveModal"
                     (click)="onProceedClick()" [disabled]="!f.valid">{{ModalButtonName}}</button>

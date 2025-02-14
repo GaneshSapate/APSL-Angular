@@ -30,18 +30,21 @@
                   </div>
               </div>
               <br>
-              <ul class="nav nav-tabs" role="tablist">
+              <ul class="nav nav-tabs d-grid d-flex" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link active  " id="tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="justified-tabpanel-0" aria-selected="true"> Patient Details * </a>
+                  <a class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="justified-tabpanel-0" aria-selected="true"> Patient Details * </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link  " id="tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="justified-tabpanel-1" aria-selected="false"> Refers Details * </a>
+                  <a class="nav-link" id="tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="justified-tabpanel-1" aria-selected="false"> Refers Details * </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link  " id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="justified-tabpanel-2" aria-selected="false"> Reports * </a>
+                  <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="justified-tabpanel-2" aria-selected="false"> Reports * </a>
                 </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link  " id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="justified-tabpanel-3" aria-selected="false"> Remark </a>
+                <li class="nav-item me-auto" role="presentation">
+                  <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="justified-tabpanel-3" aria-selected="false"> Remark </a>
+                </li>
+                <li class="nav-item me-0" role="presentation">
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="clearAll()">Clear All</button>
                 </li>
               </ul>
               <div class="tab-content pt-2" id="tab-content">
@@ -180,7 +183,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                       <div class="form-group input-group input-group-sm">
-                        <select class="form-select" (ngModelChange)= "onSelectState()" [(ngModel)]="patientEntry.patient.state" required >
+                        <select class="form-select" [(ngModel)]="patientEntry.patient.state" (ngModelChange)= "onSelectState()" required >
                             <option  value="" selected >Select State</option>
                             <option *ngFor= "let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
                             
@@ -385,7 +388,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" (click)="clearAll()">Clear All</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()"  data-bs-dismiss="modal" aria-label="Close">Close</button>
         <button type="button" class="btn btn-success btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
       </div>
     </div>
