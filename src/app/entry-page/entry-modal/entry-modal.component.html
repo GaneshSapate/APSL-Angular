@@ -1,395 +1,422 @@
-<div class="modal fade" id="entryModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="entryModalLabel" aria-hidden="true">
+<div class="modal fade" id="entryModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="entryModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
     <div class="modal-content ">
       <div class="modal-header d-flex">
         <h5 class="modal-title" id="entryModalLabel"> Add New Entry </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeModal()"></button>
       </div>
       <div class="modal-body" style="height: 40rem;">
-          <div class="container-xl">
-              <div class="row my-lg-2 justify-content-center">
-                  <div class="col-12 col-md-3">
-                      <div>Search Patient </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group input-group input-group-sm" >
-                        <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;" 
-                        [(ngModel)]="searchString" (keyup)="search($event)"
-                        data-bs-toggle="dropdown" aria-expanded="false" minlength="3" placeholder="Enter Name or Mobile No" required>
-                        
+        <div class="container-xl">
+          <div class="row my-lg-2 justify-content-center">
+            <div class="col-12 col-md-3">
+              <div>Search Patient </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group input-group input-group-sm">
+                <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;"
+                  [(ngModel)]="searchString" (keyup)="search($event)" data-bs-toggle="dropdown" aria-expanded="false"
+                  minlength="3" placeholder="Enter Name or Mobile No" required>
 
-                        <ul class="dropdown-menu searchDropdown shadow px-2">
-                          <li *ngFor="let p of searchPatientList" (click)="onSelect(p)" >
-                              <div class="dropdown-item" >
-                              <div style="font-size: 15px;">{{p.firstName}} {{p.lastName}} <span style="font-size: 13px;">MRN :{{p.patientId}}</span> </div>
-                              <div style="font-size: 12px;">{{p.addressLine}} {{p.cityVillage}} {{p.district}}</div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                  </div>
+
+                <ul class="dropdown-menu searchDropdown shadow px-2">
+                  <li *ngFor="let p of searchPatientList" (click)="onSelect(p)">
+                    <div class="dropdown-item">
+                      <div style="font-size: 15px;">{{p.firstName}} {{p.lastName}} <span style="font-size: 13px;">MRN
+                          :{{p.patientId}}</span> </div>
+                      <div style="font-size: 12px;">{{p.addressLine}} {{p.cityVillage}} {{p.district}}</div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <br>
-              <ul class="nav nav-tabs d-grid d-flex" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="justified-tabpanel-0" aria-selected="true"> Patient Details * </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="justified-tabpanel-1" aria-selected="false"> Refers Details * </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="justified-tabpanel-2" aria-selected="false"> Reports * </a>
-                </li>
-                <li class="nav-item me-auto" role="presentation">
-                  <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="justified-tabpanel-3" aria-selected="false"> Remark </a>
-                </li>
-                <li class="nav-item me-0" role="presentation">
-                  <button type="button" class="btn btn-secondary btn-sm" (click)="clearAll()">Clear All</button>
-                </li>
-              </ul>
-              <div class="tab-content pt-2" id="tab-content">
-                <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> 
-                      <div class="row my-2 px-2 mt-4">
-                        <div class="col-12 col-md-4 col-lg-2">
-                          <label for="">Title </label> 
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-              
-                            <div class="form-group input-group input-group-sm">
-                                <select class="form-select" [(ngModel)]="patientEntry.patient.title" >
-                                    <option selected value="">Select</option>
-                                    <option  value="MR.">MR.</option>
-                                    <option  value="MRS.">MRS.</option>
-                                    <option  value="MS.">MS.</option>
-                                    <option  value="DR.">DR.</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-2">
-                            <div class=" form-group input-group-sm ms-lg-4 mt-2 mt-lg-0" >
-                                <label for="">First Name</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                            <div class="form-group input-group-sm"  >
-                                <div class="input-group flex-nowrap input-group-sm">
-                                  <input type="text" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.firstName"
-                                  placeholder="Enter First Name" required>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-
-                  <div class="row my-2 px-2">
-                    
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Middle Name</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group-sm"  >
-                            <div class="input-group flex-nowrap input-group-sm">
-                              <input type="text" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.middleName"
-                              placeholder="Enter Middle Name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">Last Name </label> 
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="text" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.lastName"
-                        placeholder="Enter Last Name" required>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="row my-2 px-2">
-                    
-                  <div class="col-12 col-md-4 col-lg-2">
-                    <div class="form-group input-group-sm" >
-                        <label for="">Gender </label>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="form-group input-group input-group-sm">
-                      <select class="form-select" [(ngModel)]="patientEntry.patient.gender">
-                          <option  value="" selected >Select gender</option>
-                          <option  value="M">Male</option>
-                          <option  value="F">Female</option>
-                          <option  value="O">Other</option>
-                      </select>
-                  </div>
-                  </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">Age </label>
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      
-                   
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="input-group flex-nowrap input-group-sm">
-                              <input type="number" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.age"
-                              placeholder="Enter Age" required>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group input-group input-group-sm">
-                              <select class="form-select" [(ngModel)]="patientEntry.patient.ageUnit">
-                                  <option selected  value="Y">Year</option>
-                                  <option  value="M">Month</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                     
-                    </div>
-                  </div>
-
-                  <div class="row my-2 mt-4">
-                    <label for="">Address And Communication</label>
-                  </div>
-
-                  
-                  <div class="row my-2 px-2">
-                    
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Country</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group input-group-sm">
-                          <select class="form-select" [(ngModel)]="patientEntry.patient.country" required >
-                              <option  value="" selected >Select Country</option>
-                              <option  value="IN">India</option>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">State </label> 
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      <div class="form-group input-group input-group-sm">
-                        <select class="form-select" [(ngModel)]="patientEntry.patient.state" (ngModelChange)= "onSelectState()" required >
-                            <option  value="" selected >Select State</option>
-                            <option *ngFor= "let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
-                            
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  
-                  <div class="row my-2 px-2">
-                    
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">District</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group input-group-sm">
-                          <select class="form-select" [(ngModel)]="patientEntry.patient.district" required>
-                              <option  value="" selected >Select District</option>
-                              <option *ngFor= "let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}</option>
-                              
-                          </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">City / Village </label> 
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="text" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.cityVillage"
-                        placeholder="Enter City / village name" required>
-                        </div>
-                    </div>
-                  </div>
-
-                  
-                  <div class="row my-2 px-2">
-                    
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Address Line</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group-sm"  >
-                            <div class="input-group flex-nowrap input-group-sm">
-                              <input type="text" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.addressLine"
-                              placeholder="Enter Address line" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">Pincode </label> 
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="number" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.pincode"
-                        placeholder="Enter Pincode" required>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="row my-2 px-2">
-                    
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Mobile No</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="form-group input-group-sm"  >
-                            <div class="input-group flex-nowrap input-group-sm">
-                              <input type="number" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.mobileNo"
-                              placeholder="Enter Mobile No" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
-                      <div class=" form-group input-group-sm ms-lg-4 " >
-                        <label for="">Email ID </label> 
-                      </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <input type="email" class="form-control"   minlength="3" [(ngModel)]="patientEntry.patient.emailId"
-                        placeholder="Enter Email Address " required>
-                        </div>
-                    </div>
-                  </div>
-                  
-                </div>
-               
-                <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-
-                  <div class="row my-2 px-2 mt-4 justify-content-center ">
-                    <div class="col-12 col-md-4 col-lg-2">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Refer By</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                      <div class="form-group input-group input-group-sm">
-              
-                        <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;" autocomplete="off"
-                        [(ngModel)]="doctorString" 
-                        data-bs-toggle="dropdown" aria-expanded="false" minlength="3" placeholder="select doctor" required>
-                        
-                        <ul class="dropdown-menu searchDropdown shadow px-2">
-                          <li  *ngFor="let d of doctorsList" (click)="onSelectDoctor(d)" >
-                              <div class="dropdown-item" >
-                              <div style="font-size: 15px;">{{d.title}} {{d.firstName}} {{d.lastName}} <span style="font-size: 13px;">Doctor Id :{{d.doctorId}}</span> </div>
-                              <div style="font-size: 12px;">{{d.addLine}} {{d.city_village}} {{d.district}}</div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row mt-4 justify-content-center">
-                    <div class= "col-12 col-md-6">
-                      <div *ngIf="patientEntry.referBy.labId" class="card">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="d-grid gap-2 d-flex justify-content-end">
-                              <div class="col"><h6>{{patientEntry.referBy.title}} {{patientEntry.referBy.firstName}} {{patientEntry.referBy.lastName}}</h6></div>
-                              <div class="me-0"><button class="btn-sm btn-close" (click)="removeRefer()" ></button></div>
-                            </div>
-                          </div>
-                          <p class="card-text">Doctor Id : {{patientEntry.referBy.labId}} {{patientEntry.referBy.hospitalName}}</p>
-                          <p class="card-text">Address : {{patientEntry.referBy.addLine}} {{patientEntry.referBy.city_village}} {{patientEntry.referBy.district}} {{patientEntry.referBy.pincode}}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-               
-                <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2"> 
-                  <div class="row my-2 px-2 my-4">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Add Reports</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                      <div class="form-group input-group input-group-sm">
-                        <select class="form-control" >
-                            <option class="form-control"  value="">Select</option>
-                            <option class="form-control"  value="Myself">CBC</option>
-                            <option class="form-control"  value="Dr. Agrawal">WIDAL</option>
-                        </select>
-                        <button class="btn btn-secondary btn-sm">add</button>
-                    </div>
-                    </div>
-                  </div>
-                  <div class="container-sm">
-                    <table class="table table-hover table-sm table-bordered">
-                        <thead style="color: blue;">
-                          <tr style="color: blue;">
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                          </tr>
-                        </thead>
-                        <tbody style="background-color: cadetblue;">
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>mdo</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </div> 
-
-                </div>
-                <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
-                  <div class="row my-2 px-2 mt-4">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class=" form-group input-group-sm " >
-                            <label for="">Remark </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                      <div class="input-group flex-nowrap input-group-sm">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="patientEntry.remark"></textarea>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
           </div>
+          <br>
+          <ul class="nav nav-tabs d-grid d-flex" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab"
+                aria-controls="justified-tabpanel-0" aria-selected="true"> Patient Details * </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab"
+                aria-controls="justified-tabpanel-1" aria-selected="false"> Refers Details * </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab"
+                aria-controls="justified-tabpanel-2" aria-selected="false"> Reports * </a>
+            </li>
+            <li class="nav-item me-auto" role="presentation">
+              <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab"
+                aria-controls="justified-tabpanel-3" aria-selected="false"> Remark </a>
+            </li>
+            <li class="nav-item me-0" role="presentation">
+              <button type="button" class="btn btn-secondary btn-sm" (click)="clearAll()">Clear All</button>
+            </li>
+          </ul>
+          <div class="tab-content pt-2" id="tab-content">
+            <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+              <div class="row my-2 px-2 mt-4">
+                <div class="col-12 col-md-4 col-lg-2">
+                  <label for="">Title </label>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.title">
+                      <option selected value="">Select</option>
+                      <option value="MR.">MR.</option>
+                      <option value="MRS.">MRS.</option>
+                      <option value="MS.">MS.</option>
+                      <option value="DR.">DR.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ms-lg-4 mt-2 mt-lg-0">
+                    <label for="">First Name</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="form-group input-group-sm">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.firstName"
+                        placeholder="Enter First Name" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Middle Name</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group-sm">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control" minlength="3"
+                        [(ngModel)]="patientEntry.patient.middleName" placeholder="Enter Middle Name" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">Last Name </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.lastName"
+                      placeholder="Enter Last Name" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class="form-group input-group-sm">
+                    <label for="">Gender </label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.gender">
+                      <option value="" selected>Select gender</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                      <option value="O">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">Age </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+
+
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="input-group flex-nowrap input-group-sm">
+                        <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.age"
+                          placeholder="Enter Age" required>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group input-group input-group-sm">
+                        <select class="form-select" [(ngModel)]="patientEntry.patient.ageUnit">
+                          <option selected value="Y">Year</option>
+                          <option value="M">Month</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row my-2 mt-4">
+                <label for="">Address And Communication</label>
+              </div>
+
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Country</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.country" required>
+                      <option value="" selected>Select Country</option>
+                      <option value="IN">India</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">State </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.state"
+                      (ngModelChange)="onSelectState()" required>
+                      <option value="" selected>Select State</option>
+                      <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">District</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group input-group-sm">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.district" required>
+                      <option value="" selected>Select District</option>
+                      <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}
+                      </option>
+
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0 ">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">City / Village </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.cityVillage"
+                      placeholder="Enter City / village name" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Address Line</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group-sm">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="text" class="form-control" minlength="3"
+                        [(ngModel)]="patientEntry.patient.addressLine" placeholder="Enter Address line" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">Pincode </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.pincode"
+                      placeholder="Enter Pincode" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-2 px-2">
+
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Mobile No</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group-sm">
+                    <div class="input-group flex-nowrap input-group-sm">
+                      <input type="number" class="form-control" minlength="3"
+                        [(ngModel)]="patientEntry.patient.mobileNo" placeholder="Enter Mobile No" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mt-2 mt-lg-0">
+                  <div class=" form-group input-group-sm ms-lg-4 ">
+                    <label for="">Email ID </label>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <input type="email" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.emailId"
+                      placeholder="Enter Email Address " required>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+
+              <div class="row my-2 px-2 mt-4 justify-content-center ">
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Refer By</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group input-group-sm">
+
+                    <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;"
+                      autocomplete="off" [(ngModel)]="doctorString" data-bs-toggle="dropdown" aria-expanded="false"
+                      minlength="3" placeholder="select doctor" required>
+
+                    <ul class="dropdown-menu searchDropdown shadow px-2">
+                      <li *ngFor="let d of doctorsList" (click)="onSelectDoctor(d)">
+                        <div class="dropdown-item">
+                          <div style="font-size: 15px;">{{d.title}} {{d.firstName}} {{d.lastName}} <span
+                              style="font-size: 13px;">Doctor Id :{{d.doctorId}}</span> </div>
+                          <div style="font-size: 12px;">{{d.addLine}} {{d.city_village}} {{d.district}}</div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-4 justify-content-center">
+                <div class="col-12 col-md-6">
+                  <div *ngIf="patientEntry.doctor.labId" class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="d-grid gap-2 d-flex justify-content-end">
+                          <div class="col">
+                            <h6>{{patientEntry.doctor.title}} {{patientEntry.doctor.firstName}}
+                              {{patientEntry.doctor.lastName}}</h6>
+                          </div>
+                          <div class="me-0"><button class="btn-sm btn-close" (click)="removeRefer()"></button></div>
+                        </div>
+                      </div>
+                      <p class="card-text">Doctor Id : {{patientEntry.doctor.labId}}
+                        {{patientEntry.doctor.hospitalName}}</p>
+                      <p class="card-text">Address : {{patientEntry.doctor.addLine}}
+                        {{patientEntry.doctor.city_village}} {{patientEntry.doctor.district}}
+                        {{patientEntry.doctor.pincode}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
+              <div class="row mt-4 justify-content-center ">
+                <div class="col-12 col-md-4 col-lg-2">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Add Test </label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-group input-group input-group-sm">
+                    <input type="text" class="form-select" list="datalistOptions" style="border-radius: 4px;"
+                      autocomplete="off" [(ngModel)]="testSearchString" data-bs-toggle="dropdown"
+                      data-bs-auto-close="outside" aria-expanded="false" placeholder="search test"
+                      required>
+
+                    <ul class="dropdown-menu searchDropdown shadow px-2">
+                      <li *ngFor="let test of testMasterList index as i">
+                        <div class="dropdown-item" (click)="testCheckBoxCheck(i)">
+                          <div class="form-check" style="font-size: 15px;">
+                            <input class="form-check-input" type="checkbox" id="{{test.testId}}"
+                              style="cursor: pointer;" [checked]="test.selectFlag">
+                            <label class="form-check-label" style="cursor: pointer;">{{test.testName}} ({{test.testCode}}) </label>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4 justify-content-center">
+                <div class="col-12 col-md-6">
+                  <div *ngFor="let test of testMasterList">
+                    <div *ngIf="test.selectFlag" class="card mt-2">
+                      <div class="card-body p-2">
+                        <div class="row">
+                          <div class="d-grid gap-2 d-flex justify-content-end">
+                            <div class="col">
+                              <span style="font-size: 14px;">{{test.testName}} ({{test.testCode}})</span>
+                            </div>
+                            <div class="me-0"><button class="btn-sm btn-close"
+                                (click)="test.selectFlag = false"></button></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
+              <div class="row my-2 px-2 mt-4">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <div class=" form-group input-group-sm ">
+                    <label for="">Remark </label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="input-group flex-nowrap input-group-sm">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                      [(ngModel)]="patientEntry.remark"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()"  data-bs-dismiss="modal" aria-label="Close">Close</button>
-        <button type="button" class="btn btn-success btn-sm" (click)= "addPatient()" data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()" data-bs-dismiss="modal"
+          aria-label="Close">Close</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="addPatient()" data-bs-dismiss="modal"
+          aria-label="Close">Save changes</button>
       </div>
     </div>
   </div>

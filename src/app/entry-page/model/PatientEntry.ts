@@ -3,10 +3,9 @@ import { Patient } from "./Patient";
 
 export interface PatientEntry{
 entryId:number;
-patientId:number;
 labId:number;
 status:string;
-referBy:Doctor;
+doctor:Doctor;
 testCode:string;
 remark:string;
 addedDate:Date;

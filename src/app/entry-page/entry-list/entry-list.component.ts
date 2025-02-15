@@ -15,14 +15,6 @@ export class EntryListComponent implements OnInit {
 
   patientPage:boolean=true;
 
-  patientObj={
-   patientId:0,
-   patientName:null,
-   gender:null,
-   mobileNo:null,
-   addedDate:null,
- }
-
  patienEntrytList:PatientEntry[]=[];
  lId = <number> new Number(sessionStorage.getItem("labId"));
  
@@ -44,13 +36,13 @@ export class EntryListComponent implements OnInit {
              
   ngOnInit(): void {
     this.patientEntryService.getPatientEntryListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
-
+      this.patienEntrytList = <any> r;
     })
   }
   
- onClickPateint(patient:any){
-   this.patientObj = patient;
-   this.router.navigate(["dashboard/entryList/entryDetails",this.patientObj.patientId,this.patientObj.patientId],{  queryParams: this.patientObj });
+ onClickPateint(entryOBJ:any){
+   let entry = <PatientEntry> entryOBJ;
+   this.router.navigate(["dashboard/entryList/entryDetails",entry.entryId]);
  }
 
 

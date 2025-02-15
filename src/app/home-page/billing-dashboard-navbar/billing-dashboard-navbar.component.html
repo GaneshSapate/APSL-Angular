@@ -18,7 +18,7 @@
         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" style="font-size: 14px;"></span>
       </button>
-      <div class="collapse navbar-collapse p-0 m-0" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse p-0 m-0 align-middle" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-md-0 ms-4" style="vertical-align: middle;color: blue;">
           <li class="nav-item">
             <a class="nav-link any-item py-1" aria-current="page" data-bs-toggle="modal" data-bs-target="#entryModal">
@@ -130,14 +130,14 @@
             </span>
             <ul class="dropdown-menu dropdown-menu-end p-2 mt-2">
               <li class="dropdown-item" (click)="onProfileClick()"><i
-                  class="fa-solid fa-user me-2 text-color-muted"></i> Your Profile</li>
+                  class="fa-regular fa-user me-2 text-color-muted"></i> Your Profile</li>
               <li class="dropdown-item" (click)="onSettingClick()"><i
                   class="fa-solid fa-gear me-2 text-color-muted"></i> Setting</li>
               <li class="dropdown-item" (click)="onSecurityClick()"><i
-                  class="fa-solid fa-shield me-2 text-color-muted"></i> Security</li>
+                  class="fa-solid fa-shield-halved me-2 text-color-muted"></i> Security</li>
               <li>
               <li class="dropdown-item" (click)="onSecurityClick()"><i
-                  class="fa-solid fa-circle-question me-2 text-color-muted"></i> Help</li>
+                  class="fa-regular fa-circle-question me-2 text-color-muted"></i> Help</li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -190,15 +190,19 @@
         </ul>
       </li>
     </ul>
-    <div class="d-flex  navbar-text mt-3">
-      <div class="btn-group dropdown me-4 px-1 any-item">
-        <a data-bs-toggle="dropdown" aria-expanded="false">
-          <span *ngIf="Flag==='dark'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
-              class="fa-solid fa-moon"></i></span>
-          <span *ngIf="Flag==='light'" data-bs-toggle="tooltip" data-bs-placement="bottom" style="font-size: 18px"><i
-              class="fa-regular fa-sun"></i></span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end  mt-2" aria-labelledby="navbarDropdown">
+    <div class="d-flex me-0 p-0 mt-4">
+      <div class="btn-group dropdown me-2" >
+        <span data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="btn-group px-1 any-item" data-bs-toggle="tooltip" data-bs-placement="bottom" 
+          data-bs-custom-class="custom-tooltip" data-bs-auto-close="true" data-bs-title="theme">
+            <span *ngIf="Flag==='dark'"  style="font-size: 18px">
+              <i class="fa-solid fa-moon"></i></span>
+            <span *ngIf="Flag==='light'"
+              style="font-size: 18px"><i class="fa-regular fa-sun"></i>
+            </span>
+          </span>
+        </span>
+        <ul class="dropdown-menu dropdown-menu-end  p-2  mt-2" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item d-flex theme" (click)="lightMode()">
               <div><i class="fa-regular fa-sun me-2"></i> light Mode </div> <span *ngIf="theme==='light'"
                 class=" me-0 mx-auto"><i class="fa-solid fa-check"></i> </span>
@@ -213,20 +217,22 @@
             </a></li>
         </ul>
       </div>
-      <div class="btn-group me-4 px-1 any-item">
-        <span style=" cursor: pointer;">
-          <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px"><i
+      <div class="btn-group mx-2 px-1 any-item">
+        <span data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="full screen">
+          <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 18px" ><i
               class="fa-solid fa-expand"></i></span>
-          <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px"><i
+          <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 18px" ><i
               class="fa-solid fa-compress"></i></span>
         </span>
       </div>
-      <div class="btn-group me-4 any-item">
-        <span style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-          aria-expanded="true">
-          <i class="fas fa-bell px-sm-2"></i>
-          <span class="badge bg-danger" *ngIf="!noNotification">
-            {{countOfNotification}}
+      <div class="btn-group mx-2">
+        <span style="font-size: 18px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="true">
+          <span class="btn-group py-1 any-item"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="notification">
+            <i class="fa-regular fa-bell px-sm-2">
+              <span *ngIf="!noNotification"
+                class="position-absolute top-0 start-10 translate-middle p-1 bg-danger border border-light rounded-circle">
+              </span>
+            </i>
           </span>
         </span>
 
@@ -257,27 +263,26 @@
           </div>
         </div>
       </div>
-      <div class="btn-group me-4 any-item">
-        <span class="p-1 rounded-circle user-logo" data-bs-toggle="dropdown">
-          <i class="fa-solid fa-user mx-1"></i>
+      <div class="btn-group mx-2">
+        <span  data-bs-toggle="dropdown" >
+            <img class="user-logo" src="../../../assets/icon/man-user-circle-icon.png" alt=""
+            data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="profile">
         </span>
-        <ul class="dropdown-menu dropdown-menu-end py-2 mt-2">
-          <li class="dropdown-item linear-gradient-default"> <i class="fa-solid fa-user p-2 profile-picture me-2"></i>
-            Ganesh Sapate </li>
+        <ul class="dropdown-menu dropdown-menu-end p-2 mt-2">
+          <li class="dropdown-item" (click)="onProfileClick()"><i
+              class="fa-regular fa-user me-2 text-color-muted"></i> Your Profile</li>
+          <li class="dropdown-item" (click)="onSettingClick()"><i
+              class="fa-solid fa-gear me-2 text-color-muted"></i> Setting</li>
+          <li class="dropdown-item" (click)="onSecurityClick()"><i
+              class="fa-solid fa-shield-halved me-2 text-color-muted"></i> Security</li>
+          <li>
+          <li class="dropdown-item" (click)="onSecurityClick()"><i
+              class="fa-regular fa-circle-question me-2 text-color-muted"></i> Help</li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li class="dropdown-item linear-gradient-default" (click)="onProfileClick()"><i
-              class="fa-solid fa-user me-2"></i> Your Profile</li>
-          <li class="dropdown-item linear-gradient-setting" (click)="onSettingClick()"><i
-              class="fa-solid fa-gear me-2"></i> Setting</li>
-          <li class="dropdown-item linear-gradient-info" (click)="onSecurityClick()"><i
-              class="fa-solid fa-shield me-2"></i> Security</li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li class="dropdown-item linear-gradient-default" (click)="onLogoutClick()"><i
-              class="fa-solid fa-right-from-bracket me-2"></i> Log Out</li>
+          <li class="dropdown-item" (click)="onLogoutClick()"><i
+              class="fa-solid fa-right-from-bracket me-2 text-color-muted"></i> Log Out</li>
         </ul>
       </div>
     </div>

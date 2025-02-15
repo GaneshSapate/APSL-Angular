@@ -237,6 +237,10 @@ table {
   cursor: pointer;
 }
 
+.offcanvas-body {
+  color: #0041a1;
+}
+
 .notification-item:hover {
   background-color: #f4f3f3;
 }

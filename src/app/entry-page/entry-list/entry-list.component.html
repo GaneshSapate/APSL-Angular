@@ -1,16 +1,12 @@
-<div class="row mainHeader row mx-1 p-1 py-2 p-md-4 mt-2 ">
-    <div class="row header-card pb-2">
-        <h6 class="linear-gradient-default mb-2 card-title"><i class="fa-regular fa-pen-to-square"></i> 
-            &nbsp;&nbsp;Entry Management</h6>
+<div class="row py-2 p-md-4 mt-2 ">
+    <div class="pb-2">
+        <h6 class="mb-2 card-title"> Entry List</h6>
     </div>
-    <div class="row mt-2">
+    <div class="row">
         <div class="col-12 col-md-8 justify-content-between">
             <button type="button" class="btn btn-primary btn-sm active" data-bs-toggle="modal"
                 data-bs-target="#entryModal">
                 <i class="fa-solid fa-plus"></i> New Entry</button>
-            <button type="button" class="btn btn-secondary btn-sm  ms-sm-4" data-bs-toggle="modal"
-                data-bs-target="#NewPatientModal">
-                <i class="fa-solid fa-plus"></i> Add New Patient</button>
             <a class="btn btn-secondary btn-sm ms-sm-4 " (click)="makePdf()" data-bs-target="#viewPatientsPdf"
                 data-bs-toggle="modal" data-bs-dismiss="modal">
                 <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
@@ -25,32 +21,42 @@
     </div>
 </div>
 
-<div class="row mx-2 mt-4">
-    <div class="patientTableDiv mt-2 ">
-        <div class="PatientTable" style="overflow-y: auto;">
-            <table class="table table-borderless table-hover">
+<div class="row mx-1 mx-md-4 mt-2">
+        <div class="PatientTable p-0" style="overflow-y: auto;">
+            <table class="table table-hover">
                 <thead style="position: sticky; top: 0; z-index: 1;">
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Patient Name</th>
+                        <th scope="col">EID</th>
+                        <th scope="col" style="text-align: left;">Patient Details</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Refer By</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Mobile NO</th>
                         <th scope="col">Added Date</th>
-                        <th scope="col">modified Date</th>
+                        <th scope="col">Modified Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let entry of patienEntrytList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
-                        <td>{{entry.patientId}}</td>
-                        <td class="patientName" (click)="onClickPateint(entry)">{{entry.patient.firstName}} {{entry.patient.lastName}}</td>
-                        <td>
-                            <p class="patientStatus shadow-sm">{{entry.status}}</p>
+                        <td>{{entry.entryId}}</td>
+                        <td class="patientName" style="text-align: left;" (click)="onClickPateint(entry)">
+                            <div class="table-patient-name">{{entry.patient.firstName}} {{entry.patient.lastName}}</div>
+                            <div class="text-color-muted" style="font-size: 13px;">{{entry.patient.addressLine}}, 
+                                {{entry.patient.cityVillage}}, {{entry.patient.district}}, {{entry.patient.state}}
+                            </div>
                         </td>
-                        <td>{{entry.patient.gender}}</td>
-                        <td>{{entry.patient.mobileNo}}</td>
-                        <td>{{entry.patient.addedDate}}</td>
-                        <td>{{entry.patient.modifiedDate}}</td>
+                        <td>
+                            <p *ngIf="entry.status === 'Pending'" class="patientStatusPending">{{entry.status}}</p>
+                            <p *ngIf="entry.status === 'Completed'" class="patientStatusCompleted">{{entry.status}}</p>
+                        </td>
+                        <td><span class="text-color-muted">{{entry.doctor.title}} {{entry.doctor.firstName}} {{entry.doctor.lastName}}</span></td>
+                        <td><span class="text-color-muted">{{entry.patient.gender}}</span></td>
+                        <td><span class="text-color-muted">{{entry.patient.mobileNo}}</span></td>
+                        <td><span class="text-color-muted">{{entry.addedDate | date: 'dd/MM/yyyy hh:mm a'}}</span></td>
+                        <td>
+                            <span *ngIf="entry.modifiedDate" class="text-color-muted">{{entry.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                            <span *ngIf="!entry.modifiedDate"> - </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -59,8 +65,6 @@
             <pagination-controls (pageChange)="p = $event" class="pull-right"
                 style="font-size: small;"></pagination-controls>
         </div>
-    </div>
-
 </div>
 
 

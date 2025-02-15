@@ -3,20 +3,21 @@
       <div class="card-body p-1 p-md-2">
         <div class="mb-4">
           <div style="display: inline-block;">
-            <div class="image-block"  *ngIf="patientObj.gender=='M'">
-              <img class="image"  src="../../../assets/icon/user-male.png" alt="">
+            <div class="image-block"  *ngIf="entryObj.patient.gender=='M'">
+              <img class="image"  src="../../../assets/icon/man-user-color-icon.png" alt="">
             </div>
-            <div class="image-block" *ngIf="patientObj.gender=='F'">
-              <img class="image" src="../../../assets/icon/user-female.png" alt="">
+            <div class="image-block" *ngIf="entryObj.patient.gender=='F'">
+              <img class="image" src="../../../assets/icon/woman-user-color-icon.png" alt="">
             </div>
           </div>
           <div style="display: inline-block; vertical-align: middle;">
-            <div class="card-title" style="font-size: 17px;">{{patientObj.patientName}} </div>
-          <div class="card-text" style="font-size: 14px; ">
-            <span class="ms-0">Refer By : </span>{{patientObj.mobileNo}},  
-            <span class="ms-2">Gender : </span>{{patientObj.gender}}, 
-            <span class="ms-2">Mobile No : </span>{{patientObj.mobileNo}}, 
-            <span class="ms-2">Added date : </span>{{patientObj.addedDate}} 
+            <div class="card-title" style="font-size: 17px;">{{entryObj.patient.title}} {{entryObj.patient.firstName}} {{entryObj.patient.lastName}}</div>
+            <div style="font-size: 13px;">Address Detials : {{entryObj.patient.addressLine}}, {{entryObj.patient.cityVillage}}, {{entryObj.patient.district}}, {{entryObj.patient.state}}</div>
+          <div class="card-text" style="font-size: 13px; ">
+            <span class="ms-0">Refer By : </span>{{entryObj.doctor.title}} {{entryObj.doctor.firstName}} {{entryObj.doctor.lastName}},  
+            <span class="ms-2">Gender : </span>{{entryObj.patient.gender}}, 
+            <span class="ms-2">Mobile No : </span>{{entryObj.patient.mobileNo}}, 
+            <span class="ms-2">Added date : </span>{{entryObj.patient.addedDate | date: 'dd/MM/yyyy hh:mm a'}} 
             </div>
           </div>
         </div>

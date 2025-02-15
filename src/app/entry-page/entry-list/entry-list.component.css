@@ -55,11 +55,20 @@ label {
     margin-bottom: 0px;
 }
 
-.patientStatus {
-    color: rgb(229, 145, 0);
+.patientStatusCompleted {
+    color: rgb(2, 197, 41);
     text-decoration: none;
     padding: 2px;
-    background-color: rgb(255, 225, 172);
+    background-color: rgba(130, 255, 138, 0.241);
+    border-radius: 2px;
+    margin-bottom: 0px;
+}
+
+.patientStatusPending {
+    color: rgb(255, 162, 0);
+    text-decoration: none;
+    padding: 2px;
+    background-color: rgba(255, 209, 130, 0.24);
     border-radius: 2px;
     margin-bottom: 0px;
 }

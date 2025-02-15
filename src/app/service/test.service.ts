@@ -21,6 +21,9 @@ export class TestService {
   getTestListById(userId:number){
     return this.http.get(`${this.testMasterUrl}`+`/`+userId);
   }
+  getTestListByLabID(labId:number){
+    return this.http.get(`${this.testMasterUrl}`+`/byLabId/`+labId);
+  }
   deleteTestById(testId:number){
     return this.http.delete(`${this.testMasterUrl}`+`/`+testId,{responseType:'text'});
   }

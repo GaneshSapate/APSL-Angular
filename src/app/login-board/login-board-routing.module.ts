@@ -42,7 +42,7 @@ const routes: Routes = [
       {path: 'entryList', component:EntryPageComponent,
         children:[
           {path: '', component: EntryListComponent},
-          {path: 'entryDetails/:pid/:eid', component: EntryDetailsComponent}
+          {path: 'entryDetails/:eid', component: EntryDetailsComponent}
         ]
       },
     ]
