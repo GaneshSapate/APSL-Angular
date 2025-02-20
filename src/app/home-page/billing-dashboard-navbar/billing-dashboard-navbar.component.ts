@@ -74,6 +74,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
     navEntry: false
   }
 
+  logoLocation:string="";
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private toaster: ToastrService,
@@ -96,12 +98,23 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.Flag=''+this.theme;
     if(this.theme === 'system'){
       this.useThemeDetector();
+      this.logoLocation = "../../../assets/logo_default.png";
     }else if(this.theme === 'light'){
       this.mode.value = 'light';
+      this.logoLocation = "../../../assets/logo_default.png";
     }else if(this.theme === 'dark'){
       this.mode.value = 'dark';
-    }
-    else{
+      this.logoLocation = "../../../assets/logo_default.png";
+    }else if(this.theme === 'teal'){
+      this.mode.value = 'teal';
+      this.logoLocation = "../../../assets/logo_teal.png";
+    }else if(this.theme === 'grey'){
+      this.mode.value = 'grey';
+      this.logoLocation = "../../../assets/logo_grey.png";
+    }else if(this.theme === 'brown'){
+      this.mode.value = 'brown';
+      this.logoLocation = "../../../assets/logo_brown.png";
+    }else{
       this.mode.value = 'light';
       this.theme='light'
       this.Flag='light';
@@ -125,17 +138,43 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.Flag='light';
     localStorage.setItem("theme",'light')
     this.theme='light';
+    this.logoLocation = "../../../assets/logo_default.png";
   }
   darkMode() {
     this.mode.value = 'dark';
     this.Flag='dark';
     localStorage.setItem("theme",'dark');
     this.theme='dark';
+    this.logoLocation = "../../../assets/logo_default.png";
   }
   systemMode(){
     this.useThemeDetector();
     localStorage.setItem("theme",'system');
     this.theme='system';
+    this.logoLocation = "../../../assets/logo_default.png";
+  }
+  tealMode(){
+    this.mode.value = 'teal';
+    this.Flag='teal';
+    localStorage.setItem("theme",'teal');
+    this.theme='teal';
+    this.logoLocation = "../../../assets/logo_teal.png";
+  }
+  greyMode(){
+    this.mode.value = 'grey';
+    this.Flag='grey';
+    localStorage.setItem("theme",'grey');
+    this.theme='grey';
+    this.logoLocation = "../../../assets/logo_grey.png";
+  }
+
+  brownMode(){
+    this.mode.value = 'brown';
+    this.Flag='brown';
+    localStorage.setItem("theme",'brown');
+    this.theme='brown';
+    this.logoLocation = "../../../assets/logo_brown.png";
+    // window.location.reload();
   }
 
   useThemeDetector() {

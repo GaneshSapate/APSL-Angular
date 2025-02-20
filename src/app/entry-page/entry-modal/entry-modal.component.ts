@@ -12,6 +12,7 @@ import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 import { PatientEntryService } from '../service/patient-entry.service';
 import { PatientService } from 'src/app/pateint-page/service/patient.service';
 import { PatientTestMasterObj } from '../model/PatientTestMasterObj';
+import { EntryModalService } from '../service/entry-modal.service';
 
 @Component({
   selector: 'app-entry-modal',
@@ -66,7 +67,8 @@ export class EntryModalComponent implements OnInit {
     private testService:TestService,
     private sideNaveService : SidebarService,
     private patientEntryService:PatientEntryService,
-    private patientService:PatientService) { }
+    private patientService:PatientService,
+    private entryModalServie:EntryModalService) { }
 
   ngOnInit(): void {
     this.patientEntry.patient=<Patient>{};
@@ -152,10 +154,17 @@ export class EntryModalComponent implements OnInit {
     this.patientEntryService.addPatientEntry(this.patientEntry).subscribe((r)=>{
       this.patientEntry = <any>r;
       this.toaster.success("Patient Entry Added Successfully ");
-      this.clearAll();
-      this.router.navigate(["dashboard/entryList"]).then(()=>{
-        this.sideNaveService.onButtonClick.next('');
-      })
+      let url: string = this.router.url;
+      if (url.startsWith("dashboard/entryList/entryDetails")) {
+        this.router.navigate(["dashboard/entryList/entryDetails",this.patientEntry.entryId]);
+        this.entryModalServie.onButtonClick.next(this.patientEntry.entryId);
+        this.clearAll();
+      }else{
+        this.router.navigate(["dashboard/entryList/entryDetails",this.patientEntry.entryId]).then(()=>{
+          this.sideNaveService.onButtonClick.next('');
+          this.clearAll();
+        });
+      }
     })
     
   }

@@ -4,7 +4,7 @@ export interface TestMasterObj{
     testId:number;
     userId:number;
     modifiedBy:number;
-    LabId:number;
+    labId:number;
     department:string;
     testName:string;
     testGender:string;

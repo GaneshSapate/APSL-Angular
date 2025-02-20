@@ -1,0 +1,10 @@
+.labLogoBox{
+    height: 25vh;
+    width: 25vh;
+    border-radius: 4px;
+}
+.labLogo{
+    max-height: 25vh;
+    width: auto; 
+
+}

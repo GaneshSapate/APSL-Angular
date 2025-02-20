@@ -56,10 +56,10 @@ label {
 }
 
 .patientStatusCompleted {
-    color: rgb(2, 197, 41);
+    color: rgb(22, 207, 105);
     text-decoration: none;
     padding: 2px;
-    background-color: rgba(130, 255, 138, 0.241);
+    background-color: rgba(130, 255, 222, 0.241);
     border-radius: 2px;
     margin-bottom: 0px;
 }

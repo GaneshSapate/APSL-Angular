@@ -29,38 +29,28 @@
       </div>
 </div>
 <div class="row mx-2 mx-md-4 mt-4">
-    <div class="patientTableDiv pt-2">
-        <div class="row mx-2 py-2 mt-2">
+    <div class="patientTableDiv">
+        <div class="row mx-2 py-2">
             <div class="col-6">
                 <h6>Entry List</h6>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="form-group " >
-                    <div class="input-group justify-content-md-end">
-                        <input type="text" class="form-control-sm"  placeholder="Enter Reports Name" >
-                        <button class="btn btn-secondary btn-sm" type="button" > Search</button>
-                    </div>
-                 </div>
             </div>
         </div>
         <div class="PatientTable" style="overflow-y: auto;">
             <table class="table table-hover ">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Reoprt Name</th>
+                        <th scope="col">Entry ID</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Refer By</th>
+                        <th scope="col">Entry Added Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 7, currentPage: p }; index as i">
-                        <td>{{patient.patientId}}</td>
-                        <td class="patientName">{{patient.patientName}}</td>
-                        <td>{{patient.gender}}</td>
-                        <td>{{patient.mobileNo}}</td>
-                        <td><a style="color: green;"><i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | <a style="color: red;"><i class="fa-solid fa-trash-can"></i> Remove</a></td>
+                    <tr *ngFor="let entry of this.patientObj.patientEntryList| paginate: { itemsPerPage: 7, currentPage: p }; index as i">
+                        <td>{{entry.entryId}}</td>
+                        <td>{{entry.status}}</td>
+                        <td>{{entry.doctor.title}} {{entry.doctor.firstName}} {{entry.doctor.lastName}}</td>
+                        <td>{{entry.addedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
                     </tr>
                 </tbody>
             </table>

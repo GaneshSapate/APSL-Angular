@@ -12,26 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./master-lab-management.component.css']
 })
 export class MasterLabManagementComponent implements OnInit {
-
-  @Output() masterPageObjEmmitter = new EventEmitter<any>();
-  
-  masterPageObj:any={
-    masterPageShow:true,
-    docterManagement:false,
-    reportManagement:false,
-    labManagement:false
-  }
-
-  imageSrc:any;
-  sellersPermitFile: any;
-  DriversLicenseFile: any;
-  InteriorPicFile: any;
-  ExteriorPicFile: any;
   //base64s
   labLogoString: any;
   Base64Url:any;
-  //json
-  finalJson = {};
 
   stateList=[
     {

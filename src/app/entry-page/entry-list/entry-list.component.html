@@ -39,7 +39,7 @@
                 <tbody>
                     <tr *ngFor="let entry of patienEntrytList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td>{{entry.entryId}}</td>
-                        <td class="patientName" style="text-align: left;" (click)="onClickPateint(entry)">
+                        <td class="NameColumn" style="text-align: left;" (click)="onClickPateint(entry)">
                             <div class="table-patient-name">{{entry.patient.firstName}} {{entry.patient.lastName}}</div>
                             <div class="text-color-muted" style="font-size: 13px;">{{entry.patient.addressLine}}, 
                                 {{entry.patient.cityVillage}}, {{entry.patient.district}}, {{entry.patient.state}}

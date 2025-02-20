@@ -11,6 +11,15 @@ body {
   font-family: Roboto, Mona Sans, Roboto Condensed;
 }
 
+:root {
+  --indigo: #0143a4;
+  --teal: #0D6D6D;
+  --grey: #4f4f4f;
+  --greyFade: #ebebeb;
+  --brown: #8a5501;
+  --brownFade: #f5f2ec;
+}
+
 .bg_background {
   background-size: 100%;
   background-repeat: no-repeat;
@@ -209,19 +218,19 @@ table {
 
 .navbar {
   background-color: #dee8ff;
-  color: #003a91;
+  color: #0143a4;
 
 }
 
 .brand-name {
-  color: #003a91;
+  color: #0143a4;
   font-size: 18px;
   font-family: Roboto Condensed;
   cursor: pointer;
 }
 
 .navbar .nav-link {
-  color: #003a91;
+  color: #0143a4;
 }
 
 .select {
@@ -386,6 +395,343 @@ app-side-nav-bar {
     border: none;
   }
 }
+
+[data-bs-theme="teal"] {
+  .order-card {
+    border: none;
+  }
+
+  .btn-primary {
+    border: none;
+    background-color: var(--teal);
+  }
+
+  .btn-primary .active {
+    border: none;
+    background-color: var(--teal);
+  }
+
+  .btn-primary:hover {
+    border: none;
+    background-color: var(--teal);
+  }
+
+  .docterName:hover {
+    color: var(--teal);
+    cursor: pointer;
+  }
+  
+  .NameColumn:hover {
+    color: var(--teal);
+    cursor: pointer;
+  }
+  
+  .navbar {
+    background-color: #e0eeee;
+    color: var(--teal);
+  
+  }
+  
+  .brand-name {
+    color: var(--teal);
+    font-size: 18px;
+    font-family: Roboto Condensed;
+    cursor: pointer;
+  }
+  
+  .navbar .nav-link {
+    color: var(--teal);
+  }
+  
+  .select {
+    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
+    background-color: #e0eeee;
+    color: var(--teal);
+    cursor: pointer;
+  }
+  
+  .nav-list-item:hover {
+    background-color: #e0eeee;
+    color: var(--teal);
+    cursor: pointer;
+  }
+  
+  .offcanvas-body {
+    color: var(--teal);
+  }
+  .custom-tooltip {
+    --bs-tooltip-bg: var(--teal);
+    --bs-tooltip-color: var(--bs-white);
+    --bs-tooltip-font-size : 12px;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link {
+    color: #202020;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    background-color: #e0eeee;
+    color: var(--teal);
+  }
+
+  .linear-gradient-default i {
+    background: radial-gradient(circle, #37a6a6 0%, #37a6a6 20%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .linear-gradient-patient i {
+    background: linear-gradient(to top, #37a6a6 50%, var(--teal) 50%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .linear-gradient-user i {
+    background: linear-gradient(to top, var(--teal) 50%, var(--teal)50%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .linear-gradient-doctor i {
+    background: linear-gradient(to top, #6dffe4 50%, #00dc8f 50%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .linear-gradient-setting i {
+    background: linear-gradient(to bottom, #77c0c0, #37a6a6, var(--teal));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .linear-gradient-info i {
+    background: radial-gradient(circle, #82e9fe 0%, #37a6a6 20%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+}
+
+[data-bs-theme="grey"] {
+  .order-card {
+    border: none;
+  }
+
+  .btn-primary {
+    border: none;
+    background-color: var(--grey);
+  }
+
+  .btn-primary .active {
+    border: none;
+    background-color: var(--grey);
+  }
+
+  .btn-primary:hover {
+    border: none;
+    background-color: var(--grey);
+  }
+
+  .docterName:hover {
+    color: var(--indigo);
+    cursor: pointer;
+  }
+  
+  .NameColumn:hover {
+    color: var(--indigo);
+    cursor: pointer;
+  }
+  
+  .navbar {
+    background-color: var(--greyFade);
+    color: var(--grey);
+  
+  }
+  
+  .brand-name {
+    color: var(--grey);
+    font-size: 18px;
+    font-family: Roboto Condensed;
+    cursor: pointer;
+  }
+  
+  .navbar .nav-link {
+    color: var(--grey);
+  }
+  
+  .select {
+    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
+    background-color: var(--greyFade);
+    color: var(--grey);
+    cursor: pointer;
+  }
+  
+  .nav-list-item:hover {
+    background-color: var(--greyFade);
+    color: var(--grey);
+    cursor: pointer;
+  }
+  
+  .offcanvas-body {
+    color: var(--grey);
+  }
+  .custom-tooltip {
+    --bs-tooltip-bg: var(--grey);
+    --bs-tooltip-color: var(--bs-white);
+    --bs-tooltip-font-size : 12px;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link {
+    color: #202020;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    background-color: var(--greyFade);
+    color: var(--grey);
+  }
+
+  .linear-gradient-default i {
+   color:  var(--grey) ;
+  }
+  
+  .linear-gradient-patient i {
+    color:  var(--grey) ;
+  }
+  
+  .linear-gradient-user i {
+    color:  var(--grey) ;
+  }
+  
+  .linear-gradient-doctor i {
+    color:  var(--grey) ;
+  }
+  
+  .linear-gradient-setting i {
+    color:  var(--grey) ;
+  }
+  
+  .linear-gradient-info i {
+    color:  var(--grey) ;
+  }
+
+}
+
+[data-bs-theme="brown"] {
+  .order-card {
+    border: none;
+  }
+
+  .btn-primary {
+    border: none;
+    background-color: var(--brown);
+  }
+
+  .btn-primary .active {
+    border: none;
+    background-color: var(--brown);
+  }
+
+  .btn-primary:hover {
+    border: none;
+    background-color: var(--brown);
+  }
+
+  .docterName:hover {
+    color: var(--brown);
+    cursor: pointer;
+  }
+  
+  .NameColumn:hover {
+    color: var(--brown);
+    cursor: pointer;
+  }
+  
+  .navbar {
+    background-color: var(--brownFade);
+    color: var(--brown);
+  
+  }
+  
+  .brand-name {
+    color: var(--brown);
+    font-size: 18px;
+    font-family: Roboto Condensed;
+    cursor: pointer;
+  }
+  
+  .navbar .nav-link {
+    color: var(--brown);
+  }
+  
+  .select {
+    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
+    background-color: var(--brownFade);
+    color: var(--brown);
+    cursor: pointer;
+  }
+  
+  .nav-list-item:hover {
+    background-color: var(--brownFade);
+    color: var(--brown);
+    cursor: pointer;
+  }
+  
+  .offcanvas-body {
+    color: var(--brown);
+  }
+  .custom-tooltip {
+    --bs-tooltip-bg: var(--brown);
+    --bs-tooltip-color: var(--bs-white);
+    --bs-tooltip-font-size : 12px;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link {
+    color: #202020;
+  }
+  
+  #tabs .nav-tab .nav-item.show .nav-link,
+  .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    background-color: var(--brownFade);
+    color: var(--brown);
+  }
+
+  .linear-gradient-default i {
+   color:  var(--brown) ;
+  }
+  
+  .linear-gradient-patient i {
+    color:  var(--brown) ;
+  }
+  
+  .linear-gradient-user i {
+    color:  var(--brown) ;
+  }
+  
+  .linear-gradient-doctor i {
+    color:  var(--brown) ;
+  }
+  
+  .linear-gradient-setting i {
+    color:  var(--brown) ;
+  }
+  
+  .linear-gradient-info i {
+    color:  var(--brown) ;
+  }
+
+}
+
 
 [data-bs-theme="dark"] {
 

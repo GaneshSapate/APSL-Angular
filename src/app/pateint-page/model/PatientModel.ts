@@ -1,3 +1,5 @@
+import { PatientEntry } from "src/app/entry-page/model/PatientEntry";
+
 export interface Patient {
     patientId:number,
     labId: number,
@@ -21,5 +23,5 @@ export interface Patient {
     addedUserId: number,
     modifiedDate: Date,
     modifiedUserId: number,
-    patientEntryList: []
+    patientEntryList:PatientEntry []
 }

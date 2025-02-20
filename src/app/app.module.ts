@@ -29,7 +29,7 @@ import { WebpageComponent } from './webpage/webpage.component';
     SafePipe,
     LoginPageComponent,
     SelectLabComponent,
-    WebpageComponent,
+    WebpageComponent
   ],
   imports: [
     

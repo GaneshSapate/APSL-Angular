@@ -176,8 +176,8 @@ export class TestMasterComponent implements OnInit {
     this.loadAlltest();
   }
   loadAlltest() {
-    var userId = <number>new Number(sessionStorage.getItem("mid"));
-    this.testService.getTestListById(userId).subscribe(
+    var labId = <number>new Number(sessionStorage.getItem("labId"));
+    this.testService.getTestListByLabID(labId).subscribe(
       (r) => {
         this.testMasterList = <any>r;
       })
@@ -902,10 +902,10 @@ export class TestMasterComponent implements OnInit {
   }
 
   addNewTest() {
-    var userId = <number>new Number(sessionStorage.getItem("mid"));
+    var userId = <number>new Number(sessionStorage.getItem("userId"));
     let testMasterDTO = <TestMasterObj>{};
-    this.testMaster.userId = <number>new Number(sessionStorage.getItem("mid"));
-    this.testMaster.testTextData = this.newTextContent;
+    this.testMaster.userId = <number>new Number(sessionStorage.getItem("userId"));
+    this.testMaster.labId = <number>new Number(sessionStorage.getItem("labId"));
     this.testService.addNewTest(this.testMaster, userId).subscribe(
       (r) => {
         testMasterDTO = <any>r;
@@ -943,7 +943,7 @@ export class TestMasterComponent implements OnInit {
     this.testService.getTestById(id).subscribe(
       (r) => {
         this.testMaster = <any>(r)
-
+        console.log(this.testMaster);
         this.testMaster.testTableDataDTOList.forEach(function (field: any) {
           console.log(field);
           if (field.field_type == 'Title Field') {
@@ -1012,7 +1012,7 @@ export class TestMasterComponent implements OnInit {
       });
   }
   modifyTest() {
-    var userId = <number>new Number(sessionStorage.getItem("mid"));
+    var userId = <number>new Number(sessionStorage.getItem("userId"));
     let testMasterDTO = <TestMasterObj>{};
     this.testService.updateTest(this.testMaster, userId).subscribe(
       (r) => {

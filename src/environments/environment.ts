@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:"http://192.168.1.5:8080"
+  url:"http://192.168.1.4:8080"
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,11 +1,40 @@
-.image-block{
-    padding: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 15px;
-    background-color: rgba(213, 213, 213, 0.458);
-    border-radius: 4px;
+.image-block {
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 15px;
+  background-color: rgba(213, 213, 213, 0.458);
+  border-radius: 4px;
 }
-.image{
-    width: 60px;
+
+.image {
+  width: 60px;
+}
+
+.nav .nav-link {
+  padding-top: 5px;
+  padding-bottom: 4px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.nav .nav-link:hover {
+  border-color: #fff;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+.searchDropdown {
+  width: 100%;
+  overflow: hidden;
+  overflow: auto;
+  max-height: 350px;
+}
+
+.modal .card {
+  border: none;
+  background-color: rgba(111, 111, 111, 0.174);
+  border-left: 5px solid var(--ds-background-accent-orange-subtler, #6a6a6a4a);
 }

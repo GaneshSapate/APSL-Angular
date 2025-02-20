@@ -124,7 +124,9 @@ export class LoginPageComponent implements OnInit {
         this.labService.getLabsByUserId(UserResp.userId).subscribe(
           (r)=>{
             this.labList=<any>r;
-            if(this.labList.length>1){
+            if(this.labList.length == 0){
+              this.router.navigate(["/dashboard/labRegistration"]);
+            }else if(this.labList.length>1){
               this.router.navigate(["selectLab"]);
             }else{
               sessionStorage.setItem("labId",this.labList[0].labId.toString());

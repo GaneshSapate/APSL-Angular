@@ -30,6 +30,7 @@ import { EntryDetailsComponent } from '../entry-page/entry-details/entry-details
 import { EntryPageComponent } from '../entry-page/entry-Page.component';
 import { HomePageDetailsComponent } from '../home-page/home-page-details/home-page-details.component';
 import { PatientModalComponent } from '../pateint-page/patient-modal/patient-modal.component';
+import { NewLabRegistrationComponent } from '../new-lab-registration/new-lab-registration.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { PatientModalComponent } from '../pateint-page/patient-modal/patient-mod
     EntryDetailsComponent,
     EntryPageComponent,
     HomePageDetailsComponent,
-    PatientModalComponent
+    PatientModalComponent,
+    NewLabRegistrationComponent
   ],
   imports: [
     CommonModule,
