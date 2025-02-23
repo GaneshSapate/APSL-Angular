@@ -25,7 +25,6 @@ export class SideNavBarComponent implements OnInit {
   constructor(private router: Router,
     private sideNaveService: SidebarService) {
     this.sideNaveService.onButtonClick.subscribe(() => {
-      console.log("side nave called")
       this.ngOnInit();
     })
   }
@@ -104,12 +103,10 @@ export class SideNavBarComponent implements OnInit {
   clickOnAbout() {
     this.clearAll();
     this.eventObj.navAbout = true;
-    // this.router.navigate(["dashboard/about"]);
   }
   clickOnContact() {
     this.clearAll();
     this.eventObj.navContact = true;
-    // this.router.navigate(["dashboard/contact"]);
   }
 
   clearAll() {

@@ -55,7 +55,6 @@ export class PatientListComponent implements OnInit {
       this.totalCount = this.patientPage.totalElements;
       this.pageNumber = this.patientPage.number;
       this.MaxPageNumbers = this.patientPage.totalPages;
-      console.log(<any>r)
     })
 
     const tableContainer = document.getElementById('PatientTable');

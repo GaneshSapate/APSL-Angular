@@ -14,7 +14,7 @@
 
 <div class="row m-2 m-md-4 ">
 
-    <div class="card labCard me-2 me-md-4 my-2 px-1" style="width: 16rem;" *ngFor= "let lab of labList" >
+    <div class="card labCard me-2 me-md-4 my-2 px-0" style="width: 16rem;" *ngFor= "let lab of labList" >
       <img src="{{lab.labLogoString}}" class="card-img-top px-4 pt-2" [ngClass]= "{'desable-css-image':!lab.labStatus}">
       <div class="card-body" [ngClass]= "{'desable-css':!lab.labStatus}">
         <h5 class="card-title my-2">{{lab.labName}}</h5>
@@ -22,7 +22,7 @@
         <p class="card-text p-0 m-0">Mob No : {{lab.mobileNumber}} </p>
         <p class="card-text p-0 m-0">Email : {{lab.emailId}} </p>
       </div>
-      <div class="card-footer px-0 mx-0" style="border: none;">
+      <div class="card-footer px-0 mx-0 pe-1" style="border: none;">
         <div class="d-grid gap-1 d-md-flex justify-content-md-end mx-0 px-0">
           <button class="btn btn-danger btn-sm " ><i class="fa-solid fa-trash-can"></i></button>
           <button class="btn btn-secondary btn-sm " (click)= "updateStatusModal(lab)" data-bs-toggle="modal"
