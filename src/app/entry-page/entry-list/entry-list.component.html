@@ -20,11 +20,19 @@
         </div>
     </div>
 </div>
-
-<div class="row mx-1 mx-md-4 mt-2">
-        <div class="PatientTable p-0" style="overflow-y: auto;">
+<div *ngIf="patienEntrytList.length == 0" class="row mx-1 mx-md-4 mt-2" >
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
+</div>
+<div *ngIf="patienEntrytList.length !== 0" class="row mx-1 mx-md-4 mt-2">
+        <div class="PatientTable p-0" id="PatientTable" style="overflow-y: auto;">
             <table class="table table-hover">
-                <thead style="position: sticky; top: 0; z-index: 1;">
+                <thead id="table-head" style="position: sticky; top: 0; z-index: 1;">
                     <tr>
                         <th scope="col">EID</th>
                         <th scope="col" style="text-align: left;">Patient Details</th>

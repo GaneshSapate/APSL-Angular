@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import 'ngx-toastr/toastr';
 /* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
 
@@ -141,6 +142,7 @@ button[disabled] {
 .card-text {
   font-size: 13px;
   font-weight: 400;
+  color: #4d4d4d;
 }
 
 .option-card .card-text {
@@ -149,15 +151,22 @@ button[disabled] {
 
 .work-card-div .card {
   border: none;
-  border-left: 5px solid var(--ds-background-accent-orange-subtler, #7777774a);
+  display: block;
+  width: 20rem;
+  margin-left: 10px;
+  margin-top: 20px;
+  /* border-left: 5px solid var(--ds-background-accent-orange-subtler, #7777774a); */
   border-radius: 3px;
-  box-shadow: var(--ds-shadow-raised, 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31));
+  box-shadow:  1px 1px 3px rgba(9, 30, 66, 0.25);
   transition: box-shadow 0.3s ease-in-out, border-color 0.6s ease-in;
 
 }
-
+.card-icon{
+  font-size: 25px;
+}
 .work-card-div .card:hover {
-  box-shadow: 0px 5px 7px rgba(153, 153, 153, 0.322);
+  box-shadow: 1px 2px 7px rgba(153, 153, 153, 0.322);
+  cursor: pointer;
 }
 
 .toast-container .ngx-toastr {
@@ -214,6 +223,10 @@ table {
 .NameColumn:hover {
   color: rgb(0, 85, 213);
   cursor: pointer;
+}
+
+.spinner-border{
+  color: #5a5a5a;
 }
 
 .navbar {
@@ -750,6 +763,11 @@ app-side-nav-bar {
   .card-title {
     color: #ededed;
   }
+  .card-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: #c5c5c5;
+  }
 
   .navbar {
     background-color: #3a3a3a;
@@ -762,6 +780,7 @@ app-side-nav-bar {
 
   .navbar .nav-link {
     color: #dfdfdf;
+    font-weight: 400;
   }
 
   .option-card {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
@@ -31,13 +31,28 @@ export class EntryListComponent implements OnInit {
 
  constructor(private sanitizer: DomSanitizer,
              private router : Router,
-             private patientEntryService:PatientEntryService) { }
+             private patientEntryService:PatientEntryService,
+              private renderer: Renderer2) { }
 
              
   ngOnInit(): void {
     this.patientEntryService.getPatientEntryListByLabId(this.lId,this.pageNumber,this.pageSize).subscribe((r)=>{
       this.patienEntrytList = <any> r;
     })
+
+    const tableContainer = document.getElementById('PatientTable');
+    const tableHeader = document.getElementById('table-head');
+
+    if (tableContainer && tableHeader) {
+      tableContainer.addEventListener('scroll', () => {
+        if (tableContainer.scrollTop > 0) {
+          this.renderer.addClass(tableHeader, 'shadow-sm');
+        } else {
+          this.renderer.removeClass(tableHeader, 'shadow-sm');
+        }
+      });
+    }
+    
   }
   
  onClickPateint(entryOBJ:any){

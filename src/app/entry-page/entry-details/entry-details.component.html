@@ -1,4 +1,15 @@
-<div class="row mx-2 mt-2 " style="border-radius: 7px;">
+<div  *ngIf="!entryObj.entryId" class="row mx-2 mt-2 " >
+  <div class="card py-3 ps-4 header-card" style="border: none;">
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
+      <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+  </div>
+  </div>
+</div>
+<div  *ngIf="entryObj.entryId" class="row mx-2 mt-2 " style="border-radius: 7px;">
   <div class="card py-3 ps-4 header-card" style="border: none;">
       <div class="card-body p-1 p-md-2">
         <div class="mb-4">
@@ -30,7 +41,7 @@
       </div>
     </div>
 </div>
-<div class="row mx-2 mt-4">
+<div *ngIf="entryObj.entryId" class="row mx-2 mt-4">
   <div class="patientTableDiv pt-2">
       <div class="row py-2 mt-2">
           <div class="col-6">

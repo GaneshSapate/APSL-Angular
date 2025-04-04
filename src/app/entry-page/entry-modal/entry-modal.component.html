@@ -22,7 +22,7 @@
 
                 <ul class="dropdown-menu searchDropdown shadow px-2">
                   <li *ngFor="let p of searchPatientList" (click)="onSelect(p)">
-                    <div class="dropdown-item">
+                    <div *ngIf="p" class="dropdown-item">
                       <div style="font-size: 15px;">{{p.firstName}} {{p.lastName}} <span style="font-size: 13px;">MRN
                           :{{p.patientId}}</span> </div>
                       <div style="font-size: 12px;">{{p.addressLine}} {{p.cityVillage}} {{p.district}}</div>
