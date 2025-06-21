@@ -4,6 +4,7 @@
     height: 38px;
     align-items: center;
     font-size: 14px;
+    font-weight: 400;
     border-radius: 4px;
     transition: 0.3s;
     transition: width 250ms ease-in,left 250ms ease-in;

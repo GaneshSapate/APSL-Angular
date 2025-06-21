@@ -183,6 +183,7 @@ export class EntryDetailsComponent implements OnInit {
   modifyPatient() {
     let userId = <number> new Number(sessionStorage.getItem("userId"));
     this.patientEntry.modifiedUserId =userId;
+    this.patientEntry.modifiedDate = new Date();
     console.log(this.patientEntry);
     this.entryService.updatePatientEntry(this.patientEntry).subscribe((r)=>{
       this.patientEntry = <any>r;

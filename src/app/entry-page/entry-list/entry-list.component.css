@@ -76,3 +76,11 @@ label {
 label {
     font-size: 13px;
 }
+.dropdown-item{
+    font-size: 13px;
+    cursor: pointer;
+}
+
+input[type=checkbox]{
+    accent-color: green;
+}

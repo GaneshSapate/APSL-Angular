@@ -66,7 +66,7 @@ export class RegistrationComponent implements OnInit {
   userNameError:string = "";
 
   confirmPasswordshow:string="password";
-  passwordShowButton:string="show";
+  passwordShowButton:string="fa-regular fa-eye";
   weakPassword:string="";
   goodPassword:string="";
   confirmPasswordNoMatch:string="";
@@ -311,10 +311,10 @@ export class RegistrationComponent implements OnInit {
    }
    showPassword(){
     if(this.confirmPasswordshow == "password"){
-      this.passwordShowButton="hide";
+      this.passwordShowButton="fa-regular fa-eye-slash";
       this.confirmPasswordshow = "input";
     }else{
-      this.passwordShowButton="show";
+      this.passwordShowButton="fa-regular fa-eye";
       this.confirmPasswordshow = "password";
     }
   }

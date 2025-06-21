@@ -4,10 +4,10 @@
   <div class="card" style="max-width: 23rem;">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="row mt-2">
-        <h5 style="font-weight:500 ; color: #1369ea; vertical-align: middle;text-align: center;">
-          <img class="me-2" style="width: 50px;" src="../../assets/Swasthya Lab logo.png">
+        <h3 style="font-weight:500 ; vertical-align: middle;text-align: center; font-family: Roboto Condensed;">
+          <img class="me-2" style="width: 50px;" src="../../assets/logo_default.png">
           Swasthya Lab
-        </h5>
+        </h3>
         <p class=" mt-2" style="text-align: center; font-size: 14px;">Registration For New User</p>
       </div>
 
@@ -15,7 +15,7 @@
       <div class=" form-group mt-2">
         <div class="input-group flex-nowrap">
           <input type="text" class="form-control" name="userFirstName" [(ngModel)]="userFirstName" minlength="3" ngModel
-            placeholder="Enter First Name" required>
+            placeholder="Enter first name" required>
         </div>
       </div>
 
@@ -23,14 +23,14 @@
       <div class="form-group mt-4">
         <div class="input-group flex-nowrap">
           <input type="text" class="form-control " name="userLastName" [(ngModel)]="userLastName" minlength="3" ngModel
-            placeholder="Enter Last Name" required>
+            placeholder="Enter last name" required>
         </div>
       </div>
 
       <div class="form-group mt-4">
         <div class="input-group">
           <input type="number" class="form-control" (keyup)="mobileExist()" ngModel
-            placeholder="Enter the Mobile Number" name="userMobileNumber" [(ngModel)]="mobileNumber" minlength="10"
+            placeholder="Enter the mobile number" name="userMobileNumber" [(ngModel)]="mobileNumber" minlength="10"
             maxlength="10" required>
         </div>
         <span class="errorMessage">
@@ -41,7 +41,7 @@
       <div class="form-group mt-4">
         <div class="input-group">
           <input type="email" class="form-control " name="userEmail" [(ngModel)]="mailId" (blur)="userEmailValidation()"
-            ngModel placeholder="Enter the Email" required email>
+            ngModel placeholder="Enter the email" required email>
         </div>
         <span class="errorMessage">
           {{emailError}}
@@ -51,7 +51,7 @@
       <div class="form-group mt-4">
         <div class="input-group flex-nowrap">
           <input type="text" class="form-control" name="userName" minlength="5" [(ngModel)]="userName" ngModel
-            placeholder="Enter the Username" (blur)="userExist()" required>
+            placeholder="Enter the username" (blur)="userExist()" required>
         </div>
         <span class="errorMessage">
           {{userNameError}}
@@ -61,7 +61,7 @@
       <div class="form-group mt-4">
         <div class="input-group flex-nowrap">
           <input type="password" class="form-control" name="userPassword" [(ngModel)]="userPassword" minlength="8"
-            placeholder="Enter the Password" #newPassword
+            placeholder="Enter the password" #newPassword
             (keyup)="onUserPasswordChange(newPassword.value,confPassword.value)" ngModel required>
         </div>
         <span class="errorMessage">
@@ -77,10 +77,10 @@
         <div class="input-group flex-nowrap">
 
           <input [type]="confirmPasswordshow" class="form-control" name="confirmUserPassword"
-            [(ngModel)]="confirmUserPassword" minlength="8" placeholder="Enter the Password" #confPassword
+            [(ngModel)]="confirmUserPassword" minlength="8" placeholder="Re enter the password" #confPassword
             (keyup)="onUserConfPasswordChange(newPassword.value,confPassword.value)" ngModel required>
           <button type="button" (click)="showPassword()"
-            class="btn btn-secondary btn-sm">{{passwordShowButton}}</button>
+            class="btn btn-secondary btn-sm"><i class="{{passwordShowButton}}"></i></button>
         </div>
         <span class="errorMessage">
           {{confirmPasswordNoMatch}}

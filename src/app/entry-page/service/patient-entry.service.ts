@@ -17,8 +17,8 @@ export class PatientEntryService {
   updatePatientEntry(obj: any) {
     return this.http.put(`${this.url}`, obj);
   }
-  getPatientEntryListByLabId(labId: number, pageNo: number, pageSize: number) {
-    return this.http.get(`${this.url}` + `/` + labId + `/` + pageNo + `/` + pageSize);
+  getPatientEntryListByLabId(labId: number, pageNo: number, pageSize: number, entryFilterDTO: any) {
+    return this.http.post(`${this.url}` + `/` + labId + `/` + pageNo + `/` + pageSize, entryFilterDTO);
   }
   getPatientEntryById(id: any) {
     return this.http.get(`${this.url}` + `/getPatientEntryById/` + id);

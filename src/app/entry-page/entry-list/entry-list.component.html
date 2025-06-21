@@ -2,7 +2,7 @@
     <div class="pb-2">
         <h6 class="mb-2 card-title"> Entry List</h6>
     </div>
-    <div class="row">
+    <div class="row pe-0">
         <div class="col-12 col-md-8 justify-content-between">
             <button type="button" class="btn btn-primary btn-sm active" data-bs-toggle="modal"
                 data-bs-target="#entryModal">
@@ -11,21 +11,131 @@
                 data-bs-toggle="modal" data-bs-dismiss="modal">
                 <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
         </div>
-        <div class="col-12 col-md-4 col-lg-4 ms-auto mt-2 mt-md-0" style="min-width: 100px;">
-            <div class="input-group  input-group-sm">
-                <input type="text" class="form-control" minlength="3" placeholder="Enter Patient Name" required>
-                <button type="button" class="btn btn-secondary btn-sm"><i
-                        class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="col-12 col-md-4 col-lg-4 ms-auto mt-2 mt-md-0 pe-0" style="min-width: 100px;">
+            <div class="d-grid gap-2 d-flex">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" minlength="3" placeholder="Enter Patient Name" required>
+                    <button type="button" class="btn btn-secondary btn-sm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <span data-bs-toggle="dropdown" aria-expanded="false">
+                        <span type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" data-bs-auto-close="true" data-bs-title="Sort">
+                            <i class="fa-solid fa-sort"></i>
+                        </span>
+                    </span>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item d-flex" (click)="onClickAddedDesc()">
+                            <span>Default</span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item d-flex" (click)="onClickAddedDesc()">
+                             <span>Added date: <i class="fa-solid fa-arrow-up-9-1"></i></span>
+                            <span *ngIf="this.entryFilterDTO.sortBy === 'added_date' && this.entryFilterDTO.sortMethod === 'desc'" class=" me-0 mx-auto">
+                                <i class="fa-solid fa-circle-dot default-color"></i> </span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item d-flex" (click)="onClickAddedAsc()">
+                            <span>Added date: <i class="fa-solid fa-arrow-down-1-9"></i></span>
+                            <span *ngIf="this.entryFilterDTO.sortBy === 'added_date' && this.entryFilterDTO.sortMethod === 'asc'" class=" me-0 mx-auto">
+                                <i class="fa-solid fa-circle-dot default-color"></i> </span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item d-flex" (click)="onClickNameAsc()"> 
+                            <span>Name: ascending</span> 
+                            <span *ngIf="this.entryFilterDTO.sortBy === 'first_name' && this.entryFilterDTO.sortMethod === 'asc'" class=" me-0 mx-auto">
+                                <i class="fa-solid fa-circle-dot default-color"></i></span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item d-flex" (click)="onClickNameDesc()">
+                            <span>Name: descending</span>
+                            <span *ngIf="this.entryFilterDTO.sortBy === 'first_name' && this.entryFilterDTO.sortMethod === 'desc'" class=" me-0 mx-auto">
+                                <i class="fa-solid fa-circle-dot default-color"></i> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <span  data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        <span type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" data-bs-auto-close="true" data-bs-title="Filter">
+                            <i class="fa-solid fa-filter"></i>
+                        </span>
+                    </span>
+                    <ul class="dropdown-menu dropdown-menu-end" style="width:18rem; max-height: 60vh;overflow-y: auto;">
+                        <li class="d-grid d-flex m-2">
+                            <a class="btn btn-secondary btn-sm" style="font-size: 13px;" (click)= "clearFilter()" >Clear Filter</a>
+                            <a class="btn btn-primary btn-sm mx-auto me-0" data-bs-dismiss="dropdown" style="font-size: 13px;" (click)="applyFilter()" >Apply</a>
+                        </li>
+                        <li data-bs-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus">
+                            <a class="dropdown-item">Status :</a>
+                        </li>
+                        <div class="collapse filter-collapse m-2" id="collapseStatus">
+                            <div class="list-group">
+                                <label class="list-group-item" *ngFor="let status of statusList">
+                                    <input class="form-check-input me-1" type="checkbox" value="" (click)="checkStatus($event,status)">
+                                    {{status.status}}
+                                </label>
+                            </div>
+                        </div>
+
+                        <li data-bs-toggle="collapse" href="#collapseGender" role="button" aria-expanded="false" aria-controls="collapseGender">
+                            <a class="dropdown-item">Gender :</a>
+                        </li>
+                        <div class="collapse filter-collapse m-2" id="collapseGender">
+                            <div class="list-group">
+                                <label class="list-group-item" *ngFor="let gender of genderList">
+                                    <input class="form-check-input me-1" type="checkbox" value="" (click)="checkGender($event,gender)">
+                                    {{gender.gender}}
+                                </label>
+                            </div>
+                        </div>
+
+                        <li data-bs-toggle="collapse" href="#collapseRefer" role="button" aria-expanded="false" aria-controls="collapseRefer">
+                            <a class="dropdown-item">Refer By :</a>
+                        </li>
+                        <div class="collapse filter-collapse m-2" id="collapseRefer">
+                            <div class="list-group">
+                                <label class="list-group-item" *ngFor="let refer of referList">
+                                    <input class="form-check-input me-1" type="checkbox" value="" (click)="checkRefer($event,refer)">
+                                        {{refer.refer.title}} {{refer.refer.firstName}} {{refer.refer.lastName}}
+                                </label>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <span data-bs-toggle="dropdown" aria-expanded="false">
+                        <span type="button" class="btn btn-secondary btn-sm"  data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-custom-class="custom-tooltip" data-bs-auto-close="true" data-bs-title="more">
+                            <i class="fa-solid fa-ellipsis-vertical mx-1"></i>
+                        </span>
+                    </span>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item">Menu item</a></li>
+                        <li><a class="dropdown-item">Menu item</a></li>
+                        <li><a class="dropdown-item">Menu item</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div *ngIf="patienEntrytList.length == 0" class="row mx-1 mx-md-4 mt-2" >
+<div *ngIf="patienEntrytList.length == 0 && !noEntryFoundFlag" class="row mx-1 mx-md-4 mt-2" >
     <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
         <div class="text-center">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
+          </div>
+    </div>
+</div>
+<div *ngIf="patienEntrytList.length == 0 && noEntryFoundFlag" class="row mx-1 mx-md-4 mt-2" >
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
+        <div class="text-center">
+            <div style="color: rgb(125, 125, 125); font-size: 20px;">No Entry Found !</div>
           </div>
     </div>
 </div>
