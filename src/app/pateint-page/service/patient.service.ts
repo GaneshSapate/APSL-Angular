@@ -20,8 +20,8 @@ export class PatientService {
   getPatientListByLabId(labId: number, pageNo: number, pageSize: number) {
     return this.http.get(`${this.url}` + `/` + labId + `/` + pageNo + `/` + pageSize);
   }
-  getPatientById(id: any) {
-    return this.http.get(`${this.url}` + `/getPatient/` + id);
+  getPatientWithEntryById(id: any) {
+    return this.http.get(`${this.url}` + `/getPatientWithEntryById/` + id);
   }
   deletePatientById(id: any) {
     return this.http.delete(`${this.url}` + `/` + id);

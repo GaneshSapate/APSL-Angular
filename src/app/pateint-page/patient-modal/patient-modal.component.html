@@ -33,7 +33,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="text" class="form-control" minlength="2" name="firstName"
-                    [(ngModel)]="patientObj.firstName" placeholder="Enter First Name" required>
+                    [(ngModel)]="patientObj.firstName" placeholder="" required>
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="text" class="form-control" name="middleName"
-                    [(ngModel)]="patientObj.middleName" placeholder="Enter Middle Name">
+                    [(ngModel)]="patientObj.middleName" placeholder="">
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="text" class="form-control" minlength="2" name="lastName" [(ngModel)]="patientObj.lastName"
-                  placeholder="Enter Last Name" required>
+                  placeholder="" required>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="col-12 col-md-8 col-lg-4 ">
               <div class="form-group input-group input-group-sm">
                 <select class="form-select" name="gender" [(ngModel)]="patientObj.gender" minlength="1" required>
-                  <option class="form-control" value="">Select gender</option>
+                  <option class="form-control" value="">Select</option>
                   <option class="form-control" value="M">Male</option>
                   <option class="form-control" value="F">Female</option>
                   <option class="form-control" value="O">Other</option>
@@ -90,7 +90,7 @@
                 <div class="col-6">
                   <div class="input-group flex-nowrap input-group-sm">
                     <input type="number" class="form-control" minlength="2" name="age" [(ngModel)]="patientObj.age"
-                      placeholder="Enter Age" required>
+                      placeholder="" required>
                   </div>
                 </div>
                 <div class="col-6">
@@ -117,7 +117,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <select class="form-select" minlength="2" name="country" [(ngModel)]="patientObj.country" required>
-                    <option value="" selected>Select Country</option>
+                    <option value="" selected>Select</option>
                     <option value="IN">India</option>
                   </select>
                 </div>
@@ -133,7 +133,7 @@
               <div class="input-group flex-nowrap input-group-sm">
                 <select class="form-select" name="state" [(ngModel)]="patientObj.state"
                   (ngModelChange)="onSelectState()" required>
-                  <option value="" selected>Select State</option>
+                  <option value="" selected>Select</option>
                   <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
                 </select>
               </div>
@@ -149,7 +149,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <select class="form-select" name="district" minlength="2" [(ngModel)]="patientObj.district" required>
-                    <option value="" selected>Select District</option>
+                    <option value="" selected>Select</option>
                     <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}</option>
                   </select>
                 </div>
@@ -163,7 +163,7 @@
             <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="text" class="form-control" minlength="2" name="cityVillage"
-                  [(ngModel)]="patientObj.cityVillage" placeholder="Enter City / village name" required>
+                  [(ngModel)]="patientObj.cityVillage" placeholder="" required>
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="text" class="form-control" minlength="2" name="addressLine"
-                    [(ngModel)]="patientObj.addressLine" placeholder="Enter Address line" required>
+                    [(ngModel)]="patientObj.addressLine" placeholder="" required>
                 </div>
               </div>
             </div>
@@ -189,7 +189,7 @@
             <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="number" class="form-control" name="pincode" [(ngModel)]="patientObj.pincode"
-                  placeholder="Enter Pincode">
+                  placeholder="">
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@
               <div class="form-group input-group-sm">
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="number" class="form-control" name="mobileNo"
-                    [(ngModel)]="patientObj.mobileNo" placeholder="Enter Mobile No">
+                    [(ngModel)]="patientObj.mobileNo" placeholder="">
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@
             <div class="col-12 col-md-8 col-lg-4 mt-2 mt-lg-0">
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="email" class="form-control" name="emailId" [(ngModel)]="patientObj.emailId"
-                  placeholder="Enter Email Address ">
+                  placeholder="">
               </div>
             </div>
           </div>

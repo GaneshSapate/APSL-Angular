@@ -1,15 +1,15 @@
-<div class="row py-2 p-md-4 mt-2 ">
-    <div class="pb-2">
-        <h6 class="mb-2 card-title"> Entry List</h6>
+<div class="row mx-md-3 mt-4 mx-2">
+    <div class="row mb-3">
+        <h5 class="mb-2 page-title"> Entry List</h5>
     </div>
     <div class="row pe-0">
         <div class="col-12 col-md-8 justify-content-between">
-            <button type="button" class="btn btn-primary btn-sm active" data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                 data-bs-target="#entryModal">
                 <i class="fa-solid fa-plus"></i> New Entry</button>
-            <a class="btn btn-secondary btn-sm ms-sm-4 " (click)="makePdf()" data-bs-target="#viewPatientsPdf"
+            <button class="btn btn-secondary btn-sm ms-sm-4 " (click)="makePdf()" data-bs-target="#viewPatientsPdf"
                 data-bs-toggle="modal" data-bs-dismiss="modal">
-                <i class="fa-regular fa-file-pdf"></i> Export to PDF </a>
+                <i class="fa-regular fa-file-pdf"></i> Export to PDF </button>
         </div>
         <div class="col-12 col-md-4 col-lg-4 ms-auto mt-2 mt-md-0 pe-0" style="min-width: 100px;">
             <div class="d-grid gap-2 d-flex">
@@ -66,8 +66,8 @@
                     </span>
                     <ul class="dropdown-menu dropdown-menu-end" style="width:18rem; max-height: 60vh;overflow-y: auto;">
                         <li class="d-grid d-flex m-2">
-                            <a class="btn btn-secondary btn-sm" style="font-size: 13px;" (click)= "clearFilter()" >Clear Filter</a>
-                            <a class="btn btn-primary btn-sm mx-auto me-0" data-bs-dismiss="dropdown" style="font-size: 13px;" (click)="applyFilter()" >Apply</a>
+                            <a class="btn btn-secondary btn-sm" (click)= "clearFilter()" >Clear Filter</a>
+                            <a class="btn btn-primary btn-sm mx-auto me-0" data-bs-dismiss="dropdown" (click)="applyFilter()" >Apply</a>
                         </li>
                         <li data-bs-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus">
                             <a class="dropdown-item">Status :</a>
@@ -123,7 +123,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="patienEntrytList.length == 0 && !noEntryFoundFlag" class="row mx-1 mx-md-4 mt-2" >
+<div *ngIf="patienEntrytList.length == 0 && !noEntryFoundFlag" class="row mx-1 mx-md-4 mt-3" >
     <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
         <div class="text-center">
             <div class="spinner-border" role="status">
@@ -132,14 +132,14 @@
           </div>
     </div>
 </div>
-<div *ngIf="patienEntrytList.length == 0 && noEntryFoundFlag" class="row mx-1 mx-md-4 mt-2" >
+<div *ngIf="patienEntrytList.length == 0 && noEntryFoundFlag" class="row mx-1 mx-md-4 mt-3" >
     <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
         <div class="text-center">
             <div style="color: rgb(125, 125, 125); font-size: 20px;">No Entry Found !</div>
           </div>
     </div>
 </div>
-<div *ngIf="patienEntrytList.length !== 0" class="row mx-1 mx-md-4 mt-2">
+<div *ngIf="patienEntrytList.length !== 0" class="row mx-1 mx-md-4 mt-3">
         <div class="PatientTable p-0" id="PatientTable" style="overflow-y: auto;">
             <table class="table table-hover">
                 <thead id="table-head" style="position: sticky; top: 0; z-index: 1;">
@@ -149,7 +149,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Refer By</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">Mobile NO</th>
+                        <th scope="col">Mobile</th>
                         <th scope="col">Added Date</th>
                         <th scope="col">Modified Date</th>
                     </tr>
@@ -159,7 +159,7 @@
                         <td>{{entry.entryId}}</td>
                         <td class="NameColumn" style="text-align: left;" (click)="onClickPateint(entry)">
                             <div class="table-patient-name">{{entry.patient.firstName}} {{entry.patient.lastName}}</div>
-                            <div class="text-color-muted" style="font-size: 13px;">{{entry.patient.addressLine}}, 
+                            <div class="text-color-muted" style="font-size: 12px;">{{entry.patient.addressLine}}, 
                                 {{entry.patient.cityVillage}}, {{entry.patient.district}}, {{entry.patient.state}}
                             </div>
                         </td>
@@ -168,7 +168,11 @@
                             <p *ngIf="entry.status === 'Completed'" class="patientStatusCompleted">{{entry.status}}</p>
                         </td>
                         <td><span class="text-color-muted">{{entry.doctor.title}} {{entry.doctor.firstName}} {{entry.doctor.lastName}}</span></td>
-                        <td><span class="text-color-muted">{{entry.patient.gender}}</span></td>
+                        <td><span class="text-color-muted">
+                            <span *ngIf="entry.patient.gender ===  'M'">Male</span>
+                            <span *ngIf="entry.patient.gender ===  'F'">Female</span>
+                            <span *ngIf="entry.patient.gender ===  'O'">Other</span>
+                        </span></td>
                         <td><span class="text-color-muted">{{entry.patient.mobileNo}}</span></td>
                         <td><span class="text-color-muted">{{entry.addedDate | date: 'dd/MM/yyyy hh:mm a'}}</span></td>
                         <td>
@@ -200,7 +204,7 @@
             </div>
             <div class="modal-body p-0">
                 <div class="row justify-content-center">
-                    <embed [src]="safepdfUrl" style="height: 70vh; width: 150vh;" />
+                    <embed [src]="safepdfUrl" style="height: 72vh; width: 150vh;" />
                 </div>
             </div>
             <div class="modal-footer">

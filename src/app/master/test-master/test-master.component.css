@@ -2,15 +2,6 @@
 .patientTableDiv{
     border-radius: 7px;
 }
-table{
-    font-size: small;
-    text-align: center;
-}
-.testName:hover{
-    color: blue;
-    cursor: pointer;
-}
-
 
 .reports-modalbody {
   height: 82vh;

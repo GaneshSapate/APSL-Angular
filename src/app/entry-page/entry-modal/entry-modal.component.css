@@ -2,7 +2,6 @@
   padding-top: 5px;
   padding-bottom: 4px;
   border-radius: 2px;
-  font-size: 14px;
 }
 
 .nav .nav-link:hover {
@@ -20,6 +19,6 @@
 }
 .card{
   border: none;
-  background-color: rgba(111, 111, 111, 0.174);
-  border-left: 5px solid var(--ds-background-accent-orange-subtler, #6a6a6a4a);
+  background-color: rgba(155, 155, 155, 0.07);
+  border-left: 5px solid var(--ds-background-accent-orange-subtler, #6a6a6a25);
 }

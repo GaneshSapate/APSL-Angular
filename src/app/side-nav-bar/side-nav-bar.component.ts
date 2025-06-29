@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from './sidebar.service';
+
+declare var bootstrap: any
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -10,7 +12,9 @@ import { SidebarService } from './sidebar.service';
 export class SideNavBarComponent implements OnInit {
 
   homePage: boolean = false;
-  @Input() sideNavStatus: boolean = true;
+  @Input() sideNavStatus: boolean = false;
+
+  @Output() sideNavToggled = new EventEmitter<boolean>();
 
   eventObj = {
     navDashboard: false,
@@ -118,6 +122,10 @@ export class SideNavBarComponent implements OnInit {
     this.eventObj.navAbout = false;
     this.eventObj.navContact = false;
     this.eventObj.navEntry = false;
+  }
+   onClickToggled() {
+    this.sideNavStatus = !this.sideNavStatus;
+    this.sideNavToggled.emit(this.sideNavStatus);
   }
 
 }

@@ -6,8 +6,6 @@ import { MasterDataService } from 'src/app/master-data.service';
 import { PatientService } from '../service/patient.service';
 import { Subject } from 'rxjs';
 import { PatientModalService } from '../service/patient-modal.service';
-import { PatientDetailsComponent } from '../patient-details/patient-details.component';
-import { PatientDetailsService } from '../service/patient-details.service';
 
 @Component({
   selector: 'app-patient-modal',
@@ -15,8 +13,6 @@ import { PatientDetailsService } from '../service/patient-details.service';
   styleUrls: ['./patient-modal.component.css']
 })
 export class PatientModalComponent implements OnInit {
-
-
 
   stateList = [
     {

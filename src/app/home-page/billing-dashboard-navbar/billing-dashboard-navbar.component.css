@@ -17,7 +17,7 @@
   color: rgb(189, 144, 28);
 }
 .nav-item{
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 .theme i {
@@ -41,23 +41,19 @@
   width: 2px;
   height: 6px;
 }
-
-.nav-link {
-  cursor: pointer;
-}
-
 .dropdown-item {
   cursor: pointer;
-  padding-top: 7px;
-  padding-bottom: 7px;
   border-radius: 3px;
   font-size: 14px;
   transition: all 0.3s;
+  .material-symbols-outlined{
+    font-size: 18px;
+  }
 }
-.dropdown-menu .profile-li{
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s;
+
+.material-symbols-outlined{
+  font-size: 18px;
+  margin-right: 10px;
 }
 
 .profile-picture {
@@ -67,7 +63,6 @@
 }
 
 .notification-dropdown {
-  font-family: Arial, sans-serif;
   position: absolute;
   top: 30px;
   right: 0;
@@ -121,12 +116,6 @@
   color: #999;
 }
 
-.dropdown-menu.show {
-  animation: show-navbar-dropdown .25s ease forwards;
-  pointer-events: auto;
-  opacity: 1;
-}
-
 @media screen and (max-width:575px) {
 
   .notification-dropdown.show {
@@ -139,17 +128,13 @@
   }
 }
 
-
 .text-secondary {
   color: rgb(209, 151, 5);
 }
 
-
 label {
   font-size: 14px;
-  /* color: #4f5265; */
 }
-
 
 .nav .nav-link {
   padding-top: 5px;
@@ -182,7 +167,7 @@ label {
 
 .user-logo{
   cursor: pointer; 
-  height: 27px;
+  height: 32px;
   padding: 1px;
 }
 

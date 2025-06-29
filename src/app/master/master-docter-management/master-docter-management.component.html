@@ -1,8 +1,7 @@
-<div class="row mx-1 mx-md-4   ">
-    <div class="card mt-2 py-2 header-card " style="border: none;">
-        <div class="card-body">
-            <h5 class="card-title linear-gradient-doctor"><i class="fa-solid fa-user-doctor me-2" style="font-size: 20px; padding: 2px;"></i> Docters Management </h5>
-            <p class="card-text" style="font-size: 13px;">Here you can manage Docters Details </p>
+<div class="row mx-1 mx-md-4">
+        <div class="card-body mt-4">
+            <h5 class="card-title">Docters Management </h5>
+            <p class="card-text mt-2" style="font-size: 13px;">Here you can manage Docters Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
                     class="fa-regular fa-square-caret-left"></i> Go Back</a>
             <a class="btn btn-secondary btn-sm ms-md-4 " (click)="addDoctorModal()" data-bs-toggle="modal" data-bs-target="#addDocterModal" >
@@ -10,11 +9,10 @@
             <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
             </a>
         </div>
-    </div>
 </div>
 <div class="row mx-md-2  mt-4">
     <div class=" pt-2">
-        <div class="row mx-1 py-2">
+        <div class="row py-2">
             <div class="col-xl-8 col-md-6">
                 <h6>Docters List</h6>
             </div>
@@ -29,7 +27,7 @@
             </div>
         </div>
         <div class="docterTable">
-            <table class="table table-hover table-sm table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -45,7 +43,7 @@
                 <tbody>
                     <tr *ngFor="let docter of doctorsList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td scope="row">{{docter.doctorId}}</td>
-                        <td class="docterName" (click)="viewDoctor(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#viewDocterModal"
+                        <td class="NameColumn table-patient-name" (click)="viewDoctor(docter.doctorId)" data-bs-toggle="modal" data-bs-target="#viewDocterModal"
                             >{{docter.firstName}} {{docter.lastName}}</td>
                         <td>{{docter.hospitalName}}</td>
                         <td>{{docter.mobile}}</td>
@@ -330,7 +328,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="doctorObj.title" name="title" required>
-                                        <option value="" selected>Select Title</option>
+                                        <option value="" selected>Select</option>
                                         <option value="DR.">DR.</option>
                                     </select>
                                 </div>
@@ -346,7 +344,7 @@
 
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" [(ngModel)]="doctorObj.firstName"
-                                            name="firstName" minlength="3" placeholder="Enter First Name" required>
+                                            name="firstName" minlength="3" placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -360,7 +358,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="doctorObj.lastName"
-                                        name="lastName" minlength="3" placeholder="Enter Last Name" required>
+                                        name="lastName" minlength="3" placeholder="" required>
                                 </div>
                             </div>
 
@@ -375,7 +373,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="doctorObj.gender" name="gender" required>
-                                        <option value="" selected>Select Gender</option>
+                                        <option value="" selected>Select</option>
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
                                         <option value="O">Other</option>
@@ -394,7 +392,7 @@
                             <div class="col-12 col-md-8 ">
                                 <div class="form-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="doctorObj.country" name="country" required>
-                                        <option value="" selected>Select Country</option>
+                                        <option value="" selected>Select</option>
                                         <option value="IN">India</option>
                                     </select>
                                 </div>
@@ -414,7 +412,7 @@
                                         (ngModelChange)="onSelectState()" name="state" #state="ngModel"
                                         [ngClass]="{ 'is-invalid': state.touched && state.errors, 'is-valid': state.touched && !state.errors }"
                                         required>
-                                        <option value="" selected>Select State</option>
+                                        <option value="" selected>Select</option>
                                         <option *ngFor="let state of stateList" value="{{state.code}}">{{
                                             state.discription
                                             }}</option>
@@ -436,7 +434,7 @@
                                         #district="ngModel"
                                         [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }"
                                         required>
-                                        <option value="" selected>Select District</option>
+                                        <option value="" selected>Select</option>
                                         <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
                                             dist.discription }}</option>
                                     </select>
@@ -455,7 +453,7 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" minlength="3"
                                         [(ngModel)]="doctorObj.city_village" name="city_village"
-                                        placeholder="Enter City / village name" required>
+                                        placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -473,7 +471,7 @@
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" minlength="3"
                                             [(ngModel)]="doctorObj.addLine" name="addLine"
-                                            placeholder="Enter Address line" required>
+                                            placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -489,7 +487,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="number" class="form-control" [(ngModel)]="doctorObj.pincode"
-                                        name="pincode" minlength="3" placeholder="Enter Pincode">
+                                        name="pincode" minlength="3" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -505,7 +503,7 @@
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="number" class="form-control" minlength="3"
-                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="Enter Mobile No">
+                                            [(ngModel)]="doctorObj.mobile" name="mobile" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -522,7 +520,7 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="email" class="form-control" minlength="3"
                                         [(ngModel)]="doctorObj.emailId" name="emailId"
-                                        placeholder="Enter Email Address ">
+                                        placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -533,7 +531,7 @@
                             <div class="col-8">
                                 <div class="form-group input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="doctorObj.hospitalName"
-                                        name="hospitalName" placeholder="Enter Hospital Name" required>
+                                        name="hospitalName" placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -545,7 +543,7 @@
                             <div class="col-8">
                                 <div class="form-group input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="doctorObj.remark" name="remark"
-                                        placeholder="Enter Remark">
+                                        placeholder="">
                                 </div>
                             </div>
                         </div>

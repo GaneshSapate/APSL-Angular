@@ -1,15 +1,13 @@
-<div class="row mx-2 mx-md-4 ">
-  <div class="card mt-2 py-2 header-card" style="border: none;">
-    <div class="card-body">
-      <h5 class="card-title linear-gradient-default"><i class="fa-solid fa-microscope navbar-brand me-2" style="font-size: 20px; padding: 2px;"></i> Lab Details Management </h5>
-      <p class="card-text" style="font-size: 13px;">Here you can manage Lab name, address etc details</p>
+<div class="row mx-2 mx-md-4">
+    <div class="card-body mt-4">
+      <h5 class="card-title">Lab Details Management </h5>
+      <p class="card-text mt-2" style="font-size: 13px;">Here you can manage Lab name, address etc details</p>
       <a class="btn btn-secondary btn-sm " (click)="clickonBack()"><i class="fa-regular fa-square-caret-left"></i> Go
         Back</a>
       <a class="btn btn-secondary btn-sm ms-md-4" (click)="addlabModal()" data-bs-toggle="modal"
         data-bs-target="#addLabModal">
         <i class="fa-solid fa-plus"></i> Add Lab </a>
     </div>
-  </div>
 </div>
 
 <div class="row m-2 m-md-4 ">
@@ -56,7 +54,7 @@
             <div class="col-12 col-md-8">
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="text" class="form-control " minlength="3" [(ngModel)]="labObj.labName" name="labName" #labName="ngModel"
-                    placeholder="Enter Name" required 
+                    placeholder="" required 
                     [ngClass]="{ 'is-valid': labName.touched && !labName.errors,'is-invalid': labName.touched && labName.errors }" >
                 </div>
             </div>
@@ -97,7 +95,7 @@
               <div class="form-group input-group input-group-sm">
                 <select class="form-select" [(ngModel)]="labObj.country" name="country" #country="ngModel"
                 [ngClass]="{ 'is-invalid': country.touched && country.errors,'is-valid': country.touched && !country.errors }" required>
-                  <option value="" selected>Select Country</option>
+                  <option value="" selected>Select</option>
                   <option value="IN">India</option>
                 </select>
               </div>
@@ -114,7 +112,7 @@
               <div class="form-group input-group input-group-sm">
                 <select class="form-select" [(ngModel)]="labObj.state" (ngModelChange)="onSelectState()" name="state" #state="ngModel"
                 [ngClass]="{ 'is-invalid': state.touched && state.errors, 'is-valid': state.touched && !state.errors }" required>
-                  <option value="" selected>Select State</option>
+                  <option value="" selected>Select</option>
                   <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
 
                 </select>
@@ -133,7 +131,7 @@
               <div class="form-group input-group input-group-sm">
                 <select class="form-select" [(ngModel)]="labObj.district" name="district" #district="ngModel"
                 [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }" required>
-                  <option value="" selected>Select District</option>
+                  <option value="" selected>Select</option>
                   <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}</option>
 
                 </select>
@@ -151,7 +149,7 @@
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="text" class="form-control" minlength="3" [(ngModel)]="labObj.city_village" name="city_village" #city_village="ngModel"
                 [ngClass]="{ 'is-invalid': city_village.touched && city_village.errors,'is-valid': city_village.touched && !city_village.errors }" 
-                placeholder="Enter City / village name" required>
+                placeholder="" required>
               </div>
             </div>
           </div>
@@ -169,7 +167,7 @@
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="text" class="form-control" minlength="3" [(ngModel)]="labObj.addLine" name="addLine" #addLine="ngModel"
                   [ngClass]="{ 'is-invalid': addLine.touched && addLine.errors, 'is-valid': addLine.touched && !addLine.errors}" 
-                  placeholder="Enter Address line" minlength="3" required>
+                  placeholder="" minlength="3" required>
                 </div>
               </div>
             </div>
@@ -185,7 +183,7 @@
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="number" class="form-control" [(ngModel)]="labObj.pincode" name="pincode" #pincode="ngModel"
                 [ngClass]="{ 'is-invalid': pincode.touched && pincode.errors, 'is-valid': pincode.touched && !pincode.errors }"
-                 placeholder="Enter Pincode"  maxlength="6" minlength="6"  (keyup)= "pincodeValidation()" required>
+                 placeholder=""  maxlength="6" minlength="6"  (keyup)= "pincodeValidation()" required>
               </div>
             </div>
           </div>
@@ -202,7 +200,7 @@
                 <div class="input-group flex-nowrap input-group-sm">
                   <input type="number" class="form-control"[(ngModel)]="labObj.mobileNumber" name="mobileNumber" #mobileNumber="ngModel"
                   [ngClass]="{ 'is-invalid': mobileNumber.touched && mobileNumber.errors, 'is-valid': mobileNumber.touched && !mobileNumber.errors }"
-                   placeholder="Enter Mobile No"  minlength="10" size="10" (keyup)= "mobileNumberValidation()" required>
+                   placeholder=""  minlength="10" size="10" (keyup)= "mobileNumberValidation()" required>
                 </div>
               </div>
             </div>
@@ -218,7 +216,7 @@
               <div class="input-group flex-nowrap input-group-sm">
                 <input type="email" class="form-control" minlength="3" [(ngModel)]="labObj.emailId" name="emailId" #emailId="ngModel"
                 [ngClass]="{ 'is-invalid': emailId.touched && emailId.errors,'is-valid': emailId.touched && !emailId.errors }"
-                placeholder="Enter Email Address " email required>
+                placeholder="" email required>
               </div>
             </div>
           </div>

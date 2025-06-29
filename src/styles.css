@@ -5,20 +5,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Matangi:wght@300..900&display=swap');
 @import 'ngx-toastr/toastr';
 /* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
 
 body {
-  font-family: -apple-system, Roboto, system-ui, Mona Sans, Roboto Condensed;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Mona Sans, Roboto Condensed;
 }
 
 :root {
   --default:#0143a4;
-  --indigo: #0143a4;
+  --indigo: #004fc5;
   --teal: #0D6D6D;
-  --grey: #4f4f4f;
+  --grey: #404047;
   --greyFade: #ebebeb;
-  --brown: #8a5501;
+  --brown-text: #6f4400;
+  --brown: #925a01;
   --brownFade: #f5f2ec;
 }
 
@@ -36,15 +38,8 @@ body {
   border-radius: 3px;
 }
 
-.btn-primary {
+.btn-sm .btn-primary {
   border: none;
-}
-
-.btn-success {
-  outline: none;
-  border-width: 0px;
-  box-sizing: border-box;
-  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.356);
 }
 
 .btn-secondary {
@@ -85,18 +80,11 @@ button[disabled] {
   background-color: #ebebeb;
   color: #c20000;
 }
-.form-control{
-  border-radius: 0% !important;
+
+input, select{
+  font-family: Roboto;
 }
-.form-select {
-  border-radius: 0% !important;
-}
-select{
-  border-radius: 0%;
-}
-.input-group .input-group-text{
-  border-radius: 0% !important;
-}
+
 .modal-content {
   border: none;
   border-radius: 4px;
@@ -111,13 +99,12 @@ select{
 }
 
 .modal-title {
-  font-size: 16px;
+  font-size: 17px;
   margin-left: 14px;
-  font-family: Roboto;
 }
 
 .modal-body label {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .toast-top-center {
@@ -133,26 +120,14 @@ select{
   font-size: 18px;
   color: #313131;
 }
-
-.option-card {
-  display: block;
-  width: 22rem;
-  margin-left: 10px;
-  margin-top: 20px;
-  border: none;
-  transition: 0.5s;
-  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-  box-shadow: 0 0.5px 1.5px 0.06px rgba(4, 26, 55, 0.322);
-}
-
 .option-card:hover {
   cursor: pointer;
 }
 
 .card-title {
-  color: #000000;
-  font-size: 18px;
-  font-weight: 400;
+  color: #2d2d2d;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .card-text {
@@ -166,19 +141,21 @@ select{
 }
 
 .work-card-div .card {
-  border: none;
   display: block;
   width: 20rem;
+  border-width: 1px;
+  border-color: #c3c3c3a5;
   margin-left: 10px;
   margin-top: 20px;
-  /* border-left: 5px solid var(--ds-background-accent-orange-subtler, #7777774a); */
-  border-radius: 3px;
-  box-shadow:  1px 1px 3px rgba(9, 30, 66, 0.25);
+  border-radius: 5px;
   transition: box-shadow 0.3s ease-in-out, border-color 0.6s ease-in;
 
 }
 .card-icon{
   font-size: 25px;
+}
+.page-title{
+  font-size: 18px;
 }
 .work-card-div .card:hover {
   box-shadow: 1px 2px 7px rgba(153, 153, 153, 0.322);
@@ -204,38 +181,37 @@ select{
 }
 
 table {
-  font-size: 13px;
-  text-align: center;
+  font-size: 13.5px;
   vertical-align: middle;
   font-weight: 400;
 }
 
 .table thead tr th {
+  font-family: Roboto;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   vertical-align: middle;
 }
 
 .table tbody tr td {
-  font-weight: 400;
   vertical-align: middle;
-  font-size: 13px;
 }
 .text-color-muted {
   color: #3f3f3f;
 }
 
 .table-patient-name{
+  font-family: Roboto;
   font-size: 15px;
 }
 
 .docterName:hover {
-  color: rgb(4, 54, 129);
+  color: var(--indigo);
   cursor: pointer;
 }
 
 .NameColumn:hover {
-  color: rgb(0, 85, 213);
+  color: var(--indigo);
   cursor: pointer;
 }
 
@@ -244,36 +220,44 @@ table {
 }
 
 .navbar {
-  background-color: #dee8ff;
-  color: #0143a4;
-
+  border-bottom: solid;
+  border-color: #e8e8e8;
+  border-width: 1px;
+  backdrop-filter: blur(20px);
 }
 
 .brand-name {
-  color: #0143a4;
-  font-size: 18px;
   font-family: Roboto Condensed;
+  font-size: 18px;
   cursor: pointer;
+  color: rgb(30, 30, 30);;
 }
 
 .navbar .nav-link {
-  color: #0143a4;
+  font-size: .875rem;
 }
-
+.nav-list-item span {
+  color: var(--grey);
+}
 .select {
-  /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-  background-color: #c1c1c139;
-  color: #0041a1;
+  background-color: #c1c1c12a;
+  color: var(--indigo);
   cursor: pointer;
+  span{
+    color: var(--indigo);
+  }
 }
 .nav-list-item:hover {
   background-color: #c1c1c139;
-  color: #0041a1;
+  color: var(--indigo);
   cursor: pointer;
+  span{
+    color: var(--indigo);
+  }
 }
 
 .offcanvas-body {
-  color: #0041a1;
+  color: var(--grey);
 }
 
 .notification-item:hover {
@@ -287,24 +271,29 @@ table {
 }
 
 .dropdown-menu {
-  border: none;
+  border: solid;
+  border-color: #e8e8e8;
+  border-width: 1px;
   width: 180px;
-  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.314);
+  box-shadow: 0 1rem 3rem rgba(169, 169, 169, 0.127);
   transition: height 1s ease-in-out;
-
 }
-
-.dropdown-item:hover {
-  background-color: #e5e5e5;
+.dropdown-item{
+    font-size: 14px;
+    cursor: pointer;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
-
+.any-item{
+  color: var(--grey);
+}
 .any-item:hover {
   background-color: #bfbfbf2c;
   border-radius: 4px;
 }
 
 .custom-tooltip {
-  --bs-tooltip-bg: #003a91;
+  --bs-tooltip-bg: var(--indigo);
   --bs-tooltip-color: var(--bs-white);
   --bs-tooltip-font-size : 12px;
 }
@@ -312,6 +301,7 @@ table {
 #tabs .nav-tab .nav-item.show .nav-link,
 .nav-tabs .nav-link {
   color: #202020;
+  font-size: 15px;
 }
 
 #tabs .nav-tab .nav-item.show .nav-link,
@@ -319,50 +309,13 @@ table {
   border-color: transparent transparent #f3f3f3;
   border-bottom: 3px solid !important;
   background-color: #f5faff;
-  color: #0d4eaf;
+  color: var(--indigo);
 }
-
 
 app-side-nav-bar {
   border-right: solid;
-  border-width: 3px;
-  border-color: #f2f2f2;
-}
-
-.linear-gradient-default i {
-  background: radial-gradient(circle, rgb(97, 153, 236) 0%, rgb(64, 162, 236) 20%, rgb(0, 25, 254) 100%);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.linear-gradient-patient i {
-  background: linear-gradient(to top, #82e9fe 50%, #0091e4 50%);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.linear-gradient-user i {
-  background: linear-gradient(to top, #fef482 50%, #ffaa00 50%);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.linear-gradient-doctor i {
-  background: linear-gradient(to top, #6dffe4 50%, #00dc8f 50%);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.linear-gradient-setting i {
-  background: linear-gradient(to bottom, #47ceff, #558eff, #1f17ff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.linear-gradient-info i {
-  background: radial-gradient(circle, #82e9fe 0%, #45defd 20%, #0091e4 100%);
-  -webkit-background-clip: text;
-  color: transparent;
+  border-color: #e8eaec;
+  border-width: 1px;
 }
 
 #toast-container>.toast-success {
@@ -372,7 +325,6 @@ app-side-nav-bar {
 
 #toast-container>.toast-error {
   background-image: none;
-
 }
 
 #toast-container>.toast-warning {
@@ -381,7 +333,7 @@ app-side-nav-bar {
 
 #toast-container>.toast-info {
   background-image: none;
-  background-color: #0070f3;
+  background-color: var(--indigo);
 }
 
 .toast-top-right {
@@ -389,7 +341,7 @@ app-side-nav-bar {
 }
 
 .toast-message {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .toast-close-button {
@@ -406,6 +358,12 @@ app-side-nav-bar {
   padding: 15px 0px 15px 15px;
 }
 
+.order-card{
+    border: solid;
+    border-width: 1px;
+    border-color: #e7e7e7;
+}
+
 @media screen and (max-width:576px) {
 
   table {
@@ -417,376 +375,15 @@ app-side-nav-bar {
 
 
 [data-bs-theme="light"] {
-  .order-card {
-    border: none;
+  .home-page{
+    .card{
+      background-color: #f6f8fa;
+    }
+    .card-name{
+      font-size: 15px;
+    }
   }
 }
-
-[data-bs-theme="teal"] {
-
-  .default-color{
-    color: var(--teal);
-    accent-color : var(--teal);
-  }
-
-  .form-check-input:checked {
-    background-color: var(--teal);
-    border-color: var(--teal);
-  }
-  .order-card {
-    border: none;
-  }
-
-  .btn-primary {
-    border: none;
-    background-color: var(--teal);
-  }
-
-  .btn-primary .active {
-    border: none;
-    background-color: var(--teal);
-  }
-
-  .btn-primary:hover {
-    border: none;
-    background-color: var(--teal);
-  }
-
-  .docterName:hover {
-    color: var(--teal);
-    cursor: pointer;
-  }
-  
-  .NameColumn:hover {
-    color: var(--teal);
-    cursor: pointer;
-  }
-  
-  .navbar {
-    background-color: #e0eeee;
-    color: var(--teal);
-  
-  }
-  
-  .brand-name {
-    color: var(--teal);
-    font-size: 18px;
-    font-family: Roboto Condensed;
-    cursor: pointer;
-  }
-  
-  .navbar .nav-link {
-    color: var(--teal);
-  }
-  
-  .select {
-    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-    background-color: #e0eeee;
-    color: var(--teal);
-    cursor: pointer;
-  }
-  
-  .nav-list-item:hover {
-    background-color: #e0eeee;
-    color: var(--teal);
-    cursor: pointer;
-  }
-  
-  .offcanvas-body {
-    color: var(--teal);
-  }
-  .custom-tooltip {
-    --bs-tooltip-bg: var(--teal);
-    --bs-tooltip-color: var(--bs-white);
-    --bs-tooltip-font-size : 12px;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link {
-    color: #202020;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    border-color: transparent transparent #f3f3f3;
-    border-bottom: 3px solid !important;
-    background-color: #e0eeee;
-    color: var(--teal);
-  }
-
-  .linear-gradient-default i {
-    background: radial-gradient(circle, #37a6a6 0%, #37a6a6 20%, var(--teal) 100%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .linear-gradient-patient i {
-    background: linear-gradient(to top, #37a6a6 50%, var(--teal) 50%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .linear-gradient-user i {
-    background: linear-gradient(to top, var(--teal) 50%, var(--teal)50%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .linear-gradient-doctor i {
-    background: linear-gradient(to top, #6dffe4 50%, #00dc8f 50%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .linear-gradient-setting i {
-    background: linear-gradient(to bottom, #77c0c0, #37a6a6, var(--teal));
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .linear-gradient-info i {
-    background: radial-gradient(circle, #82e9fe 0%, #37a6a6 20%, var(--teal) 100%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
-}
-
-[data-bs-theme="grey"] {
-
-  
-  .default-color{
-    color: var(--grey);
-    accent-color : var(--grey);
-  }
- .form-check-input:checked {
-    background-color: var(--grey);
-    border-color: var(--grey);
-  }
-  .order-card {
-    border: none;
-  }
-
-  .btn-primary {
-    border: none;
-    background-color: var(--grey);
-  }
-
-  .btn-primary .active {
-    border: none;
-    background-color: var(--grey);
-  }
-
-  .btn-primary:hover {
-    border: none;
-    background-color: var(--grey);
-  }
-
-  .docterName:hover {
-    color: var(--indigo);
-    cursor: pointer;
-  }
-  
-  .NameColumn:hover {
-    color: var(--indigo);
-    cursor: pointer;
-  }
-  
-  .navbar {
-    background-color: var(--greyFade);
-    color: var(--grey);
-  
-  }
-  
-  .brand-name {
-    color: var(--grey);
-    font-size: 18px;
-    font-family: Roboto Condensed;
-    cursor: pointer;
-  }
-  
-  .navbar .nav-link {
-    color: var(--grey);
-  }
-  
-  .select {
-    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-    background-color: var(--greyFade);
-    color: var(--grey);
-    cursor: pointer;
-  }
-  
-  .nav-list-item:hover {
-    background-color: var(--greyFade);
-    color: var(--grey);
-    cursor: pointer;
-  }
-  
-  .offcanvas-body {
-    color: var(--grey);
-  }
-  .custom-tooltip {
-    --bs-tooltip-bg: var(--grey);
-    --bs-tooltip-color: var(--bs-white);
-    --bs-tooltip-font-size : 12px;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link {
-    color: #202020;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    border-color: transparent transparent #f3f3f3;
-    border-bottom: 3px solid !important;
-    background-color: var(--greyFade);
-    color: var(--grey);
-  }
-
-  .linear-gradient-default i {
-   color:  var(--grey) ;
-  }
-  
-  .linear-gradient-patient i {
-    color:  var(--grey) ;
-  }
-  
-  .linear-gradient-user i {
-    color:  var(--grey) ;
-  }
-  
-  .linear-gradient-doctor i {
-    color:  var(--grey) ;
-  }
-  
-  .linear-gradient-setting i {
-    color:  var(--grey) ;
-  }
-  
-  .linear-gradient-info i {
-    color:  var(--grey) ;
-  }
-
-}
-
-[data-bs-theme="brown"] {
-  .default-color{
-    color: var(--brown);
-    accent-color : var(--brown) !important;
-  }
-
-  .form-check-input:checked {
-    background-color: var(--brown);
-    border-color: var(--brown);
-  }
-  .order-card {
-    border: none;
-  }
-
-  .btn-primary {
-    border: none;
-    background-color: var(--brown);
-  }
-
-  .btn-primary .active {
-    border: none;
-    background-color: var(--brown);
-  }
-
-  .btn-primary:hover {
-    border: none;
-    background-color: var(--brown);
-  }
-
-  .docterName:hover {
-    color: var(--brown);
-    cursor: pointer;
-  }
-  
-  .NameColumn:hover {
-    color: var(--brown);
-    cursor: pointer;
-  }
-  
-  .navbar {
-    background-color: var(--brownFade);
-    color: var(--brown);
-  
-  }
-  
-  .brand-name {
-    color: var(--brown);
-    font-size: 18px;
-    font-family: Roboto Condensed;
-    cursor: pointer;
-  }
-  
-  .navbar .nav-link {
-    color: var(--brown);
-  }
-  
-  .select {
-    /* background: linear-gradient(to left, #f4faff 97%, #0d4eaf 3%); */
-    background-color: var(--brownFade);
-    color: var(--brown);
-    cursor: pointer;
-  }
-  
-  .nav-list-item:hover {
-    background-color: var(--brownFade);
-    color: var(--brown);
-    cursor: pointer;
-  }
-  
-  .offcanvas-body {
-    color: var(--brown);
-  }
-  .custom-tooltip {
-    --bs-tooltip-bg: var(--brown);
-    --bs-tooltip-color: var(--bs-white);
-    --bs-tooltip-font-size : 12px;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link {
-    color: #202020;
-  }
-  
-  #tabs .nav-tab .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    border-color: transparent transparent #f3f3f3;
-    border-bottom: 3px solid !important;
-    background-color: var(--brownFade);
-    color: var(--brown);
-  }
-
-  .linear-gradient-default i {
-   color:  var(--brown) ;
-  }
-  
-  .linear-gradient-patient i {
-    color:  var(--brown) ;
-  }
-  
-  .linear-gradient-user i {
-    color:  var(--brown) ;
-  }
-  
-  .linear-gradient-doctor i {
-    color:  var(--brown) ;
-  }
-  
-  .linear-gradient-setting i {
-    color:  var(--brown) ;
-  }
-  
-  .linear-gradient-info i {
-    color:  var(--brown) ;
-  }
-
-}
-
 
 [data-bs-theme="dark"] {
 
@@ -795,11 +392,18 @@ app-side-nav-bar {
   }
 
   .header-card .card-title {
-    color: #ededed;
+    color: var(--greyFade);
   }
 
   .option-card .card-title {
     color: #ededed;
+  }
+
+  .order-card{
+    background-color: #212529;
+    border: solid;
+    border-width: 1px;
+    border-color: #373737;
   }
 
   .card-title {
@@ -807,22 +411,21 @@ app-side-nav-bar {
   }
   .card-text {
     font-size: 13px;
-    font-weight: 400;
     color: #c5c5c5;
   }
 
   .navbar {
     background-color: #3a3a3a;
     color: #dfdfdf;
+    border: none;
   }
 
   .brand-name {
-    color: #8dbaff;
+    color: #ffffff;
   }
 
   .navbar .nav-link {
     color: #dfdfdf;
-    font-weight: 400;
   }
 
   .option-card {
@@ -830,9 +433,7 @@ app-side-nav-bar {
     border-width: 1px;
     border-color: #535353;
   }
-  .btn{
-    font-weight: 300;
-  }
+
   .btn-secondary {
     border: none;
     background-color: #494949;
@@ -847,20 +448,39 @@ app-side-nav-bar {
 
   app-side-nav-bar {
     border-right: solid;
-    border-width: 3px;
-    border-color: #3c3c3c;
+    border-color: #3a3b3c;
+    border-width: 1px;
   }
 
+  .any-item{
+    color: #ffffff;
+  }
+
+  .offcanvas-body {
+    color: #ffffff;
+  }
+  .nav-list-item span {
+    color: #b8b8b8;
+  }
+  .nav-list-item {
+    color: #b8b8b8;
+  }
   .select {
     background-color: #393939;
     color: #ffffff;
     cursor: pointer;
+    span{
+     color: #ffffff;
+    }
   }
 
   .nav-list-item:hover {
     background-color: #393939;
     color: #ffffff;
     cursor: pointer;
+    span{
+    color: #ffffff;
+  }
   }
 
   .NameColumn:hover {

@@ -12,6 +12,7 @@
 }
 
 .login-card{
+    margin-top: -80px;;
     max-width: 23rem; 
     border: none;
     overflow: visible;

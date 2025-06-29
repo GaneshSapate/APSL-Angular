@@ -1,0 +1,10 @@
+.card:hover{
+    cursor: pointer;
+}
+.card{
+    font-size: 14px;
+    border: none;
+}
+.material-symbols-outlined{
+    font-size: 28px;
+}

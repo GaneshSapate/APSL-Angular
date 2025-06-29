@@ -1,18 +1,15 @@
 export interface PatientTestMasterObj {
-    testId: number;
+    ptmid: number;
+    eid:number;
     userId: number;
-    modifiedBy: number;
-    LabId: number;
-    department: string;
     testName: string;
-    testGender: string;
     testCode: string;
-    testCost: string;
-    sampleType: string;
-    remark: string;
-    testType: string;
     addedDate: Date;
+    addedUserId:number;
     modifiedDate: Date;
+    modifiedUserId:number;
     testTextData: string;
     selectFlag:boolean;
+    status:boolean;
+    existingTest:boolean;
 }

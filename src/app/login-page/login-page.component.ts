@@ -119,6 +119,7 @@ export class LoginPageComponent implements OnInit {
         }
         sessionStorage.setItem("labId",UserResp.labId.toString());
         sessionStorage.setItem("userId",UserResp.userId.toString());
+        sessionStorage.setItem("userName",this.loginUserOBJ.userName);
         sessionStorage.setItem("userRole",UserResp.userRole);
         sessionStorage.setItem("account_type",UserResp.accountType);
         this.labService.getLabsByUserId(UserResp.userId).subscribe(

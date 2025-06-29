@@ -83,10 +83,10 @@ export class EntryModalComponent implements OnInit {
     });
     this.doctorService.getAlldoctorsByLabId(this.labId).subscribe((r)=>{
       this.doctorsList=<any>r;
-    })
+    });
     this.testService.getTestListByLabID(this.labId).subscribe((r)=>{
       this.testMasterList = <any>r;
-    })
+    });
   }
 
   onSelectState() {
@@ -95,14 +95,14 @@ export class EntryModalComponent implements OnInit {
       this.masterService.getDistrictByStateCode(this.patientEntry.patient.state).subscribe(
         (result) => {
           this.districtList = <any>result;
-        })
+        });
     }
   }
   search($event:any){
     if(this.searchString.length>=2){
       this.patientService.searchPatientByNameOrMRN(this.searchString).subscribe((s)=>{
         this.searchPatientList = <any>s;
-      })
+      });
     }
   }
   onSelect(p:Patient){
@@ -139,7 +139,7 @@ export class EntryModalComponent implements OnInit {
     this.patientEntry.doctor = <Doctor>{};
     this.testMasterList.forEach((test)=>{
       test.selectFlag=false;
-    })
+    });
   }
   closeModal(){
     this.clearAll();
@@ -150,7 +150,22 @@ export class EntryModalComponent implements OnInit {
     this.patientEntry.addedUserId =userId;
     this.patientEntry.labId = this.labId;
     this.patientEntry.addedDate = new Date();
-    this.patientEntry.status = "Pending"
+    this.patientEntry.status = "Pending";
+    this.patientEntry.testCode = [];
+    this.testMasterList.forEach((obj:PatientTestMasterObj ) => {
+      if(obj.selectFlag){
+        let patientTestMasterObj1 = <PatientTestMasterObj>{};
+        patientTestMasterObj1.testCode = obj.testCode;
+        patientTestMasterObj1.testName = obj.testName;
+        patientTestMasterObj1.testTextData = obj.testTextData;
+        patientTestMasterObj1.selectFlag = obj.selectFlag;
+        patientTestMasterObj1.existingTest = obj.existingTest;
+        patientTestMasterObj1.eid = this.patientEntry.entryId;
+        patientTestMasterObj1.addedDate = new Date();
+        patientTestMasterObj1.addedUserId = <number> new Number(sessionStorage.getItem("userId"));
+        this.patientEntry.testCode.push(patientTestMasterObj1);
+      }
+    });
     this.patientEntryService.addPatientEntry(this.patientEntry).subscribe((r)=>{
       this.patientEntry = <any>r;
       this.toaster.success("Patient Entry Added Successfully ");

@@ -1,20 +1,18 @@
-<div class="row mx-1 mx-md-4   ">
-    <div class="card mt-2 py-2 header-card" style="border: none;">
-        <div class="card-body">
-            <h5 class="card-title linear-gradient-default"><i class="fa-regular fa-file-lines me-2" style="font-size: 20px; padding: 2px;"></i> Reports Management </h5>
-            <p class="card-text" style="font-size: 13px;">Here you can manage Reports Details </p>
+<div class="row mx-1 mx-md-4">
+        <div class="card-body mt-4">
+            <h5 class="card-title">Reports Management </h5>
+            <p class="card-text mt-2" style="font-size: 13px;">Here you can manage Reports Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"><i class="fa-regular fa-square-caret-left"></i>
                 Go Back</a>
             <a class="btn btn-secondary btn-sm ms-md-4" (click)="addNewTestModal()" data-bs-toggle="modal"
                 data-bs-target="#addTestModal"><i class="fa-solid fa-plus"></i> Add New Report</a>
             <a class="btn btn-secondary btn-sm ms-md-4"><i class="fa-regular fa-file-pdf"></i> Export As PDF</a>
         </div>
-    </div>
 </div>
 
-<div class="row mx-md-2  mt-4">
+<div class="row mx-md-2 mt-4">
     <div class="patientTableDiv pt-2">
-        <div class="row mx-1 py-2">
+        <div class="row py-2">
             <div class="col-xl-8 col-md-6">
                 <h6>Test List</h6>
             </div>
@@ -29,7 +27,7 @@
             </div>
         </div>
         <div class="PatientTable">
-            <table class="table table-hover table-sm table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Test Id</th>
@@ -45,7 +43,7 @@
                 <tbody>
                     <tr *ngFor="let test of testMasterList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td scope="row">{{test.testId}}</td>
-                        <td class="testName" (click)="viewTest(test.testId)" data-bs-toggle="modal"
+                        <td class="NameColumn table-patient-name" (click)="viewTest(test.testId)" data-bs-toggle="modal"
                             data-bs-target="#viewTestModal">{{test.testName}}</td>
                         <td>{{test.testCode}}</td>
                         <td>{{test.testGender}}</td>

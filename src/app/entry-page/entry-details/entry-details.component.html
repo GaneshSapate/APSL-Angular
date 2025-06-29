@@ -1,4 +1,4 @@
-<div  *ngIf="!entryObj.entryId" class="row mx-2 mt-2 " >
+<div  *ngIf="!entryObj.entryId" class="row mx-2" >
   <div class="card py-3 ps-4 header-card" style="border: none;">
     <div class="d-flex align-items-center justify-content-center" style="height: 50vh; vertical-align: middle;">
       <div class="text-center">
@@ -9,8 +9,8 @@
   </div>
   </div>
 </div>
-<div  *ngIf="entryObj.entryId" class="row mx-2 mt-2 " style="border-radius: 7px;">
-  <div class="card py-3 ps-4 header-card" style="border: none;">
+<div  *ngIf="entryObj.entryId" class="row mt-2">
+  <div class="card patient-banner-card py-3 ps-4 header-card" style="border: none;">
       <div class="card-body p-1 p-md-2">
         <div class="mb-4">
           <div style="display: inline-block;">
@@ -22,9 +22,9 @@
             </div>
           </div>
           <div style="display: inline-block; vertical-align: middle;">
-            <div class="card-title" style="font-size: 17px;">{{entryObj.patient.title}} {{entryObj.patient.firstName}} {{entryObj.patient.lastName}}</div>
-            <div style="font-size: 13px;">Address Detials : {{entryObj.patient.addressLine}}, {{entryObj.patient.cityVillage}}, {{entryObj.patient.district}}, {{entryObj.patient.state}}</div>
-          <div class="card-text" style="font-size: 13px; ">
+            <div class="card-title">{{entryObj.patient.title}} {{entryObj.patient.firstName}} {{entryObj.patient.lastName}}</div>
+            <div class="patient-banner-card-text">Address : {{entryObj.patient.addressLine}}, {{entryObj.patient.cityVillage}}, {{entryObj.patient.district}}, {{entryObj.patient.state}}</div>
+          <div class="patient-banner-card-text">
             <span class="ms-0">Refer By : </span>{{entryObj.doctor.title}} {{entryObj.doctor.firstName}} {{entryObj.doctor.lastName}},  
             <span class="ms-2">Gender : </span>{{entryObj.patient.gender}}, 
             <span class="ms-2">Mobile No : </span>{{entryObj.patient.mobileNo}}, 
@@ -41,19 +41,13 @@
       </div>
     </div>
 </div>
-<div *ngIf="entryObj.entryId" class="row mx-2 mt-4">
+<div *ngIf="entryObj.entryId" class="row mx-2 mt-2">
   <div class="patientTableDiv pt-2">
       <div class="row py-2 mt-2">
           <div class="col-6">
               <h6>Reports List</h6>
           </div>
           <div class="col-12 col-md-6">
-              <div class="form-group " >
-                  <div class="input-group justify-content-md-end">
-                      <input type="text" class="form-control-sm"  placeholder="Enter Reports Name" >
-                      <button class="btn btn-secondary btn-sm" type="button" > Search</button>
-                  </div>
-               </div>
           </div>
       </div>
       <div class="PatientTable" style="overflow-y: auto;">
@@ -61,18 +55,23 @@
               <thead>
                   <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">Reoprt Name</th>
+                      <th scope="col">Test Name</th>
+                      <th scope="col">Test Code</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Price</th>
+                      <th scope="col">Modified Date</th>
                       <th scope="col">Action</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let patient of patientList | paginate: { itemsPerPage: 7, currentPage: p }; index as i">
-                      <td>{{patient.patientId}}</td>
-                      <td class="patientName">{{patient.patientName}}</td>
-                      <td>{{patient.gender}}</td>
-                      <td>{{patient.mobileNo}}</td>
+                  <tr *ngFor="let test of entryObj.testCode| paginate: { itemsPerPage: 7, currentPage: p }; index as i">
+                      <td>{{test.ptmid}}</td>
+                      <td class="NameColumn table-patient-name">{{test.testName}}</td>
+                      <td>{{test.testCode}}</td>
+                      <td>
+                        <p *ngIf="!test.status" class="patientStatusPending">Pending</p>
+                        <p *ngIf="test.status" class="patientStatusCompleted">Completed</p>
+                      </td>
+                      <td>{{test.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
                       <td><a style="color: green;"><i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | <a style="color: red;"><i class="fa-solid fa-trash-can"></i> Remove</a></td>
                   </tr>
               </tbody>
@@ -97,8 +96,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)="closeModal()"></button>
       </div>
-      <div class="modal-body" style="height: 40rem; vertical-align: middle;">
-        <div class="container-xl mt-md-4">
+      <div class="modal-body" style="min-height: 30rem;">
+        <div class="container-xl mt-md-2">
           <ul class="nav nav-tabs d-grid d-flex" role="tablist">
             <li class="nav-item" role="presentation">
               <a class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#edit-tabpanel-0" role="tab"
@@ -124,12 +123,22 @@
             <div class="tab-pane active" id="edit-tabpanel-0" role="tabpanel" aria-labelledby="edit-tab-0">
               <div class="row my-2 px-2 mt-4">
                 <div class="col-12 col-md-4 col-lg-2">
+                  <label for="">Modify Patient </label>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" [(ngModel)]="patientEntry.modifyPatient" type="checkbox" role="switch" id="switchCheckDefault">
+                  </div>
+                </div>
+              </div>
+              <div class="row my-2 px-2 mt-3">
+                <div class="col-12 col-md-4 col-lg-2">
                   <label for="">Title </label>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
 
                   <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]="patientEntry.patient.title">
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.title" [disabled]="!patientEntry.modifyPatient">
                       <option selected value="">Select</option>
                       <option value="MR.">MR.</option>
                       <option value="MRS.">MRS.</option>
@@ -146,8 +155,8 @@
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
-                      <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.firstName"
-                        placeholder="Enter First Name" required>
+                      <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.firstName" [disabled]="!patientEntry.modifyPatient"
+                        placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -164,7 +173,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="text" class="form-control" minlength="3"
-                        [(ngModel)]="entryObj.patient.middleName" placeholder="Enter Middle Name" required>
+                        [(ngModel)]="patientEntry.patient.middleName" placeholder="" [disabled]="!patientEntry.modifyPatient" required>
                     </div>
                   </div>
                 </div>
@@ -176,8 +185,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
-                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.lastName"
-                      placeholder="Enter Last Name" required>
+                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.lastName" [disabled]="!patientEntry.modifyPatient"
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -191,8 +200,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]="patientEntry.patient.gender">
-                      <option value="" selected>Select gender</option>
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.gender" [disabled]="!patientEntry.modifyPatient">
+                      <option value="" selected>Select</option>
                       <option value="M">Male</option>
                       <option value="F">Female</option>
                       <option value="O">Other</option>
@@ -211,13 +220,13 @@
                   <div class="row">
                     <div class="col-6">
                       <div class="input-group flex-nowrap input-group-sm">
-                        <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.age"
-                          placeholder="Enter Age" required>
+                        <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.age" [disabled]="!patientEntry.modifyPatient"
+                          placeholder="" required>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group input-group input-group-sm">
-                        <select class="form-select" [(ngModel)]="patientEntry.patient.ageUnit">
+                        <select class="form-select" [(ngModel)]="patientEntry.patient.ageUnit" [disabled]="!patientEntry.modifyPatient">
                           <option selected value="Y">Year</option>
                           <option value="M">Month</option>
                         </select>
@@ -242,8 +251,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]="patientEntry.patient.country" required>
-                      <option value="" selected>Select Country</option>
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.country" [disabled]="!patientEntry.modifyPatient" required>
+                      <option value="" selected>Select</option>
                       <option value="IN">India</option>
                     </select>
                   </div>
@@ -256,9 +265,9 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]="patientEntry.patient.state"
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.state" [disabled]="!patientEntry.modifyPatient"
                       (ngModelChange)="onSelectState()" required>
-                      <option value="" selected>Select State</option>
+                      <option value="" selected>Select</option>
                       <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
 
                     </select>
@@ -276,8 +285,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
-                    <select class="form-select" [(ngModel)]="patientEntry.patient.district" required>
-                      <option value="" selected>Select District</option>
+                    <select class="form-select" [(ngModel)]="patientEntry.patient.district" [disabled]="!patientEntry.modifyPatient" required>
+                      <option value="" selected>Select</option>
                       <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}
                       </option>
 
@@ -292,8 +301,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
-                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.cityVillage"
-                      placeholder="Enter City / village name" required>
+                    <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.cityVillage" [disabled]="!patientEntry.modifyPatient"
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -309,8 +318,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
-                      <input type="text" class="form-control" minlength="3"
-                        [(ngModel)]="patientEntry.patient.addressLine" placeholder="Enter Address line" required>
+                      <input type="text" class="form-control" minlength="3" [disabled]="!patientEntry.modifyPatient"
+                        [(ngModel)]="patientEntry.patient.addressLine" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -322,8 +331,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
-                    <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.pincode"
-                      placeholder="Enter Pincode" required>
+                    <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.pincode" [disabled]="!patientEntry.modifyPatient"
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -339,7 +348,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="number" class="form-control" minlength="3"
-                        [(ngModel)]="patientEntry.patient.mobileNo" placeholder="Enter Mobile No" required>
+                        [(ngModel)]="patientEntry.patient.mobileNo" placeholder="" [disabled]="!patientEntry.modifyPatient" required>
                     </div>
                   </div>
                 </div>
@@ -351,8 +360,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
-                    <input type="email" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.emailId"
-                      placeholder="Enter Email Address " required>
+                    <input type="email" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.emailId" [disabled]="!patientEntry.modifyPatient"
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -400,11 +409,11 @@
                           <div class="me-0"><button class="btn-sm btn-close" (click)="removeRefer()"></button></div>
                         </div>
                       </div>
-                      <p class="card-text">Doctor Id : {{patientEntry.doctor.labId}}
-                        {{patientEntry.doctor.hospitalName}}</p>
-                      <p class="card-text">Address : {{patientEntry.doctor.addLine}}
+                      <div class="card-text">Doctor Id : {{patientEntry.doctor.doctorId}}
+                        {{patientEntry.doctor.hospitalName}}</div>
+                      <div class="card-text">Address : {{patientEntry.doctor.addLine}}
                         {{patientEntry.doctor.city_village}} {{patientEntry.doctor.district}}
-                        {{patientEntry.doctor.pincode}}</p>
+                        {{patientEntry.doctor.pincode}}</div>
                     </div>
                   </div>
                 </div>
@@ -461,8 +470,8 @@
               </div>
             </div>
             <div class="tab-pane" id="edit-tabpanel-3" role="tabpanel" aria-labelledby="edit-tab-3">
-              <div class="row my-2 px-2 mt-4">
-                <div class="col-12 col-md-4 col-lg-3">
+              <div class="row my-2 px-2 mt-4 justify-content-center">
+                <div class="col-12 col-md-4 col-lg-2">
                   <div class=" form-group input-group-sm ">
                     <label for="">Remark </label>
                   </div>

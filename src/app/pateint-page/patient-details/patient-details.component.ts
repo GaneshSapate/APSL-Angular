@@ -3,10 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MasterDataService } from 'src/app/master-data.service';
 import { PatientService } from '../service/patient.service';
 import { Patient } from '../model/PatientModel';
-import { PatientModalComponent } from '../patient-modal/patient-modal.component';
-import { Subject } from 'rxjs';
-import { PatientModalService } from '../service/patient-modal.service';
-import { PatientDetailsService } from '../service/patient-details.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -65,7 +61,7 @@ export class PatientDetailsComponent implements OnInit {
     });
     this.route.paramMap.subscribe(params => {
       let pId =params.get('pid');
-      this.patientService.getPatientById(pId).subscribe((r)=>{
+      this.patientService.getPatientWithEntryById(pId).subscribe((r)=>{
         this.patientObj = <Patient>r;
       })
     })
@@ -88,7 +84,7 @@ export class PatientDetailsComponent implements OnInit {
 
   openPatientModal() {
     this.modalTitle = " Modify Patient";
-    this.patientService.getPatientById(this.patientObj.patientId).subscribe((r) => {
+    this.patientService.getPatientWithEntryById(this.patientObj.patientId).subscribe((r) => {
           this.patientObj = <Patient>r;
           this.onSelectState();
         })

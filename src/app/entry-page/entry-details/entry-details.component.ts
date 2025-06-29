@@ -8,11 +8,11 @@ import { Patient } from '../model/Patient';
 import { TestMasterObj } from 'src/app/Model/TestMasterObj';
 import { DoctorServiceService } from 'src/app/service/doctor-service.service';
 import { TestService } from 'src/app/service/test.service';
-import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 import { PatientService } from 'src/app/pateint-page/service/patient.service';
 import { PatientTestMasterObj } from '../model/PatientTestMasterObj';
 import { ToastrService } from 'ngx-toastr';
 import { EntryModalService } from '../service/entry-modal.service';
+import { CheckTestMasterDTO } from '../model/CheckTestMasterTO';
 
 @Component({
   selector: 'app-entry-details',
@@ -67,7 +67,7 @@ export class EntryDetailsComponent implements OnInit {
 
   doctorsList: Doctor[] = [];
   searchPatientList: Patient[] = [];
-  testMasterList: PatientTestMasterObj[] = [];
+  testMasterList: CheckTestMasterDTO[] = [];
 
   labId = <number> new Number(sessionStorage.getItem("labId"));
 
@@ -78,7 +78,6 @@ export class EntryDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private entryService: PatientEntryService,
     private doctorService: DoctorServiceService,
-    private sideNaveService: SidebarService,
     private patientService: PatientService,
     private toaster: ToastrService,
     private entryModalServie:EntryModalService
@@ -120,6 +119,15 @@ export class EntryDetailsComponent implements OnInit {
       })
       this.testService.getTestListByLabID(this.labId).subscribe((r)=>{
         this.testMasterList = <any>r;
+        this.testMasterList.forEach((test) =>{
+            this.patientEntry.testCode.forEach((pTest)=>{
+              if(test.testCode === pTest.testCode){
+                test.ptmid = pTest.ptmid;
+                test.selectFlag = true;
+                test.existingTest = true;
+              }
+            });
+        });
       })
     })
   }
@@ -180,13 +188,36 @@ export class EntryDetailsComponent implements OnInit {
     this.clearAll();
   }
 
+  modifyPatientInfo(){
+
+  }
+
   modifyPatient() {
     let userId = <number> new Number(sessionStorage.getItem("userId"));
     this.patientEntry.modifiedUserId =userId;
     this.patientEntry.modifiedDate = new Date();
-    console.log(this.patientEntry);
+    this.patientEntry.testCode = [];
+    if(this.patientEntry.modifyPatient){
+      this.patientEntry.patient.modifiedDate = new Date();
+      this.patientEntry.patient.modifiedUserId = <number> new Number(sessionStorage.getItem("userId"));
+    }
+    this.testMasterList.forEach((obj:CheckTestMasterDTO ) => {
+      if(obj.selectFlag || obj.existingTest){
+        let patientTestMasterObj1 = <PatientTestMasterObj>{};
+        patientTestMasterObj1.ptmid = obj.ptmid;
+        patientTestMasterObj1.testCode = obj.testCode;
+        patientTestMasterObj1.testName = obj.testName;
+        patientTestMasterObj1.testTextData = obj.testTextData;
+        patientTestMasterObj1.selectFlag = obj.selectFlag;
+        patientTestMasterObj1.existingTest = obj.existingTest;
+        patientTestMasterObj1.eid = this.patientEntry.entryId;
+        patientTestMasterObj1.addedDate = new Date();
+        patientTestMasterObj1.addedUserId = <number> new Number(sessionStorage.getItem("userId"));
+        this.patientEntry.testCode.push(patientTestMasterObj1);
+      }
+    });
     this.entryService.updatePatientEntry(this.patientEntry).subscribe((r)=>{
-      this.patientEntry = <any>r;
+      this.entryObj = <any>r;
       this.toaster.success("Patient Entry Updated Successfully ");
       this.clearAll();
     })

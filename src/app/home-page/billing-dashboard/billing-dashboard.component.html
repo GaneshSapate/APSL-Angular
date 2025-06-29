@@ -1,71 +1,76 @@
-<div class="row m-1 mt-4 mt-4 m-sm-4 pt-4">
+<div class="row mx-md-3 mt-4 mx-2">
+     <div class="row">
+        <h5 class="page-title">Dashboard</h5>
+    </div>
+</div>
+<div class="row mt-4 mx-2 mx-3">
     <!-- order-card start -->
     <div class="col-md-6 col-xl-3">
-        <div class="card  order-card">
-            <div class="card-block">
-                <div class="top-block">
-                    <div class="card-icon shadow" style="background: linear-gradient(195deg, #26c6da, #00acc1);">
-                        <i class="fa-solid fa-user-plus"></i>
+        <div class="card order-card">
+            <div class="card-body">
+                <div class="d-grid gap-4 d-flex">
+                    <div class="text">
+                        <h6>Total Customers</h6>
+                        <h3 class="mt-4">2,120</h3>
                     </div>
-                    <div class="text-right"><span>Orders Received </span> <span> 486</span>
+                    <div class="text ms-auto mt-auto">
+                        <span>486</span>
                     </div>
                 </div>
-                <hr>
-                <p class="bottom-text">Completed Orders<span> 351</span></p>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card  order-card">
-            <div class="card-block">
-                <div class="top-block">
-                    <div class="card-icon shadow" style="background: linear-gradient(195deg, rgb(102, 187, 106), rgb(67, 160, 71));">
-                        <i class="fa-solid fa-users"></i>
+    <div class="col-md-6 col-xl-3 mt-md-0 mt-2">
+        <div class="card order-card">
+            <div class="card-body">
+                <div class="d-grid gap-4 d-flex">
+                    <div class="text">
+                        <h6>Jun Month </h6>
+                        <h3 class="mt-4">2,120</h3>
                     </div>
-                    <div class="text-right"><span>Total Sales </span> <span> 486</span>
+                    <div class="text ms-auto mt-auto">
+                        <span>486</span>
                     </div>
                 </div>
-                <hr>
-                <p class="bottom-text">This Month<span> 213</span></p>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card  order-card">
-            <div class="card-block">
-                <div class="top-block">
-                    <div class="card-icon shadow" style="background: linear-gradient(195deg, rgb(236, 64, 122), rgb(216, 27, 96));">
-                        <i class="fa-solid fa-indian-rupee-sign"></i>
+    <div class="col-md-6 col-xl-3 mt-xl-0 mt-2">
+        <div class="card order-card">
+            <div class="card-body">
+                <div class="d-grid gap-4 d-flex">
+                    <div class="text">
+                        <h6>Revenue </h6>
+                        <h3 class="mt-4">2,120</h3>
                     </div>
-                    <div class="text-right"><span>Revenue </span> <span> 486</span>
+                    <div class="text ms-auto mt-auto">
+                        <span>486</span>
                     </div>
                 </div>
-                <hr>
-                <p class="bottom-text">This Month<span> $5,032</span></p>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card  order-card">
-            <div class="card-block">
-                <div class="top-block">
-                    <div class="card-icon shadow">
-                        <i class="fa-solid fa-indian-rupee-sign"></i>
+    <div class="col-md-6 col-xl-3 mt-xl-0 mt-2">
+        <div class="card order-card">
+            <div class="card-body">
+                <div class="d-grid gap-4 d-flex">
+                    <div class="text">
+                        <h6>Revenue </h6>
+                        <h3 class="mt-4">2,120</h3>
                     </div>
-                    <div class="text-right"><span>Total Profit </span> <span> 486</span>
+                    <div class="text ms-auto mt-auto">
+                        <span>486</span>
                     </div>
                 </div>
-                <hr>
-                <p class="bottom-text">This Month<span> $542</span></p>
             </div>
         </div>
     </div>
     <!-- order-card end -->
     <!-- statustic and process start -->
-    <div class="col-md-12 col-lg-12 col-xl-6">
+    <div class="col-md-12 col-lg-12 col-xl-6 mt-4">
         <div class="card order-card" style="min-height: 30rem;">
             <div class="card-header">
-                <div style="font-size: 16px;">Monthly Patients Chart</div>
+                <h6>Monthly Patients Chart</h6>
             </div>
             <div class="card-block" style="position: relative; min-height: 25rem;">
                 <canvas baseChart type="bar" [data]="barChartData" [options]="chartOptions"></canvas>

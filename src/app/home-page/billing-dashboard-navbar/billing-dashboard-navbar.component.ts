@@ -8,6 +8,8 @@ import { LabServiceService } from 'src/app/service/lab-service.service';
 import { LabObj } from 'src/app/Model/LabObj';
 import { SidebarService } from 'src/app/side-nav-bar/sidebar.service';
 import { PatientModalService } from 'src/app/pateint-page/service/patient-modal.service';
+import { UserDetailsService } from 'src/app/service/user-details.service';
+import { map } from 'rxjs';
 
 declare var bootstrap: any
 
@@ -19,9 +21,18 @@ declare var bootstrap: any
 export class BillingDashboardNavbarComponent implements OnInit {
 
   Flag: string = 'light';
-
   theme:any;
-  
+  username:string='';
+  userFullName:String='';
+  user={
+    UserFound:false,
+    userName:'',
+    userMobileNumber:'',
+    userMailId:'',
+    userFirstName:'',
+    userLastName:'',
+    gender:'',
+  };
 
   mode: any = this.document.querySelector('html')?.getAttributeNode('data-bs-theme')
 
@@ -82,7 +93,8 @@ export class BillingDashboardNavbarComponent implements OnInit {
     private masterService: MasterDataService,
     private labService: LabServiceService,
     private sideNaveService : SidebarService,
-    private patientModalService:PatientModalService) { 
+    private patientModalService:PatientModalService,
+    private userDetailsService:UserDetailsService) { 
       this.sideNaveService.onButtonClick.subscribe(() => {
         this.autoRefresh();
       })
@@ -96,30 +108,23 @@ export class BillingDashboardNavbarComponent implements OnInit {
     });
     this.theme=localStorage.getItem("theme");
     this.Flag=''+this.theme;
+    this.logoLocation = "../../../assets/lab_icon.png";
     if(this.theme === 'system'){
       this.useThemeDetector();
-      this.logoLocation = "../../../assets/logo_default.png";
     }else if(this.theme === 'light'){
       this.mode.value = 'light';
-      this.logoLocation = "../../../assets/logo_default.png";
     }else if(this.theme === 'dark'){
       this.mode.value = 'dark';
-      this.logoLocation = "../../../assets/logo_default.png";
-    }else if(this.theme === 'teal'){
-      this.mode.value = 'teal';
-      this.logoLocation = "../../../assets/logo_teal.png";
-    }else if(this.theme === 'grey'){
-      this.mode.value = 'grey';
-      this.logoLocation = "../../../assets/logo_grey.png";
-    }else if(this.theme === 'brown'){
-      this.mode.value = 'brown';
-      this.logoLocation = "../../../assets/logo_brown.png";
     }else{
       this.mode.value = 'light';
       this.theme='light'
       this.Flag='light';
     }
-    
+    this.username = '' + sessionStorage.getItem("userName");
+    this.userDetailsService.userDetailsByUserName(this.username).subscribe(r =>{
+      this.user = <any>r;
+      this.userFullName = this.user.userFirstName +" "+this.user.userLastName;
+    })
     this.setlab();
     this. autoRefresh();
 
@@ -138,43 +143,17 @@ export class BillingDashboardNavbarComponent implements OnInit {
     this.Flag='light';
     localStorage.setItem("theme",'light')
     this.theme='light';
-    this.logoLocation = "../../../assets/logo_default.png";
   }
   darkMode() {
     this.mode.value = 'dark';
     this.Flag='dark';
     localStorage.setItem("theme",'dark');
     this.theme='dark';
-    this.logoLocation = "../../../assets/logo_default.png";
   }
   systemMode(){
     this.useThemeDetector();
     localStorage.setItem("theme",'system');
     this.theme='system';
-    this.logoLocation = "../../../assets/logo_default.png";
-  }
-  tealMode(){
-    this.mode.value = 'teal';
-    this.Flag='teal';
-    localStorage.setItem("theme",'teal');
-    this.theme='teal';
-    this.logoLocation = "../../../assets/logo_teal.png";
-  }
-  greyMode(){
-    this.mode.value = 'grey';
-    this.Flag='grey';
-    localStorage.setItem("theme",'grey');
-    this.theme='grey';
-    this.logoLocation = "../../../assets/logo_grey.png";
-  }
-
-  brownMode(){
-    this.mode.value = 'brown';
-    this.Flag='brown';
-    localStorage.setItem("theme",'brown');
-    this.theme='brown';
-    this.logoLocation = "../../../assets/logo_brown.png";
-    // window.location.reload();
   }
 
   useThemeDetector() {

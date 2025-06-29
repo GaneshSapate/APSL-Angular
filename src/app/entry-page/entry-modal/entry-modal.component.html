@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)="closeModal()"></button>
       </div>
-      <div class="modal-body" style="height: 40rem;">
+      <div class="modal-body" style="min-height: 32rem;">
         <div class="container-xl">
           <div class="row my-lg-2 justify-content-center">
             <div class="col-12 col-md-3">
@@ -81,7 +81,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.firstName"
-                        placeholder="Enter First Name" required>
+                        placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="text" class="form-control" minlength="3"
-                        [(ngModel)]="patientEntry.patient.middleName" placeholder="Enter Middle Name" required>
+                        [(ngModel)]="patientEntry.patient.middleName" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
                     <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.lastName"
-                      placeholder="Enter Last Name" required>
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
                     <select class="form-select" [(ngModel)]="patientEntry.patient.gender">
-                      <option value="" selected>Select gender</option>
+                      <option value="" selected>Select</option>
                       <option value="M">Male</option>
                       <option value="F">Female</option>
                       <option value="O">Other</option>
@@ -146,7 +146,7 @@
                     <div class="col-6">
                       <div class="input-group flex-nowrap input-group-sm">
                         <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.age"
-                          placeholder="Enter Age" required>
+                          placeholder="" required>
                       </div>
                     </div>
                     <div class="col-6">
@@ -177,7 +177,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
                     <select class="form-select" [(ngModel)]="patientEntry.patient.country" required>
-                      <option value="" selected>Select Country</option>
+                      <option value="" selected>Select</option>
                       <option value="IN">India</option>
                     </select>
                   </div>
@@ -192,7 +192,7 @@
                   <div class="form-group input-group input-group-sm">
                     <select class="form-select" [(ngModel)]="patientEntry.patient.state"
                       (ngModelChange)="onSelectState()" required>
-                      <option value="" selected>Select State</option>
+                      <option value="" selected>Select</option>
                       <option *ngFor="let state of stateList" value="{{state.code}}">{{ state.discription }}</option>
 
                     </select>
@@ -211,7 +211,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="form-group input-group input-group-sm">
                     <select class="form-select" [(ngModel)]="patientEntry.patient.district" required>
-                      <option value="" selected>Select District</option>
+                      <option value="" selected>Select</option>
                       <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{ dist.discription }}
                       </option>
 
@@ -227,7 +227,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
                     <input type="text" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.cityVillage"
-                      placeholder="Enter City / village name" required>
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -244,7 +244,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="text" class="form-control" minlength="3"
-                        [(ngModel)]="patientEntry.patient.addressLine" placeholder="Enter Address line" required>
+                        [(ngModel)]="patientEntry.patient.addressLine" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -257,7 +257,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
                     <input type="number" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.pincode"
-                      placeholder="Enter Pincode" required>
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -273,7 +273,7 @@
                   <div class="form-group input-group-sm">
                     <div class="input-group flex-nowrap input-group-sm">
                       <input type="number" class="form-control" minlength="3"
-                        [(ngModel)]="patientEntry.patient.mobileNo" placeholder="Enter Mobile No" required>
+                        [(ngModel)]="patientEntry.patient.mobileNo" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -286,7 +286,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                   <div class="input-group flex-nowrap input-group-sm">
                     <input type="email" class="form-control" minlength="3" [(ngModel)]="patientEntry.patient.emailId"
-                      placeholder="Enter Email Address " required>
+                      placeholder="" required>
                   </div>
                 </div>
               </div>
@@ -334,11 +334,11 @@
                           <div class="me-0"><button class="btn-sm btn-close" (click)="removeRefer()"></button></div>
                         </div>
                       </div>
-                      <p class="card-text">Doctor Id : {{patientEntry.doctor.labId}}
-                        {{patientEntry.doctor.hospitalName}}</p>
-                      <p class="card-text">Address : {{patientEntry.doctor.addLine}}
+                      <div class="card-text">Doctor Id : {{patientEntry.doctor.doctorId}}
+                        {{patientEntry.doctor.hospitalName}}</div>
+                      <div class="card-text">Address : {{patientEntry.doctor.addLine}}
                         {{patientEntry.doctor.city_village}} {{patientEntry.doctor.district}}
-                        {{patientEntry.doctor.pincode}}</p>
+                        {{patientEntry.doctor.pincode}}</div>
                     </div>
                   </div>
                 </div>
@@ -364,7 +364,7 @@
                       <li *ngFor="let test of testMasterList index as i">
                         <div class="dropdown-item" (click)="testCheckBoxCheck(i)">
                           <div class="form-check" style="font-size: 15px;">
-                            <input class="form-check-input" type="checkbox" id="{{test.testId}}"
+                            <input class="form-check-input" type="checkbox" id="{{test.ptmid}}"
                               style="cursor: pointer;" [checked]="test.selectFlag">
                             <label class="form-check-label" style="cursor: pointer;">{{test.testName}} ({{test.testCode}}) </label>
                           </div>
@@ -395,8 +395,8 @@
               </div>
             </div>
             <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
-              <div class="row my-2 px-2 mt-4">
-                <div class="col-12 col-md-4 col-lg-3">
+              <div class="row my-2 px-2 mt-4 justify-content-center">
+                <div class="col-12 col-md-4 col-lg-2">
                   <div class=" form-group input-group-sm ">
                     <label for="">Remark </label>
                   </div>

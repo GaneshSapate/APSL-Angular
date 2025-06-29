@@ -2,16 +2,10 @@
 <app-billing-dashboard-navbar (sideNavToggled)="sideNavStatus = $event"></app-billing-dashboard-navbar>
 
 <!-- side bar -->
-<app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'side-nav-open': sideNavStatus}"></app-side-nav-bar>
+<app-side-nav-bar (sideNavToggled)="sideNavStatus = $event" [ngClass]="{'side-nav-open': sideNavStatus}"></app-side-nav-bar>
 
 <!-- Main Display Area -->
 <div class="display-area" [ngClass]="{'display-area-shrink': sideNavStatus}">
-    <div class="display-area-top">
-        <button class="btn btn-secondary rounded-circle btn-expand-sidenav" (click)="onClickToggled()">
-            <i *ngIf="!this.sideNavStatus" class="fa-solid fa-angle-left"></i>
-            <i *ngIf="this.sideNavStatus" class="fa-solid fa-angle-right"></i>
-        </button>
-    </div>
     <div class=" sub-pages">
         <router-outlet></router-outlet>
     </div>

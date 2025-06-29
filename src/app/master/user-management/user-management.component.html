@@ -1,8 +1,7 @@
-<div class="row mx-1 mx-md-4   ">
-    <div class="card mt-2 py-2 header-card " style="border: none;">
-        <div class="card-body">
-            <h5 class="card-title linear-gradient-default"><i class="fa-solid fa-user me-2" style="font-size: 20px; padding: 2px;"></i> User Management </h5>
-            <p class="card-text" style="font-size: 13px;">Here you can manage Docters Details </p>
+<div class="row mx-1 mx-md-4">
+        <div class="card-body mt-4">
+            <h5 class="card-title">User Management </h5>
+            <p class="card-text mt-2" style="font-size: 13px;">Here you can manage Docters Details </p>
             <a class="btn btn-secondary btn-sm " (click)="clickonBack()"> <i
                     class="fa-regular fa-square-caret-left"></i> Go Back</a>
             <a class="btn btn-secondary btn-sm ms-md-4 " (click)="addUserModal()" data-bs-toggle="modal"
@@ -11,11 +10,10 @@
             <a class="btn btn-secondary btn-sm ms-md-4 "><i class="fa-regular fa-share-from-square"></i> Export in PDF
             </a>
         </div>
-    </div>
 </div>
 <div class="row mx-md-2  mt-4">
     <div class=" pt-2">
-        <div class="row mx-1 py-2">
+        <div class="row py-2">
             <div class="col-xl-8 col-md-6">
                 <h6>User List</h6>
             </div>
@@ -30,7 +28,7 @@
             </div>
         </div>
         <div class="docterTable">
-            <table class="table table-hover table-sm table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -45,7 +43,7 @@
                 <tbody>
                     <tr *ngFor="let user of UsersList | paginate: { itemsPerPage: 9, currentPage: p }; index as i">
                         <td scope="row">{{user.userId}}</td>
-                        <td class="docterName" (click)="viewUser(user.userId)" data-bs-toggle="modal"
+                        <td class="NameColumn table-patient-name" (click)="viewUser(user.userId)" data-bs-toggle="modal"
                             data-bs-target="#viewUserModal">{{user.userFirstName}} {{user.userLastName}}</td>
                         <td>{{user.userMobileNumber}}</td>
                         <td>{{user.userRegestrationDate | date}}</td>
@@ -358,7 +356,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="userObj.title" name="title" required>
-                                        <option value="" selected>Select Title</option>
+                                        <option value="" selected>Select</option>
                                         <option value="DR.">DR.</option>
                                     </select>
                                 </div>
@@ -374,7 +372,7 @@
 
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" [(ngModel)]="userObj.userFirstName"
-                                            name="firstName" minlength="2" placeholder="Enter First Name" required>
+                                            name="firstName" minlength="2" placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +386,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="userObj.userLastName"
-                                        name="lastName" minlength="2" placeholder="Enter Last Name" required>
+                                        name="lastName" minlength="2" placeholder="" required>
                                 </div>
                             </div>
 
@@ -402,7 +400,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" [(ngModel)]="userObj.userName"
-                                        name="useName" minlength="3" placeholder="Enter User Name" required (blur)="userNameExistCheck(f)"
+                                        name="useName" minlength="3" placeholder="" required (blur)="userNameExistCheck(f)"
                                         [ngClass]="{ 'is-invalid': responseDto.usernameFlag}">
                                 </div>
                             </div>
@@ -418,7 +416,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="userObj.gender" name="gender" required>
-                                        <option value="" selected>Select Gender</option>
+                                        <option value="" selected>Select</option>
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
                                         <option value="O">Other</option>
@@ -437,7 +435,7 @@
                             <div class="col-12 col-md-8 ">
                                 <div class="form-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="userObj.userCountry" name="country" required>
-                                        <option value="" selected>Select Country</option>
+                                        <option value="" selected>Select</option>
                                         <option value="IN">India</option>
                                     </select>
                                 </div>
@@ -457,7 +455,7 @@
                                         (ngModelChange)="onSelectState()" name="state" #state="ngModel"
                                         [ngClass]="{ 'is-invalid': state.touched && state.errors, 'is-valid': state.touched && !state.errors }"
                                         required>
-                                        <option value="" selected>Select State</option>
+                                        <option value="" selected>Select</option>
                                         <option *ngFor="let state of stateList" value="{{state.code}}">{{
                                             state.discription
                                             }}</option>
@@ -479,7 +477,7 @@
                                         #district="ngModel"
                                         [ngClass]="{ 'is-invalid': district.touched && district.errors,'is-valid': district.touched && !district.errors }"
                                         required>
-                                        <option value="" selected>Select District</option>
+                                        <option value="" selected>Select</option>
                                         <option *ngFor="let dist of districtList" value="{{dist.discription}}">{{
                                             dist.discription }}</option>
                                     </select>
@@ -498,7 +496,7 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="text" class="form-control" minlength="3"
                                         [(ngModel)]="userObj.userCityOrVillage" name="city_village"
-                                        placeholder="Enter City / village name" required>
+                                        placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -516,7 +514,7 @@
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="text" class="form-control" minlength="3"
                                             [(ngModel)]="userObj.userAddressLine" name="addLine"
-                                            placeholder="Enter Address line" required>
+                                            placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -532,7 +530,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="number" class="form-control" [(ngModel)]="userObj.userPincode"
-                                        name="pincode" minlength="3" placeholder="Enter Pincode">
+                                        name="pincode" minlength="3" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -548,7 +546,7 @@
                                 <div class="form-group input-group-sm">
                                     <div class="input-group flex-nowrap input-group-sm">
                                         <input type="number" class="form-control" minlength="10"
-                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="Enter Mobile No" required
+                                            [(ngModel)]="userObj.userMobileNumber" name="mobile" placeholder="" required
                                             [ngClass]="{ 'is-invalid': responseDto.mobileFlag}">
                                     </div>
                                 </div>
@@ -566,7 +564,7 @@
                                 <div class="input-group flex-nowrap input-group-sm">
                                     <input type="email" class="form-control"
                                         [(ngModel)]="userObj.userMailId" name="emailId"
-                                        placeholder="Enter Email Address" required 
+                                        placeholder="" required 
                                         [ngClass]="{ 'is-invalid': responseDto.emailFlag}">
                                 </div>
                             </div>
