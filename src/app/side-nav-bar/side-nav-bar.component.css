@@ -5,16 +5,16 @@
     font-size: .875em;
     font-weight: 400;
     border-radius: 4px;
-    transition: width 250ms ease-in,left 250ms ease-in;
+    transition: width 25ms ease-in,left 25ms ease-in;
 }
 .nav-list-item span{
     padding: 2px;
     margin-right: 10px;
     margin-left: 14px;
-    font-size: 20px;
+    font-size: 21px;
     width: 25px;
     justify-content: center;
-    transition: 0.3s;
+    transition: width 25ms ease-in,left 25ms ease-in;
 }
 .side-nav{
     height: calc(100vh - 3rem);
@@ -32,4 +32,5 @@
 }
 .list-item-name{
     display: none;
+    margin-left: 0px;
 }

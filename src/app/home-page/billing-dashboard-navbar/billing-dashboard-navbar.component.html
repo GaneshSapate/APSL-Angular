@@ -50,19 +50,13 @@
             </ul>
           </li>
         </ul>
-        <div class="d-flex me-0 p-0">
-          <div>
-            <div class="btn-group dropdown me-2">
-              <span data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="btn-group px-1 any-item" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                  data-bs-custom-class="custom-tooltip" data-bs-auto-close="true" data-bs-title="theme">
-                  <span style="font-size: 16px"><i class="fa-solid fa-fill-drip"></i>
-                  </span>
-                </span>
-              </span>
-              <ul class="dropdown-menu dropdown-menu-end mt-2 px-1" aria-labelledby="navbarDropdown">
+        <div class="d-flex me-0 p-0 navbar-material-symbols">
+            <div class="btn-group any-item mt-auto mb-auto me-1 p-1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span *ngIf="this.mode.value === 'light'" class="material-symbols-outlined ">clear_day</span>
+                  <span *ngIf="this.mode.value === 'dark'" class="material-symbols-outlined">Bedtime</span>
+              <ul class="dropdown-menu dropdown-menu-end mt-2 px-1">
                 <li><a class="dropdown-item d-flex theme" (click)="systemMode()">
-                    <span class="material-symbols-outlined mt-auto  mb-auto">computer</span> <div>System</div> 
+                    <span class="material-symbols-outlined mt-auto  mb-auto">contrast</span> <div>auto</div> 
                     <span *ngIf="theme==='system'" class="material-symbols-outlined mt-auto  mb-auto me-0 ms-auto">trip_origin</span>
                   </a></li>
                 <li><a class="dropdown-item d-flex theme" (click)="lightMode()">
@@ -76,30 +70,19 @@
                 </li>
               </ul>
             </div>
-            <div class="btn-group me-1 px-1 any-item">
-              <span data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                data-bs-title="full screen">
-                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" style="font-size: 16px"><i
-                    class="fa-solid fa-expand"></i></span>
-                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" style="font-size: 16px"><i
-                    class="fa-solid fa-compress"></i></span>
-              </span>
+            <div class="btn-group  any-item mt-auto mb-auto me-1 p-1" data-bs-toggle="tooltip" data-bs-placement="bottom" 
+            data-bs-custom-class="custom-tooltip" data-bs-title="full screen">
+                <span *ngIf="!fullScreenFlag" (click)="openFullscreen()" class="material-symbols-outlined">fullscreen</span>
+                <span *ngIf="fullScreenFlag" (click)="closeFullscreen()" class="material-symbols-outlined">fullscreen_exit</span>
             </div>
-            <div class="btn-group me-2">
-              <span style="font-size: 16px; cursor: pointer;" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                aria-expanded="true">
-                <span class="btn-group py-1 any-item" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                  data-bs-custom-class="custom-tooltip" data-bs-title="notification">
-                  <i class="fa-regular fa-bell px-sm-2">
+            <div class="btn-group mt-auto mb-auto any-item me-1 p-1">
+                  <span data-bs-toggle="dropdown" data-bs-target="#notificationDropdown" 
+                    data-bs-auto-close="outside" aria-expanded="true" class="material-symbols-outlined">notifications
                     <span *ngIf="!noNotification"
-                      class="position-absolute top-0 start-10 translate-middle p-1 bg-danger border border-light rounded-circle">
+                      class="position-absolute top-5 start-10 translate-middle p-1 bg-danger border border-light rounded-circle">
                     </span>
-                  </i>
-                </span>
-              </span>
-
-              <div class="notification-dropdown dropdown-menu dropdown-menu-end notification-container mt-2 "
-                id="notificationDropdown" aria-labelledby="dropdownMenuClickable">
+                  </span>
+              <div class="notification-dropdown dropdown-menu dropdown-menu-end mt-2">
                 <div class="all-notification-item d-flex">
                   <h6 class="mx-2" style="font-size: 14; font-weight: 500;"> Notifications</h6>
                   <p class="mx-auto me-2 my-0" (click)="clearAllNotification()" style="cursor: pointer;">clear all</p>
@@ -125,7 +108,7 @@
                 </div>
               </div>
             </div>
-            <div class="btn-group me-2">
+            <div class="btn-group ms-1 me-2 any-item">
               <span data-bs-toggle="dropdown">
                 <img *ngIf="user.gender === 'M'" class="user-logo" src="../../../assets/icon/man-user-circle-icon.png" alt="" data-bs-toggle="tooltip"
                   data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="profile">
@@ -134,8 +117,8 @@
               </span>
               <ul class="dropdown-menu dropdown-menu-end mt-2 px-1" style="width:13rem;">
                 <li class="dropdown-item d-flex mb-2 px-1" (click)="onProfileClick()"> 
-                  <img *ngIf="user.gender === 'M'" class="user-logo mt-auto  mb-auto" src="../../../assets/icon/man-user-circle-icon.png">
-                  <img *ngIf="user.gender === 'F'" class="user-logo mt-auto  mb-auto" src="../../../assets/icon/woman-user-circle-icon.png">
+                  <img *ngIf="user.gender === 'M'" class="user-logo-drop mt-auto  mb-auto" src="../../../assets/icon/man-user-circle-icon.png">
+                  <img *ngIf="user.gender === 'F'" class="user-logo-drop mt-auto  mb-auto" src="../../../assets/icon/woman-user-circle-icon.png">
                   <div class="ms-2">
                     <div>{{userFullName}}</div>
                     <div style="color: rgb(143, 143, 143);">
@@ -149,7 +132,6 @@
                 <li class="dropdown-item d-flex" (click)="onLogoutClick()">  <span class="material-symbols-outlined mt-auto  mb-auto">logout</span> <div>Log Out</div></li>
               </ul>
             </div>
-          </div>
         </div>
       </div>
 

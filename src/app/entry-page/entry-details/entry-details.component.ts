@@ -13,6 +13,8 @@ import { PatientTestMasterObj } from '../model/PatientTestMasterObj';
 import { ToastrService } from 'ngx-toastr';
 import { EntryModalService } from '../service/entry-modal.service';
 import { CheckTestMasterDTO } from '../model/CheckTestMasterTO';
+import { TestTableData } from 'src/app/Model/TestTableData';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-entry-details',
@@ -68,8 +70,41 @@ export class EntryDetailsComponent implements OnInit {
   doctorsList: Doctor[] = [];
   searchPatientList: Patient[] = [];
   testMasterList: CheckTestMasterDTO[] = [];
+  testMasterObj= <TestMasterObj>{};
 
   labId = <number> new Number(sessionStorage.getItem("labId"));
+
+  editorConfigView : AngularEditorConfig = {
+      editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: '60vh',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: 'Arial',
+      defaultFontSize: '',
+      sanitize: true,
+      fonts: [
+        { class: 'arial', name: 'Arial' },
+        { class: 'times-new-roman', name: 'Times New Roman' },
+        { class: 'calibri', name: 'Calibri' },
+        { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+      ],
+      toolbarHiddenButtons: [
+        [],
+        ['fontName', 'fontSize', 'insertVideo', 'backgroundColor', 'customClasses', 'justifyLeft', 'justifyCenter', 'heading',
+          'justifyRight',
+          'justifyFull',
+          'indent',
+          'outdent',]
+      ]
+    };
 
 
   constructor(private masterService: MasterDataService,
@@ -80,7 +115,7 @@ export class EntryDetailsComponent implements OnInit {
     private doctorService: DoctorServiceService,
     private patientService: PatientService,
     private toaster: ToastrService,
-    private entryModalServie:EntryModalService
+    private entryModalServie:EntryModalService,
   ) { 
     this.entryModalServie.onButtonClick.subscribe((r)=>{
       this.ngOnInit();
@@ -221,5 +256,28 @@ export class EntryDetailsComponent implements OnInit {
       this.toaster.success("Patient Entry Updated Successfully ");
       this.clearAll();
     })
+  }
+
+  openTestModal(testCode:string){
+    let labId = <number> new Number(sessionStorage.getItem("labId"));
+    this.testService.getTestByTestCode(testCode, labId).subscribe((r)=>{
+        let newtestMasterObj = <TestMasterObj>r;
+        this.testMasterObj = Object.assign({}, newtestMasterObj);
+        if(this.testMasterObj.testType === 'Table'){
+          this.testMasterObj.testTableDataDTOList = [];
+          newtestMasterObj.testTableDataDTOList.forEach( (fieldObj: TestTableData) => {
+            if(fieldObj.field_type === 'Single Field'){
+              this.testMasterObj.testTableDataDTOList.push(fieldObj);
+            }else if (fieldObj.field_type === 'Title Field' ){
+              this.testMasterObj.testTableDataDTOList.push(fieldObj);
+              fieldObj.subFieldDataList.forEach( (subfieldObj: TestTableData) =>{
+                this.testMasterObj.testTableDataDTOList.push(subfieldObj);
+              });
+            }
+          });
+        }
+        console.log(this.testMasterObj);
+    });
+
   }
 }

@@ -65,14 +65,18 @@
               <tbody>
                   <tr *ngFor="let test of entryObj.testCode| paginate: { itemsPerPage: 7, currentPage: p }; index as i">
                       <td>{{test.ptmid}}</td>
-                      <td class="NameColumn table-patient-name">{{test.testName}}</td>
+                      <td class="NameColumn table-patient-name" (click)="openTestModal(test.testCode)" data-bs-toggle="modal" data-bs-target="#testValueFillingModal">{{test.testName}}</td>
                       <td>{{test.testCode}}</td>
                       <td>
                         <p *ngIf="!test.status" class="patientStatusPending">Pending</p>
                         <p *ngIf="test.status" class="patientStatusCompleted">Completed</p>
                       </td>
                       <td>{{test.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
-                      <td><a style="color: green;"><i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | <a style="color: red;"><i class="fa-solid fa-trash-can"></i> Remove</a></td>
+                      <td>
+                        <a class="text-success" style="cursor: pointer;" (click)="openTestModal(test.testCode)" data-bs-toggle="modal" data-bs-target="#testValueFillingModal">
+                            <i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | 
+                        <a class="text-danger" style="cursor: pointer;"><i class="fa-solid fa-trash-can"></i> Remove</a>
+                      </td>
                   </tr>
               </tbody>
           </table>
@@ -492,6 +496,96 @@
           aria-label="Close">Close</button>
         <button type="button" class="btn btn-success btn-sm" (click)="modifyPatient()" data-bs-dismiss="modal"
           aria-label="Close">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="testValueFillingModal" tabindex="-1" aria-labelledby="testValueFillingModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="testValueFillingModalLabel">{{testMasterObj.testName}} ({{testMasterObj.testCode}})</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-2">
+        <div *ngIf="testMasterObj.testType=='Table'" style="min-height: 54vh; max-height: 70vh; overflow-y: auto;">
+          <table class="table table-hover table-borderless">
+            <thead style="position: sticky; top: 0; z-index: 1;">
+              <tr>
+                <th scope="col">Sr No</th>
+                <th scope="col">Field Name</th>
+                <th scope="col">Value</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Range / info</th>
+                <th scope="col">Formula</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of testMasterObj.testTableDataDTOList index as i">
+                <th>{{i+1}}</th>
+                <td>
+                    <div *ngIf="item.field_type === 'Single Field'">
+                        {{item.field_name}}
+                    </div>
+                    <div *ngIf="item.field_type === 'Title Field'">
+                        {{item.field_name}}
+                    </div>
+                    <div *ngIf="item.field_type === 'Sub Field'" class="ms-2">
+                        {{item.sub_field}}
+                    </div>
+                </td>
+                <td>
+                  <div *ngIf="item.data_type === 'text'">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div *ngIf="item.data_type === 'numeric'">
+                    <div class="input-group input-group-sm">
+                      <input type="number" class="form-control">
+                    </div>
+                  </div>
+                  <div *ngIf="item.data_type === 'numeric unbound'">
+
+                  </div>
+                  <div *ngIf="item.data_type === 'multiple ranges'">
+
+                  </div>
+                  <div *ngIf="item.data_type === 'custom'">
+                      <div class="input-group input-group-sm">
+                         <select class="form-select" [(ngModel)]="item.value">
+                            <option selected value="">Select</option>
+                            <option *ngFor="let option of item.selected_options" value="{{option}}">{{option}}</option>
+                        </select>
+                      </div>
+                  </div>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>
+                  <div *ngIf="item.range_from">
+                    {{item.range_from}}-{{item.range_to}}
+                  </div>
+                </td>
+                <th>
+                  <div *ngIf="item.apply_formula == true">
+                    <button class="btn btn-secondary btn-sm" >Calculate</button>
+                  </div>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="testMasterObj.testType=='Text'" >
+          <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="testMasterObj.testTextData" name="textContent"
+              [config]="editorConfigView"></angular-editor>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm">Save changes</button>
       </div>
     </div>
   </div>

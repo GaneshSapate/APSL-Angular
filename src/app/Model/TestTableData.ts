@@ -15,5 +15,6 @@ export interface TestTableData{
     selected_options:[];
     apply_formula:boolean;
     formula:string;
-    subFieldDataList:TestTableData[]
+    subFieldDataList:TestTableData[];
+    value:string;
 }

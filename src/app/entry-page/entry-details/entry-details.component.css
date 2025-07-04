@@ -14,8 +14,8 @@
 .patient-banner-card{
 
   .card-title{
-    font-family: Roboto;
-    margin: 0px;
+    font-weight: 500;
+    font-size: 20px;
   }
   .patient-banner-card-text{
     font-size: 13.5px;

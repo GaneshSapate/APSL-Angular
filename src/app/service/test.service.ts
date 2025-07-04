@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TestService {
+
   testMasterUrl:string = environment.url+"/test";
+
   constructor(private http:HttpClient) { }
 
   addNewTest(obj:any,userId:number){
@@ -32,5 +34,8 @@ export class TestService {
   }
   formattingText(obj:any){
     return this.http.post(`${this.testMasterUrl}`+`/formattingOfText`,obj);
+  }
+  getTestByTestCode(testCode:string, labId:number){
+    return this.http.get(`${this.testMasterUrl}`+`/getTest/`+testCode+`/labId/`+labId);
   }
 }

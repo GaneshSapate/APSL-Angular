@@ -48,12 +48,12 @@
   transition: all 0.3s;
   .material-symbols-outlined{
     font-size: 18px;
+    margin-right: 10px;
   }
 }
 
 .material-symbols-outlined{
-  font-size: 18px;
-  margin-right: 10px;
+  font-size: 20px;
 }
 
 .profile-picture {
@@ -63,15 +63,7 @@
 }
 
 .notification-dropdown {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  /* background-color: #fff; */
   min-width: 350px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  border-radius: 5px;
-  display: none;
-  z-index: 1000;
 }
 
 .notification-dropdown.show {
@@ -167,7 +159,11 @@ label {
 
 .user-logo{
   cursor: pointer; 
-  height: 32px;
+  height: 30px;
+  padding: 1px;
+}
+.user-logo-drop{
+  height: 40px;
   padding: 1px;
 }
 
