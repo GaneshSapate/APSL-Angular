@@ -26,3 +26,6 @@
   padding-left: 8px;
   padding-right: 8px;
 }
+textarea{
+  height: 200px;
+}

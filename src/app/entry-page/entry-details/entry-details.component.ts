@@ -273,6 +273,8 @@ export class EntryDetailsComponent implements OnInit {
               fieldObj.subFieldDataList.forEach( (subfieldObj: TestTableData) =>{
                 this.testMasterObj.testTableDataDTOList.push(subfieldObj);
               });
+            }else{
+              this.testMasterObj.testTableDataDTOList.push(fieldObj);
             }
           });
         }

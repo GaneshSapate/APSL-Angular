@@ -179,6 +179,8 @@
                                             </option>
                                             <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
                                             </option>
+                                             <option *ngIf="testMaster.testType=='Table'" value="Text Field">Text Field
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -389,13 +391,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <div *ngIf="field_type === 'Text Field'">
+                                    <div class="col-12 mt-2">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Text Field *</label>
+                                                <textarea class="form-control" name="Text_Field"  [(ngModel)]="field_name" disabled></textarea>
+                                            </div>
+                                        </div>
+                                </div>
                                 <!-- Title Field end -->
                         </div>
                         <div class="col-8">  
                             <div *ngIf="field_type!='Text Editor' && testMaster.testType=='Table'"
                                 style="height: 54vh;  width: 100%;">
                                 <table class="table table-hover table-bordered">
-                                    <thead class="table-light" style="position: sticky; top: 0; z-index: 1;">
+                                    <thead style="position: sticky; top: 0; z-index: 1;">
                                         <tr>
                                             <th scope="col">Select</th>
                                             <th scope="col">#</th>
@@ -422,12 +433,13 @@
                                                     <span *ngIf="!expanded[i]" title="Expand subfield Table">+</span>
                                                 </span>
                                             </th>
-                                            <td style="cursor: pointer;">{{item.field_name}}</td>
-                                            <td>{{item.sub_field}}</td>
-                                            <td>{{item.data_type}}</td>
-                                            <td>{{item.unit}}</td>
-                                            <td>{{item.range_from}}-{{item.range_to}}</td>
-                                            <th><input *ngIf="item.apply_formula == true" class="form-check-input"
+                                            <td *ngIf="item.field_type !== 'Text Field'" >{{item.field_name}}</td>
+                                            <td *ngIf="item.field_type === 'Text Field'"  colspan="6">{{item.field_name}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.sub_field}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.data_type}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.unit}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.range_from}}-{{item.range_to}}</td>
+                                            <th *ngIf="item.field_type !== 'Text Field'"><input *ngIf="item.apply_formula == true" class="form-check-input"
                                                     type="checkbox" name="check+i" id="check+i" checked disabled>
                                                 <input *ngIf="item.apply_formula == false" class="form-check-input"
                                                     type="checkbox" name="check+i" id="check+i" disabled>
@@ -435,7 +447,7 @@
                                         </tr>
                                     </tbody>
                                     <br>
-                                    <tbody *ngIf="subfieldTableFlag" class="table-secondary">
+                                    <tbody *ngIf="subfieldTableFlag">
                                         <tr *ngFor="let item of subFieldDataList index as i">
                                             <th><input class="form-check-input" type="checkbox"
                                                     name="{{item.sub_field}}" id="{{item.sub_field}}"
@@ -605,12 +617,13 @@
                                 <div class="form-group input-group input-group-sm">
                                     <select class="form-select" [(ngModel)]="field_type" name="field_type"
                                         [disabled]="modifyRow">
-                                        <option *ngIf="testMaster.testType =='Table'" value="Single Field">Single
-                                            Field
+                                        <option value="Single Field">Single Field
                                         </option>
-                                        <option *ngIf="testMaster.testType=='Table'" value="Title Field">Title Field
+                                        <option value="Title Field">Title Field
                                         </option>
-                                        <option *ngIf="testMaster.testType=='Table'" value="Sub Field">Sub Field
+                                        <option value="Sub Field">Sub Field
+                                        </option>
+                                        <option value="Text Field">Text Field
                                         </option>
                                     </select>
                                 </div>
@@ -930,12 +943,32 @@
                                 </div>
                                 <!-- Title Field end -->
                             </form>
+                            <form #titlefieldform="ngForm">
+                                <div *ngIf="field_type === 'Text Field'">
+                                    <div class="col-12 mt-2">
+                                            <div class="form-group input-group-sm">
+                                                <label for="">Text Field *</label>
+                                                <textarea class="form-control" name="Text_Field"  [(ngModel)]="field_name" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 my-4">
+                                            <div class="row px-2">
+                                                <button *ngIf="!modifyRow" class="btn btn-success btn-sm"
+                                                    (click)="addRowInTestTable()" [disabled]="!titlefieldform.valid"><i
+                                                        class="fa-solid fa-plus"></i> add</button>
+                                                <button *ngIf="modifyRow" class="btn btn-success btn-sm"
+                                                    (click)="modifyRowInTestTable()"
+                                                    [disabled]="!titlefieldform.valid">Modify</button>
+                                            </div>
+                                        </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="col-8">
                             <div *ngIf="field_type!='Text Editor' && testMaster.testType=='Table'"
                                 style="height: 54vh;  width: 100%;">
                                 <table class="table table-hover table-bordered">
-                                    <thead class="table-light" style="position: sticky; top: 0; z-index: 1;">
+                                    <thead style="position: sticky; top: 0; z-index: 1;">
                                         <tr>
                                             <th scope="col">Select</th>
                                             <th scope="col">#</th>
@@ -964,12 +997,13 @@
                                                     <span *ngIf="!expanded[i]" title="Expand subfield Table">+</span>
                                                 </span>
                                             </th>
-                                            <td cdkDragHandle style="cursor: pointer;">{{item.field_name}}</td>
-                                            <td>{{item.sub_field}}</td>
-                                            <td>{{item.data_type}}</td>
-                                            <td>{{item.unit}}</td>
-                                            <td>{{item.range_from}}-{{item.range_to}}</td>
-                                            <th><input *ngIf="item.apply_formula == true" class="form-check-input"
+                                            <td *ngIf="item.field_type !== 'Text Field'" cdkDragHandle style="cursor: pointer;">{{item.field_name}}</td>
+                                            <td *ngIf="item.field_type === 'Text Field'" cdkDragHandle style="cursor: pointer;" colspan="6">{{item.field_name}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.sub_field}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.data_type}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.unit}}</td>
+                                            <td *ngIf="item.field_type !== 'Text Field'">{{item.range_from}}-{{item.range_to}}</td>
+                                            <th *ngIf="item.field_type !== 'Text Field'"><input *ngIf="item.apply_formula == true" class="form-check-input"
                                                     type="checkbox" name="check+i" id="check+i" checked disabled>
                                                 <input *ngIf="item.apply_formula == false" class="form-check-input"
                                                     type="checkbox" name="check+i" id="check+i" disabled>
@@ -982,7 +1016,7 @@
                                     </tbody>
                                     <br>
                                     <tbody *ngIf="subfieldTableFlag" cdkDropList
-                                        (cdkDropListDropped)="subListDrop($event)" class="table-secondary">
+                                        (cdkDropListDropped)="subListDrop($event)">
                                         <tr cdkDrag cdkDragLockAxis="y"
                                             *ngFor="let item of subFieldDataList index as i">
                                             <th><input class="form-check-input" type="checkbox"

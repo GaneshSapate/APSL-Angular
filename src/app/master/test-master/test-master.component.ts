@@ -49,6 +49,7 @@ export class TestMasterComponent implements OnInit {
   //test table variables
   field_type: string = "Single Field";
   title_field: string = "";
+  Text_Field:string = "";
   title_field_of_subfield: string = "";
   field_name: string = "";
   data_type: string = "numeric";
@@ -358,6 +359,38 @@ export class TestMasterComponent implements OnInit {
         this.toaster.warning("Please Select Mandatory Field!");
       }
     }
+    if (this.field_type == 'Text Field') {
+
+      if (this.field_name) {
+        var b = false;
+        testContentObj.field_type = this.field_type;
+        testContentObj.field_name = this.field_name;
+        testContentObj.subFieldDataList = [];
+
+        this.testMaster.testTableDataDTOList.forEach(function (value: any) {
+          if (value.field_name == testContentObj.field_name || value.sub_field == testContentObj.field_name) {
+            b = true;
+          }
+          if (!value.data_type) {
+            value.subFieldDataList.forEach(function (subVanlue: any) {
+              if (subVanlue.field_name == testContentObj.field_name || subVanlue.sub_field == testContentObj.field_name) {
+                b = true;
+              }
+            });
+          }
+        });
+        if (b) {
+          this.toaster.warning("Text should not be same with other Field name or Sub-field name!");
+        } else {
+          this.testMaster.testTableDataDTOList.push(testContentObj);
+          this.toaster.success("Text Added Successfully");
+          this.resetContentField();
+        }
+      } else {
+        // alert("Please Select Mandatory Field!")
+        this.toaster.warning("Please Select Mandatory Field!");
+      }
+    }
     if (this.field_type == 'Sub Field') {
 
       if (this.field_name && this.data_type && this.title_field_of_subfield) {
@@ -488,7 +521,13 @@ export class TestMasterComponent implements OnInit {
 
   removeFormtestContentList(i: number, item: any) {
     var b = false;
-    if (item.field_name && !item.data_type) {
+     if(this.testMaster.testTableDataDTOList[i].field_type === 'Text Field'){
+      this.testMaster.testTableDataDTOList.splice(i, 1);
+      if (this.indexForModify == i) {
+        this.resetContentField();
+      }
+      this.toaster.success("Row remove successfully");
+    }else if (item.field_name && !item.data_type) {
 
       if (this.testMaster.testTableDataDTOList[i].subFieldDataList.length > 0) {
         this.toaster.warning("Title Field is assign to below the another field!");
@@ -547,8 +586,9 @@ export class TestMasterComponent implements OnInit {
       this.indexForModify = i;
       let testContentObj = <TestTableData>{}
       testContentObj = item;
+      console.log(testContentObj);
       this.field_type = testContentObj.field_type;
-      if (!testContentObj.data_type) {
+      if (testContentObj.field_type === 'Title Field') {
         this.title_field = testContentObj.field_name;
       } else if (testContentObj.sub_field) {
         this.title_field_of_subfield = testContentObj.field_name;
@@ -633,6 +673,11 @@ export class TestMasterComponent implements OnInit {
         this.toaster.success("Row Modified successfully");
         this.resetContentField();
       }
+    }
+    else if (this.field_type == "Text Field") {
+        this.testMaster.testTableDataDTOList[this.indexForModify].field_name = this.field_name;
+        this.toaster.success("Row Modified successfully");
+        this.resetContentField();
     }
     else if (this.field_type == "Sub Field") {
 
@@ -726,7 +771,7 @@ export class TestMasterComponent implements OnInit {
   }
 
   isRowClickable(rowIndex: number): boolean {
-    return this.testMaster.testTableDataDTOList[rowIndex].data_type == undefined;
+    return this.testMaster.testTableDataDTOList[rowIndex].field_type == 'Title Field';
   }
 
   openSUbFieldTable(i: number) {
@@ -806,31 +851,36 @@ export class TestMasterComponent implements OnInit {
 
       for (var i = 0; i < this.reportPdfList.length; i++) {
         let list = [];
-        if (this.reportPdfList[i].field_type != 'Sub Field') {
+        if (this.reportPdfList[i].field_type === 'Single Field' ||
+            this.reportPdfList[i].field_type === 'Title Field') {
           list.push(this.reportPdfList[i].field_name);
         } else if (this.reportPdfList[i].field_type == 'Sub Field') {
           list.push("      " + this.reportPdfList[i].sub_field);
         }
-
-        list.push("");
-        list.push("");
-
-        if (this.reportPdfList[i].range_from != "" && this.reportPdfList[i].range_to != "") {
-          list.push(this.reportPdfList[i].range_from + "-" + this.reportPdfList[i].range_to);
-        } else if (this.reportPdfList[i].range_from != "" && this.reportPdfList[i].range_to == "") {
-          list.push(this.reportPdfList[i].range_from);
-        } else if (this.reportPdfList[i].field_type != 'Title Field' && this.reportPdfList[i].range_from == "") {
-          list.push("-");
-        } else {
-          list.push("");
+        if(this.reportPdfList[i].field_type === 'Text Field'){
+            list.push({ content: this.reportPdfList[i].field_name, colSpan: 5});
         }
-
-        if (this.reportPdfList[i].unit != "") {
-          list.push(this.reportPdfList[i].unit);
-        } else if (this.reportPdfList[i].unit == "" && this.reportPdfList[i].field_type != 'Title Field') {
-          list.push("-");
-        } else {
+        else{
           list.push("");
+          list.push("");
+
+          if (this.reportPdfList[i].range_from && this.reportPdfList[i].range_to) {
+            list.push(this.reportPdfList[i].range_from + "-" + this.reportPdfList[i].range_to);
+          } else if (this.reportPdfList[i].range_from != "" && this.reportPdfList[i].range_to == "") {
+            list.push(this.reportPdfList[i].range_from);
+          } else if (this.reportPdfList[i].field_type != 'Title Field' && this.reportPdfList[i].range_from == "") {
+            list.push("-");
+          } else {
+            list.push("");
+          }
+
+          if (this.reportPdfList[i].unit != "") {
+            list.push(this.reportPdfList[i].unit);
+          } else if (this.reportPdfList[i].unit == "" && this.reportPdfList[i].field_type != 'Title Field') {
+            list.push("-");
+          } else {
+            list.push("");
+          }
         }
         reportTableList.push(list);
 
@@ -858,7 +908,7 @@ export class TestMasterComponent implements OnInit {
       })
     } else {
       let text: string = this.testMaster.testTextData;
-      this.newTextContent = "<div style=\"width: 542px; font-size:10px;\" >" + text + "</div>";
+      this.newTextContent = "<div style=\"width: 542px; font-size:10px; color: black\" >" + text + "</div>";
       pdf.line(40, 200, 575, 200, "S");
       pdf.html(this.newTextContent, {
         callback: (pdf) => {

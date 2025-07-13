@@ -41,9 +41,9 @@
       </div>
     </div>
 </div>
-<div *ngIf="entryObj.entryId" class="row mx-2 mt-2">
-  <div class="patientTableDiv pt-2">
-      <div class="row py-2 mt-2">
+<div *ngIf="entryObj.entryId" class="row mx-2">
+  <div class="patientTableDiv pt-2 col-md-9 col-12">
+      <div class="row py-2 mt-4">
           <div class="col-6">
               <h6>Reports List</h6>
           </div>
@@ -73,8 +73,6 @@
                       </td>
                       <td>{{test.modifiedDate | date: 'dd/MM/yyyy hh:mm a'}}</td>
                       <td>
-                        <a class="text-success" style="cursor: pointer;" (click)="openTestModal(test.testCode)" data-bs-toggle="modal" data-bs-target="#testValueFillingModal">
-                            <i class="fa-regular fa-pen-to-square"></i> Fill Report</a> | 
                         <a class="text-danger" style="cursor: pointer;"><i class="fa-solid fa-trash-can"></i> Remove</a>
                       </td>
                   </tr>
@@ -83,6 +81,28 @@
       </div>
       <div class="d-grid gap-2 d-flex justify-content-end">
           <pagination-controls (pageChange)="p = $event" class="pull-right" style="font-size: small;"></pagination-controls>
+      </div>
+  </div>
+
+  <div class="col-md-3 col-0">
+      <div class="row">
+          <div class="d-flex gap-1">
+            <a class="btn btn-sm p-0 m-0" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <span class="material-symbols-outlined">keyboard_arrow_right</span>
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </a>
+            <div>
+              Patient Info
+            </div>
+          </div>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+          </div>
+      </div>
+      <div>
+
       </div>
   </div>
   
@@ -515,7 +535,6 @@
           <table class="table table-hover table-borderless">
             <thead style="position: sticky; top: 0; z-index: 1;">
               <tr>
-                <th scope="col">Sr No</th>
                 <th scope="col">Field Name</th>
                 <th scope="col">Value</th>
                 <th scope="col">Unit</th>
@@ -525,8 +544,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of testMasterObj.testTableDataDTOList index as i">
-                <th>{{i+1}}</th>
-                <td>
+                <td *ngIf="item.field_type !== 'Text Field'">
                     <div *ngIf="item.field_type === 'Single Field'">
                         {{item.field_name}}
                     </div>
@@ -537,7 +555,10 @@
                         {{item.sub_field}}
                     </div>
                 </td>
-                <td>
+                <td *ngIf="item.field_type === 'Text Field'" colspan="5">
+                  {{item.field_name}}
+                </td>
+                <td *ngIf="item.field_type !== 'Text Field'">
                   <div *ngIf="item.data_type === 'text'">
                     <div class="input-group input-group-sm">
                       <input type="text" class="form-control">
@@ -563,17 +584,17 @@
                       </div>
                   </div>
                 </td>
-                <td>{{item.unit}}</td>
-                <td>
+                <td *ngIf="item.field_type !== 'Text Field'">{{item.unit}}</td>
+                <td *ngIf="item.field_type !== 'Text Field'">
                   <div *ngIf="item.range_from">
                     {{item.range_from}}-{{item.range_to}}
                   </div>
                 </td>
-                <th>
+                <td *ngIf="item.field_type !== 'Text Field'">
                   <div *ngIf="item.apply_formula == true">
                     <button class="btn btn-secondary btn-sm" >Calculate</button>
                   </div>
-                </th>
+                </td>
               </tr>
             </tbody>
           </table>

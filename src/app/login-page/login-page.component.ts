@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UserServiceService } from '../user-service.service';
 import { NgForm,NgModel,ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LabServiceService } from '../service/lab-service.service';
 import { LabObj } from '../Model/LabObj';
-
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
@@ -88,20 +88,28 @@ export class LoginPageComponent implements OnInit {
   labList=[<LabObj>{}];
 
   loginButtonLoading:boolean=false;
+
+  mode: any = this.document.querySelector('html')?.getAttributeNode('data-bs-theme')
   
   constructor(private title:Title,
                 private service:UserServiceService,
                 private toster:ToastrService,
                 private labService: LabServiceService,
-                private router:Router) { }
+                private router:Router,
+                @Inject(DOCUMENT) private document: any,) { }
   
   ngOnDestroy(): void {
     document.body.className='';
   }
   ngOnInit(): void {
+    const value = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (value) {
+      this.mode.value = 'dark';
+    }else{
+      this.mode.value = 'light';
+    }
     this.title.setTitle('Login');
     this.loginButtonLoading=false;
-   // document.body.className="bg_background";
   }
 
   onLogin(f:NgForm){

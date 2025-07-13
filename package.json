@@ -23,7 +23,7 @@
     "@kolkov/angular-editor": "^2.1.0",
     "angular-font-awesome": "^3.1.2",
     "apls-managment": "file:",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.7",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
