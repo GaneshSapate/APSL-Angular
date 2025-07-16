@@ -17,11 +17,12 @@ body {
   --default:#0143a4;
   --indigo: #004fc5;
   --teal: #0D6D6D;
-  --grey: #404047;
-  --greyFade: #ebebeb;
+  --grey: #505060;
+  --greyFade: #b8bec8;
   --brown-text: #6f4400;
   --brown: #925a01;
   --brownFade: #f5f2ec;
+  --dark: #000000;
 }
 
 .default-color{
@@ -251,10 +252,10 @@ table {
 }
 .select {
   background-color: #c1c1c12a;
-  color: var(--indigo);
+  color: var(--dark);
   cursor: pointer;
   span{
-    color: var(--indigo);
+    color:  var(--dark);
   }
     .material-symbols-outlined {
       font-variation-settings:
@@ -263,10 +264,10 @@ table {
 }
 .nav-list-item:hover {
   background-color: #c1c1c139;
-  color: var(--indigo);
+  color:   var(--dark);
   cursor: pointer;
   span{
-    color: var(--indigo);
+    color:  var(--dark);
   }
 }
 
@@ -480,7 +481,7 @@ app-side-nav-bar {
   }
 
   .any-item{
-    color: #d6d6d6;
+    color: var(--greyFade)
   }
 
   .offcanvas-body {

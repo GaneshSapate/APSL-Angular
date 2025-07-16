@@ -1,5 +1,5 @@
 <div>
-  <nav class="navbar navbar-expand-md fixed-top py-0 px-2 p-xs-0" [ngClass]="{'side-nav-open': menuStatus}">
+  <nav class="navbar navbar-expand-md fixed-top py-0 px-2 p-xs-0 " [ngClass]="{'side-nav-open': menuStatus}">
     <div class="container-fluid px-0 mx-0 ">
       <button class=" navbar-toggler focus-ring focus-ring-light" (click)="onClickToggledOffcanvas()"
         data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideNavbar" aria-controls="staticBackdrop"
@@ -11,7 +11,7 @@
           <img class="applogo p-1 ms-2" style="width: 48px;" src="{{logoLocation}}">
         </span>
         <span style="vertical-align: middle;">
-          Swasthya Lab
+          Swasthy Lab
         </span>
       </div>
       <button class="navbar-toggler focus-ring focus-ring-light" style="border: none;" data-bs-toggle="offcanvas"
@@ -50,7 +50,7 @@
             </ul>
           </li>
         </ul>
-        <div class="d-flex me-0 p-0 navbar-material-symbols">
+        <div class="d-flex me-0 p-0">
             <div class="btn-group any-item mt-auto mb-auto me-1 p-1" data-bs-toggle="dropdown" aria-expanded="false">
                   <span *ngIf="this.mode.value === 'light'" class="material-symbols-outlined ">clear_day</span>
                   <span *ngIf="this.mode.value === 'dark'" class="material-symbols-outlined">Bedtime</span>

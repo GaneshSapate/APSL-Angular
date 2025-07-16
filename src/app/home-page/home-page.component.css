@@ -4,13 +4,13 @@ app-side-nav-bar {
   height: calc(100vh - 3rem);
   width: 200px;
   overflow-y: auto;
+  overflow-x: auto;
   transition: width 250ms ease-in;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .side-nav-open {
-  padding: 0px;
   width: 50px;
   overflow-x: auto;
 }
@@ -28,7 +28,7 @@ app-side-nav-bar {
 
 .display-area-shrink {
   width: (100% - 50px);
-  left: 56px;
+  left: 52px;
 }
 .sub-pages {
   height: calc(100vh - 3rem);

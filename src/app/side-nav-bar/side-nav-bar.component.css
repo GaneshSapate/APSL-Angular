@@ -1,20 +1,15 @@
 .nav-list-item{
+    margin: 0px;
     display: flex;
     height: 35px;
     align-items: center;
     font-size: .875em;
     font-weight: 400;
     border-radius: 4px;
-    transition: width 25ms ease-in,left 25ms ease-in;
 }
 .nav-list-item span{
-    padding: 2px;
-    margin-right: 10px;
-    margin-left: 14px;
-    font-size: 21px;
-    width: 25px;
-    justify-content: center;
-    transition: width 25ms ease-in,left 25ms ease-in;
+    margin-left: 15px;
+    font-size: 20px;
 }
 .side-nav{
     height: calc(100vh - 3rem);
@@ -30,7 +25,19 @@
 .btn-expand-sidenav{
     border: none;
 }
+.name{
+    margin-left: 10px;
+}
 .list-item-name{
     display: none;
     margin-left: 0px;
+    margin-right: 0px;
+}
+
+.side-nav-content-collapse{
+
+    .nav-list-item span{
+        margin-left: 10px;
+        font-size: 20px;
+    }
 }
